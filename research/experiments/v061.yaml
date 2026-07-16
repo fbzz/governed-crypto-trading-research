@@ -1,0 +1,50 @@
+schema_version: 1
+experiment_id: v061_decoupled_rank_state_harness
+family_id: tlm_decoupled_rank_state_medium_v1
+phase: synthetic_harness
+status: passed
+evidence_tier: synthetic_scientific_and_accounting_validation_only
+parent_experiment: research/experiments/v060.yaml
+blueprint:
+  path: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+  file_sha256: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+  canonical_sha256: 3cf97271c977633b1ee8ab4641a8a9fc95a1a9d79b72c80c063d21f553498232
+harness_spec:
+  path: artifacts/v61_decoupled_rank_state_harness/harness_spec.json
+  file_sha256: 0bcf529de054a7d659b09124ff0312f7998d048334dcc866b15701d2349f370a
+  canonical_sha256: 6961ed2b0d5479c9fab8ffa9dc4d27ee18cda96103151ada72090719634275a0
+result:
+  path: artifacts/v61_decoupled_rank_state_harness/result.json
+  file_sha256: 77724baa1b14103b583e1ab77de01c4b2dc251bb10dac55d21e93c6fcab76054
+  registered_result_sha256: 7dbcd27d7497955935f2fa0d745c564826827a9273c8e21bc06c7410eefd4b44
+audit:
+  path: artifacts/v61_decoupled_rank_state_harness/audit.json
+  file_sha256: 2f9586a9f67516eda09e2b5b032bf5663a42190f90b6c4c8285c96cb5ea7ab11
+replay_receipt:
+  path: artifacts/v61_decoupled_rank_state_harness/replay_receipt.json
+  file_sha256: 3450f90c534dc27e8c512769ba44b1b1d5cc5083c096ba8940cd0b79dd83177c
+  registered_replay_sha256: 602d2073b335aa27dfcbb098075b4237edd5be403a28d4d033c4ff9985de0d77
+artifact_manifest:
+  path: artifacts/v61_decoupled_rank_state_harness/artifact_manifest.json
+  file_sha256: acf35f5b7734d684bb7bd434d5023652f17cd6d0a7816e2e55a02ffc3a1b3906
+  canonical_sha256: ce6aecf5d72c8babc065abc3d8cdda9c83920b9760e20557e4a478e644c62bcb
+completion_receipt:
+  path: artifacts/v61_decoupled_rank_state_harness/completion_receipt.json
+  file_sha256: e851e64313da8020cc9cf4508062d5e4f3bdeb2ba421cfeb95ef153801b7d802
+  canonical_sha256: d4a670d53fb1efa3aee2126b01ba6a5adbed28ed798e139b402975c136b453c3
+v61_summary:
+  audit_checks_passed: 20
+  audit_checks_total: 20
+  ranker_parameters: 1231634
+  state_gate_parameters: 27489
+  total_parameters: 1259123
+  synthetic_optimizer_steps_executed: 8
+  logical_optimizer_steps_per_component: 2
+  byte_identical_replay: true
+  parquet_deserializations: 0
+  previous_checkpoint_reads: 0
+  real_market_predictions: 0
+  real_performance_metrics: 0
+  real_pnl_evaluations: 0
+  target_asset_loads: 0
+authorized_next_action: authorize_v62_non_target_decoupled_rank_state_dataset_only

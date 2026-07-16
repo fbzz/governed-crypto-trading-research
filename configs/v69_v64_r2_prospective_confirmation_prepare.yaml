@@ -1,0 +1,207 @@
+schema_version: v69-v64-r2-prospective-confirmation-prepare-config/v1
+
+v64_r2_prospective_confirmation_prepare:
+  project_root: .
+  version: v69
+  lineage_label: V64-R2
+  family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+  inputs:
+    v65_blueprint: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v68_result: artifacts/v68_v64_r2_probabilistic_state_gate_training/result.json
+    v68_audit: artifacts/v68_v64_r2_probabilistic_state_gate_training/audit.json
+    v68_training_spec: artifacts/v68_v64_r2_probabilistic_state_gate_training/training_spec.json
+    v68_checkpoint_manifest: artifacts/v68_v64_r2_probabilistic_state_gate_training/checkpoint_manifest.json
+    v68_scaler_manifest: artifacts/v68_v64_r2_probabilistic_state_gate_training/scaler_manifest.json
+    v68_data_access: artifacts/v68_v64_r2_probabilistic_state_gate_training/data_access.json
+    v68_verification: artifacts/v68_v64_r2_probabilistic_state_gate_training/verification.json
+    v68_replay: artifacts/v68_v64_r2_probabilistic_state_gate_training/replay.json
+    v68_completion_receipt: artifacts/v68_v64_r2_probabilistic_state_gate_training/completion_receipt.json
+    v68_artifact_manifest: artifacts/v68_v64_r2_probabilistic_state_gate_training/artifact_manifest.json
+  expected_file_sha256_by_path:
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/result.json: 0412d2ef8263c77fd6e4052f6ae2226670f076c5fbfb2b9acd80b15a90762688
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/audit.json: 284bd64ac112ea3d8d291bdf16fd6e0ccc8c5f0bb873a4ab27e292a4e948059f
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/training_spec.json: 2edf57f2e7e44cb425f3d408b18d5b126812fef670b3f2609e14ef4ad7e80c51
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/checkpoint_manifest.json: 1aa25f83ab1dd66d813c91b584b46146bfb5a20659f9496bdbcf2c7941acb1c0
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/scaler_manifest.json: 9584d43a9b5c0d3b788fedc1c7a47bf023f8662c50ae9338021518ddb9166e31
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/data_access.json: 1713570264076260637858247d5622aecb5acf67fe18afe327fb2dd73b8f898a
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/verification.json: 6c36eea280651c13a0270a9228ff8bfd0038421fb8dd581b0fd14a84a3d296e0
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/replay.json: 1f4fa1417a475c47022b64a7fb1417fbd482ecd1e243c3a4519e1ee05c887527
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/completion_receipt.json: 1a4e7cdf37742f308f4c6685311f03a314b3aed4f3ff3c94b9020d835b312a71
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/artifact_manifest.json: 215369fa49b59dc48b5790f05a334ee8fdea98fc187d2c76deedf33445d336da
+
+  protocol:
+    state: frozen_not_started
+    evidence_tier: prospective_non_target_confirmation
+    registration:
+      anchor_rule: first_git_commit_recording_the_v69_completion_receipt_and_result
+      first_admissible_signal_date_rule: strictly_after_v69_completion_receipt_commit
+      excluded_evidence:
+        - consumed_2025_adaptive_development
+        - pre_registration_2026
+      registration_commit_must_precede_feature_candle_close: true
+    universe:
+      folds: [1, 2, 3]
+      seeds: [42, 7, 123]
+      role: exact_v32_heldout_test_symbols_and_test_triplets
+      contexts: exact_v32_lexical_test_triplets
+      context_aggregation: equal_weight
+      seed_aggregation: equal_weight_before_policy_action
+      seed_or_context_selection_allowed: false
+    capture:
+      source: Binance public spot daily UTC klines
+      authentication_required: false
+      source_endpoint_contract: public_rest_klines_then_archive_checksum_reconciliation
+      candle_timezone: UTC
+      interval: 1d
+      feature_cutoff: fully_closed_daily_candle_only
+      capture_not_before_utc: '00:05:00'
+      prediction_freeze_deadline: before_target_h1_maturity_open
+      missing_or_late_source_action: omit_signal_date_without_imputation_and_extend_clock
+      source_revision_action: preserve_original_packet_and_fail_integrity_gate
+    timestamp_contract:
+      feature_date: UTC_date_of_last_fully_closed_feature_candle
+      eligible_action_date: feature_date_plus_1_calendar_day
+      target_h1_maturity_date: feature_date_plus_2_calendar_days
+      realized_return: log_open_at_maturity_divided_by_open_at_eligible_action
+      accounting_note: counterfactual_official_open_benchmark_not_executable_fill_claim
+    evidence_window:
+      minimum_calendar_days: 120
+      minimum_eligible_signal_dates_per_fold: 90
+      minimum_fully_matured_signal_dates_per_fold: 90
+      minimum_active_position_days_per_fold: 20
+      maximum_calendar_days: 365
+      close_rule: close_only_when_every_minimum_is_met_or_maximum_calendar_days_expires
+      expiry_action: retire_as_inconclusive_without_retuning
+    prediction_freeze:
+      cadence: one_immutable_packet_per_eligible_signal_date
+      required_receipts:
+        - source_input_hash_receipt
+        - checkpoint_manifest_reference_receipt
+        - prediction_packet_sha256
+        - position_packet_sha256
+        - policy_state_before_and_after_sha256
+        - freeze_timestamp_utc
+        - target_maturity_timestamp_utc
+      freeze_must_precede_target_maturity: true
+      regeneration_after_freeze_allowed: false
+      checkpoint_selection_allowed: false
+      interim_metric_or_pnl_access: false
+    policy:
+      abstention_probability_threshold: 0.60
+      action_space: [long_one_asset, cash]
+      base_cost_bps: 10
+      changed_fields_from_v64:
+        - abstention_probability_threshold
+        - probability_event
+        - probability_computation
+        - entry_rule
+        - hold_rule
+        - switch_rule
+        - exit_rule
+      reporting_cost_bps: [10, 20, 30]
+      desired_asset: highest_context_and_seed_averaged_raw_excess
+      momentum_cash_gate: all_currently_eligible_momentum_30_nonpositive
+      probability_computation: one_minus_equal_weight_student_t_mixture_cdf_at_exact_transition_cost
+      probability_event: selected_asset_next_return_strictly_above_exact_transition_cost
+      entry_rule: enter_desired_asset_only_when_momentum_gate_open_and_probability_event_at_least_0_60
+      hold_rule: retain_eligible_incumbent_only_when_probability_event_at_least_0_60
+      switch_rule: switch_only_when_challenger_minus_incumbent_raw_excess_strictly_above_0_002_and_challenger_probability_event_at_least_0_60
+      exit_rule: cash_when_momentum_gate_closes_or_incumbent_probability_event_below_0_60
+      switch_hurdle: 0.002
+      risky_gross: 1.0
+      leverage: false
+      shorting: false
+      final_liquidation: true
+      threshold_source: preregistered_fixed_supermajority_not_selected_from_v64
+      threshold_sweep_allowed: false
+    accounting:
+      gross_return: candidate_weight_times_expm1_target_h1_open_to_open_log_return
+      turnover: l1_weight_change_from_prior_day_zero_initialized
+      charge_entry_switch_exit_forced_exit_and_final_liquidation: true
+      net_return: gross_return_minus_turnover_times_cost_bps_divided_by_10000
+      daily_fold_aggregation: exact_portfolio_sum
+      aggregate_across_folds: equal_weight_daily_mean
+      annualization_days: 365
+      comparators: [cash, equal_weight_eligible_fold_universe]
+      execution_claim: research_counterfactual_only
+    mandatory_cells:
+      predictive_folds: [1, 2, 3]
+      economic_folds: [1, 2, 3]
+      economic_cost_bps: [10, 20, 30]
+      bootstrap_block_lengths_days: [7, 21, 63]
+      bootstrap_paths: 10000
+      bootstrap_seed: 20260715
+      expected_gate_count: 36
+    outcome_dependent_gates:
+      mean_spearman_strictly_positive_each_fold: 0.0
+      mean_top1_centered_excess_strictly_positive_each_fold: 0.0
+      aggregate_pairwise_accuracy_strictly_above: 0.50
+      aggregate_state_direction_accuracy_strictly_above: 0.50
+      aggregate_absolute_direction_accuracy_strictly_above: 0.50
+      positive_net_return_each_fold_at_base_cost: 0.0
+      aggregate_net_return_strictly_positive_all_costs: 0.0
+      aggregate_sharpe_strictly_positive_all_costs: 0.0
+      maximum_absolute_drawdown: 0.30
+      top1_bootstrap_p05_strictly_positive_all_blocks: 0.0
+      economic_bootstrap_p05_strictly_positive_all_blocks: 0.0
+      all_gates_required: true
+      aggregate_rescue_allowed: false
+    outcome_packet:
+      creation_phase: later_one_shot_unseal_only
+      source_projection:
+        - date
+        - fold
+        - symbol
+        - target_h1_maturity_date
+        - target_h1_open_to_open_log_return
+      exact_keys: frozen_prediction_position_keys_only
+      source_reads: 1
+      written_atomically: true
+      immutable: true
+      target_assets_allowed: false
+    one_shot:
+      prediction_accumulation_has_no_performance_access: true
+      evaluation_count: 1
+      outcome_source_read_count: 1
+      retuning_after_unseal_allowed: false
+      prediction_or_position_regeneration_allowed: false
+      pass_action: register_v64_r2_as_prospectively_confirmed_non_target_candidate_only
+      fail_action: retire_v64_r2_without_target_evaluation_or_retuning
+      target_evaluation_authorized_by_pass: false
+      deployment_authorized_by_pass: false
+    operational_boundary:
+      orders: false
+      paper_portfolio: false
+      shadow_trading: false
+      live_trading: false
+      real_money: false
+      interim_mark_to_market: false
+
+  target_contract:
+    symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+    status: sealed
+    target_assets_loaded: []
+    target_predictions: 0
+    target_pnl_evaluations: 0
+  access_ledger:
+    metadata_json_reads: 13
+    parquet_deserializations: 0
+    raw_market_data_reads: 0
+    checkpoint_deserializations: 0
+    model_instantiations: 0
+    optimizer_steps: 0
+    predictions: 0
+    positions: 0
+    performance_metrics: 0
+    pnl_computations: 0
+    outcome_source_reads: 0
+    target_asset_rows: 0
+  pass_action: authorize_v70_prospective_non_target_capture_and_prediction_freeze_only
+  failure_action: retire_v64_r2_without_prospective_or_target_evaluation
+
+output_dir: artifacts/v69_v64_r2_prospective_confirmation_prepare

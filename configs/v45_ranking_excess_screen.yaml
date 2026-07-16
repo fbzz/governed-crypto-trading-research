@@ -1,0 +1,461 @@
+seed: 20260713
+
+ranking_excess_screen:
+  version: v45
+  project_root: .
+  inputs:
+    v41_specification: artifacts/v41_ranking_excess_spec/specification.json
+    v41_blueprint: artifacts/v41_ranking_excess_spec/blueprint.json
+    v41_audit: artifacts/v41_ranking_excess_spec/audit.json
+    v42_result: artifacts/v42_ranking_excess_harness/result.json
+    v42_audit: artifacts/v42_ranking_excess_harness/audit.json
+    v44_result: artifacts/v44_ranking_excess_supervised/result.json
+    v44_audit: artifacts/v44_ranking_excess_supervised/audit.json
+    v44_checkpoint_manifest: artifacts/v44_ranking_excess_supervised/checkpoint_manifest.json
+    v44_target_scales: artifacts/v44_ranking_excess_supervised/target_scales.json
+    v44_supervised_spec: artifacts/v44_ranking_excess_supervised/supervised_spec.json
+    v32_dataset_manifest: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v32_triplet_availability: artifacts/v32_selected_universe_dataset/triplet_availability.json
+    v32_source_audit: artifacts/v32_selected_universe_dataset/source_audit.json
+    v43_scaler_fold_1: data/checkpoints/v43_ranking_excess_pretraining/fold_1/scaler.json
+    v43_scaler_fold_2: data/checkpoints/v43_ranking_excess_pretraining/fold_2/scaler.json
+    v43_scaler_fold_3: data/checkpoints/v43_ranking_excess_pretraining/fold_3/scaler.json
+    panel: data/processed/selected_universe_panel_v32.parquet
+    sequence_index: data/processed/selected_universe_sequence_index_v32.parquet
+  expected_input_sha256:
+    v41_specification: fb14bacbc95efa23bc26c4fe6252eb7eaa950eba8dfe0b400b2c6d0fbf3ab7b0
+    v41_blueprint: a8410ff7fe9ccb56c61ec0095c668557d574799a15101d4129a5a41b85c709b9
+    v41_audit: 991c378fcb2c80ac0a77f8f53a375e1d4f3b49f09d8edb943e8a445ec4b038c2
+    v42_result: 754e321251460109f02cbe2d024cb2af1438526b6656d44f54421308f6d840bb
+    v42_audit: c3d391f8486cc678a0d5a46c5b6ccdb30cd284325798e02909d0440ba5596da5
+    v44_result: 4f905d00224b5a511ff811d930b7add5822bf1e26cb870f7609b09dba653f5f8
+    v44_audit: 3bcaff12fee9c31a1eee37d57e36621bf0a745c4d85ae7976418e28f75ccf109
+    v44_checkpoint_manifest: dc1aa1df16c8d29e5cd001cbbfff03e60d9f10c741b7332e7c4b94dd781280ea
+    v44_target_scales: 9ae2ea373c97621528a27e0c6e583979b00e8974d3905ff9e03456a283b8ad6a
+    v44_supervised_spec: 890dab38531985a133568de5962b3fbb805a8ae5f9ca5d20253b6783ee164af6
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    v32_triplet_availability: adc281cf2d5c9831f0486b4b27c6b79d6f19e574646c301834cdfd924a72db54
+    v32_source_audit: 2f5a50f530671ddbc677a570ec808608b95c066454f0fa0ed673f4a2b053a5bd
+    v43_scaler_fold_1: 4c6f336f181c8bb1e07e943c718915b3bdb59efd27ac8d8e1e5ffdf5bde0d489
+    v43_scaler_fold_2: 3c07d74a123d35c5bdec3ac5527898dabcc94a936c1cc76ab499157491cc7994
+    v43_scaler_fold_3: 852e0cc8033e23d7e8578697e19e33c70e497ae5c0ad2fb0f9224bc5bb67195a
+    panel: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    sequence_index: 3bb609586809bc7fe4d55b55e11df0581f147484005bc5eff9fd45b28b79d861
+
+  expected_checkpoints:
+    '1:42': 93364ecd078c14bad2c671f66542f84aa376d9fb74cd2b97d20e3bc48a944fdc
+    '1:7': 4be09054d779f37a85e1cd90cdd41bfda74d2f1be4381172bd0795e37ac1ad87
+    '1:123': e374b09c8e3baf91c7a1d47bd1ccb279ebd19ade0a17044fbb52059a3ae4ddc5
+    '2:42': f053f4ce4882b1745a88d87184ca340a106377450c58c7dcc5c1a8f96fe4c732
+    '2:7': 98c003a5760093796882e5be073cf661d4c286bd14bbc508b4730c96252b5aa2
+    '2:123': 59920e0aa0ee2ab23af11501603b386648f934904f8f4d74e4ece63c094c0b8f
+    '3:42': 3d8ac99bc8001df79555c681bff3e249a3caa735e58184773b9abe3de33724ae
+    '3:7': f265ca9b757ed9ff52a314d42762c9883cf85513d1cacce872d2d9b823a45384
+    '3:123': 9d521700e8005bbfb204ef446785b67027165e1b684c52fac5e185f4a9a43eb0
+  expected_scalers:
+    '1':
+      artifact_sha256: 4c6f336f181c8bb1e07e943c718915b3bdb59efd27ac8d8e1e5ffdf5bde0d489
+      state_sha256: 37331353b5edf0bb73cc585b209f3850ec9ee40084d3d0c254a086a115b6e585
+    '2':
+      artifact_sha256: 3c07d74a123d35c5bdec3ac5527898dabcc94a936c1cc76ab499157491cc7994
+      state_sha256: 832c1349468fd01b9323c3b86f9594e4bac24e7656a658d9bb3e7df2802b2c16
+    '3':
+      artifact_sha256: 852e0cc8033e23d7e8578697e19e33c70e497ae5c0ad2fb0f9224bc5bb67195a
+      state_sha256: 697264022c0087725533b90f7ecedda309d620aacd0765c18a1528b90871b849
+  expected_target_scales:
+    '1':
+      value: 0.02580950491755508
+      state_sha256: f04af02eabd0ef118055fb11f9797ba95c14948d296bcda1d6a1e5935a8a8447
+    '2':
+      value: 0.02660641234489812
+      state_sha256: 0f954bea0fb21383096c38b2b9466f8148a2d4d14baff44797b058020b21f724
+    '3':
+      value: 0.024912246103458057
+      state_sha256: c403e3b3f498918fe375ed5cea9ee20bd6dc9683b6d50f93126788877cb55201
+
+  device: mps
+  torch_threads: 10
+  dtype: float32
+  deterministic_algorithms: true
+  amp: false
+  cpu_fallback_allowed: false
+  inference_batch_size: 128
+
+  ridge:
+    name: shared_asset_ridge
+    implementation: tlm.ranking_excess_harness.fit_shared_asset_ridge
+    alpha: 10.0
+    input: each_asset_256_by_9_tensor_flattened_with_shared_coefficients
+    target: centered_normalized_triplet_excess
+    train_samples_per_fold: 8192
+    sampling: deterministic_uniform_date_triplet_with_replacement_seed_fold_epoch
+    sampling_seed: 20260713
+    sampling_epoch: 0
+    solver: frozen_v42_closed_form_auto_primal_or_dual
+    tuning_allowed: false
+    fit_before_any_heldout_outcome_read: true
+
+  data_access:
+    ridge_feature_columns:
+      - date
+      - symbol
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+    ridge_label_columns:
+      - date
+      - symbol
+      - target_next_open_to_next_open_log_return
+    screen_feature_columns:
+      - date
+      - symbol
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+    screen_label_columns:
+      - date
+      - symbol
+      - target_window_end_date
+      - target_next_open_to_next_open_log_return
+    sequence_columns:
+      - date
+      - sequence_start_date
+      - symbol
+    ridge_feature_start: '2021-01-01'
+    ridge_feature_end: '2023-12-23'
+    ridge_signal_start: '2021-03-01'
+    ridge_signal_end: '2023-12-23'
+    screen_feature_start: '2024-04-21'
+    screen_feature_end: '2025-12-23'
+    screen_signal_start: '2025-01-01'
+    screen_signal_end: '2025-12-23'
+    screen_maturity_end: '2025-12-31'
+    ridge_split_flag: in_supervised_train
+    screen_split_flag: in_calibration
+    readiness_flags:
+      - supervised_sequence_ready
+      - label_complete
+    pushed_down_symbol_and_date_filters_required: true
+    separate_feature_sequence_and_label_reads_required: true
+    heldout_labels_forbidden_during_prepare: true
+    train_assets_forbidden_during_screen_inference: true
+    validation_2024_labels_forbidden: true
+    post_2025_rows_forbidden: true
+    target_assets_forbidden: true
+    raw_fields_forbidden: true
+    expected_by_fold:
+      '1':
+        ridge_feature_rows: 21740
+        ridge_label_rows: 16040
+        ridge_sequence_rows: 16040
+        ridge_eligible_pairs: 914280
+        ridge_eligible_dates: 802
+        ridge_first_ready_signal: '2021-10-13'
+        ridge_last_ready_signal: '2023-12-23'
+        screen_feature_rows: 6120
+        screen_signal_dates: 357
+        screen_asset_date_rows: 3213
+        screen_label_rows: 3213
+        screen_sequence_rows: 3213
+        screen_triplet_contexts: 29988
+        minimum_ready_assets: 9
+        maximum_ready_assets: 9
+        ready_segments:
+          - {start: '2025-01-01', end: '2025-12-23', ready_assets: 9, absent: [MATICUSDT]}
+      '2':
+        ridge_feature_rows: 21740
+        ridge_label_rows: 16040
+        ridge_sequence_rows: 16040
+        ridge_eligible_pairs: 914280
+        ridge_eligible_dates: 802
+        ridge_first_ready_signal: '2021-10-13'
+        ridge_last_ready_signal: '2023-12-23'
+        screen_feature_rows: 6120
+        screen_signal_dates: 357
+        screen_asset_date_rows: 2999
+        screen_label_rows: 2999
+        screen_sequence_rows: 2999
+        screen_triplet_contexts: 24036
+        minimum_ready_assets: 8
+        maximum_ready_assets: 10
+        ready_segments:
+          - {start: '2025-01-01', end: '2025-01-05', ready_assets: 10, absent: []}
+          - {start: '2025-01-06', end: '2025-05-18', ready_assets: 9, absent: [FTMUSDT]}
+          - {start: '2025-05-19', end: '2025-12-23', ready_assets: 8, absent: [EOSUSDT, FTMUSDT]}
+      '3':
+        ridge_feature_rows: 21740
+        ridge_label_rows: 16040
+        ridge_sequence_rows: 16040
+        ridge_eligible_pairs: 914280
+        ridge_eligible_dates: 802
+        ridge_first_ready_signal: '2021-10-13'
+        ridge_last_ready_signal: '2023-12-23'
+        screen_feature_rows: 6120
+        screen_signal_dates: 357
+        screen_asset_date_rows: 3570
+        screen_label_rows: 3570
+        screen_sequence_rows: 3570
+        screen_triplet_contexts: 42840
+        minimum_ready_assets: 10
+        maximum_ready_assets: 10
+        ready_segments:
+          - {start: '2025-01-01', end: '2025-12-23', ready_assets: 10, absent: []}
+    expected_unique_signal_dates: 357
+    expected_total_fold_signal_dates: 1071
+    expected_total_asset_dates: 9782
+    expected_total_triplet_contexts: 96864
+    expected_total_seed_context_forwards: 290592
+
+  inference:
+    seeds: [42, 7, 123]
+    folds: [1, 2, 3]
+    score_centering: subtract_each_seed_triplet_mean_before_scale
+    raw_conversion: centered_z_times_immutable_fold_train_scale
+    seed_aggregation: arithmetic_mean_all_three_seeds_per_triplet
+    context_aggregation: equal_mean_all_eligible_triplets_containing_asset
+    expected_context_count: choose_n_ready_minus_1_2
+    symbol_order: lexical
+    volatility_head_used_for_gate: false
+
+  predictive_metrics:
+    unit: triplet_context_with_daily_then_fold_aggregation
+    spearman: average_tie_ranks_predicted_raw_excess_vs_action_log_return
+    pairwise_accuracy: all_three_pairs_actual_ties_at_or_below_1e_12_excluded_prediction_ties_incorrect
+    top1_tie_break: lexical_first
+    top1_hit: selected_return_within_1e_12_of_triplet_maximum
+    top1_excess: selected_action_log_return_minus_same_triplet_mean_action_log_return
+    daily_aggregation: equal_mean_all_triplet_contexts_within_fold_date
+    pairwise_aggregation: sum_correct_over_sum_active_pairs_within_fold_date_then_equal_date_and_fold_mean
+    fold_aggregation: equal_mean_all_357_daily_values
+    aggregate_aggregation: equal_mean_all_three_fold_daily_values
+    exact_tie_tolerance: 1.0e-12
+    spearman_ties: average_ranks_using_exact_float_equality
+    zero_active_pairs_action: fail_screen
+    undefined_spearman_action: fail_screen
+
+  policy:
+    action_space: [long_one_asset, cash]
+    desired_asset: highest_context_and_seed_averaged_raw_excess
+    absolute_gate: cash_only_when_all_currently_eligible_momentum_30_are_nonpositive
+    momentum_30: rolling_sum_log_close_to_close_return_window_30_min_periods_30_including_signal_date
+    switch_rule: challenger_minus_incumbent_raw_excess_strictly_above_0_002
+    switch_hurdle: 0.002
+    switch_hurdle_cost_scenario_specific: false
+    entry_from_cash_requires_hurdle: false
+    ineligible_incumbent: exit_immediately_then_enter_lexical_top_score_if_absolute_gate_is_open
+    score_tie_break: lexical_first
+    maximum_gross_exposure: 1.0
+    shorting: false
+    leverage: false
+    controls:
+      - dual_momentum_30
+      - momentum_gated_equal_weight
+    implementations:
+      candidate: tlm.ranking_excess_harness.ranking_excess_positions
+      dual_momentum_30: tlm.ranking_excess_harness.eligible_dual_momentum_positions
+      momentum_gated_equal_weight: tlm.ranking_excess_harness.momentum_gated_equal_weight_positions
+    control_rules:
+      dual_momentum_30: hold_lexical_highest_momentum_eligible_asset_only_when_its_momentum_is_strictly_positive
+      momentum_gated_equal_weight: when_any_eligible_momentum_is_strictly_positive_hold_every_eligible_asset_at_equal_weight_otherwise_cash
+
+  accounting:
+    reporting_cost_bps: [10, 20, 30]
+    base_cost_bps: 10
+    cost_per_unit_turnover: bps_divided_by_10000
+    gross_return: sum_weight_times_expm1_action_log_return
+    turnover: l1_weight_change_with_entry_switch_exit_and_final_liquidation
+    aggregate: equal_one_third_capital_per_fold_daily_mean
+    annualization_days: 365
+    sharpe_standard_deviation_ddof: 1
+    zero_volatility_sharpe: 0.0
+
+  bootstrap:
+    method: circular_block
+    paths: 10000
+    block_lengths_days: [7, 21, 63]
+    base_seed: 20260713
+    batch_size: 250
+    aggregate_triplet_contexts_before_resampling: true
+    top1_series: equal_context_mean_within_fold_date_then_equal_fold_mean_by_date
+    top1_statistic: arithmetic_mean_action_log_excess
+    economic_cost_bps: 10
+    economic_series: equal_fold_daily_net_simple_returns
+    economic_statistic: paired_compounded_total_return_delta
+    seed_rule: base_seed_plus_1000_for_top1_plus_block_or_base_seed_plus_block_for_economic
+
+  gates:
+    mean_spearman_strictly_positive_each_fold: true
+    mean_top1_excess_strictly_positive_each_fold: true
+    aggregate_pairwise_accuracy_strictly_above: 0.50
+    transformer_beats_ridge_on_aggregate_spearman_and_top1_excess: true
+    top1_excess_bootstrap_p05_strictly_positive_all_blocks: true
+    positive_net_return_each_fold_at_base_cost: true
+    aggregate_return_above_both_policy_controls_all_costs: true
+    aggregate_sharpe_above_dual_momentum_all_costs: true
+    maximum_absolute_drawdown: 0.35
+    maximum_drawdown_tolerance_vs_dual_momentum: 0.05
+    drawdown_gates_apply_all_costs: true
+    turnover_not_above_dual_momentum_at_base_cost: true
+    paired_return_delta_p05_above_zero_all_controls_and_blocks: true
+    all_cells_required: true
+    exact_operators:
+      mean_spearman_each_fold: strictly_greater_than_zero
+      mean_top1_excess_each_fold: strictly_greater_than_zero
+      aggregate_pairwise_accuracy: strictly_greater_than_0_50
+      transformer_vs_ridge_aggregate_spearman: strictly_greater_than
+      transformer_vs_ridge_aggregate_top1_excess: strictly_greater_than
+      top1_bootstrap_p05: strictly_greater_than_zero
+      fold_candidate_net_return_at_10bps: strictly_greater_than_zero
+      aggregate_candidate_return_vs_each_control: strictly_greater_than
+      aggregate_candidate_sharpe_vs_dual_momentum: strictly_greater_than
+      candidate_max_drawdown_absolute: greater_than_or_equal_to_minus_0_35
+      candidate_max_drawdown_vs_dual: greater_than_or_equal_to_dual_minus_0_05
+      candidate_turnover_vs_dual_at_10bps: less_than_or_equal_to
+      paired_return_delta_p05: strictly_greater_than_zero
+    floating_comparison_epsilon: 0.0
+
+  lifecycle:
+    phases: [preflight, prepare_without_heldout_outcomes, one_shot_evaluate]
+    no_real_outcome_smoke: true
+    prepare_may_be_replayed_if_hash_exact: true
+    predictions_frozen_before_heldout_outcome_read: true
+    positions_frozen_before_heldout_outcome_read: true
+    prepare_completion_receipt_required: true
+    prepare_receipt_binds:
+      - evaluation_spec_sha256
+      - resolved_config_semantic_sha256
+      - all_nine_checkpoint_file_and_model_state_sha256
+      - all_scaler_and_target_scale_state_sha256
+      - all_three_ridge_state_and_sample_sequence_sha256
+      - data_access_and_eligibility_schedule_sha256
+      - context_prediction_parquet_sha256
+      - asset_prediction_parquet_sha256
+      - position_parquet_sha256
+    evaluate_consumes_only_hash_verified_prepare_artifacts: true
+    one_shot_unseal_receipt_required: true
+    unseal_receipt_binds_prepare_completion_receipt_sha256: true
+    outcome_packet_written_atomically: true
+    outcome_packet_receipt_binds_source_read_filters_and_parquet_sha256: true
+    interrupted_unseal_without_atomic_outcome_packet: fail_closed
+    valid_outcome_packet_may_finish_without_reread: true
+    completed_result_is_cache_only: true
+    result_completion_receipt_binds_prepare_outcome_and_all_result_artifact_hashes: true
+    repeat_evaluation_after_result: false
+    training_during_screen: false
+    recalibration_during_screen: false
+    checkpoint_seed_or_fold_selection: false
+    target_assets_allowed: false
+    forbidden_consumed_2026_window_allowed: false
+    failure_action: retire_family_without_target_evaluation_or_parameter_tuning
+    pass_action: freeze_family_wait_for_prospective_non_target_confirmation
+
+  artifact_contract:
+    preflight:
+      required_files:
+        - evaluation_spec.json
+        - input_hash_receipt.json
+        - checkpoint_receipt.json
+        - audit.json
+        - result.json
+        - artifact_manifest.json
+        - completion_receipt.json
+        - resolved_config.yaml
+        - report.md
+    prepare:
+      required_files:
+        - evaluation_spec.json
+        - data_access_receipt.json
+        - data_audit.json
+        - ridge_manifest.json
+        - ridge_fold_1_coefficient.npy
+        - ridge_fold_2_coefficient.npy
+        - ridge_fold_3_coefficient.npy
+        - context_predictions.parquet
+        - asset_predictions.parquet
+        - positions.parquet
+        - audit.json
+        - result.json
+        - artifact_manifest.json
+        - completion_receipt.json
+        - resolved_config.yaml
+        - report.md
+      context_prediction_schema:
+        - date
+        - fold
+        - triplet_key
+        - symbol_0
+        - symbol_1
+        - symbol_2
+        - transformer_raw_excess_0
+        - transformer_raw_excess_1
+        - transformer_raw_excess_2
+        - ridge_raw_excess_0
+        - ridge_raw_excess_1
+        - ridge_raw_excess_2
+      asset_prediction_schema:
+        - date
+        - fold
+        - symbol
+        - context_count
+        - transformer_raw_excess
+        - ridge_raw_excess
+        - momentum_30
+      position_schema:
+        - date
+        - fold
+        - symbol
+        - eligible
+        - momentum_30
+        - candidate_weight
+        - dual_momentum_30_weight
+        - momentum_gated_equal_weight_weight
+    evaluate:
+      outcome_packet_files:
+        - unseal_receipt.json
+        - outcomes.parquet
+        - outcome_receipt.json
+      required_result_files:
+        - unseal_receipt.json
+        - outcomes.parquet
+        - outcome_receipt.json
+        - predictive_context_metrics.parquet
+        - predictive_daily_metrics.parquet
+        - predictive_metrics.json
+        - daily_returns.parquet
+        - fold_metrics.json
+        - aggregate_metrics.json
+        - bootstrap.json
+        - gate_result.json
+        - audit.json
+        - result.json
+        - artifact_manifest.json
+        - completion_receipt.json
+        - resolved_config.yaml
+        - report.md
+      outcome_schema:
+        - date
+        - fold
+        - symbol
+        - target_window_end_date
+        - action_log_return
+
+  preflight_output_dir: artifacts/v45_ranking_excess_screen_preflight
+  prepare_output_dir: artifacts/v45_ranking_excess_screen_prepare
+
+output_dir: artifacts/v45_ranking_excess_screen

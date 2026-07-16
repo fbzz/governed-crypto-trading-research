@@ -1,0 +1,74 @@
+schema_version: 1
+experiment_id: v055_state_conditioned_multi_horizon_spec
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+phase: specification
+status: passed
+evidence_tier: metadata_only_ex_ante_design
+source_commit: 4bd5e41
+blueprint:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+  file_sha256: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+  canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+result:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/result.json
+  file_sha256: 8247f430774ee05cdb1463dfa31306d39bca4bf184b647a14eb98ff15f39ab3f
+  registered_result_sha256: 5cf26547ccfce28978506645ff6e18af3c75beb3ce8732d33353f1e8514a594f
+audit:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/audit.json
+  file_sha256: 758f72182e7a65d9a13ca700c4021f4773aee9200e135be1997d6b3408d79436
+family_contract:
+  parameter_count: 465513
+  input_shape: [null, 256, 3, 9]
+  horizons: [1, 3, 7]
+  quantiles: [0.20, 0.50, 0.80]
+  policy_forecast: h7_q20
+  risky_gross: 0.3333333333333333
+  decision_clock: every_seventh_eligible_signal_date_per_pseudo_deployment
+  checkpoint_parent: fresh_registered_seed
+v56_contract:
+  output_dir: artifacts/v56_state_conditioned_multi_horizon_harness
+  allowed_inputs:
+    - artifacts/v55_state_conditioned_multi_horizon_spec/result.json
+    - artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+    - artifacts/v55_state_conditioned_multi_horizon_spec/audit.json
+  allowed_capabilities:
+    - instantiate_exact_v55_model_on_synthetic_tensors
+    - execute_bounded_synthetic_optimizer_steps
+    - write_synthetic_checkpoint
+    - test_deterministic_policy_and_accounting_fixtures
+    - verify_byte_identical_replay
+  required_checks:
+    - exact_parameter_count
+    - output_shape_and_quantile_contract
+    - causal_temporal_prefix
+    - asset_permutation_equivariance
+    - pinball_ranknet_crossing_losses
+    - ordered_quantile_diagnostic
+    - all_parameters_receive_finite_gradients
+    - checkpoint_roundtrip
+    - interrupted_resume_equivalence
+    - seven_eligible_date_decision_clock
+    - state_conditioned_entry_hold_switch_exit
+    - missing_asset_forces_cash
+    - exact_turnover_costs_and_final_liquidation
+    - positions_frozen_at_base_cost_across_reporting_costs
+    - zero_real_data_or_target_access
+    - byte_identical_replay
+  forbidden_capabilities:
+    - parquet_deserialization
+    - real_panel_or_label_access
+    - real_checkpoint_training
+    - real_market_prediction
+    - real_performance_metric_or_pnl
+    - target_asset_access
+    - previous_family_checkpoint_reuse
+    - v57_implementation
+  mechanics_frozen_for_v56:
+    ranknet_tie_tolerance: 1.0e-12
+    crossing_reduction: mean_batch_asset_horizon_of_sum_adjacent_relu
+    eligible_signal_date: exact_triplet_inference_row_has_all_three_assets_eligible
+    decision_indexes_over_eligible_dates: [0, 7, 14]
+    forced_missing_between_decisions: immediate_cash_without_same_day_replacement
+authorized_next_action: authorize_v56_synthetic_state_policy_harness_only
+pass_action: authorize_v57_non_target_multi_horizon_dataset_build_only
+failure_action: keep_v57_and_later_unauthorized

@@ -1,0 +1,37 @@
+seed: 20260713
+
+cftc_feasibility:
+  endpoint: https://publicreporting.cftc.gov/resource/gpe5-46if.json
+  start: "2021-12-01"
+  end: "2026-06-30"
+  timeout_seconds: 30
+  limit: 5000
+  minimum_weekly_coverage: 0.98
+  contract_codes:
+    BTC: "133741"
+    ETH: "146021"
+  required_fields:
+    - commodity_name
+    - contract_market_name
+    - cftc_contract_market_code
+    - report_date_as_yyyy_mm_dd
+    - open_interest_all
+    - dealer_positions_long_all
+    - dealer_positions_short_all
+    - asset_mgr_positions_long
+    - asset_mgr_positions_short
+    - lev_money_positions_long
+    - lev_money_positions_short
+    - other_rept_positions_long
+    - other_rept_positions_short
+    - nonrept_positions_long_all
+    - nonrept_positions_short_all
+  known_delay_exception_url: https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalSpecialAnnouncements/index.htm
+  evidence_urls:
+    - https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm
+    - https://www.cftc.gov/MarketReports/CommitmentsofTraders/ReleaseSchedule/index.htm
+    - https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalSpecialAnnouncements/index.htm
+    - https://publicreporting.cftc.gov/Commitments-of-Traders/TFF-Futures-Only/gpe5-46if
+    - https://publicreporting.cftc.gov/stories/s/User-s-Guide/p2fg-u73y/
+
+output_dir: artifacts/v16_cftc_positioning_feasibility

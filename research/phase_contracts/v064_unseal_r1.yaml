@@ -1,0 +1,198 @@
+schema_version: 1
+phase: v64
+stage_revision: v064_unseal_r1
+family_id: tlm_decoupled_rank_state_medium_v1
+status: frozen_after_hash_bound_user_authorization_before_exactly_one_outcome_unseal
+evidence_tier: adaptive_development_evaluation_only_not_confirmation
+
+parent_experiment:
+  path: research/experiments/v064_prepare.yaml
+  file_sha256: 8de85310da16fe6640d4a8a1f31721cbcbf45ebb4be41f46374b67fcb6aafd22
+base_phase_contract:
+  path: research/phase_contracts/v064.yaml
+  file_sha256: 3cf7f4e0f0c364ad181801a5a4e7dc48a965dfbf32b6ed806ef960ab4c751672
+
+prepare_packet:
+  output_dir: artifacts/v64_decoupled_rank_state_evaluation
+  evaluation_spec:
+    path: artifacts/v64_decoupled_rank_state_evaluation/evaluation_spec.json
+    file_sha256: f6fbf371b5e33efdaaf0b0d1622acefce4938efe1e22d63ffa6e086e0a45d134
+  prepare_receipt:
+    path: artifacts/v64_decoupled_rank_state_evaluation/prepare_receipt.json
+    file_sha256: 18429f83790cd16b57dbb4208c4b211c3f2600aed1adaadaef722ca4bded4e4e
+  one_shot_packet:
+    path: artifacts/v64_decoupled_rank_state_evaluation/one_shot_packet.json
+    file_sha256: a18379581eabf694338837f5f7bd5c00faa73ac5a1be92ca17ee1e23eb94d5f3
+  registered_sha256: cfa1989008c384e31993d2f42b6bcd371a8b177aeebc78d2f75457d6c773fcbe
+  context_predictions:
+    path: artifacts/v64_decoupled_rank_state_evaluation/context_predictions.parquet
+    file_sha256: e9668f93eef3bcfe171b94d3f13ad7fe8bed00f25f18ef81ca830ca6f8229782
+    rows: 875232
+  asset_predictions:
+    path: artifacts/v64_decoupled_rank_state_evaluation/asset_predictions.parquet
+    file_sha256: 8297d9eb214280eecc69c6805671b28f72db3f821293f802088609a33c432f2b
+    rows: 9794
+  positions:
+    path: artifacts/v64_decoupled_rank_state_evaluation/positions.parquet
+    file_sha256: 7722c68e522fba1a3bb708b803d08230677920998255fc3c37d697c1096cd88f
+    rows: 32130
+  behavior_gates:
+    path: artifacts/v64_decoupled_rank_state_evaluation/behavior_gates.json
+    file_sha256: 4f63e331f40a9d0f5d267dce771ec809e8aaa7cf0d70a51f90b2a28176c465e4
+  data_access_receipt:
+    path: artifacts/v64_decoupled_rank_state_evaluation/data_access_receipt.json
+    file_sha256: 7ba1f70a36de7043985c4fd3407925c662a85eeee939b45d7a7fef942e8899c6
+
+explicit_user_authorization:
+  canonical_sha256: f3ebab32fa0931a3674dbced5e8d76fbdd15086d16b35b77c2329861c6688b63
+  payload:
+    schema_version: tlm-explicit-user-authorization/v1
+    authorization_id: v064_unseal_r1_20260715
+    authorized_by: repository_owner
+    authorized_action: execute_v64_exactly_one_registered_non_target_outcome_unseal_and_complete_evaluation
+    evaluation_spec_sha256: f6fbf371b5e33efdaaf0b0d1622acefce4938efe1e22d63ffa6e086e0a45d134
+    prepare_receipt_sha256: 18429f83790cd16b57dbb4208c4b211c3f2600aed1adaadaef722ca4bded4e4e
+    one_shot_packet_sha256: a18379581eabf694338837f5f7bd5c00faa73ac5a1be92ca17ee1e23eb94d5f3
+    maximum_unseal_count: 1
+    no_regeneration_retuning_or_policy_cost_change: true
+    target_assets: [BTCUSDT, ETHUSDT, SOLUSDT]
+    target_assets_status: sealed
+
+authorized_next_action: execute_v64_exactly_one_registered_non_target_outcome_unseal_and_complete_evaluation
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm decoupled-rank-state-evaluation-unseal
+  --config configs/v64_decoupled_rank_state_evaluation.yaml
+pass_action: authorize_future_prospective_non_target_specification_only
+failure_action: retire_family_without_target_evaluation_or_retuning
+
+access_contract:
+  output_dir: artifacts/v64_decoupled_rank_state_evaluation
+  allowed_inputs:
+    - research/phase_contracts/v064.yaml
+    - artifacts/v64_decoupled_rank_state_evaluation/evaluation_spec.json
+    - artifacts/v64_decoupled_rank_state_evaluation/prepare_receipt.json
+    - artifacts/v64_decoupled_rank_state_evaluation/one_shot_packet.json
+    - artifacts/v64_decoupled_rank_state_evaluation/context_predictions.parquet
+    - artifacts/v64_decoupled_rank_state_evaluation/asset_predictions.parquet
+    - artifacts/v64_decoupled_rank_state_evaluation/positions.parquet
+    - artifacts/v64_decoupled_rank_state_evaluation/behavior_gates.json
+    - artifacts/v64_decoupled_rank_state_evaluation/data_access_receipt.json
+    - data/processed/decoupled_rank_state_labels_v62.parquet
+  allowed_capabilities:
+    - atomically_write_the_single_hash_bound_authorization_receipt
+    - read_the_exact_registered_non_target_outcome_projection_once
+    - atomically_freeze_the_exact_outcome_packet_and_receipt
+    - compute_only_registered_metrics_costs_bootstrap_attribution_and_gates
+    - preserve_every_failed_mandatory_cell_and_write_the_terminal_decision
+    - replay_from_immutable_prepare_and_outcome_packets_with_zero_source_reads
+  required_checks:
+    - base_phase_prepare_and_user_authorization_hashes_match
+    - exact_outcome_projection_predicate_keys_dates_assets_and_maturity_match
+    - unseal_count_equals_one_and_source_read_count_equals_one
+    - no_checkpoint_load_inference_refit_or_position_regeneration
+    - all_registered_metric_cost_bootstrap_attribution_and_gate_cells_are_preserved
+    - target_assets_loads_predictions_and_pnl_equal_zero
+    - source_free_replay_result_hashes_match
+  forbidden_capabilities:
+    - target_asset_access_inference_prediction_or_pnl
+    - second_outcome_unseal_or_source_outcome_reread
+    - candidate_model_or_scaler_fit_refit_or_optimizer_step
+    - checkpoint_load_mutation_selection_discard_or_weighting
+    - prediction_or_position_regeneration_after_prepare
+    - hyperparameter_policy_control_cost_gate_or_bootstrap_change
+    - missing_value_imputation_repair_or_tail_substitution
+    - aggregate_result_rescue_of_any_failed_mandatory_cell
+    - v65_implementation_or_target_evaluation
+    - paper_shadow_live_or_real_money_trading
+
+outcome_access_contract:
+  source: data/processed/decoupled_rank_state_labels_v62.parquet
+  source_file_sha256: 6ea78e634e2b444a7c83767754c772610a65f4b13a0c6473ae51472918f37ece
+  allowed_columns:
+    - date
+    - symbol
+    - target_h1_maturity_date
+    - target_h1_open_to_open_log_return
+    - h1_label_complete
+  exact_key_source: artifacts/v64_decoupled_rank_state_evaluation/asset_predictions.parquet
+  exact_key_columns: [date, fold, symbol]
+  exact_key_count: 9794
+  exact_key_sha256: d1e34726eb63ddeced8ab250181a3fa53671ff5a322773719c39b9379eb3efda
+  signal_start: '2025-01-01'
+  signal_end: '2025-12-23'
+  maximum_maturity: '2025-12-25'
+  predicate: exact_date_and_symbol_keys_from_frozen_asset_predictions
+  maximum_source_reads: 1
+  output: artifacts/v64_decoupled_rank_state_evaluation/outcome_packet.parquet
+  authorization_receipt_before_source_read: true
+
+evaluation_contract:
+  scientific_contract_source: artifacts/v64_decoupled_rank_state_evaluation/evaluation_spec.json
+  predictions_and_positions: immutable_prepare_packet_only
+  costs_bps: [10, 20, 30]
+  bootstrap_paths: 10000
+  bootstrap_block_lengths: [7, 21, 63]
+  aggregate_rescue_allowed: false
+  decision: pass_or_retire_without_tuning
+
+one_shot_contract:
+  current_stage: authorized_unseal_and_completion
+  explicit_user_authorization_present: true
+  authorization_receipt_written_atomically_before_source_read: true
+  maximum_unseal_count: 1
+  source_outcome_reads_first_execution: 1
+  source_outcome_reads_replay: 0
+  prediction_or_position_regeneration: false
+  incomplete_authorization_without_atomic_packet: fail_closed
+  existing_complete_outcome_packet: reuse_without_source_read
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+runtime_contract:
+  require_clean_committed_git: true
+  process_lock: data/checkpoints/.v64_decoupled_rank_state_evaluation.lock
+
+source_receipt_files:
+  - configs/v64_decoupled_rank_state_evaluation.yaml
+  - research/current.yaml
+  - research/experiments/v064_prepare.yaml
+  - research/phase_contracts/v064.yaml
+  - research/phase_contracts/v064_unseal_r1.yaml
+  - src/tlm/__main__.py
+  - src/tlm/core/artifacts.py
+  - src/tlm/decoupled_rank_state_evaluation_complete.py
+  - src/tlm/monte_carlo.py
+  - src/tlm/research_workflow.py
+  - tests/test_decoupled_rank_state_evaluation_complete.py
+  - pyproject.toml
+
+artifact_contract:
+  authorization_receipt: unseal_authorization_receipt.json
+  outcome_packet: outcome_packet.parquet
+  outcome_receipt: outcome_receipt.json
+  core_result_files:
+    - metrics.json
+    - bootstrap.json
+    - gate_matrix.json
+    - attribution.json
+    - evaluation_result.json
+    - evaluation_audit.json
+    - evaluation_report.md
+  completion_receipt: completion_receipt.json
+  artifact_manifest: artifact_manifest.json
+  complete_packet: one_shot_complete_packet.json
+  replay_receipt: replay.json
+  replay_packet: one_shot_replay_packet.json
+
+commands:
+  unseal: >-
+    PYTHONPATH=src python3 -m tlm decoupled-rank-state-evaluation-unseal
+    --config configs/v64_decoupled_rank_state_evaluation.yaml
+  replay: >-
+    PYTHONPATH=src python3 -m tlm decoupled-rank-state-evaluation-replay
+    --config configs/v64_decoupled_rank_state_evaluation.yaml

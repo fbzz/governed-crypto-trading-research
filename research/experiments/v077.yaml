@@ -1,0 +1,79 @@
+schema_version: 1
+experiment_id: v077_frozen_non_target_persistent_duration_training
+family_id: tlm_persistent_multi_horizon_duration_v1
+phase: frozen_non_target_persistent_duration_training
+status: authorized_not_started
+decision: authorize_v77_frozen_non_target_persistent_duration_training_only
+authorized_next_action: authorize_v77_frozen_non_target_persistent_duration_training_only
+evidence_tier: causal_non_target_training_only
+parent_experiment:
+  path: research/experiments/v076.yaml
+  file_sha256: 340698a5fc2bb4d25299eca49bc3a28b2cd3033c281710bb71d102af3200c181
+blueprint:
+  path: artifacts/v74_persistent_duration_spec/blueprint.json
+  file_sha256: 790b14fd3feacbc62f416e63a019f192ea09d0fd3756c9d757286968ece3632d
+  canonical_sha256: de6c8eb9d65b586cc56c2f10848bf65ff7f2bec83563e7b1292d1dd106fb6e86
+result:
+  path: artifacts/v76_non_target_persistent_duration_dataset/result.json
+  file_sha256: 0c47084321f2da98699bd736742613e92b32a1657ffd0b19ca392a9b86d11cdd
+  registered_result_sha256: 786ae804709d5899416306a3b699716177f3ed2216ca2891f2ccf136d03d4acc
+audit:
+  path: artifacts/v76_non_target_persistent_duration_dataset/audit.json
+  file_sha256: 64587b8fde34d33ac2d5a5d1d70bb5423527cd8f10a73fea4dcaedaf57c1b4b0
+v76_dataset_spec:
+  path: artifacts/v76_non_target_persistent_duration_dataset/dataset_spec.json
+  file_sha256: fa9b5c8b95b893cea0a360e1573d9b4e4bfc9a28fbb15e70c7ff6943e9f75edc
+  canonical_sha256: 9617826b3802fc19990d410e333f0aa9dd203978bef8a637e83c364b8d431512
+v76_dataset_manifest:
+  path: artifacts/v76_non_target_persistent_duration_dataset/dataset_manifest.json
+  file_sha256: 86d021a1e45988aa55c11ecb779b852d238faaa27433df1d26b9c871bafb30b4
+  canonical_sha256: 39305b7200635739638936aad3e226e58632cb1291e5900beca29729f233f51c
+v76_label_schema:
+  path: artifacts/v76_non_target_persistent_duration_dataset/label_schema.json
+  file_sha256: 132e0b146b015431425601f927c525eac0b6fd0a2ac1258349a5b2b7f50743ce
+  canonical_sha256: d4e29c6d30ab2b5ec2053346c0638e79fdf8805fa4231f98dca129632d4e23a5
+v76_source_receipt:
+  path: artifacts/v76_non_target_persistent_duration_dataset/source_receipt.json
+  file_sha256: 73a4939c0aa3ad20fa02effa0e4a779a5de5afcb2860df4f887a4edc2fc19894
+  canonical_sha256: e0380c976037fb2cf7132e8a0b4215bda161413dfc72bc2545cf3c085d7b008b
+  bundle_sha256: 6eb8c93eb25e9a4372fda3936b2c46ee003af4d787393dbdb368cc6553103cb5
+v76_replay_receipt:
+  path: artifacts/v76_non_target_persistent_duration_dataset/replay_receipt.json
+  file_sha256: d427852a3a9d7ae57c28b28d4eb08bca11b557cee5354656ddda9086e1817abb
+  canonical_sha256: e1edaa1b92ac29a90459f2f114ead749e06a636be6538d955d7fbbf0a33c5baf
+v76_artifact_manifest:
+  path: artifacts/v76_non_target_persistent_duration_dataset/artifact_manifest.json
+  file_sha256: e5487df7162ec2cf5d651d4fe825e09a3f02aa904f7946be448a470af5a9ddb3
+  canonical_sha256: 98d8d66bdf0d03935609f2bdcf357f54a4701b5a09b453cd8cc671d0923ebbe5
+v76_data_access:
+  path: artifacts/v76_non_target_persistent_duration_dataset/data_access.json
+  file_sha256: d9012102f12a339c38a470c1f6487537d8e83d914a5d3b631bd58ea3f1d86232
+v76_summary:
+  audit_checks_passed: 16
+  audit_checks_total: 16
+  label_rows: 43830
+  sequence_role_rows: 49919
+  complete_persistent_rows: 43478
+  duration_event_rows: 34448
+  duration_right_censored_rows: 9030
+  train_eligible_rows: 24060
+  internal_validation_eligible_rows: 10628
+  adaptive_evaluation_role_rows: 9798
+  adaptive_evaluation_label_values_loaded: false
+  authorized_parquet_deserializations: 2
+  scaler_fits: 0
+  model_instantiations: 0
+  optimizer_steps: 0
+  checkpoint_reads: 0
+  market_predictions: 0
+  performance_metrics: 0
+  pnl_evaluations: 0
+  target_asset_loads: 0
+  byte_identical_replay: true
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

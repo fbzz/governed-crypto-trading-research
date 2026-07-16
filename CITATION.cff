@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this research software, please cite it using this metadata."
+title: "TLM: Governed Multi-Asset Trading Research"
+type: software
+version: 0.1.0
+date-released: 2026-07-17
+repository-code: "https://github.com/fbzz/governed-crypto-trading-research"
+authors:
+  - name: "TLM Research"
+abstract: >-
+  A reproducible Python research system for causal cross-asset time-series
+  models, frozen experiment contracts, leakage controls, deterministic replay,
+  and one-shot outcome access.
+keywords:
+  - quantitative research
+  - time series
+  - PyTorch
+  - cross-sectional ranking
+  - temporal convolutional network
+  - reproducible research

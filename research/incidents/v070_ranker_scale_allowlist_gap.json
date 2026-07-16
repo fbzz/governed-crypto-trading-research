@@ -1,0 +1,25 @@
+{
+  "accessed_path": "artifacts/v63_decoupled_rank_state_training/scaler_manifest.json",
+  "accessed_path_sha256": "2d6848c4622cee2f55651f7832ed484023cf137a73665d8b959bb96a60e54a6a",
+  "access_type": "read_only_metadata_json",
+  "cause": "The V70 runtime allowlist omitted ranker_excess_rms although the frozen policy requires raw excess returns in the same units as transition costs and the 0.002 switch hurdle.",
+  "detected_date": "2026-07-15",
+  "disposition": "invalidate_the_original_v70_registration_anchor_and_register_v70_r1_before_any_signal",
+  "family_id": "tlm_decoupled_rank_state_probabilistic_gate_v2",
+  "impact": {
+    "checkpoints_mutated": 0,
+    "market_data_rows_read": 0,
+    "outcome_rows_read": 0,
+    "performance_metrics_computed": 0,
+    "pnl_computations": 0,
+    "positions_frozen": 0,
+    "predictions_frozen": 0,
+    "target_assets_loaded": [],
+    "training_or_refit_performed": false
+  },
+  "phase": "v70",
+  "remediation": "Extract only the three preexisting fold ranker_excess_rms values into a hash-bound receipt, preserve their V63 fold-scale identities, add that receipt to the V70 runtime allowlist, and re-anchor prospective admissibility to the first commit containing the exact amendment file.",
+  "schema_version": "v70-r1-metadata-access-incident/v1",
+  "scientific_evidence_admitted_under_original_anchor": false,
+  "incident_sha256": "7086cbc6011d25ebc15a0bd4c34bb78a9926a9dc4e813b925f7a9a56d3c09960"
+}

@@ -1,0 +1,221 @@
+decoupled_rank_state_spec:
+  version: v60
+  project_root: .
+  candidate_family_id: tlm_decoupled_rank_state_medium_v1
+  inputs:
+    user_authorization_blueprint: artifacts/authorization_v60_decoupled_rank_state/blueprint.json
+    user_authorization_audit: artifacts/authorization_v60_decoupled_rank_state/audit.json
+    user_authorization_result: artifacts/authorization_v60_decoupled_rank_state/result.json
+    v32_result: artifacts/v32_selected_universe_dataset/result.json
+    v32_audit: artifacts/v32_selected_universe_dataset/audit.json
+    v32_dataset_manifest: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v41_specification: artifacts/v41_ranking_excess_spec/specification.json
+    v41_blueprint: artifacts/v41_ranking_excess_spec/blueprint.json
+    v41_audit: artifacts/v41_ranking_excess_spec/audit.json
+    v44_training_result: artifacts/v44_ranking_excess_supervised/result.json
+    v45_result: artifacts/v45_ranking_excess_screen/result.json
+    v45_gate_result: artifacts/v45_ranking_excess_screen/gate_result.json
+    v45_audit: artifacts/v45_ranking_excess_screen/audit.json
+    v46_ranking_summary: artifacts/v46_ranking_excess_failure_autopsy/ranking_summary.json
+    v46_economic_diagnostics: artifacts/v46_ranking_excess_failure_autopsy/economic_diagnostics.json
+    v46_failure_attribution: artifacts/v46_ranking_excess_failure_autopsy/failure_attribution.json
+    v54_failure_attribution: artifacts/v54_v50_economic_failure_autopsy/failure_attribution.json
+    v59_failure_attribution: artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/failure_attribution.json
+  expected_input_sha256:
+    user_authorization_blueprint: 9d984e1cf1ae871cce6e32e894c1b71e58ed2e4fb5bfeb67c7c04951435fff10
+    user_authorization_audit: 4d1eeab379311dc6a6e0e1a966d91d3c73b7919551fd5649ed781602be3d71f7
+    user_authorization_result: cbc3603f3c215807dc343536e437276543bfdf9bfb937bf2cd52885365f96ebc
+    v32_result: 9a41f84a7de9534472c9655a577c84de992604633f091080e3b7906420b1da53
+    v32_audit: 280c8857cf990cf62411628e1b3fe30bf04ffcc940db927f995aa487ad09f106
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    v41_specification: fb14bacbc95efa23bc26c4fe6252eb7eaa950eba8dfe0b400b2c6d0fbf3ab7b0
+    v41_blueprint: a8410ff7fe9ccb56c61ec0095c668557d574799a15101d4129a5a41b85c709b9
+    v41_audit: 991c378fcb2c80ac0a77f8f53a375e1d4f3b49f09d8edb943e8a445ec4b038c2
+    v44_training_result: 4f905d00224b5a511ff811d930b7add5822bf1e26cb870f7609b09dba653f5f8
+    v45_result: b2d76e82770fefbce86e1f7a51cf5dd33b3e6c1e6e73db314cb9fe048bbe8f4a
+    v45_gate_result: 9ff8d9354d168fa73d73587a20dee76cee8dd95a9cefc73ad338d29185adec00
+    v45_audit: b83ab2fc56868bd80f6f9628517d8c21b3f385cf5381a5ea9e5ecd1c713e64a3
+    v46_ranking_summary: 466e6c45cff72404498a382c7cbc34ca419d88520e24f1a7ac0b166b0b837164
+    v46_economic_diagnostics: dd102f6678e7fd41502e79d954c1d15f610ebeda7a26b2eb3515654be1e39bc3
+    v46_failure_attribution: 297ca8a9b74595d4e8a4c08a3d77e91c2a16635676f8e8f6db0ff5c8f35f60c9
+    v54_failure_attribution: 076126461b70b9ebfa5e46a60573f968bbe97e4daaed37c3a89ab33ff0f822d5
+    v59_failure_attribution: 332ce9155eb09399f980ffb4b712e84e7929ffe4493b7b4973a1948abb077266
+
+  lineage:
+    family_is_new: true
+    scientific_parent_family: tlm_cross_sectional_rank_excess_medium_v1
+    scientific_parent_terminal_phase: v45
+    scientific_parent_decision: retire_family_without_target_evaluation_or_parameter_tuning
+    parent_weights_reused: false
+    parent_checkpoints_opened: false
+    inherited_components:
+      - v45_causal_patch_encoder
+      - v45_pairwise_ranking_and_centered_excess_objective
+      - v45_context_and_seed_averaging
+      - v45_momentum_cash_gate
+      - v45_switch_hysteresis
+    replaced_components:
+      - no_learned_absolute_market_component
+      - shared_joint_absolute_relative_training
+      - h7_q20_sparse_activation_policy
+
+  target_contract:
+    target_assets: [BTC, ETH, SOL]
+    target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+    status: sealed
+    target_data_allowed: false
+    target_prediction_count: 0
+    target_pnl_evaluation_count: 0
+
+  data_contract:
+    input_layout: [batch, time, assets, features]
+    input_shape: [null, 256, 3, 9]
+    input_dtype: float32
+    decision_unit: every_eligible_asset_after_equal_context_and_seed_averaging
+    missing_data: preserve_without_imputation
+    action_return: log_open_t_plus_2_over_open_t_plus_1
+    signal_execution: finalized_day_t_features_execute_at_open_t_plus_1
+    state_features: per_day_cross_asset_mean_and_population_std_of_nine_inputs
+    state_feature_count: 18
+    source_panel_sha256: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    source_sequence_index_sha256: 3bb609586809bc7fe4d55b55e11df0581f147484005bc5eff9fd45b28b79d861
+    implementation_state: not_implemented_v60_metadata_only
+
+  ranker_architecture:
+    variant_count: 1
+    lookback_days: 256
+    patch_length_days: 16
+    patch_stride_days: 8
+    d_model: 128
+    encoder_layers: 4
+    cross_asset_attention_layers: 2
+    attention_heads: 4
+    feed_forward_width: 512
+    dropout: 0.20
+    shared_asset_encoder: true
+    asset_slot_embedding: false
+    prediction_heads: [excess_return_z, log_volatility_7d]
+    expected_parameter_count: 1231634
+
+  state_gate_architecture:
+    independent_encoder: true
+    ranker_representation_input: none
+    gradient_path_to_ranker: blocked_by_architecture
+    input_features: 18
+    lookback_days: 256
+    patch_length_days: 16
+    patch_stride_days: 8
+    d_model: 32
+    encoder_layers: 2
+    attention_heads: 4
+    feed_forward_width: 64
+    dropout: 0.20
+    output: normalized_triplet_market_component
+    expected_parameter_count: 27489
+
+  capacity_contract:
+    expected_total_parameter_count: 1259123
+    parameter_ceiling: 1300000
+    size_sweep_allowed: false
+    larger_model_allowed: false
+    matched_capacity_ablation_state: not_authorized
+
+  objective:
+    decomposition: r_i_equals_triplet_market_component_plus_centered_asset_excess
+    ranker:
+      ranking_loss: ranknet_non_tied_pairs
+      excess_loss: smooth_l1_centered_score_vs_train_scaled_excess
+      log_volatility_loss: smooth_l1_auxiliary
+      weights: {ranking: 1.0, excess: 1.0, log_volatility: 0.1}
+      early_stopping_monitor: ranking_plus_excess_without_volatility
+    state_gate:
+      target: train_only_triplet_mean_next_open_log_return
+      scale: train_only_rms_market_component_per_fold
+      loss: smooth_l1_normalized_market_component_beta_1
+      optimizer_state: independent
+      early_stopping_monitor: state_gate_validation_loss
+    gradient_contract:
+      shared_parameters: false
+      combined_scalar_loss: false
+      gate_gradients_enter_ranker: false
+      ranker_gradients_enter_gate: false
+      synthetic_gradient_isolation_gate_required: true
+    outcome_weighting: false
+    target_clipping: false
+    pnl_loss: false
+
+  policy:
+    action_space: [long_one_asset, cash]
+    risky_gross: 1.0
+    momentum_cash_gate: all_currently_eligible_momentum_30_nonpositive
+    desired_asset: highest_context_and_seed_averaged_raw_excess
+    market_component: equal_context_and_seed_mean_state_gate_prediction
+    absolute_edge: market_component_plus_desired_asset_raw_excess
+    entry_rule: absolute_edge_strictly_above_exact_entry_transition_cost
+    hold_rule: retain_incumbent_when_still_eligible_and_absolute_edge_covers_hold_cost
+    switch_rule: challenger_minus_incumbent_raw_excess_strictly_above_0_002_and_challenger_absolute_edge_covers_switch_cost
+    exit_rule: cash_when_momentum_gate_closes_or_incumbent_absolute_edge_does_not_cover_transition_cost
+    base_cost_bps: 10
+    reporting_cost_bps: [10, 20, 30]
+    switch_hurdle: 0.002
+    final_liquidation: true
+    leverage: false
+    shorting: false
+
+  training_contract:
+    implementation_allowed_during_v60: false
+    initialization: fresh_registered_seed
+    checkpoint_reuse: none
+    seeds: [42, 7, 123]
+    folds: [1, 2, 3]
+    expected_job_count: 9
+    representation_pretraining: fresh_v45_style_masked_patch_reconstruction
+    supervised_train: ["2021-03-01", "2024-12-23"]
+    validation_role_consumed_development_only: ["2025-01-01", "2025-12-23"]
+    validation_role_is_clean_evidence: false
+    consumed_outcome_windows_forbidden_as_evaluation: [2024, 2025, 2026_h1]
+    seed_or_fold_selection_allowed: false
+    hyperparameter_search_allowed: false
+    ranker_and_gate_optimizers_independent: true
+    maximum_epochs: 30
+    early_stopping_patience: 5
+    batch_size: 128
+    optimizer: AdamW
+    learning_rate: 0.0003
+    weight_decay: 0.0001
+    gradient_clip_norm: 1.0
+    device: mps
+    dtype: float32
+
+  evidence_contract:
+    v45_predictive_signal_is_parent_hypothesis: true
+    historical_windows_are_adaptive_development_only: true
+    historical_outcome_reread_allowed: false
+    prospective_non_target_confirmation_not_before: "2026-07-15"
+    prospective_minimum_mature_signal_dates: 180
+    target_assets_remain_sealed_through_prospective_confirmation: true
+    no_deployable_claim_before_confirmation: true
+
+  constraints:
+    metadata_only: true
+    parquet_deserialization_allowed: false
+    checkpoint_access_allowed: false
+    model_instantiation_allowed: false
+    optimizer_step_allowed: false
+    prediction_allowed: false
+    performance_metric_allowed: false
+    pnl_allowed: false
+    outcome_source_read_allowed: false
+    target_asset_allowed: false
+    v61_implementation_allowed: false
+
+  authorized_next_action: authorize_v61_synthetic_decoupled_rank_state_harness_only
+
+output_dir: artifacts/v60_decoupled_rank_state_spec
+seed: 20260715

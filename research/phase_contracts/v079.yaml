@@ -1,0 +1,112 @@
+schema_version: 1
+phase: v79
+stage_revision: v079_metadata_only_v78_terminal_record_r1
+family_id: tlm_persistent_multi_horizon_duration_v1
+status: metadata_only_terminal_record_authorized_not_started
+evidence_tier: adaptive_consumed_2025_non_target_development_prepare_outcomes_sealed
+
+parent_experiment:
+  path: research/experiments/v079.yaml
+  file_sha256: 7b4bab47ac9815145c7d1a0343f34be4a39403cfa2587ecd1782f0702d02ee92
+scientific_parent:
+  path: research/experiments/v078.yaml
+  file_sha256: be3f1b597c00eac9f48fd2540dd877a6bfd928d67e8b5f2777752fda0abbc518
+owner_authorization:
+  sha256: bf24b776fe7df07132d6b16beaea636a40221ee98fb9c6f45e9157023779b85c
+  exact_scope:
+    - register_frozen_v78_terminal_result
+    - retire_tlm_persistent_multi_horizon_duration_v1
+    - authorize_v80_outcome_blind_specification_only
+
+authorized_next_action: record_v79_v78_terminal_failure_metadata_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm v78-terminal-record
+  --config configs/v79_v78_terminal_record.yaml
+pass_action: authorize_v80_low_turnover_cross_sectional_rank_specification_only
+failure_action: stop_v79_on_metadata_hash_or_semantic_drift
+stop_condition: freeze_and_validate_v79_terminal_record_then_stop_before_v80_specification
+
+access_contract:
+  output_dir: artifacts/v79_v78_terminal_record
+  allowed_inputs:
+    - artifacts/v78_persistent_duration_evaluation/result.json
+    - artifacts/v78_persistent_duration_evaluation/audit.json
+    - artifacts/v78_persistent_duration_evaluation/prepare_failure_receipt.json
+    - artifacts/v78_persistent_duration_evaluation/replay_receipt.json
+  allowed_capabilities:
+    - read_four_exact_hash_bound_v78_json_metadata_files
+    - verify_v78_behavior_gate_failure_and_source_free_replay
+    - register_v78_family_retirement_without_scientific_recomputation
+    - write_one_deterministic_metadata_only_terminal_record_packet
+    - authorize_only_v80_outcome_blind_successor_specification
+  required_checks:
+    - exact_v78_result_audit_failure_and_replay_hashes_match
+    - only_turnover_behavior_gate_failed
+    - failure_is_not_an_accounting_bug
+    - outcomes_performance_pnl_and_target_access_remained_zero
+    - no_unseal_retuning_regeneration_or_scientific_recomputation
+    - v78_family_retired_and_successor_not_implemented
+    - deterministic_packet_replay_is_byte_identical
+  forbidden_capabilities:
+    - parquet_market_panel_or_outcome_packet_deserialization
+    - checkpoint_scaler_model_optimizer_training_or_inference_access
+    - prediction_position_policy_metric_pnl_bootstrap_or_gate_recomputation
+    - v78_retuning_regeneration_or_target_evaluation
+    - v80_architecture_objective_policy_or_training_specification_execution
+    - target_asset_access_prediction_position_outcome_or_pnl
+    - deployable_paper_shadow_live_or_real_money_claim
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    artifacts/v78_persistent_duration_evaluation/result.json: ce50db6966f3ebcbcde63994603a62bd2f20545ecd6e1ffd6f5aef2047db9bba
+    artifacts/v78_persistent_duration_evaluation/audit.json: 6003e7e358d52e3e83692bf1499f39551510aff1060d96a3b052dc859a30e818
+    artifacts/v78_persistent_duration_evaluation/prepare_failure_receipt.json: 3269eb9ceaa6d92bc96970793a69ac96f6e66bf7608d52740e199c8558e64f3a
+    artifacts/v78_persistent_duration_evaluation/replay_receipt.json: 651e8f1814be682c077dc5526c5b4bac90b12de77f4fdade7c541cfb18e134fc
+  allowed_extensions: [.json]
+  expected_json_metadata_reads: 4
+  maximum_parquet_deserializations: 0
+  maximum_outcome_packet_reads: 0
+  maximum_checkpoint_or_model_loads: 0
+
+record_contract:
+  v78_prepare_outcome: fail
+  v78_decision: pivot_away_from_current_family_without_target_evaluation_or_retuning
+  failed_gate_count: 1
+  failed_gate: aggregate_turnover_within_registered_ceiling
+  aggregate_candidate_turnover: 59.55
+  registered_turnover_ceiling: 45.0
+  failure_is_accounting_bug: false
+  one_shot_packet_created: false
+  one_shot_unseal_authorized: false
+  outcome_rows_read: 0
+  performance_metrics_computed: 0
+  pnl_evaluations: 0
+  target_assets_loaded: []
+  retired_family_id: tlm_persistent_multi_horizon_duration_v1
+  retired_family_terminal_phase: v78
+  successor_family_id: tlm_low_turnover_cross_sectional_rank_v1
+  successor_specification_executed: false
+  deployable: false
+
+artifact_contract:
+  output_dir: artifacts/v79_v78_terminal_record
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - terminal_record.json
+    - result.json
+    - audit.json
+    - report.md
+    - artifact_manifest.json
+  deterministic_replay_required: true
+  scientific_data_or_model_artifact_allowed: false
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+deployable: false

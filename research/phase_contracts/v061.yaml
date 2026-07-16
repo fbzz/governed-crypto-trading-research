@@ -1,0 +1,70 @@
+schema_version: 1
+phase: v61
+stage_revision: v061_harness_r1
+family_id: tlm_decoupled_rank_state_medium_v1
+status: frozen_before_synthetic_harness
+evidence_tier: synthetic_scientific_and_accounting_harness_only
+parent_experiment:
+  path: research/experiments/v060.yaml
+  file_sha256: eeccc29442ad7da544477bf45ccc59128fa0bfa1f3acaae8eaca5f3f71ab8074
+authorization_receipt:
+  path: artifacts/v60_decoupled_rank_state_spec/result.json
+  file_sha256: 3a63e8d22dd4cbba9304e211e13fada23d6e6366ce337f9b74cf241dbcaf0e2c
+  registered_result_sha256: 99eebbeecfbb4a6628a0429b7680babac7c929787a739721bfc00e1666664700
+  decision: authorize_v61_synthetic_decoupled_rank_state_harness_only
+authorized_next_action: authorize_v61_synthetic_decoupled_rank_state_harness_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm decoupled-rank-state-harness
+  --config configs/v61_decoupled_rank_state_harness.yaml
+pass_action: authorize_v62_non_target_decoupled_rank_state_dataset_only
+failure_action: keep_v62_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v61_decoupled_rank_state_harness
+  allowed_inputs:
+    - artifacts/v60_decoupled_rank_state_spec/specification.json
+    - artifacts/v60_decoupled_rank_state_spec/blueprint.json
+    - artifacts/v60_decoupled_rank_state_spec/audit.json
+    - artifacts/v60_decoupled_rank_state_spec/result.json
+    - artifacts/v60_decoupled_rank_state_spec/artifact_manifest.json
+    - artifacts/v60_decoupled_rank_state_spec/completion_receipt.json
+  allowed_capabilities:
+    - instantiate_exact_v60_ranker_and_independent_state_gate_on_synthetic_tensors
+    - execute_bounded_synthetic_optimizer_steps_with_independent_optimizers
+    - verify_ranker_gate_gradient_isolation
+    - verify_causality_permutation_and_decomposition
+    - verify_entry_hold_switch_exit_cost_and_liquidation_accounting
+    - write_synthetic_checkpoint_and_verify_resume
+    - verify_byte_identical_synthetic_replay
+  required_checks:
+    - exact_component_and_total_parameter_counts
+    - exact_output_shapes
+    - causal_temporal_prefix_for_both_encoders
+    - asset_permutation_equivariance
+    - state_feature_permutation_invariance
+    - centered_excess_and_absolute_return_decomposition
+    - zero_shared_parameter_identity
+    - gate_backward_does_not_change_ranker_gradients
+    - ranker_backward_does_not_change_gate_gradients
+    - independent_optimizer_state_and_steps
+    - checkpoint_roundtrip_and_interrupted_resume
+    - exact_cost_aware_entry_hold_switch_exit_and_final_liquidation
+    - zero_real_data_checkpoint_outcome_or_target_access
+    - byte_identical_replay
+  forbidden_capabilities:
+    - real_data_or_parquet_access
+    - prior_checkpoint_access_or_reuse
+    - real_training_or_inference
+    - real_prediction_performance_metric_or_pnl
+    - outcome_source_read
+    - target_asset_access
+    - v62_implementation_or_data_build
+    - paper_shadow_live_or_real_money_trading
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: stop_after_v61_gate_before_any_v62_implementation

@@ -1,0 +1,66 @@
+failure_autopsy:
+  project_root: .
+  inputs:
+    result: artifacts/v37_source_domain_one_shot/result.json
+    metrics: artifacts/v37_source_domain_one_shot/metrics.json
+    gate_result: artifacts/v37_source_domain_one_shot/gate_result.json
+    evaluation_spec: artifacts/v37_source_domain_one_shot/evaluation_spec.json
+    evaluation_receipt: artifacts/v37_source_domain_one_shot/evaluation_receipt.json
+    predictions: artifacts/v37_source_domain_one_shot/predictions.parquet
+    daily_returns: artifacts/v37_source_domain_one_shot/daily_returns.parquet
+  expected_input_sha256:
+    result: cb0e48a430242637d62fef53af833a01b04a70d990311ae24aea0aaff260aabf
+    metrics: 78c79d915e0c13cdbeed0d6600d40abbf9ab936e73fb13e339ac525094aba9af
+    gate_result: 27d6fc97e164f89720c1e304b2e9439bf6c51837f729a60fe646245abb676750
+    evaluation_spec: b37cd4d28ec6e2d00af0b29da68dca156ea5804a5b5667757079ff29cd58f86e
+    evaluation_receipt: b95cdfe4ad28ae868ffe4350efcac61e6361b44eac26a12fd86979d9dd145dc7
+    predictions: 2764682e6079153264d9e1da81965222f13dfaf159ab26484d91cae87867afa9
+    daily_returns: 05ce6728883798a93791034870be3d361b9605fdbdd615be76135584eb6a179e
+  constraints:
+    read_only_frozen_v37_artifacts: true
+    raw_panel_allowed: false
+    checkpoint_or_model_inference_allowed: false
+    target_assets_allowed: false
+    training_or_recalibration_allowed: false
+    alternative_policy_or_threshold_test_allowed: false
+    asset_fold_or_date_selection_allowed: false
+    v37_decision_mutable: false
+  accounting:
+    descriptive_cost_bps: 10
+    fold_capital_weight: 0.3333333333333333
+    episode_rule: consecutive_calendar_dates_same_active_asset
+    episode_breaks: [cash, asset_change, calendar_gap]
+    loss_concentration_top_n_days: [1, 3, 5]
+  slices:
+    categorical: [fold, symbol, calendar_month]
+    signal_time_regime:
+      feature: cross_sectional_median_momentum_30
+      categories:
+        risk_on: greater_than_zero
+        risk_off: less_than_or_equal_zero
+  ranking_diagnostics:
+    universe: every_available_asset_on_every_fold_date
+    metrics:
+      - spearman_q50_vs_observed_return
+      - predicted_top1_actual_rank
+      - predicted_top1_hit_rate
+      - predicted_top3_hit_rate
+      - predicted_top1_excess_return_vs_fold_mean
+      - direction_accuracy_q50
+    report_all_dates: true
+    report_candidate_active_dates: true
+  fixed_descriptive_bins:
+    calibrated_q50: [0.002, 0.005, 0.01]
+    calibrated_q10: [-0.03, -0.02, -0.01]
+    top1_q50_margin: [0.0, 0.001, 0.003]
+  continuous_diagnostics:
+    - calibrated_q50_vs_observed_return
+    - calibrated_q10_vs_observed_return
+    - top1_q50_margin_vs_top1_excess_return
+    - calibrated_log_volatility_vs_absolute_return
+  limitations:
+    seed_disagreement: unavailable_not_persisted
+    triplet_context_disagreement: unavailable_not_persisted
+    recovery_requires_forbidden_reinference: true
+
+output_dir: artifacts/v37_failure_autopsy

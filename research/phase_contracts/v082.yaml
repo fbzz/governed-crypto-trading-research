@@ -1,0 +1,284 @@
+schema_version: 1
+phase: v82
+stage_revision: v082_non_target_low_turnover_rank_dataset_r1
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+status: dataset_authorized_not_started
+evidence_tier: causal_non_target_dataset_and_sealed_evaluation_packet_only
+
+parent_experiment:
+  path: research/experiments/v082.yaml
+  file_sha256: 5afaa7618e75f4c69f7cdc39ea9790fce768a99564b414ccfa3be8d73adfcf6b
+preceding_phase_contract:
+  path: research/phase_contracts/v082_r0.yaml
+  file_sha256: 4155696fb45c06b472f493e92b38c7dac1e68194af67cefe6999a32d70f13c9c
+authorization_receipt:
+  path: artifacts/v82_r0_low_turnover_rank_chronology_erratum/result.json
+  file_sha256: b61ca948a26d85a51a1c62158ff282da90f8ab428472737c1fdaba4b917e8a93
+  registered_result_sha256: 56ef31fcb37a5566e3b0badbf1e2681862e9bc86a1affa898950c823dc490b96
+  decision: authorize_v82_non_target_low_turnover_rank_dataset_only
+explicit_user_authorization:
+  path: research/authorizations/v082_dataset_only.json
+  file_sha256: d250223e2597191a4d5726fd609873ed4116443634c8a27c156bc5b65e68cf8c
+  registered_authorization_sha256: 91155a7dc02bba8958fd74fff5d684802db54c76c592d371280eb9ad1a5acbdf
+
+authorized_next_action: authorize_v82_non_target_low_turnover_rank_dataset_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm low-turnover-rank-dataset
+  --config configs/v82_low_turnover_rank_dataset.yaml
+pass_action: authorize_v83_frozen_non_target_low_turnover_rank_training_only
+failure_action: keep_v83_and_later_unauthorized
+stop_condition: freeze_build_verify_and_hash_seal_v82_dataset_then_stop_before_v83
+
+access_contract:
+  output_dir: artifacts/v82_low_turnover_rank_dataset
+  allowed_inputs:
+    - research/authorizations/v082_dataset_only.json
+    - artifacts/v82_r0_low_turnover_rank_chronology_erratum/result.json
+    - artifacts/v82_r0_low_turnover_rank_chronology_erratum/audit.json
+    - artifacts/v82_r0_low_turnover_rank_chronology_erratum/chronology_erratum.json
+    - artifacts/v82_r0_low_turnover_rank_chronology_erratum/artifact_manifest.json
+    - artifacts/v80_low_turnover_rank_spec/blueprint.json
+    - artifacts/v32_selected_universe_dataset/result.json
+    - artifacts/v32_selected_universe_dataset/audit.json
+    - artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+  allowed_capabilities:
+    - verify_exact_hash_bound_v82_r0_user_v80_and_v32_metadata
+    - list_only_frozen_official_binance_non_target_monthly_daily_archive_prefixes
+    - download_or_reuse_only_frozen_non_target_archives_and_published_checksums
+    - verify_and_hash_register_every_admitted_source_archive
+    - construct_exact_eight_causal_per_asset_features
+    - construct_exact_21_interval_open_to_open_train_and_validation_labels
+    - preserve_missing_calendar_observations_and_break_sequence_eligibility
+    - construct_outcome_free_2026_evaluation_features
+    - construct_hash_seal_and_not_unseal_2026_daily_outcome_packet
+    - emit_deterministic_metadata_and_parquet_packet
+    - authorize_only_v83_frozen_non_target_training
+  required_checks:
+    - exact_user_authorization_and_v82_r0_result_hashes
+    - exact_v32_universe_fold_triplet_and_feature_ancestry
+    - exact_official_source_endpoint_prefix_months_and_checksum_verification
+    - exact_thirty_asset_non_target_universe_and_zero_target_assets
+    - complete_cartesian_calendars_with_missing_rows_preserved
+    - eight_features_are_causal_and_in_frozen_order
+    - exact_128_day_sequence_readiness_without_imputation
+    - exact_t_plus_1_to_t_plus_22_training_and_validation_target
+    - exact_train_validation_embargo_and_fold_roles
+    - evaluation_features_contain_no_label_outcome_or_raw_open_columns
+    - exact_159_signal_dates_and_last_maturity_2026_06_30
+    - exact_2026_daily_outcome_packet_is_hash_sealed
+    - outcome_packet_unseal_count_is_zero
+    - no_scaler_model_checkpoint_training_inference_prediction_or_position
+    - no_performance_metric_pnl_or_bootstrap
+    - all_four_parquets_replay_byte_identically
+    - metadata_packet_replays_byte_identically
+  forbidden_capabilities:
+    - target_asset_access
+    - universe_fold_or_triplet_reselection
+    - missing_row_imputation_repair_or_future_fill
+    - scaler_fit
+    - model_instantiation_or_checkpoint_read_or_write
+    - optimizer_step_or_training
+    - inference_prediction_or_position
+    - performance_metric_pnl_or_bootstrap
+    - outcome_packet_unseal_or_value_evaluation
+    - architecture_objective_policy_cost_gate_turnover_seed_or_hyperparameter_change
+    - v83_implementation_or_training
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    research/authorizations/v082_dataset_only.json: d250223e2597191a4d5726fd609873ed4116443634c8a27c156bc5b65e68cf8c
+    artifacts/v82_r0_low_turnover_rank_chronology_erratum/result.json: b61ca948a26d85a51a1c62158ff282da90f8ab428472737c1fdaba4b917e8a93
+    artifacts/v82_r0_low_turnover_rank_chronology_erratum/audit.json: 1d8d0a5a2ff83343b29a8196a0a17719808f04240c049fe28242e11d93568c7e
+    artifacts/v82_r0_low_turnover_rank_chronology_erratum/chronology_erratum.json: d0e23a0442725675efc18be1a95e6818ed23215c59ded821f6d4556575845c0b
+    artifacts/v82_r0_low_turnover_rank_chronology_erratum/artifact_manifest.json: 3ca3e155bf5c124ee2ba2822c5e4ea07e27bd7e6bade13b1e54023b89cb26930
+    artifacts/v80_low_turnover_rank_spec/blueprint.json: d877adf553c6ba54e51302cdb058c361e15817daf16034e2744ed10a46d64abb
+    artifacts/v32_selected_universe_dataset/result.json: 9a41f84a7de9534472c9655a577c84de992604633f091080e3b7906420b1da53
+    artifacts/v32_selected_universe_dataset/audit.json: 280c8857cf990cf62411628e1b3fe30bf04ffcc940db927f995aa487ad09f106
+    artifacts/v32_selected_universe_dataset/dataset_manifest.json: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    artifacts/v32_selected_universe_dataset/feature_schema.json: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+  expected_canonical_sha256:
+    v82_user_authorization: 91155a7dc02bba8958fd74fff5d684802db54c76c592d371280eb9ad1a5acbdf
+    v82_r0_result: 56ef31fcb37a5566e3b0badbf1e2681862e9bc86a1affa898950c823dc490b96
+    v80_blueprint: 3b080b6cfcea2be6ef2a3347397e7f669573870abba0f6966bc3eb76eeb1d649
+    v32_triplet_catalog: c405617dcc0b00b3777ec50b912347742f2c3ee48fed9b2ac8fa21fa82944555
+  expected_metadata_reads: 12
+  maximum_target_asset_reads: 0
+  maximum_prior_checkpoint_or_scaler_reads: 0
+
+source_contract:
+  provider: binance_public_data_vision
+  s3_endpoint: https://s3-ap-northeast-1.amazonaws.com/data.binance.vision
+  download_base_url: https://data.binance.vision
+  root_prefix: data/spot/monthly/klines/
+  frequency: 1d
+  month_start: '2018-01'
+  month_end: '2026-06'
+  source_calendar_start: '2018-01-01'
+  source_calendar_end: '2026-06-30'
+  archive_suffix: .zip
+  checksum_suffix: .zip.CHECKSUM
+  checksum_algorithm: sha256
+  schema: binance_spot_kline_12_columns
+  cache_dir: data/raw/binance_spot_non_target
+  missing_archive_policy: preserve_missing_calendar_rows_without_replacement
+  source_selection_policy: exact_v32_symbols_and_exact_months_no_reselection
+  symbols:
+    - XRPUSDT
+    - BNBUSDT
+    - DOGEUSDT
+    - ADAUSDT
+    - MATICUSDT
+    - DOTUSDT
+    - LINKUSDT
+    - LTCUSDT
+    - AVAXUSDT
+    - TRXUSDT
+    - FTMUSDT
+    - FILUSDT
+    - ATOMUSDT
+    - NEARUSDT
+    - ETCUSDT
+    - SANDUSDT
+    - RUNEUSDT
+    - EOSUSDT
+    - VETUSDT
+    - CHZUSDT
+    - BCHUSDT
+    - UNIUSDT
+    - AAVEUSDT
+    - CRVUSDT
+    - GRTUSDT
+    - ALGOUSDT
+    - SUSHIUSDT
+    - MANAUSDT
+    - EGLDUSDT
+    - AXSUSDT
+
+feature_contract:
+  lookback_days: 128
+  columns:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  availability: close_of_t
+  missing_policy: preserve_nan_and_require_128_consecutive_complete_feature_rows
+  scaling: not_applied_in_v82
+  triplet_relative_strength:
+    name: within_triplet_relative_strength
+    materialization: v83_on_demand_after_exact_lexical_triplet_formation
+    formula: asset_log_close_to_close_return_minus_triplet_mean_same_date
+
+label_contract:
+  name: target_21d_open_to_open_log_return
+  signal_information_cutoff: close_t
+  execution_open: t_plus_1
+  exit_open: t_plus_22
+  horizon_intervals: 21
+  maturity_days: 22
+  formula: log(open[t+22] / open[t+1])
+  clipping: false
+  missing_policy: preserve_nan_unless_both_exact_endpoints_are_finite
+
+role_contract:
+  train:
+    signal_start: '2018-05-09'
+    signal_end: '2023-11-18'
+    maximum_maturity: '2023-12-10'
+  train_validation_embargo:
+    start: '2023-11-19'
+    end: '2023-12-31'
+  internal_validation:
+    signal_start: '2024-01-01'
+    signal_end: '2024-11-18'
+    maximum_maturity: '2024-12-10'
+  fold_roles: exact_v32_twenty_train_symbols_only_for_training_and_internal_validation
+  heldout_fold_asset_values_in_v83_tensor: forbidden
+
+evaluation_contract:
+  feature_lookback_start: '2025-08-26'
+  feature_end: '2026-06-08'
+  signal_start: '2026-01-01'
+  signal_end: '2026-06-08'
+  signal_dates: 159
+  first_execution_open: '2026-01-02'
+  final_outcome_maturity: '2026-06-30'
+  daily_outcome_interval_start: '2026-01-02'
+  daily_outcome_interval_end: '2026-06-29'
+  daily_outcome_formula: log(open[d+1] / open[d])
+  evidence_label: retrospective_non_target_first_use_in_tlm_not_prospective_confirmation
+  consumed_2025_outcome_labels: forbidden
+  outcome_packet_status_after_v82: sealed
+  outcome_packet_unseals_during_v82: 0
+  outcome_packet_unseals_during_v83: 0
+  outcome_packet_unseals_during_outcome_blind_prepare: 0
+  future_unseal_requires_new_exact_hash_bound_user_authorization: true
+
+ancestry_contract:
+  v32_universe_result_path: artifacts/v32_selected_universe_dataset/result.json
+  asset_folds_path: artifacts/v32_selected_universe_dataset/asset_folds.json
+  triplet_catalog_path: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+  symbol_count: 30
+  folds: 3
+  train_symbols_per_fold: 20
+  heldout_symbols_per_fold: 10
+  train_triplets_per_fold: 1140
+  heldout_triplets_per_fold: 120
+  universe_fold_or_triplet_reselection: false
+
+output_contract:
+  development_features_path: data/processed/low_turnover_rank_development_features_v82.parquet
+  development_labels_path: data/processed/low_turnover_rank_development_labels_v82.parquet
+  evaluation_features_path: data/processed/low_turnover_rank_evaluation_features_v82.parquet
+  sealed_evaluation_outcomes_path: data/processed/low_turnover_rank_evaluation_outcomes_v82.parquet
+  parquet_engine: pyarrow
+  compression: zstd
+  deterministic_fresh_replay_required: true
+  packet_files:
+    - artifact_manifest.json
+    - audit.json
+    - data_access.json
+    - dataset_manifest.json
+    - dataset_spec.json
+    - feature_schema.json
+    - input_hash_receipt.json
+    - replay_receipt.json
+    - resolved_config.yaml
+    - result.json
+    - report.md
+    - sealed_packet_receipt.json
+    - source_audit.json
+    - source_manifest.jsonl
+    - source_receipt.json
+
+frozen_unchanged_contract:
+  expected_total_parameters: 10993
+  architecture_variant_count: 1
+  decision_interval_days: 21
+  maximum_evaluation_decisions: 8
+  structural_maximum_turnover: 16.0
+  costs_bps: [10, 20, 30]
+  mandatory_financial_gate_count: 9
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  future_training_jobs: 9
+  scientific_change_count: 0
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+deployable: false

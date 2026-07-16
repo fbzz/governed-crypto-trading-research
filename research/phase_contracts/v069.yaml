@@ -1,0 +1,114 @@
+schema_version: 1
+phase: v69
+stage_revision: v069_outcome_blind_non_target_prospective_confirmation_prepare_r1
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: training_passed_prospective_prepare_authorized
+evidence_tier: ex_ante_metadata_only_prospective_confirmation_preparation
+parent_experiment:
+  path: research/experiments/v068.yaml
+  file_sha256: e62243d473519474170f38589f8eaca866fac57707de13e5d71f7660dd978b62
+authorization_receipt:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/result.json
+  file_sha256: 0412d2ef8263c77fd6e4052f6ae2226670f076c5fbfb2b9acd80b15a90762688
+  registered_result_sha256: a77788d338db995c44ce6d3d765261b1c46383895c3f56bcb31016fb2d84d8e1
+  decision: authorize_v69_outcome_blind_non_target_prospective_confirmation_prepare_only
+authorized_next_action: authorize_v69_outcome_blind_non_target_prospective_confirmation_prepare_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm v64-r2-prospective-confirmation-prepare
+  --config configs/v69_v64_r2_prospective_confirmation_prepare.yaml
+pass_action: authorize_v70_prospective_non_target_capture_and_prediction_freeze_only
+failure_action: retire_v64_r2_without_prospective_or_target_evaluation
+
+access_contract:
+  output_dir: artifacts/v69_v64_r2_prospective_confirmation_prepare
+  allowed_inputs:
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/result.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/audit.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/training_spec.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/checkpoint_manifest.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/scaler_manifest.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/data_access.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/verification.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/replay.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/completion_receipt.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/artifact_manifest.json
+  allowed_capabilities:
+    - verify_exact_v65_v68_and_v32_metadata_receipts
+    - freeze_one_prospective_non_target_confirmation_protocol_without_data_access
+    - freeze_signal_outcome_chronology_data_capture_and_timestamp_rules
+    - freeze_exact_non_target_fold_seed_context_cost_policy_and_gate_accounting
+    - preregister_minimum_confirmation_window_and_all_mandatory_cells
+    - preregister_future_capture_prediction_freeze_outcome_packet_and_one_shot_receipts
+  required_checks:
+    - every_allowed_metadata_input_hash_matches
+    - first_admissible_signal_is_strictly_after_v69_registration
+    - no_consumed_2025_or_2026_h1_evidence_is_reclassified_as_prospective
+    - exact_v68_checkpoint_grid_is_referenced_but_not_deserialized
+    - no_data_model_checkpoint_prediction_position_metric_pnl_or_outcome_operation
+    - target_assets_remain_sealed
+  forbidden_capabilities:
+    - parquet_market_panel_label_role_or_raw_market_data_access
+    - checkpoint_deserialization_model_instantiation_inference_or_optimizer
+    - prediction_position_policy_action_or_portfolio_generation
+    - outcome_source_packet_metric_performance_or_pnl_access
+    - consumed_2025_or_2026_h1_reclassification_as_clean_confirmation
+    - target_asset_access
+    - architecture_objective_grid_seed_threshold_policy_cost_or_accounting_change
+    - v70_capture_prediction_or_evaluation_implementation
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  target_status: sealed
+  metadata_only_extensions: [.json]
+  allowed_input_count: 13
+  expected_file_sha256_by_path:
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/result.json: 0412d2ef8263c77fd6e4052f6ae2226670f076c5fbfb2b9acd80b15a90762688
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/audit.json: 284bd64ac112ea3d8d291bdf16fd6e0ccc8c5f0bb873a4ab27e292a4e948059f
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/training_spec.json: 2edf57f2e7e44cb425f3d408b18d5b126812fef670b3f2609e14ef4ad7e80c51
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/checkpoint_manifest.json: 1aa25f83ab1dd66d813c91b584b46146bfb5a20659f9496bdbcf2c7941acb1c0
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/scaler_manifest.json: 9584d43a9b5c0d3b788fedc1c7a47bf023f8662c50ae9338021518ddb9166e31
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/data_access.json: 1713570264076260637858247d5622aecb5acf67fe18afe327fb2dd73b8f898a
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/verification.json: 6c36eea280651c13a0270a9228ff8bfd0038421fb8dd581b0fd14a84a3d296e0
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/replay.json: 1f4fa1417a475c47022b64a7fb1417fbd482ecd1e243c3a4519e1ee05c887527
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/completion_receipt.json: 1a4e7cdf37742f308f4c6685311f03a314b3aed4f3ff3c94b9020d835b312a71
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/artifact_manifest.json: 215369fa49b59dc48b5790f05a334ee8fdea98fc187d2c76deedf33445d336da
+
+prospective_boundary_contract:
+  registration_as_of_date: '2026-07-15'
+  first_admissible_signal_date_rule: strictly_after_v69_completion_receipt_commit
+  historical_2025_status: consumed_adaptive_development_forbidden
+  historical_2026_h1_status: consumed_or_pre_registration_forbidden_as_clean_confirmation
+  window_length_and_minimum_observations: must_be_frozen_in_v69_before_any_capture_or_inference
+  capture_source_and_timestamp_semantics: must_be_frozen_in_v69_before_any_capture_or_inference
+  outcomes_available_during_v69: false
+  checkpoints_deserialized_during_v69: false
+  predictions_frozen_during_v69: false
+  target_assets_allowed: false
+
+artifact_contract:
+  required_files:
+    - specification.json
+    - protocol.json
+    - audit.json
+    - result.json
+    - report.md
+    - source_receipt.json
+    - artifact_manifest.json
+    - completion_receipt.json
+  byte_identical_replay_required: true
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: stop_after_v69_prepare_gate_before_any_v70_capture_or_prediction

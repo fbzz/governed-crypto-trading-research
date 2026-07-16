@@ -1,0 +1,171 @@
+seed: 20260713
+
+evidence_ledger:
+  illustrative_nominal_alpha: 0.05
+  expected_registered_signals: 61
+  versions:
+    v1:
+      kind: model_experiment
+      status: rejected
+      decision: Intraday Transformer failed buy-and-hold return, Sharpe, and drawdown gates.
+      history_exposed: true
+      clean_holdout: false
+      evidence_paths: [artifacts/mvp/report.md, artifacts/mvp/metrics.json]
+      audit_paths: [artifacts/mvp/audit.json]
+    v2:
+      kind: model_experiment
+      status: rejected
+      decision: Persistent next-open Transformer still failed buy-and-hold gates.
+      history_exposed: true
+      clean_holdout: false
+      evidence_paths: [artifacts/v2_open_to_open/report.md, artifacts/v2_open_to_open/metrics.json]
+      audit_paths: [artifacts/v2_open_to_open/audit.json]
+    v3:
+      kind: model_experiment
+      status: provisional_then_rejected
+      decision: Single-seed always-long result was not stable across frozen seeds.
+      history_exposed: true
+      clean_holdout: false
+      evidence_paths: [artifacts/v3_always_long_top1/report.md, artifacts/v3_robustness/seed_7/report.md, artifacts/v3_robustness/seed_123/report.md]
+      audit_paths: [artifacts/v3_always_long_top1/audit.json, artifacts/v3_robustness/seed_7/audit.json, artifacts/v3_robustness/seed_123/audit.json]
+    v4:
+      kind: model_experiment
+      status: rejected
+      decision: Cross-entropy ranking Transformer failed the benchmark gates.
+      history_exposed: true
+      clean_holdout: false
+      evidence_paths: [artifacts/v4_cross_sectional_ranking/report.md]
+      audit_paths: [artifacts/v4_cross_sectional_ranking/audit.json]
+    v5:
+      kind: model_experiment
+      status: provisional_then_suspended
+      decision: Consensus override passed three folds but was superseded by v6.
+      superseded_by: v6
+      history_exposed: true
+      clean_holdout: false
+      evidence_paths: [artifacts/v5_consensus/report.md, artifacts/v5_consensus/metrics.json]
+      audit_paths: [artifacts/v5_consensus/audit.json]
+    v6:
+      kind: validation_suite
+      status: suspended
+      decision: Consensus override failed expanding-6 and rolling-6 validation.
+      history_exposed: true
+      clean_holdout: false
+      evidence_paths: [artifacts/v6_validation_suite/validation_suite.md, artifacts/v6_validation_suite/validation_suite.json]
+      audit_paths: [artifacts/v6_validation_suite/validation_suite_audit.json]
+    v7:
+      kind: validation_suite
+      status: rejected
+      decision: OverrideNet underperformed the dual-momentum control in all scenarios.
+      history_exposed: true
+      clean_holdout: false
+      evidence_paths: [artifacts/v7_override_net/report.md, artifacts/v7_override_net/validation_suite.json]
+      audit_paths: [artifacts/v7_override_net/audit.json]
+    v8:
+      kind: validation_suite
+      status: rejected
+      decision: Risk-off meta-labeler failed return-retention and stability gates.
+      history_exposed: true
+      clean_holdout: false
+      evidence_paths: [artifacts/v8_risk_off/report.md, artifacts/v8_risk_off/validation_suite.json]
+      audit_paths: [artifacts/v8_risk_off/audit.json]
+    v9:
+      kind: signal_study
+      status: no_robust_signal
+      family: OHLCV
+      decision: No stable OHLCV downside signal.
+      history_exposed: true
+      clean_holdout: false
+      signal_result_path: artifacts/v9_signal_existence/signal_study.json
+      evidence_paths: [artifacts/v9_signal_existence/report.md, artifacts/v9_signal_existence/signal_study.json]
+      audit_paths: [artifacts/v9_signal_existence/audit.json]
+    v10:
+      kind: data_infrastructure
+      status: accepted_data_only
+      decision: Binance derivatives archive passed checksum and chronology audits.
+      history_exposed: false
+      clean_holdout: false
+      evidence_paths: [artifacts/v10_derivatives_data/report.md, artifacts/v10_derivatives_data/manifest.json]
+      audit_paths: [artifacts/v10_derivatives_data/audit.json]
+    v11:
+      kind: signal_study
+      status: no_robust_signal
+      family: daily_derivatives
+      decision: No stable daily derivatives downside signal.
+      history_exposed: true
+      clean_holdout: false
+      signal_result_path: artifacts/v11_derivatives_signal_existence/derivatives_signal_study.json
+      evidence_paths: [artifacts/v11_derivatives_signal_existence/report.md, artifacts/v11_derivatives_signal_existence/derivatives_signal_study.json]
+      audit_paths: [artifacts/v11_derivatives_signal_existence/audit.json]
+    v12:
+      kind: signal_study
+      status: no_robust_signal
+      family: intraday_derivatives_path
+      decision: No stable intraday path downside signal.
+      history_exposed: true
+      clean_holdout: false
+      signal_result_path: artifacts/v12_intraday_path_signal_existence/derivatives_signal_study.json
+      evidence_paths: [artifacts/v12_intraday_path_signal_existence/report.md, artifacts/v12_intraday_path_signal_existence/derivatives_signal_study.json]
+      audit_paths: [artifacts/v12_intraday_path_signal_existence/audit.json]
+    v13:
+      kind: source_feasibility
+      status: selected_source_only
+      decision: Deribit DVOL selected for a data-only layer.
+      history_exposed: false
+      clean_holdout: false
+      evidence_paths: [artifacts/v13_data_family_feasibility/report.md, artifacts/v13_data_family_feasibility/feasibility.json]
+      audit_paths: [artifacts/v13_data_family_feasibility/audit.json]
+    v14:
+      kind: data_infrastructure
+      status: accepted_data_only
+      decision: DVOL layer passed coverage, cache, hash, and t+2 chronology audits.
+      history_exposed: false
+      clean_holdout: false
+      evidence_paths: [artifacts/v14_dvol_data/report.md, artifacts/v14_dvol_data/manifest.json]
+      audit_paths: [artifacts/v14_dvol_data/audit.json]
+    v15:
+      kind: signal_study
+      status: no_robust_signal
+      family: options_volatility
+      decision: No stable DVOL downside signal.
+      history_exposed: true
+      clean_holdout: false
+      signal_result_path: artifacts/v15_dvol_signal_existence/dvol_signal_study.json
+      evidence_paths: [artifacts/v15_dvol_signal_existence/report.md, artifacts/v15_dvol_signal_existence/dvol_signal_study.json]
+      audit_paths: [artifacts/v15_dvol_signal_existence/audit.json]
+    v16:
+      kind: source_feasibility
+      status: rejected_source
+      decision: CFTC COT rejected for unavailable historical publication/vintage timestamps.
+      history_exposed: false
+      clean_holdout: false
+      evidence_paths: [artifacts/v16_cftc_positioning_feasibility/report.md, artifacts/v16_cftc_positioning_feasibility/feasibility.json]
+      audit_paths: [artifacts/v16_cftc_positioning_feasibility/audit.json]
+    v17:
+      kind: source_feasibility
+      status: selected_source_only
+      decision: Treasury curve selected with a conservative t+3 contract.
+      history_exposed: false
+      clean_holdout: false
+      evidence_paths: [artifacts/v17_treasury_curve_feasibility/report.md, artifacts/v17_treasury_curve_feasibility/feasibility.json]
+      audit_paths: [artifacts/v17_treasury_curve_feasibility/audit.json]
+    v18:
+      kind: data_infrastructure
+      status: accepted_data_only
+      decision: Treasury data layer passed cache, hash, carry, and chronology audits.
+      history_exposed: false
+      clean_holdout: false
+      evidence_paths: [artifacts/v18_treasury_curve_data/report.md, artifacts/v18_treasury_curve_data/manifest.json]
+      audit_paths: [artifacts/v18_treasury_curve_data/audit.json]
+    v19:
+      kind: signal_study
+      status: no_robust_signal
+      family: treasury_curve
+      decision: No stable Treasury downside signal.
+      history_exposed: true
+      clean_holdout: false
+      signal_result_path: artifacts/v19_treasury_signal_existence/treasury_signal_study.json
+      evidence_paths: [artifacts/v19_treasury_signal_existence/report.md, artifacts/v19_treasury_signal_existence/treasury_signal_study.json]
+      audit_paths: [artifacts/v19_treasury_signal_existence/audit.json]
+
+output_dir: artifacts/v20_evidence_ledger

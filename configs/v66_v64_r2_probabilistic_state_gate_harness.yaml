@@ -1,0 +1,66 @@
+seed: 20260715
+
+v64_r2_probabilistic_state_gate_harness:
+  version: v66
+  project_root: .
+  inputs:
+    v65_specification: artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json
+    v65_blueprint: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+    v65_audit: artifacts/v65_v64_r2_probabilistic_state_gate_spec/audit.json
+    v65_result: artifacts/v65_v64_r2_probabilistic_state_gate_spec/result.json
+    v65_artifact_manifest: artifacts/v65_v64_r2_probabilistic_state_gate_spec/artifact_manifest.json
+    v65_completion_receipt: artifacts/v65_v64_r2_probabilistic_state_gate_spec/completion_receipt.json
+  expected_input_sha256:
+    v65_specification: 7f5b21c002b31f2851ba0479d1800da6ecdbb798cc1f5d94123d6da8e13d7463
+    v65_blueprint: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+    v65_audit: 0c9451c5de8dd10058be20683798bff5fbd0c9898385a1efbed7f2cec50a963a
+    v65_result: e8d8849c5926f31f7b76dd8c83e7fce30c3064f728bdf87cb452eae9371da9ee
+    v65_artifact_manifest: 3d2e9ba1453a33528c2bfa9bf4b2e33fc32d6a81558d1a1131aa54f26908de81
+    v65_completion_receipt: 27c19d3ae2d29696ba819d69d18389d6da8d608b2ece63418d62a9bda3a8b163
+  expected_canonical_sha256:
+    specification: e2351bc5727b47fccd0afffb3bfb2d7098908d94825e054a947cde58a8f60c0d
+    blueprint: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+    result: d246dece1604a67f3a7cc1abaa7808a2ab5555a907f9dd49ff3e8f319e7ae9f6
+    artifact_manifest: f1f759ef61343a232012728311a229ad180685c97f18f77c6422ea3b63fd36e5
+    completion_receipt: 6ba974a207d0c8d3804af750b842b520f55bf32df9024f8e9ff223ac4d75a02c
+  synthetic:
+    device: cpu
+    input_features: 9
+    state_features: 18
+    batch_size: 2
+    gate_optimizer_cycles: 2
+    policy_days: 7
+    mixture_components: 3
+  mechanics:
+    degrees_of_freedom: 5.0
+    scale_floor: 0.0001
+    causal_cutoff_day: 200
+    asset_permutation: [2, 0, 1]
+    nll_absolute_tolerance: 1.0e-6
+    probability_absolute_tolerance: 1.0e-12
+    abstention_probability_threshold: 0.60
+    entry_probability_fixture: 0.61
+    hold_probability_fixture: 0.70
+    switch_probability_fixture: 0.70
+    exit_probability_fixture: 0.59
+  checkpoint:
+    format_version: v66_v64_r2_probabilistic_state_gate_synthetic_v1
+    status: synthetic_only_not_trained_candidate
+    contains_ranker_optimizer_state: false
+    contains_state_gate_optimizer_state: true
+    contains_cpu_rng_state: true
+  constraints:
+    parquet_deserialization_allowed: false
+    real_panel_or_label_access_allowed: false
+    previous_checkpoint_access_allowed: false
+    prior_v64_gate_state_access_allowed: false
+    real_training_or_inference_allowed: false
+    real_prediction_allowed: false
+    real_performance_metric_allowed: false
+    real_pnl_allowed: false
+    outcome_source_or_packet_read_allowed: false
+    target_asset_access_allowed: false
+    v67_implementation_allowed: false
+  authorized_next_action: authorize_v67_non_target_v64_r2_probabilistic_state_gate_dataset_only
+
+output_dir: artifacts/v66_v64_r2_probabilistic_state_gate_harness

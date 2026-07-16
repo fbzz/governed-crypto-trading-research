@@ -1,0 +1,196 @@
+seed: 20260713
+
+ranking_excess_supervised:
+  version: v44
+  project_root: .
+  inputs:
+    v41_specification: artifacts/v41_ranking_excess_spec/specification.json
+    v41_blueprint: artifacts/v41_ranking_excess_spec/blueprint.json
+    v41_audit: artifacts/v41_ranking_excess_spec/audit.json
+    v42_result: artifacts/v42_ranking_excess_harness/result.json
+    v42_audit: artifacts/v42_ranking_excess_harness/audit.json
+    v43_result: artifacts/v43_ranking_excess_pretraining/result.json
+    v43_audit: artifacts/v43_ranking_excess_pretraining/audit.json
+    v43_checkpoint_manifest: artifacts/v43_ranking_excess_pretraining/checkpoint_manifest.json
+    v32_dataset_manifest: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    panel: data/processed/selected_universe_panel_v32.parquet
+    sequence_index: data/processed/selected_universe_sequence_index_v32.parquet
+  expected_input_sha256:
+    v41_specification: fb14bacbc95efa23bc26c4fe6252eb7eaa950eba8dfe0b400b2c6d0fbf3ab7b0
+    v41_blueprint: a8410ff7fe9ccb56c61ec0095c668557d574799a15101d4129a5a41b85c709b9
+    v41_audit: 991c378fcb2c80ac0a77f8f53a375e1d4f3b49f09d8edb943e8a445ec4b038c2
+    v42_result: 754e321251460109f02cbe2d024cb2af1438526b6656d44f54421308f6d840bb
+    v42_audit: c3d391f8486cc678a0d5a46c5b6ccdb30cd284325798e02909d0440ba5596da5
+    v43_result: a30c7aa5cbf692ff552a7c839508b50bf6ecc35899f4ce17a3b682906a1e7958
+    v43_audit: 639898888bd7e8fc6eaef19662f32862b7b0c8d3e7d11b15184c513bd1de413f
+    v43_checkpoint_manifest: bd5afeedc484d4e219f9ec897882d0e19167fcc8f4e9624402da6af49b61dac2
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    panel: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    sequence_index: 3bb609586809bc7fe4d55b55e11df0581f147484005bc5eff9fd45b28b79d861
+  device: mps
+  torch_threads: 10
+  dtype: float32
+  amp: false
+  deterministic_algorithms: true
+  cpu_fallback_allowed: false
+  checkpoint_format: v44_ranking_excess_supervised_v1
+  resume_format: v44_ranking_excess_supervised_resume_v1
+  best_state_format: v44_ranking_excess_supervised_best_state_v1
+  gradient_clip_norm: 1.0
+  validation_sampling_epoch: 0
+  expected_total_parameters: 1231634
+  expected_supervised_parameters: 1212930
+  expected_frozen_parameters: 18704
+  expected_parent_checkpoints: 9
+  optimizer:
+    name: AdamW
+    learning_rate: 3.0e-4
+    weight_decay: 1.0e-4
+    betas: [0.9, 0.999]
+    epsilon: 1.0e-8
+    amsgrad: false
+    scheduler: null
+  early_stopping:
+    improvement_rule: strict_less
+    consecutive_non_improvements: true
+    restore_best_state: true
+  sampling:
+    train: deterministic_uniform_date_triplet_with_replacement_seed_fold_epoch
+    validation: deterministic_fixed_sampling_epoch_zero_per_fold_seed
+  expected_parents:
+    '1:42': 5a9a726598135d979d46213e387ac0d94637d48d04390ab7d06222c9ea52907a
+    '1:7': 16b6216892011b3fdb3d53bc21fff702249a276616d58220c113d038fda3c5e1
+    '1:123': 2f141b12bcbfbbf4bd9defd6d5e58ca476a0f12034edc791f0deabb733282027
+    '2:42': 3e0c93be9561d484f0d4d0bf1af7fb54159a856a979711c052b337223532d7fb
+    '2:7': 1274668f70bc29e4a9bbe64e88f80171fd019c872bc0f134ec74e07b9b22e1ea
+    '2:123': 04125a86612ff5b63f594b8bf381f15723bb71a06a843391ca2594e1a8bc52f8
+    '3:42': bd91d0446e5386766f85bc75a48f5078b882838e3c1b8aee38144fd3a8252f3f
+    '3:7': cbf98f37ef4dc1cfeb73863be8f96cb4959d5f4cbdd5288fe1c5510aafa8d5f3
+    '3:123': d79f11f420935bd5db9b3e3216451f9a85952b088bc93da83da38df1b6bb823b
+  expected_scalers:
+    '1':
+      artifact_sha256: 4c6f336f181c8bb1e07e943c718915b3bdb59efd27ac8d8e1e5ffdf5bde0d489
+      state_sha256: 37331353b5edf0bb73cc585b209f3850ec9ee40084d3d0c254a086a115b6e585
+    '2':
+      artifact_sha256: 3c07d74a123d35c5bdec3ac5527898dabcc94a936c1cc76ab499157491cc7994
+      state_sha256: 832c1349468fd01b9323c3b86f9594e4bac24e7656a658d9bb3e7df2802b2c16
+    '3':
+      artifact_sha256: 852e0cc8033e23d7e8578697e19e33c70e497ae5c0ad2fb0f9224bc5bb67195a
+      state_sha256: 697264022c0087725533b90f7ecedda309d620aacd0765c18a1528b90871b849
+  objective:
+    ranking_loss: mean_softplus_negative_pair_sign_times_centered_score_difference
+    excess_loss: smooth_l1_centered_score_vs_z_beta_1
+    log_volatility_loss: smooth_l1_predicted_vs_log_clamped_volatility_beta_1
+    early_stopping_monitor: ranking_plus_excess_without_volatility
+    ranking_weight: 1.0
+    excess_weight: 1.0
+    log_volatility_weight: 0.1
+    exact_tie_tolerance: 1.0e-12
+    volatility_floor: 1.0e-6
+    scale_floor: 1.0e-6
+    target_clipping: false
+    outcome_weighting: false
+    target_scale_fit: full_eligible_lexical_triplet_enumeration_train_only
+  parameter_scope:
+    train_all_except:
+      - mask_token
+      - reconstruction_head
+    frozen_state_must_remain_parent_exact: true
+  data_access:
+    per_fold_filtered_read_required: true
+    feature_columns:
+      - date
+      - symbol
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+    label_columns:
+      - date
+      - symbol
+      - target_window_end_date
+      - target_next_open_to_next_open_log_return
+      - target_realized_volatility_7d
+    sequence_columns:
+      - date
+      - sequence_start_date
+      - symbol
+    feature_start: '2021-01-01'
+    feature_end: '2024-12-23'
+    supervised_train_start: '2021-03-01'
+    supervised_train_end: '2023-12-23'
+    supervised_train_maturity_end: '2023-12-31'
+    validation_start: '2024-01-01'
+    validation_end: '2024-12-23'
+    validation_maturity_end: '2024-12-31'
+    scaler_refit_allowed: false
+    train_asset_labels_allowed: true
+    validation_train_asset_labels_allowed: true
+    heldout_asset_features_allowed: false
+    heldout_asset_labels_allowed: false
+    target_assets_allowed: false
+    post_2024_signal_dates_allowed: false
+    post_2024_target_maturity_allowed: false
+    development_2025_allowed: false
+    physical_row_group_isolation_claimed: false
+    expected_by_fold:
+      '1':
+        feature_rows: 29060
+        train_label_rows: 16040
+        validation_label_rows: 7160
+        train_sequence_rows: 16040
+        validation_sequence_rows: 7160
+        train_eligible_pairs: 914280
+        validation_eligible_pairs: 408120
+      '2':
+        feature_rows: 29060
+        train_label_rows: 16040
+        validation_label_rows: 7048
+        train_sequence_rows: 16040
+        validation_sequence_rows: 7048
+        train_eligible_pairs: 914280
+        validation_eligible_pairs: 388968
+      '3':
+        feature_rows: 29060
+        train_label_rows: 16040
+        validation_label_rows: 7048
+        train_sequence_rows: 16040
+        validation_sequence_rows: 7048
+        train_eligible_pairs: 914280
+        validation_eligible_pairs: 388968
+  initialization:
+    source: exact_matching_v43_fold_seed_checkpoint
+    v42_synthetic_checkpoint_allowed: false
+    v35_v36_checkpoint_allowed: false
+    fresh_reinitialization_allowed: false
+  checkpoint_dir: data/checkpoints/v44_ranking_excess_supervised
+  smoke_checkpoint_dir: data/checkpoints/v44_ranking_excess_supervised_smoke
+  preflight_output_dir: artifacts/v44_ranking_excess_supervised_preflight
+  smoke_output_dir: artifacts/v44_ranking_excess_supervised_smoke
+  full_run:
+    folds: [1, 2, 3]
+    seeds: [42, 7, 123]
+    train_samples_per_epoch: 8192
+    validation_samples: 2048
+    batch_size: 128
+    maximum_epochs: 30
+    early_stopping_patience: 5
+  smoke:
+    folds: [1]
+    seeds: [42]
+    train_samples_per_epoch: 128
+    validation_samples: 128
+    batch_size: 32
+    maximum_epochs: 2
+    early_stopping_patience: 2
+  authorized_next_action: v45_asset_disjoint_2025_development_screen_only
+
+output_dir: artifacts/v44_ranking_excess_supervised

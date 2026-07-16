@@ -1,0 +1,183 @@
+schema_version: 1
+phase: v59
+stage_revision: v059_unseal_r1
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+status: frozen_after_hash_bound_user_authorization_before_exactly_one_outcome_unseal
+evidence_tier: adaptive_historical_development_evaluation_only
+
+parent_experiment:
+  path: research/experiments/v059_prepare.yaml
+  file_sha256: 3269ec82a0beb2772c2f5cb023d7cc602e57b7fd5cbd5d9d6f0f78864d439166
+base_phase_contract:
+  path: research/phase_contracts/v059.yaml
+  file_sha256: 321c6a805b94f73d441def62af7478337b5e33f5f23631808dba032a376df6a2
+  canonical_sha256: a123d30f6fd54947103cca8239c98879218719ef45f0cef796a435fe7cdf6cbb
+
+prepare_packet:
+  output_dir: artifacts/v59_state_conditioned_multi_horizon_evaluation
+  evaluation_spec:
+    path: artifacts/v59_state_conditioned_multi_horizon_evaluation/evaluation_spec.json
+    file_sha256: a20aa7aed28c56f13445f2aa07993318723bb2a1e22773664a4db65e82d271fa
+    canonical_sha256: 31bd555f333e0b3c039f39e09b269b30446c0b372df55946e8bf473283308291
+  prepare_manifest:
+    path: artifacts/v59_state_conditioned_multi_horizon_evaluation/prepare_manifest.json
+    file_sha256: 329094f33bd5bd29e58e1f31edcc07f6cc472ed80824922e0e0bd86b59e4670f
+    canonical_sha256: 27e171d3d540f0edc0142ad06c3e892aa73d3c8fb39a1020727ca16c17dd1eb5
+  prepare_receipt:
+    path: artifacts/v59_state_conditioned_multi_horizon_evaluation/prepare_receipt.json
+    file_sha256: 7ba2bd928922f50d1b9893426111ae61e113e88c5a1f7ffd99dbe6246c8bef29
+    canonical_sha256: be930d7a5166bbba597748c6e8a4a7144ef66d3fffb213d097d77bf64e39e30e
+  outcome_request:
+    path: artifacts/v59_state_conditioned_multi_horizon_evaluation/outcome_request.json
+    file_sha256: 2ed2a1d2c271b9011e46e6aa1d35566c4efa082522d5ef7c4be42c0c252b7c34
+    canonical_sha256: 6414d3d842e55c73ab85d786666301e1e18c6d41a5f1c003cf73250dbe2aea56
+
+explicit_user_authorization:
+  canonical_sha256: f42d9aa42b72109126a0d420c564804683a266c31bb310b4a58ba28171efd64b
+  payload:
+    schema_version: tlm-explicit-user-authorization/v1
+    authorization_id: v059_unseal_r1_20260714
+    authorized_by: repository_owner
+    authorized_action: execute_v59_exactly_one_registered_outcome_unseal_and_complete_evaluation
+    base_phase_contract_file_sha256: 321c6a805b94f73d441def62af7478337b5e33f5f23631808dba032a376df6a2
+    evaluation_spec_sha256: 31bd555f333e0b3c039f39e09b269b30446c0b372df55946e8bf473283308291
+    prepare_manifest_sha256: 27e171d3d540f0edc0142ad06c3e892aa73d3c8fb39a1020727ca16c17dd1eb5
+    prepare_receipt_sha256: be930d7a5166bbba597748c6e8a4a7144ef66d3fffb213d097d77bf64e39e30e
+    maximum_unseal_count: 1
+    no_retuning_or_regeneration: true
+    target_assets: [BTCUSDT, ETHUSDT, SOLUSDT]
+    target_assets_status: sealed
+
+authorized_next_action: execute_v59_exactly_one_registered_outcome_unseal_and_complete_evaluation
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm
+  state-conditioned-multi-horizon-evaluation-unseal
+  --config configs/v59_state_conditioned_multi_horizon_evaluation.yaml
+pass_action: authorize_v60_immutable_registration_without_refit
+failure_action: retire_family_without_tuning
+
+access_contract:
+  output_dir: artifacts/v59_state_conditioned_multi_horizon_evaluation
+  allowed_inputs:
+    - research/phase_contracts/v059.yaml
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/evaluation_spec.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/source_receipt.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/input_hash_receipt.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/checkpoint_binding.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/scaler_binding.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/linear_control_receipt.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/predictions.parquet
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/candidate_positions.parquet
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/control_positions.parquet
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/outcome_request.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/behavior_audit.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/prepare_manifest.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/prepare_receipt.json
+    - data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+  allowed_capabilities:
+    - atomically_write_the_single_hash_bound_authorization_receipt
+    - read_the_exact_registered_non_target_outcome_projection_once
+    - atomically_freeze_the_exact_outcome_packet_and_receipt
+    - compute_only_registered_metrics_costs_controls_bootstrap_and_gates
+    - preserve_every_failed_mandatory_cell_and_write_the_terminal_decision
+    - replay_from_immutable_prepare_and_outcome_packets_with_zero_source_reads
+  required_checks:
+    - base_phase_and_all_prepare_hashes_match
+    - explicit_user_authorization_hash_matches
+    - source_projection_predicate_and_keys_are_exact
+    - unseal_count_equals_one_and_source_read_count_equals_one
+    - no_checkpoint_load_inference_refit_or_position_regeneration
+    - all_registered_metric_cost_control_bootstrap_and_gate_cells_are_preserved
+    - target_assets_loads_predictions_and_pnl_equal_zero
+    - source_free_replay_is_byte_identical
+  forbidden_capabilities:
+    - target_asset_access_inference_prediction_or_pnl
+    - second_outcome_unseal_or_source_outcome_reread
+    - candidate_model_or_scaler_fit_refit_or_optimizer_step
+    - checkpoint_load_mutation_selection_discard_or_weighting
+    - prediction_or_position_regeneration_after_prepare
+    - hyperparameter_policy_control_cost_gate_or_bootstrap_change
+    - missing_value_imputation_repair_or_tail_substitution
+    - aggregate_result_rescue_of_any_failed_mandatory_cell
+    - v60_implementation_registration_or_confirmation
+    - paper_shadow_live_or_real_money_trading
+
+outcome_access_contract:
+  source: data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+  source_file_sha256: 6d12e9d49f1be807a1eba5596295fa40f43c3d89745a9a39f3e3f42d76544f50
+  allowed_columns:
+    - date
+    - symbol
+    - target_h1_open_to_open_log_return
+    - target_h3_open_to_open_log_return
+    - target_h7_open_to_open_log_return
+  exact_key_request: artifacts/v59_state_conditioned_multi_horizon_evaluation/outcome_request.json
+  exact_key_count: 20410
+  exact_key_sha256: a135b47500fca47cf5c7c936d7cefbfedfab2251d30acb84a5971b45159f66b6
+  predicate: exact_date_lists_grouped_by_each_non_target_symbol
+  maximum_source_reads: 1
+  output: artifacts/v59_state_conditioned_multi_horizon_evaluation/outcome_packet.parquet
+  authorization_receipt_before_source_read: true
+
+evaluation_contract:
+  scientific_contract_source: research/phase_contracts/v059.yaml
+  predictions_and_positions: immutable_prepare_packet_only
+  accounting_costs_metrics_controls_bootstrap_and_gates: exact_base_v059_contract
+  bootstrap_paths: 10000
+  bootstrap_block_lengths: [7, 21, 63]
+  mandatory_cost_bps: [10, 20, 30]
+  diagnostic_cost_bps: [50]
+  aggregate_rescue_allowed: false
+
+one_shot_contract:
+  current_stage: authorized_unseal_and_completion
+  explicit_user_authorization_present: true
+  authorization_receipt_written_atomically_before_source_read: true
+  maximum_unseal_count: 1
+  source_outcome_reads_first_execution: 1
+  source_outcome_reads_replay: 0
+  prediction_or_position_regeneration: false
+  incomplete_authorization_without_atomic_packet: fail_closed
+  existing_complete_outcome_packet: reuse_without_source_read
+  completion_decision: pass_or_retire_without_tuning
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+  remains_sealed_through_v61: true
+
+runtime_contract:
+  require_clean_committed_git: true
+  minimum_free_gib: 5
+  process_lock: data/checkpoints/.v59_state_conditioned_multi_horizon_evaluation.lock
+
+artifact_contract:
+  output_dir: artifacts/v59_state_conditioned_multi_horizon_evaluation
+  authorization_receipt: authorization_receipt.json
+  outcome_packet: outcome_packet.parquet
+  outcome_receipt: outcome_receipt.json
+  result_files:
+    - metrics.json
+    - bootstrap.json
+    - gate_matrix.json
+    - result.json
+    - audit.json
+    - report.md
+    - replay.json
+    - completion_receipt.json
+    - artifact_manifest.json
+  atomic_authorization_and_outcome_writes: true
+  immutable_prepare_packet: true
+
+commands:
+  unseal: >-
+    PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-evaluation-unseal
+    --config configs/v59_state_conditioned_multi_horizon_evaluation.yaml
+  replay: >-
+    PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-evaluation-replay
+    --config configs/v59_state_conditioned_multi_horizon_evaluation.yaml

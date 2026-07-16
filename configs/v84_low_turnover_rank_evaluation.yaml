@@ -1,0 +1,62 @@
+low_turnover_rank_evaluation:
+  version: v84
+  project_root: .
+  research_state: research/current.yaml
+  phase_contract: research/phase_contracts/v084.yaml
+  inputs:
+    v80_blueprint: artifacts/v80_low_turnover_rank_spec/blueprint.json
+    v82_result: artifacts/v82_low_turnover_rank_dataset/result.json
+    v82_audit: artifacts/v82_low_turnover_rank_dataset/audit.json
+    v82_dataset_spec: artifacts/v82_low_turnover_rank_dataset/dataset_spec.json
+    v82_dataset_manifest: artifacts/v82_low_turnover_rank_dataset/dataset_manifest.json
+    v82_feature_schema: artifacts/v82_low_turnover_rank_dataset/feature_schema.json
+    v82_source_receipt: artifacts/v82_low_turnover_rank_dataset/source_receipt.json
+    v82_replay_receipt: artifacts/v82_low_turnover_rank_dataset/replay_receipt.json
+    v82_artifact_manifest: artifacts/v82_low_turnover_rank_dataset/artifact_manifest.json
+    v82_data_access: artifacts/v82_low_turnover_rank_dataset/data_access.json
+    v82_sealed_packet_receipt: artifacts/v82_low_turnover_rank_dataset/sealed_packet_receipt.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v83_result: artifacts/v83_low_turnover_rank_training/result.json
+    v83_audit: artifacts/v83_low_turnover_rank_training/audit.json
+    v83_training_spec: artifacts/v83_low_turnover_rank_training/training_spec.json
+    v83_checkpoint_manifest: artifacts/v83_low_turnover_rank_training/checkpoint_manifest.json
+    v83_grid_manifest: artifacts/v83_low_turnover_rank_training/grid_manifest.json
+    v83_history_manifest: artifacts/v83_low_turnover_rank_training/history_manifest.json
+    v83_scaler_manifest: artifacts/v83_low_turnover_rank_training/scaler_manifest.json
+    v83_data_access: artifacts/v83_low_turnover_rank_training/data_access.json
+    v83_source_receipt: artifacts/v83_low_turnover_rank_training/source_receipt.json
+    v83_completion_receipt: artifacts/v83_low_turnover_rank_training/completion_receipt.json
+    v83_artifact_manifest: artifacts/v83_low_turnover_rank_training/artifact_manifest.json
+    v83_verification: artifacts/v83_low_turnover_rank_training/verification.json
+    v83_replay_receipt: artifacts/v83_low_turnover_rank_training/replay_receipt.json
+    evaluation_features: data/processed/low_turnover_rank_evaluation_features_v82.parquet
+  checkpoint_root: data/checkpoints/v83_low_turnover_rank_training
+  source_receipt_files:
+    - AGENTS.md
+    - configs/v84_low_turnover_rank_evaluation.yaml
+    - research/current.yaml
+    - research/experiments/v084.yaml
+    - research/phase_contracts/v084.yaml
+    - .agents/skills/tlm-research-governor/SKILL.md
+    - .agents/skills/tlm-loop-engineer/SKILL.md
+    - .agents/skills/tlm-one-shot-evaluator/SKILL.md
+    - .agents/skills/tlm-one-shot-evaluator/references/evaluation-contract.md
+    - .agents/skills/tlm-one-shot-evaluator/scripts/validate_evaluation_packet.py
+    - src/tlm/__init__.py
+    - src/tlm/__main__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/low_turnover_rank_model.py
+    - src/tlm/low_turnover_rank_training_data.py
+    - src/tlm/low_turnover_rank_training_engine.py
+    - src/tlm/low_turnover_rank_evaluation.py
+    - src/tlm/research_workflow.py
+    - src/tlm/monte_carlo.py
+    - tests/test_low_turnover_rank_evaluation.py
+    - tests/test_v84_phase_registration.py
+  require_clean_git: true
+
+output_dir: artifacts/v84_low_turnover_rank_evaluation
+prediction_path: data/predictions/v84_low_turnover_rank_predictions.parquet
+candidate_position_path: data/predictions/v84_low_turnover_rank_candidate_positions.parquet
+control_position_path: data/predictions/v84_low_turnover_rank_control_positions.parquet

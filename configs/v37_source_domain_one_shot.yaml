@@ -1,0 +1,89 @@
+seed: 20260713
+
+source_domain_one_shot:
+  project_root: .
+  inputs:
+    v26_blueprint: artifacts/v26_zero_shot_candidate_spec/blueprint.json
+    v29_amendment: artifacts/v29_multi_asset_scope_amendment/amendment.json
+    v32_dataset_manifest: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v32_triplet_availability: artifacts/v32_selected_universe_dataset/triplet_availability.json
+    v34_harness_spec: artifacts/v34_scientific_harness/harness_spec.json
+    v36_result: artifacts/v36_supervised_non_target/result.json
+    v36_audit: artifacts/v36_supervised_non_target/audit.json
+    v36_checkpoint_manifest: artifacts/v36_supervised_non_target/checkpoint_manifest.json
+    v36_calibration_states: artifacts/v36_supervised_non_target/calibration_states.json
+    v36_supervised_spec: artifacts/v36_supervised_non_target/supervised_spec.json
+    panel: data/processed/selected_universe_panel_v32.parquet
+  expected_input_sha256:
+    v26_blueprint: 47ae102c91285a11e0a7bff775153f9847796a7e74a5dacb43c421bd7f40399c
+    v29_amendment: c1aad19222398cc87717b72467b696498ca4a8109c78527ac63586094d50155d
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    v32_triplet_availability: adc281cf2d5c9831f0486b4b27c6b79d6f19e574646c301834cdfd924a72db54
+    v34_harness_spec: 12419b6779c8f4ae03d04b7da469b189a993b17fbf714b86625c46a12c895c4c
+    v36_result: fa6452aee6aa10b1378c71e8b6a3d2dcaa55c526c5a410fc3a7f987661f14132
+    v36_audit: ea7805adf749f0ef850a5f8788723edc00644a41cae49db6e746a665263248b7
+    v36_checkpoint_manifest: 09262abf50a5b39e761873ea4c4d560973dfdcece002f0cd09182d698e191b02
+    v36_calibration_states: 933823fd46a0a8d36fd0d2a7cd21412869b7b15e34a23611177ef8c1c6757e2e
+    v36_supervised_spec: 8033e2b196e5fe090ecd29814b03cd0cc3c601487b2b9c9914d99c247bb58c7b
+    panel: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+  v35_checkpoint_dir: data/checkpoints/v35_non_target_pretraining
+  device: mps
+  torch_threads: 10
+  inference_batch_size: 256
+  evaluation:
+    split: one_shot_non_target_confirmation
+    signal_start: "2026-01-01"
+    signal_end: "2026-06-22"
+    maturity_boundary: "2026-06-30"
+    required_signal_dates: 173
+    eligibility_rule: supervised_sequence_ready
+    triplet_rule: all_eligible_frozen_lexical_test_triplets
+    seed_ensemble: arithmetic_mean_all_three_members
+    asset_context_aggregation: equal_mean_all_eligible_triplets_containing_asset
+    fold_capital_aggregation: equal_weight_mean_three_fold_daily_returns
+    predictive_diagnostics_only: true
+    volatility_floor: 0.000001
+  policy:
+    ranking_head: return_q50
+    enter_if_q10_above: -0.03
+    enter_if_q50_above: 0.002
+    action_space: [long_top1, cash]
+    shorting: false
+    leverage: false
+    maximum_gross_exposure: 1.0
+    quantile_projection: stable_ascending_sort
+  controls:
+    primary:
+      name: dual_momentum_30
+      signal: rolling_sum_30_log_close_to_close_return
+      absolute_gate: positive_max_else_cash
+    secondary:
+      name: equal_weight_buy_hold
+      rule: equal_weight_currently_eligible_assets_no_ranking
+  accounting:
+    target: next_open_to_next_open
+    costs_bps_per_unit_turnover: [10, 20, 30]
+    final_liquidation: true
+    annualization_days: 365
+  gates:
+    apply_aggregate_metric_gates_at_all_costs: true
+    total_return_above_controls: [dual_momentum_30, equal_weight_buy_hold]
+    sharpe_above_primary: true
+    max_drawdown_tolerance_vs_primary: 0.05
+    maximum_absolute_drawdown: 0.35
+    minimum_asset_folds: 3
+    bootstrap_cost_bps: 10
+    bootstrap_method: paired_circular_block_bootstrap
+    bootstrap_paths: 10000
+    bootstrap_block_lengths_days: [7, 21, 63]
+    paired_total_return_delta_p05_above_zero_for_controls:
+      - dual_momentum_30
+      - equal_weight_buy_hold
+    failure_action: retire_candidate_family_without_target_evaluation
+    pass_action: authorize_v38_robustness_consolidation_without_target_evaluation
+
+output_dir: artifacts/v37_source_domain_one_shot

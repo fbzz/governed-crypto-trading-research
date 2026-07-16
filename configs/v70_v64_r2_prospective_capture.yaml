@@ -1,0 +1,41 @@
+seed: 20260715
+
+v64_r2_prospective_capture:
+  version: v70-r1
+  project_root: .
+  research_state: research/current.yaml
+  phase_contract: research/phase_contracts/v070.yaml
+  device: mps
+  inference_batch_size: 128
+  request_timeout_seconds: 20
+  initial_raw_lookback_days: 286
+  public_rest_base_url: https://data-api.binance.vision
+  public_archive_base_url: https://data.binance.vision
+  require_clean_git: true
+  source_receipt_files:
+    - .gitignore
+    - AGENTS.md
+    - TASKS.md
+    - configs/v70_v64_r2_prospective_capture.yaml
+    - research/current.yaml
+    - research/phase_contracts/v070.yaml
+    - research/amendments/v070_r1_metadata_only.yaml
+    - research/authorizations/v070_r1_ranker_scale_amendment.json
+    - research/incidents/v070_ranker_scale_allowlist_gap.json
+    - research/receipts/v070_ranker_excess_scale_receipt.json
+    - src/tlm/__init__.py
+    - src/tlm/__main__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/decoupled_rank_state_harness.py
+    - src/tlm/non_target_dataset.py
+    - src/tlm/non_target_pretraining.py
+    - src/tlm/patch_transformer.py
+    - src/tlm/research_workflow.py
+    - src/tlm/scientific_harness.py
+    - src/tlm/state_conditioned_multi_horizon_training_engine.py
+    - src/tlm/v64_r2_probabilistic_state_gate_harness.py
+    - src/tlm/v64_r2_probabilistic_state_gate_training_engine.py
+    - src/tlm/v64_r2_prospective_capture.py
+    - tests/test_v64_r2_prospective_capture.py
+
+output_dir: artifacts/v70_v64_r2_prospective_capture

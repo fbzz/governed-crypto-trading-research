@@ -1,0 +1,36 @@
+{
+  "accepted_at": "2026-07-14",
+  "accepted_by": "repository_owner",
+  "authorized_action": "authorize_v59_frozen_adaptive_development_evaluation_only",
+  "does_not_authorize_outcome_unseal": true,
+  "does_not_modify_scientific_contract": true,
+  "family_id": "tlm_state_conditioned_multi_horizon_quantile_small_v1",
+  "nonwaived_safeguards": [
+    "required_local_artifact_retention",
+    "atomic_artifact_writes",
+    "content_hash_verification",
+    "single_outcome_unseal",
+    "target_asset_seal"
+  ],
+  "owner_directive": "nao_precisa_de_backup_continue",
+  "parent_experiment": {
+    "file_sha256": "2e702b1bf322d1ffd0ea30aedaf473f52761431d28a896163bdec7591e9191c5",
+    "path": "research/experiments/v058.yaml"
+  },
+  "phase": "v59",
+  "risk_acceptance": true,
+  "risk_statement": "Loss of required local V59 artifacts requires restarting V59 under the unchanged frozen contract.",
+  "schema_version": "tlm-owner-storage-waiver/v1",
+  "target_assets_status": "sealed",
+  "v58_authorization_receipt": {
+    "file_sha256": "3d3a78eb8ccc62593a9bfebc2e1ab03e16da452e1e858e1ad71452405d6f9440",
+    "path": "artifacts/v58_state_conditioned_multi_horizon_training/result.json",
+    "registered_result_sha256": "2b76a66015fda7b5899ed242cbb8bfb909535f828ffaeaaa81f982258a421273"
+  },
+  "waived_safeguards": [
+    "external_input_copy",
+    "external_code_copy",
+    "external_prediction_position_and_outcome_copy"
+  ],
+  "waiver_id": "v059_local_artifacts_owner_waiver"
+}

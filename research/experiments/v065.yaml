@@ -1,0 +1,62 @@
+schema_version: 1
+experiment_id: v065_v64_r2_probabilistic_state_gate_specification
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: metadata_only_ex_ante_specification
+status: passed
+evidence_tier: metadata_specification_passed_synthetic_only
+parent_experiment: research/experiments/v065_authorized.yaml
+scientific_parent:
+  family_id: tlm_decoupled_rank_state_medium_v1
+  terminal_phase: v64
+  terminal_decision: retire_family_without_target_evaluation_or_retuning
+  retirement_immutable: true
+  direct_successor: true
+blueprint:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  file_sha256: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+  canonical_sha256: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+specification:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json
+  file_sha256: 7f5b21c002b31f2851ba0479d1800da6ecdbb798cc1f5d94123d6da8e13d7463
+  canonical_sha256: e2351bc5727b47fccd0afffb3bfb2d7098908d94825e054a947cde58a8f60c0d
+result:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/result.json
+  file_sha256: e8d8849c5926f31f7b76dd8c83e7fce30c3064f728bdf87cb452eae9371da9ee
+  registered_result_sha256: d246dece1604a67f3a7cc1abaa7808a2ab5555a907f9dd49ff3e8f319e7ae9f6
+audit:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/audit.json
+  file_sha256: 0c9451c5de8dd10058be20683798bff5fbd0c9898385a1efbed7f2cec50a963a
+artifact_manifest:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/artifact_manifest.json
+  file_sha256: 3d2e9ba1453a33528c2bfa9bf4b2e33fc32d6a81558d1a1131aa54f26908de81
+  canonical_sha256: f1f759ef61343a232012728311a229ad180685c97f18f77c6422ea3b63fd36e5
+completion_receipt:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/completion_receipt.json
+  file_sha256: 27c19d3ae2d29696ba819d69d18389d6da8d608b2ece63418d62a9bda3a8b163
+  canonical_sha256: 6ba974a207d0c8d3804af750b842b520f55bf32df9024f8e9ff223ac4d75a02c
+v65_summary:
+  frozen_ranker_state_receipts: 9
+  ranker_parameters: 1231634
+  state_gate_parameters: 27522
+  total_parameters: 1259156
+  probabilistic_distribution: student_t_location_scale
+  degrees_of_freedom: 5.0
+  abstention_probability_threshold: 0.60
+  parquet_deserializations: 0
+  checkpoint_reads: 0
+  model_instantiations: 0
+  optimizer_steps: 0
+  predictions: 0
+  performance_metrics: 0
+  pnl_computations: 0
+  outcome_source_reads: 0
+  target_asset_rows: 0
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false
+authorized_next_action: authorize_v66_synthetic_v64_r2_probabilistic_state_gate_harness_only

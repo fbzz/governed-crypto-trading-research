@@ -1,0 +1,21 @@
+seed: 20260713
+
+selected_source_manifest:
+  project_root: .
+  v29_amendment_path: artifacts/v29_multi_asset_scope_amendment/amendment.json
+  v30_inventory_path: artifacts/v30_training_universe_inventory/inventory.json
+  v30_selected_manifest_path: artifacts/v30_training_universe_inventory/selected_manifest.jsonl
+  expected_v29_amendment_sha256: c1aad19222398cc87717b72467b696498ca4a8109c78527ac63586094d50155d
+  expected_v30_inventory_sha256: 9968bc920dea35e61ffc90195a26b1d91fe53bec44108276d163c963d40314e6
+  expected_v30_selected_manifest_sha256: fc5a04c93424581b804a4e20e51b0865b584852d1003505864d1b20c12dd44f4
+  expected_v29_blueprint_sha256: af5d24c368cd39d8db65fa20b05fbb42edfa3c64022fd466f0a799e83ecc9b5a
+  full_window_coverage_policy: audit_only_no_reselection_or_replacement
+  s3_endpoint: https://s3-ap-northeast-1.amazonaws.com/data.binance.vision
+  download_base_url: https://data.binance.vision
+  root_prefix: data/spot/monthly/klines/
+  raw_dir: data/raw/binance_spot_non_target
+  timeout_seconds: 30
+  listing_workers: 24
+  archive_workers: 32
+
+output_dir: artifacts/v31_selected_source_manifest

@@ -1,0 +1,18 @@
+seed: 20260713
+
+derivatives:
+  source: binance_public_archive
+  base_url: https://data.binance.vision
+  start: "2021-12-01"
+  end: "2026-06-30"
+  raw_dir: data/derivatives/raw
+  symbols:
+    BTC: BTCUSDT
+    ETH: ETHUSDT
+    SOL: SOLUSDT
+  workers: 16
+  timeout_seconds: 30
+  minimum_daily_coverage: 0.98
+  minimum_derived_coverage: 0.95
+
+output_dir: artifacts/v10_derivatives_data

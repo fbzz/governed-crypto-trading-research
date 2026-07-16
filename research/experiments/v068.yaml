@@ -1,0 +1,85 @@
+schema_version: 1
+experiment_id: v068_frozen_non_target_v64_r2_probabilistic_state_gate_training
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: frozen_non_target_probabilistic_state_gate_training
+status: passed
+evidence_tier: causal_non_target_gate_training_only
+parent_experiment: research/experiments/v067.yaml
+blueprint:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  file_sha256: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+  canonical_sha256: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+phase_contract:
+  path: research/phase_contracts/v068.yaml
+  file_sha256: 6e1d31b06a6f5727025f4dfc973a31b2c90afb494d9c3f948b1df6e1dd4c9284
+result:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/result.json
+  file_sha256: 0412d2ef8263c77fd6e4052f6ae2226670f076c5fbfb2b9acd80b15a90762688
+  registered_result_sha256: a77788d338db995c44ce6d3d765261b1c46383895c3f56bcb31016fb2d84d8e1
+audit:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/audit.json
+  file_sha256: 284bd64ac112ea3d8d291bdf16fd6e0ccc8c5f0bb873a4ab27e292a4e948059f
+  canonical_sha256: ae1dcc5b8f40a9b6583160d7ad7b8f9fab7ac9844aa08f448ec609ebbfd4548f
+training_spec:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/training_spec.json
+  file_sha256: 2edf57f2e7e44cb425f3d408b18d5b126812fef670b3f2609e14ef4ad7e80c51
+  canonical_sha256: 2fdcf1d04176342a919a2a1972877081b1a3517a277cc21d941f321e0b40b6da
+checkpoint_manifest:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/checkpoint_manifest.json
+  file_sha256: 1aa25f83ab1dd66d813c91b584b46146bfb5a20659f9496bdbcf2c7941acb1c0
+  canonical_sha256: bc8f5ee1585e8be54939e8a06b21fb07fc4784b7d2a97e83a97344d1c7856fe6
+grid_manifest:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/grid_manifest.json
+  file_sha256: a4c2cafbdcf1792aebe7a7a2601f331e70fee56ab2205a40a3ed1b0f412d13a4
+  canonical_sha256: 0d7cfea0cbe16741b84bcd28fcadd894f427f802690a77b02c683bc950a55b20
+history_manifest:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/history_manifest.json
+  file_sha256: 77a1ca29c7eb3c7aea27fac778b64da811382901a1143c0ea6f5a2fa56bd0f11
+  canonical_sha256: 439316467cca6e1ca0d9f5f180a40fc8900da33dcb522ac8e3e4b73e51d218a7
+scaler_manifest:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/scaler_manifest.json
+  file_sha256: 9584d43a9b5c0d3b788fedc1c7a47bf023f8662c50ae9338021518ddb9166e31
+  canonical_sha256: 0e383000900c385d9a30cedd2cc6c040683e841aae595976271cbb70d16e7a31
+data_access:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/data_access.json
+  file_sha256: 1713570264076260637858247d5622aecb5acf67fe18afe327fb2dd73b8f898a
+  canonical_sha256: 485047780d966b509cb1102e8c12d64d66fd3c2801cec567078fddd02b36000e
+verification:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/verification.json
+  file_sha256: 6c36eea280651c13a0270a9228ff8bfd0038421fb8dd581b0fd14a84a3d296e0
+  canonical_sha256: 9dd0adcd7b0f255380bff5aef0c18222c2ada67cb321bf7a2ff2728b72430e69
+replay:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/replay.json
+  file_sha256: 1f4fa1417a475c47022b64a7fb1417fbd482ecd1e243c3a4519e1ee05c887527
+  canonical_sha256: 7d1397e8452a28886aa5eaac3b52bebabe101d6e033bcb70ceb41c6224a75f5d
+source_receipt:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/source_receipt.json
+  file_sha256: 93d01caba11c9cbe58940df4380d0538f315b86a487faf887263137c08dd66ee
+  git_head: ab813d6e425f5cc337815858da7363c5548ecadf
+  bundle_sha256: 7f0fc8ae07850d90c676446d1325a16ee944c0e23cb958b6473d4bff1fe11a38
+artifact_manifest:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/artifact_manifest.json
+  file_sha256: 215369fa49b59dc48b5790f05a334ee8fdea98fc187d2c76deedf33445d336da
+  canonical_sha256: 577b52e2e3de1d85d97fb707f7604387379af873f145d09ab04af5f4be833d0f
+completion_receipt:
+  path: artifacts/v68_v64_r2_probabilistic_state_gate_training/completion_receipt.json
+  file_sha256: 1a4e7cdf37742f308f4c6685311f03a314b3aed4f3ff3c94b9020d835b312a71
+  canonical_sha256: 7e6577e7a46ac0f9bfc93850dd1a109ceea3f1a3f57c4329c443c145270e3bf1
+v68_summary:
+  audit_passed: true
+  completed_jobs: 9
+  checkpoint_count: 9
+  checkpoint_storage_bytes: 49082875
+  total_gate_optimizer_steps: 3776
+  ranker_optimizer_steps: 0
+  smoke_interrupted_resume_matched: true
+  checkpoint_roundtrip_passed: true
+  zero_step_replay_passed: true
+  source_checkpoint_containers_deserialized: 9
+  old_gate_substates_loaded_into_model: 0
+  predictions: 0
+  performance_metrics: 0
+  pnl_evaluations: 0
+  target_asset_loads: 0
+authorized_next_action: authorize_v69_outcome_blind_non_target_prospective_confirmation_prepare_only

@@ -1,0 +1,27 @@
+schema_version: 1
+experiment_id: v060_decoupled_rank_state_authorization
+family_id: tlm_decoupled_rank_state_medium_v1
+phase: explicit_user_authorization
+status: registered
+evidence_tier: owner_authorized_metadata_only_design
+scientific_parent:
+  family_id: tlm_cross_sectional_rank_excess_medium_v1
+  terminal_phase: v45
+  weights_reused: false
+blueprint:
+  path: artifacts/authorization_v60_decoupled_rank_state/blueprint.json
+  file_sha256: 9d984e1cf1ae871cce6e32e894c1b71e58ed2e4fb5bfeb67c7c04951435fff10
+  canonical_sha256: 4aa3efe2f01b378682b7dd230d5f7f25f14fcbb68f4aec28eb6e0b1303b4901b
+result:
+  path: artifacts/authorization_v60_decoupled_rank_state/result.json
+  file_sha256: cbc3603f3c215807dc343536e437276543bfdf9bfb937bf2cd52885365f96ebc
+  registered_result_sha256: 093d46f46761276ca2f21e4c8539d49b5a2332b87ff92987854968aff5e9c5e9
+audit:
+  path: artifacts/authorization_v60_decoupled_rank_state/audit.json
+  file_sha256: 4d1eeab379311dc6a6e0e1a966d91d3c73b7919551fd5649ed781602be3d71f7
+authorization:
+  source_user_message: Ok faça com a v45
+  authorization_date: '2026-07-15'
+  scope: metadata_only_v60_family_specification
+  target_assets_status: sealed
+authorized_next_action: execute_v60_metadata_only_decoupled_rank_state_family_specification

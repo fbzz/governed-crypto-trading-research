@@ -1,0 +1,96 @@
+schema_version: 1
+phase: v65
+stage_revision: v065_v64_r2_probabilistic_state_gate_specification_r1
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: frozen_before_metadata_specification
+evidence_tier: owner_authorized_metadata_only_design
+parent_experiment:
+  path: research/experiments/v065_authorized.yaml
+  file_sha256: 3359743f50861aef74d7744913936b072ec51a014c0bdd7bc569e36e0a33a06e
+authorization_receipt:
+  path: artifacts/authorization_v65_v64_r2_probabilistic_state_gate/result.json
+  file_sha256: 8f0be59719463748fd741d6042b1665cba1c8b17ea1ae6d8aeb49dc3846cb381
+  registered_result_sha256: e65c937801ec3c62ba9c7c49dd32bb1158bdb2875c6a18c010044ece348a5314
+  decision: execute_v65_metadata_only_v64_r2_probabilistic_state_gate_specification
+explicit_user_authorization:
+  path: artifacts/authorization_v65_v64_r2_probabilistic_state_gate/blueprint.json
+  file_sha256: 8f48d63c538e5540b130b1cd2a3c68f41ccc79f9adb7a540a0afe456a5bc4847
+  canonical_sha256: 43a49b45f53e2b27352bcd470275967eb67ce029174ffeb0a74767b3df449036
+  source_user_message: >-
+    Autorizo uma especificação V64-R2, sucessora direta da V64, mantendo o
+    ranker e a arquitetura relativa congelados e alterando somente o state gate
+    probabilístico e sua regra de abstention, sem abrir dados, checkpoints ou
+    outcomes nesta fase, mantendo BTC, ETH e SOL selados.
+authorized_next_action: execute_v65_metadata_only_v64_r2_probabilistic_state_gate_specification
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm v64-r2-probabilistic-state-gate-spec
+  --config configs/v65_v64_r2_probabilistic_state_gate_spec.yaml
+pass_action: authorize_v66_synthetic_v64_r2_probabilistic_state_gate_harness_only
+failure_action: keep_v66_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v65_v64_r2_probabilistic_state_gate_spec
+  allowed_inputs:
+    - artifacts/authorization_v65_v64_r2_probabilistic_state_gate/blueprint.json
+    - artifacts/authorization_v65_v64_r2_probabilistic_state_gate/audit.json
+    - artifacts/authorization_v65_v64_r2_probabilistic_state_gate/result.json
+    - artifacts/v60_decoupled_rank_state_spec/specification.json
+    - artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json
+    - artifacts/v64_decoupled_rank_state_evaluation/evaluation_result.json
+    - artifacts/v64_decoupled_rank_state_evaluation/evaluation_audit.json
+    - artifacts/v64_decoupled_rank_state_evaluation/postmortem/autopsy_contract.json
+    - artifacts/v64_decoupled_rank_state_evaluation/postmortem/result.json
+  allowed_capabilities:
+    - read_hash_registered_json_metadata_only
+    - bind_exact_v64_ranker_state_identities_from_checkpoint_manifest_without_deserialization
+    - preserve_v64_terminal_decision_and_postmortem_attribution
+    - compute_analytic_parameter_counts
+    - freeze_one_probabilistic_state_gate_and_one_abstention_threshold
+    - write_deterministic_metadata_specification_packet
+    - verify_byte_identical_metadata_replay
+  required_checks:
+    - explicit_user_authorization_is_hash_bound
+    - v64_retirement_remains_immutable
+    - v64_outcomes_are_consumed_and_not_reread
+    - exact_v64_ranker_architecture_objective_and_state_identities_are_frozen
+    - prior_gate_states_are_not_reused
+    - only_probabilistic_state_gate_and_abstention_rule_change
+    - student_t_distribution_and_probability_threshold_are_single_and_frozen
+    - exact_parameter_count_is_under_frozen_ceiling
+    - no_size_distribution_threshold_or_hyperparameter_sweep
+    - target_assets_remain_sealed
+    - zero_data_checkpoint_model_prediction_metric_pnl_or_outcome_source_reads
+    - byte_identical_replay
+  forbidden_capabilities:
+    - parquet_market_panel_or_source_data_deserialization
+    - checkpoint_file_access_or_deserialization
+    - prior_gate_state_reuse
+    - model_instantiation_training_or_inference
+    - prediction_position_metric_or_pnl_generation
+    - outcome_source_or_outcome_packet_read
+    - target_asset_access
+    - ranker_architecture_objective_weight_or_score_change
+    - distribution_family_or_abstention_threshold_sweep
+    - v66_harness_implementation
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/authorization_v65_v64_r2_probabilistic_state_gate/blueprint.json: 8f48d63c538e5540b130b1cd2a3c68f41ccc79f9adb7a540a0afe456a5bc4847
+    artifacts/authorization_v65_v64_r2_probabilistic_state_gate/audit.json: 6be23da3c077a6e02ad0eefb1d069aca33f27ae3ba5adceba9931623d9c1fe66
+    artifacts/authorization_v65_v64_r2_probabilistic_state_gate/result.json: 8f0be59719463748fd741d6042b1665cba1c8b17ea1ae6d8aeb49dc3846cb381
+    artifacts/v60_decoupled_rank_state_spec/specification.json: fa3fcb6c2ea2b7ac293ba36340af326ef1a816f99f8fadca7dfcdef9315e6415
+    artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json: 4c069d39d36d224ccc48adea449f7c7dad3a381b192b8af376dc2d470db0b0f9
+    artifacts/v64_decoupled_rank_state_evaluation/evaluation_result.json: 4082c1e8f3da6595b8180f781daff1036799d8c287da4a95543a030e4a56414c
+    artifacts/v64_decoupled_rank_state_evaluation/evaluation_audit.json: f86b6b99d786a8e3a7f56606b010bd388732a5df50765bc763b835ed5230c93a
+    artifacts/v64_decoupled_rank_state_evaluation/postmortem/autopsy_contract.json: ab2978e7a583b61e45ccf9ca31f7e0c794f15cd6fdc763e75381e618955a4e60
+    artifacts/v64_decoupled_rank_state_evaluation/postmortem/result.json: 01b43e0c0a8f0b30d1d0da97d6fdc4456f4932adb52ff2303680783d3ced705a
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: stop_after_v65_gate_before_any_v66_implementation

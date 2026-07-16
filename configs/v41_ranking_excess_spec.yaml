@@ -1,0 +1,188 @@
+seed: 20260713
+
+ranking_excess_spec:
+  version: v41
+  project_root: .
+  candidate_family_id: tlm_cross_sectional_rank_excess_medium_v1
+  inputs:
+    v32_result: artifacts/v32_selected_universe_dataset/result.json
+    v32_audit: artifacts/v32_selected_universe_dataset/audit.json
+    v32_dataset_manifest: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v37_result: artifacts/v37_source_domain_one_shot/result.json
+    v37_gate: artifacts/v37_source_domain_one_shot/gate_result.json
+    v37_autopsy_result: artifacts/v37_failure_autopsy/result.json
+    v37_autopsy_audit: artifacts/v37_failure_autopsy/audit.json
+  expected_input_sha256:
+    v32_result: 9a41f84a7de9534472c9655a577c84de992604633f091080e3b7906420b1da53
+    v32_audit: 280c8857cf990cf62411628e1b3fe30bf04ffcc940db927f995aa487ad09f106
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    v37_result: cb0e48a430242637d62fef53af833a01b04a70d990311ae24aea0aaff260aabf
+    v37_gate: 27d6fc97e164f89720c1e304b2e9439bf6c51837f729a60fe646245abb676750
+    v37_autopsy_result: 2b2ca45993304f06ca0917c97ec42bd9b36c48f8a7a1883529efd96a23fcd749
+    v37_autopsy_audit: a0377061a350df8cc392d091b11824b3f6fb56cdc8630bb0f0ab9bd769d135e5
+  lineage:
+    retired_parent_family: tlm_multi_asset_target_transfer_v2
+    retired_parent_decision: retire_candidate_family_without_target_evaluation
+    new_family_required_decision: v37_retirement_confirmed_new_ex_ante_family_required
+    v32_dataset_reused_without_reselection: true
+    old_checkpoints_compatible: false
+    v37_2026_window_status: consumed_forbidden_for_new_family_evaluation
+  target_contract:
+    target_assets: [BTC, ETH, SOL]
+    target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+    target_data_allowed: false
+    target_prediction_count: 0
+    target_pnl_evaluation_count: 0
+  data_contract:
+    input_layout: [batch, time, assets, features]
+    input_shape: [null, 256, 3, 9]
+    input_dtype: float32
+    action_return: log_open_t_plus_2_over_open_t_plus_1
+    volatility_label: realized_volatility_7d_ending_t_plus_8
+    signal_execution: finalized_day_t_features_execute_at_open_t_plus_1
+    universe: exact_v30_30_non_target_assets_three_asset_disjoint_folds
+    missing_data: preserve_without_imputation
+  chronological_splits:
+    representation_train: ["2021-01-01", "2023-12-31"]
+    supervised_train: ["2021-03-01", "2023-12-23"]
+    early_stopping_train_assets_only: ["2024-01-01", "2024-12-23"]
+    asset_disjoint_development_screen: ["2025-01-01", "2025-12-23"]
+    forbidden_consumed_window: ["2026-01-01", "2026-06-30"]
+    maturity_purge_days: 8
+    prospective_confirmation_not_before: "2026-07-14"
+    prospective_confirmation_minimum_mature_signal_dates: 180
+  architecture:
+    variant_count: 1
+    input_triplet_size: 3
+    lookback_days: 256
+    patch_length_days: 16
+    patch_stride_days: 8
+    d_model: 128
+    encoder_layers: 4
+    attention_heads: 4
+    feed_forward_width: 512
+    dropout: 0.20
+    shared_asset_encoder: true
+    cross_asset_attention_layers: 2
+    causal_inference_mask: true
+    asset_slot_embedding: false
+    prediction_heads: [excess_return_z, log_volatility_7d]
+    expected_parameter_count_for_nine_features: 1231634
+  objective:
+    return_symbol: r_i
+    triplet_excess: e_i_equals_r_i_minus_triplet_mean_return
+    scale_fit_scope: supervised_train_assets_and_dates_only_per_fold
+    scale_estimator: sqrt_mean_squared_triplet_excess_over_full_eligible_enumeration
+    scale_floor: 0.000001
+    normalized_target: z_i_equals_e_i_over_fold_scale
+    score_centering: subtract_triplet_mean_raw_score
+    pairs: [[0, 1], [0, 2], [1, 2]]
+    pair_target: sign_z_i_minus_z_j
+    exact_tie_tolerance: 0.000000000001
+    ranking_loss: mean_softplus_negative_pair_sign_times_centered_score_difference
+    excess_loss: smooth_l1_centered_score_vs_z_beta_1
+    log_volatility_loss: smooth_l1_predicted_vs_log_clamped_volatility_beta_1
+    volatility_floor: 0.000001
+    weights:
+      ranking: 1.0
+      excess: 1.0
+      log_volatility: 0.1
+    early_stopping_monitor: ranking_plus_excess_without_volatility
+    outcome_weighting: false
+    target_clipping: false
+  training:
+    seeds: [42, 7, 123]
+    seed_selection_allowed: false
+    fold_selection_allowed: false
+    hyperparameter_search_allowed: false
+    masked_pretraining_required: true
+    old_checkpoint_reuse_allowed: false
+    pretrain_samples_per_epoch: 8192
+    supervised_samples_per_epoch: 8192
+    fixed_validation_samples: 2048
+    batch_size: 128
+    optimizer: AdamW
+    learning_rate: 0.0003
+    weight_decay: 0.0001
+    gradient_clip_norm: 1.0
+    maximum_pretrain_epochs: 50
+    maximum_supervised_epochs: 30
+    early_stopping_patience: 5
+    sampling: deterministic_uniform_over_eligible_date_triplet_pairs_with_replacement
+    ensemble: arithmetic_mean_all_three_seeds_then_equal_context_mean_per_asset
+  baselines:
+    primary_predictive:
+      name: shared_asset_ridge
+      alpha: 10.0
+      input: each_asset_256_by_9_tensor_flattened_with_shared_coefficients
+      output: centered_normalized_triplet_excess
+      tuning_allowed: false
+    policy_controls:
+      - dual_momentum_30
+      - momentum_gated_equal_weight
+  policy:
+    action_space: [long_one_asset, cash]
+    base_cost_bps: 10
+    reporting_cost_bps: [10, 20, 30]
+    absolute_gate: cash_only_when_all_currently_eligible_momentum_30_are_nonpositive
+    desired_asset: highest_context_and_seed_averaged_raw_excess
+    raw_excess_conversion: centered_score_times_train_only_fold_scale
+    switch_rule: challenger_minus_incumbent_raw_excess_strictly_above_0_002
+    switch_hurdle: 0.002
+    switch_hurdle_rationale: two_turnover_legs_at_10_bps_base_cost
+    switch_hurdle_cost_scenario_specific: false
+    entry_switch_exit_and_final_liquidation_charged: true
+    maximum_gross_exposure: 1.0
+    leverage: false
+    shorting: false
+  development_screen:
+    year: 2025
+    role: held_out_assets_per_fold_only
+    triplets: enumerate_every_eligible_lexical_triplet
+    status: one_shot_development_not_prospective_confirmation
+    predictive_metrics:
+      - daily_spearman_rank_ic
+      - pairwise_accuracy
+      - top1_hit_rate
+      - top1_realized_excess_vs_triplet_mean
+    economic_metrics:
+      - total_net_return
+      - sharpe
+      - max_drawdown
+      - turnover
+      - total_cost
+    gates:
+      mean_spearman_strictly_positive_each_fold: true
+      mean_top1_excess_strictly_positive_each_fold: true
+      aggregate_pairwise_accuracy_strictly_above: 0.50
+      transformer_beats_ridge_on_aggregate_spearman_and_top1_excess: true
+      top1_excess_bootstrap_p05_strictly_positive_all_blocks: true
+      positive_net_return_each_fold_at_base_cost: true
+      aggregate_return_above_both_policy_controls_all_costs: true
+      aggregate_sharpe_above_dual_momentum_all_costs: true
+      maximum_absolute_drawdown: 0.35
+      maximum_drawdown_tolerance_vs_dual_momentum: 0.05
+      turnover_not_above_dual_momentum_at_base_cost: true
+      paired_return_delta_p05_above_zero_all_controls_and_blocks: true
+    bootstrap:
+      paths: 10000
+      circular_block_lengths_days: [7, 21, 63]
+      aggregate_triplet_contexts_before_resampling: true
+    pass_action: freeze_family_wait_for_prospective_non_target_confirmation
+    failure_action: retire_family_without_target_evaluation_or_parameter_tuning
+  constraints:
+    v41_model_instantiation_allowed: false
+    v41_real_panel_or_label_read_allowed: false
+    v41_training_allowed: false
+    v41_performance_or_pnl_allowed: false
+    v41_target_assets_allowed: false
+    post_screen_tuning_allowed: false
+  authorized_next_action: v42_synthetic_ranking_excess_harness_only
+
+output_dir: artifacts/v41_ranking_excess_spec

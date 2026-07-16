@@ -1,0 +1,193 @@
+seed: 20260713
+
+ranking_excess_failure_autopsy:
+  version: v46
+  project_root: .
+  inputs:
+    v45_result: artifacts/v45_ranking_excess_screen/result.json
+    v45_gate_result: artifacts/v45_ranking_excess_screen/gate_result.json
+    v45_audit: artifacts/v45_ranking_excess_screen/audit.json
+    v45_artifact_manifest: artifacts/v45_ranking_excess_screen/artifact_manifest.json
+    v45_completion_receipt: artifacts/v45_ranking_excess_screen/completion_receipt.json
+    v45_unseal_receipt: artifacts/v45_ranking_excess_screen/unseal_receipt.json
+    v45_outcome_receipt: artifacts/v45_ranking_excess_screen/outcome_receipt.json
+    v45_resolved_config: artifacts/v45_ranking_excess_screen/resolved_config.yaml
+    v45_prepare_result: artifacts/v45_ranking_excess_screen_prepare/result.json
+    v45_prepare_artifact_manifest: artifacts/v45_ranking_excess_screen_prepare/artifact_manifest.json
+    v45_prepare_completion_receipt: artifacts/v45_ranking_excess_screen_prepare/completion_receipt.json
+    v45_prepare_data_audit: artifacts/v45_ranking_excess_screen_prepare/data_audit.json
+    v45_prepare_data_access_receipt: artifacts/v45_ranking_excess_screen_prepare/data_access_receipt.json
+    context_predictions: artifacts/v45_ranking_excess_screen_prepare/context_predictions.parquet
+    asset_predictions: artifacts/v45_ranking_excess_screen_prepare/asset_predictions.parquet
+    positions: artifacts/v45_ranking_excess_screen_prepare/positions.parquet
+    outcomes: artifacts/v45_ranking_excess_screen/outcomes.parquet
+    predictive_context_metrics: artifacts/v45_ranking_excess_screen/predictive_context_metrics.parquet
+    predictive_daily_metrics: artifacts/v45_ranking_excess_screen/predictive_daily_metrics.parquet
+    daily_returns: artifacts/v45_ranking_excess_screen/daily_returns.parquet
+  expected_input_sha256:
+    v45_result: b2d76e82770fefbce86e1f7a51cf5dd33b3e6c1e6e73db314cb9fe048bbe8f4a
+    v45_gate_result: 9ff8d9354d168fa73d73587a20dee76cee8dd95a9cefc73ad338d29185adec00
+    v45_audit: b83ab2fc56868bd80f6f9628517d8c21b3f385cf5381a5ea9e5ecd1c713e64a3
+    v45_artifact_manifest: b20f2a43baf471ae7045bb8ba6e1c371072ae003b79706c394c91c4a29313b81
+    v45_completion_receipt: 66ed845d6932b1c38530bf879a9c9a0447967c9f2d3f69cc9ee668eecd2042c8
+    v45_unseal_receipt: e23b906971b00a2a964cd0db77fd9f4051b901b0f422e4c4bb70a92c51707eaa
+    v45_outcome_receipt: b880d9787d9c6fcd141a2a0ce4a5ea74cf34603c5ece0c35b4fd570f4194f02a
+    v45_resolved_config: 2a55f48065978b0bf216780d6b96821982e00089d3587fd2c07cf90dda809abe
+    v45_prepare_result: fb6198f7e94a1f8c0ea1b6cbc2dd68652ea709755db83f3dbea480a305941f73
+    v45_prepare_artifact_manifest: f305daeae33a0e95c1ce8fb4159eb95556a4f45a9d1260e2ba57b07ea7f589ce
+    v45_prepare_completion_receipt: 370f91da04375dc14476882f56e8d286847946bcd51eb04ec2a43909b17a013f
+    v45_prepare_data_audit: 32cf3a8fa53390f55fce3e89b498b6e34c843bebc2af4e0960290ee15dfb72e4
+    v45_prepare_data_access_receipt: 5dc998e6ee37a3afc71c3d1dea2af59364583fb5c78ef2784725d1970ae45609
+    context_predictions: ba16a8bc5c5d67c5d2fd1cb682b3ad112e37f8b77fd0f3ebdc4add30b1fd31a6
+    asset_predictions: 13e9ac91da8ef4a4950241da89e73b2dc933eb53157b77e75f51048757d48e20
+    positions: 30bfc59a64a7b8a3bf5b408239043861ded393a7f03ae899cb1f2629d80008fe
+    outcomes: 01291440b272bf4e56bc48370f3f248a2e1cc28c58b092f99014c9078688d353
+    predictive_context_metrics: 2080f7a4f1856c84efb6e65a177744021a088accc782c1b2944a0240fd9c322d
+    predictive_daily_metrics: 3163833b56ce85112fbcff251dd333118d7dabd1af95a532bd0c07e513c7cee8
+    daily_returns: 3b054760246c275adc70729585a42afb9fa0162f9fd6fb4eb4a36c1d3e5d98ff
+
+  expected_lineage:
+    v45_evaluation_spec_sha256: f7c6cd57555feb9496e77dc74321320dfaf6290fd5480fe3405f0fa8859a6888
+    v45_prepare_completion_receipt_sha256: 370f91da04375dc14476882f56e8d286847946bcd51eb04ec2a43909b17a013f
+    v45_outcome_receipt_sha256: b880d9787d9c6fcd141a2a0ce4a5ea74cf34603c5ece0c35b4fd570f4194f02a
+    v45_result_sha256: b2d76e82770fefbce86e1f7a51cf5dd33b3e6c1e6e73db314cb9fe048bbe8f4a
+    v45_decision: retire_family_without_target_evaluation_or_parameter_tuning
+    v45_evaluation_execution_count: 1
+    v45_gate_cells: 39
+    v45_passed_gate_cells: 36
+    v45_failed_gate_cells: 3
+
+  constraints:
+    frozen_v45_artifacts_read_only: true
+    raw_panel_or_sequence_allowed: false
+    checkpoint_scaler_or_coefficient_allowed: false
+    model_instantiation_or_inference_allowed: false
+    training_recalibration_or_finetuning_allowed: false
+    alternative_model_policy_threshold_or_hurdle_allowed: false
+    counterfactual_pnl_allowed: false
+    new_cost_grid_or_bootstrap_allowed: false
+    asset_fold_date_or_outlier_exclusion_allowed: false
+    post_hoc_slice_promotion_allowed: false
+    target_assets_allowed: false
+    post_2025_observations_allowed: false
+    v45_decision_mutable: false
+    all_registered_groups_must_be_reported: true
+
+  data_contract:
+    signal_start: '2025-01-01'
+    signal_end: '2025-12-23'
+    maturity_end: '2025-12-31'
+    folds: [1, 2, 3]
+    target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+    expected_unique_dates: 357
+    expected_fold_dates: 1071
+    expected_contexts: 96864
+    expected_asset_dates: 9782
+    expected_position_rows: 10710
+    expected_non_target_symbols: 30
+    strategies:
+      - candidate
+      - dual_momentum_30
+      - momentum_gated_equal_weight
+    registered_cost_bps: [10, 20, 30]
+
+  diagnostics:
+    primary_cost_bps: 10
+    fold_capital_weight: 0.3333333333333333
+    annualization_days: 365
+    numerical_tolerance: 1.0e-12
+    actual_tie_tolerance: 1.0e-12
+    rank_ties: average_exact_equality
+    score_tie_break: lexical_first
+    episode_rule: consecutive_signal_calendar_dates_same_active_asset
+    episode_breaks: [cash, asset_change, calendar_gap]
+    final_liquidation_allocated_to_last_episode: true
+    loss_concentration_top_n: [1, 3, 5, 10]
+    drawdown_top_n: 5
+    monthly_slice: every_calendar_month_by_fold_and_aggregate
+    asset_slice: every_registered_non_target_asset_even_if_never_held
+    momentum_regime:
+      risk_on: cross_sectional_median_momentum_strictly_above_zero
+      risk_off: cross_sectional_median_momentum_at_or_below_zero
+    breadth_regime:
+      cash_gate_closed: positive_momentum_fraction_equal_zero
+      narrow: positive_momentum_fraction_above_zero_at_or_below_one_third
+      medium: positive_momentum_fraction_above_one_third_at_or_below_two_thirds
+      broad: positive_momentum_fraction_above_two_thirds
+    position_states:
+      - cash_gate
+      - entry_from_cash
+      - hold_same_top1
+      - hold_same_non_top1
+      - switch_hurdle
+      - switch_forced_ineligible
+      - exit_to_cash
+    ranking_levels:
+      - triplet_context_frozen_v45
+      - context_averaged_asset_transformer
+      - context_averaged_asset_ridge
+      - actually_held_candidate_asset
+    context_stability_metrics:
+      - context_count
+      - score_std_ddof0
+      - score_min
+      - score_max
+      - positive_score_fraction
+      - triplet_top1_fraction
+    fixed_correlations: [pearson, spearman]
+
+  limitations:
+    seed_disagreement: unavailable_seed_outputs_were_averaged_before_persistence
+    predicted_volatility: unavailable_head_not_persisted_in_v45_screen
+    diagnostic_slices: consumed_development_evidence_not_policy_candidates
+    causality: descriptive_association_only
+    future_validation: requires_new_non_target_observations
+
+  lifecycle:
+    phases: [metadata_hash_preflight, deterministic_read_only_autopsy]
+    preflight_parquet_deserialization_allowed: false
+    run_requires_hash_exact_preflight: true
+    completed_result_is_cache_only: true
+    input_hashes_rechecked_before_and_after_run: true
+    v45_artifacts_must_not_change: true
+    decision: v45_retirement_confirmed_diagnostic_only
+    recommendation_enum: [new_ex_ante_family, terminate_research_line]
+
+  artifact_contract:
+    preflight_required_files:
+      - autopsy_spec.json
+      - input_hash_receipt.json
+      - audit.json
+      - result.json
+      - artifact_manifest.json
+      - completion_receipt.json
+      - resolved_config.yaml
+      - report.md
+    run_required_files:
+      - autopsy_spec.json
+      - input_hash_receipt.json
+      - fold_date_diagnostics.parquet
+      - asset_fold_metrics.parquet
+      - monthly_metrics.parquet
+      - holding_episodes.parquet
+      - position_state_metrics.parquet
+      - ranking_daily.parquet
+      - context_stability.parquet
+      - regime_metrics.parquet
+      - ranking_summary.json
+      - economic_diagnostics.json
+      - context_stability.json
+      - concentration.json
+      - cost_decomposition.json
+      - drawdown_diagnostics.json
+      - failure_attribution.json
+      - audit.json
+      - result.json
+      - artifact_manifest.json
+      - completion_receipt.json
+      - resolved_config.yaml
+      - report.md
+
+  preflight_output_dir: artifacts/v46_ranking_excess_failure_autopsy_preflight
+
+output_dir: artifacts/v46_ranking_excess_failure_autopsy

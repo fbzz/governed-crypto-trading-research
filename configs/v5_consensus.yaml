@@ -1,0 +1,51 @@
+seed: 42
+
+data:
+  source: binance
+  interval: 1d
+  start: "2018-01-01"
+  end: null
+  cache_dir: data/raw
+  assets:
+    BTC: BTCUSDT
+    ETH: ETHUSDT
+    SOL: SOLUSDT
+
+target:
+  mode: next_open_to_open
+
+features:
+  lookback: 64
+
+validation:
+  folds: 3
+  min_train_fraction: 0.50
+
+strategy:
+  policy: dual_momentum_with_unanimous_tlm_override
+  prediction_threshold: 0.0000
+  cost_bps: 10.0
+
+ridge:
+  alpha: 10.0
+
+transformer:
+  objective: huber_regression
+  d_model: 64
+  n_heads: 4
+  n_layers: 2
+  dropout: 0.20
+  batch_size: 64
+  epochs: 20
+  early_stopping: 5
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  validation_fraction: 0.15
+
+consensus:
+  member_seeds: [42, 7, 123]
+  momentum_lookback: 30
+  cost_sensitivity_bps: [5, 10, 15, 20, 30]
+  fold_return_tolerance: 0.05
+
+output_dir: artifacts/v5_consensus

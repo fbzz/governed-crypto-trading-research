@@ -1,0 +1,178 @@
+seed: 20260716
+
+low_turnover_rank_spec:
+  version: v80
+  project_root: .
+  family_id: tlm_low_turnover_cross_sectional_rank_v1
+  evidence_tier: metadata_only_final_family_specification
+  authorization_blueprint: research/authorizations/v080_specification_boundary.json
+  inputs:
+    result: artifacts/v79_v78_terminal_record/result.json
+    audit: artifacts/v79_v78_terminal_record/audit.json
+    terminal_record: artifacts/v79_v78_terminal_record/terminal_record.json
+    input_hash_receipt: artifacts/v79_v78_terminal_record/input_hash_receipt.json
+  expected_input_sha256:
+    result: 68a587167c7ed4cba0fffa9e5a729c6298d63852b937ea3331313fee5805f4d5
+    audit: e76f9772719ed746ae46447f0985c685491940ceb7ae6a283b3ef7c5ff0d0a47
+    terminal_record: 4564093f47160421eda6fdcfb345a9c89aa13786e50a36e5e6eb793c89d113ab
+    input_hash_receipt: b80ba68195ced933543e7445ce0401359eed0b88998f8e116587bc8b5815d3d8
+  constraints:
+    metadata_only: true
+    single_final_family: true
+    family_is_new: true
+    prior_checkpoint_weight_scaler_or_optimizer_reuse_allowed: false
+    architecture_or_parameter_count_frozen_before_v80: false
+    single_frozen_variant_required: true
+    parameter_increase_as_default_direction: false
+    cross_sectional_relative_rank_objective_required: true
+    structural_turnover_budget_required: true
+    hyperparameter_or_threshold_sweep_allowed: false
+    data_checkpoint_model_training_inference_prediction_or_position_allowed: false
+    outcome_metric_pnl_or_target_access_allowed: false
+    target_assets_status: sealed
+  frozen_design:
+    input:
+      lookback_days: 128
+      assets_per_context: 3
+      feature_count: 8
+      features:
+        - log_open_to_open_return
+        - log_close_to_close_return
+        - log_high_low_range
+        - log_close_open_return
+        - log1p_quote_volume_change
+        - log1p_trade_count_change
+        - rolling_realized_volatility_7d
+        - rolling_realized_volatility_30d
+      scaler: train_fold_only_median_and_iqr_with_1e_6_floor
+      missing_observation_policy: preserve_missing_and_mark_context_ineligible
+    architecture:
+      family: shared_causal_depthwise_tcn_deepsets_ranker
+      input_layer_norm_features: 8
+      input_projection: [8, 32]
+      temporal_channels: 32
+      temporal_blocks: 6
+      kernel_size: 3
+      dilations: [1, 2, 4, 8, 16, 32]
+      temporal_operator: causal_depthwise_conv_then_pointwise_conv_gelu_dropout_residual_layer_norm
+      dropout: 0.10
+      receptive_field_days: 127
+      cross_asset_context: concat_asset_mean_and_asset_minus_mean
+      rank_head: [96, 32, 1]
+      output_centering: subtract_context_mean_score
+      expected_total_parameters: 10993
+      architecture_variant_count: 1
+    target:
+      signal_information_cutoff: close_t
+      execution_open: t_plus_1
+      exit_open: t_plus_22
+      horizon_intervals: 21
+      asset_return: log_open_t_plus_22_div_open_t_plus_1
+      excess_return: asset_return_minus_triplet_mean_asset_return
+      target_scale: train_fold_only_excess_rms_with_1e_6_floor
+      maturity_days: 22
+    objective:
+      point_loss: smooth_l1_centered_score_to_scaled_excess_beta_1
+      pairwise_loss: logistic_all_three_pairs_ignore_exact_ties
+      pairwise_weight: 0.50
+      pnl_loss_weight: 0.0
+      turnover_loss_weight: 0.0
+      auxiliary_absolute_or_state_head: false
+    policy:
+      action_space: [long_one_asset, cash]
+      decision_clock: first_eligible_signal_then_every_21_eligible_signal_dates
+      decision_interval_days: 21
+      market_gate: triplet_mean_trailing_63_calendar_day_log_close_to_close_return_strictly_positive
+      entry: market_gate_true_and_lexical_first_top_centered_score_strictly_positive
+      hold: carry_incumbent_between_decision_dates
+      switch: challenger_centered_score_minus_incumbent_centered_score_at_least_0_25
+      exit: market_gate_false_or_no_strictly_positive_candidate
+      tie_break: incumbent_first_cash_second_lexical_asset
+      transition_turnover: {enter: 1.0, exit: 1.0, hold: 0.0, switch: 2.0}
+      final_liquidation: true
+      maximum_evaluation_decisions: 8
+      structural_maximum_turnover: 16.0
+      shorting: false
+      leverage: false
+      threshold_or_interval_tuning_allowed: false
+    universe:
+      role: exact_frozen_v32_non_target_universe_and_asset_folds_metadata_ancestry_only
+      target_symbols_excluded: [BTCUSDT, ETHUSDT, SOLUSDT]
+      heldout_folds: 3
+      heldout_assets_per_fold: 10
+      lexical_triplets_per_fold: 120
+      prior_checkpoint_or_scaler_reuse: false
+    chronology:
+      source_start: '2018-01-01'
+      training_signal_start: '2018-05-09'
+      training_signal_end: '2023-11-18'
+      train_validation_embargo_start: '2023-11-19'
+      train_validation_embargo_end: '2023-12-31'
+      internal_validation_signal_start: '2024-01-01'
+      internal_validation_signal_end: '2024-11-18'
+      consumed_2025_outcomes_role: forbidden
+      final_evaluation_feature_lookback_start: '2025-08-26'
+      final_evaluation_signal_start: '2026-01-01'
+      final_evaluation_signal_end: '2026-06-09'
+      final_evaluation_outcome_maturity_end: '2026-06-30'
+      final_evaluation_signal_dates: 160
+      evidence_label: retrospective_non_target_first_use_in_tlm_not_prospective_confirmation
+    training:
+      device: mps
+      dtype: float32
+      mps_fallback_allowed: false
+      folds: [1, 2, 3]
+      seeds: [42, 7, 123]
+      future_job_count: 9
+      fresh_initialization_only: true
+      optimizer: adamw
+      learning_rate: 0.001
+      weight_decay: 0.0001
+      batch_size: 256
+      maximum_epochs: 100
+      early_stopping_patience: 10
+      gradient_clip_norm: 1.0
+      model_or_hyperparameter_selection: false
+    evaluation:
+      costs_bps: [10, 20, 30]
+      risky_gross: 1.0
+      controls:
+        - cash
+        - decision_21d_equal_weight_three_assets
+        - decision_21d_top_trailing_21d_momentum_with_same_63d_market_gate
+      accounting: exact_l1_entry_switch_exit_forced_exit_and_final_liquidation
+      aggregate: equal_weight_120_triplet_subaccounts_then_equal_one_third_folds
+      bootstrap:
+        paths: 10000
+        block_lengths_days: [7, 21, 42]
+        seed: 20260716
+        confidence_level: 0.90
+      mandatory_gates:
+        - aggregate_net_total_return_strictly_positive_at_10_20_30_bps
+        - every_fold_net_total_return_strictly_positive_at_10_bps
+        - aggregate_net_total_return_strictly_above_every_control_at_10_bps
+        - aggregate_sharpe_strictly_positive_at_10_bps
+        - aggregate_maximum_drawdown_at_10_bps_at_least_minus_0_20
+        - aggregate_turnover_at_most_16
+        - exposure_fraction_between_0_05_and_0_95
+        - bootstrap_candidate_total_return_p10_strictly_positive_all_block_lengths
+        - bootstrap_candidate_minus_best_control_p10_strictly_positive_all_block_lengths
+      aggregate_rescue_for_failed_fold: false
+      missing_cell_pass_allowed: false
+    terminal_decision:
+      any_mandatory_gate_failure: retire_final_family_without_target_evaluation_or_retuning
+      all_mandatory_gates_pass: retain_family_and_authorize_separate_target_transfer_specification_only
+      deployable_from_non_target_result: false
+      second_variant_or_rescue_allowed: false
+  source_receipt_files:
+    - configs/v80_low_turnover_rank_spec.yaml
+    - research/authorizations/v080_specification_boundary.json
+    - research/experiments/v080.yaml
+    - research/phase_contracts/v080.yaml
+    - src/tlm/__main__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/low_turnover_rank_spec.py
+    - src/tlm/research_workflow.py
+    - pyproject.toml
+
+output_dir: artifacts/v80_low_turnover_rank_spec

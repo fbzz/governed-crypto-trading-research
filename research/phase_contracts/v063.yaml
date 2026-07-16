@@ -1,0 +1,488 @@
+schema_version: 1
+phase: v63
+stage_revision: v063_training_r1
+family_id: tlm_decoupled_rank_state_medium_v1
+status: frozen_before_scaler_fit_model_instantiation_or_optimizer
+evidence_tier: causal_non_target_training_only
+parent_experiment:
+  path: research/experiments/v062.yaml
+  file_sha256: 4f4900c3481e82e93712639eadc93fd9f5bff9dce306da767fb88b3188b453a9
+preceding_phase_contract:
+  path: research/phase_contracts/v062.yaml
+  file_sha256: ba9773ee3e161cf99d08469609bf4d0bbb6b4174767bca3e83bdf4827c890f37
+authorization_receipt:
+  path: artifacts/v62_non_target_decoupled_rank_state_dataset/result.json
+  file_sha256: 99a1f5139f7101b030d5ff661b03c8de5bc45a79044bb4ee7bfe32d74deebc44
+  registered_result_sha256: da21231e37f8c0f596a1ae2469365aee143e3c62a2c4b67d03b09d3343d70b26
+  decision: authorize_v63_frozen_non_target_decoupled_rank_state_training_only
+authorized_next_action: authorize_v63_frozen_non_target_decoupled_rank_state_training_only
+authorized_command: >-
+  PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+  decoupled-rank-state-training
+  --config configs/v63_decoupled_rank_state_training.yaml
+pass_action: authorize_v64_frozen_adaptive_development_evaluation_only
+failure_action: keep_v64_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v63_decoupled_rank_state_training
+  checkpoint_dir: data/checkpoints/v63_decoupled_rank_state_training
+  smoke_checkpoint_dir: data/checkpoints/v63_decoupled_rank_state_smoke
+  allowed_inputs:
+    - artifacts/v60_decoupled_rank_state_spec/specification.json
+    - artifacts/v60_decoupled_rank_state_spec/blueprint.json
+    - artifacts/v61_decoupled_rank_state_harness/result.json
+    - artifacts/v61_decoupled_rank_state_harness/audit.json
+    - artifacts/v61_decoupled_rank_state_harness/harness_spec.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/result.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/audit.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/label_schema.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/source_receipt.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/completion_receipt.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/artifact_manifest.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/data_access.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/triplet_derivation_smoke.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/decoupled_rank_state_labels_v62.parquet
+    - data/processed/decoupled_rank_state_sequence_roles_v62.parquet
+  allowed_capabilities:
+    - fit_exact_three_fold_train_only_feature_and_target_scalers
+    - instantiate_exact_v60_ranker_and_state_gate_with_fresh_registered_seed
+    - pretrain_ranker_encoder_with_fresh_masked_patch_reconstruction
+    - train_ranker_and_state_gate_with_independent_optimizers_and_losses
+    - train_exact_nine_job_non_target_grid_on_apple_mps
+    - retain_every_registered_checkpoint_without_selection
+    - resume_only_same_job_at_phase_and_epoch_boundaries
+    - verify_checkpoint_roundtrip_grid_completeness_and_zero_step_replay
+  forbidden_capabilities:
+    - target_asset_access
+    - heldout_fold_asset_scaler_pretraining_training_or_validation
+    - post_2025_signal_or_label_value_access
+    - previous_family_checkpoint_or_representation_reuse
+    - shared_ranker_gate_parameter_optimizer_or_gradient_path
+    - hyperparameter_architecture_seed_fold_or_grid_change
+    - prediction_position_policy_or_portfolio_generation
+    - performance_metric_or_pnl
+    - historical_outcome_source_reread
+    - v64_implementation_or_evaluation
+    - paper_shadow_live_or_real_money_trading
+  required_checks:
+    - all_input_phase_contract_and_source_hashes_match
+    - clean_committed_git_and_registered_storage_policy
+    - mps_float32_deterministic_fallback_disabled
+    - exact_nine_job_fold_seed_cartesian_grid
+    - exact_role_relative_parquet_projection_and_row_scope
+    - train_only_scalers_and_no_target_or_heldout_assets
+    - exact_ranker_pretraining_sampling_masking_and_resume
+    - exact_independent_ranker_and_gate_objectives_and_early_stopping
+    - all_jobs_fresh_seed_and_all_checkpoints_retained
+    - smoke_interrupted_resume_matches_uninterrupted
+    - checkpoint_roundtrip_and_grid_complete
+    - replay_creates_zero_jobs_and_zero_optimizer_steps
+    - no_prediction_performance_or_pnl
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v60_decoupled_rank_state_spec/specification.json: fa3fcb6c2ea2b7ac293ba36340af326ef1a816f99f8fadca7dfcdef9315e6415
+    artifacts/v60_decoupled_rank_state_spec/blueprint.json: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+    artifacts/v61_decoupled_rank_state_harness/result.json: 77724baa1b14103b583e1ab77de01c4b2dc251bb10dac55d21e93c6fcab76054
+    artifacts/v61_decoupled_rank_state_harness/audit.json: 2f9586a9f67516eda09e2b5b032bf5663a42190f90b6c4c8285c96cb5ea7ab11
+    artifacts/v61_decoupled_rank_state_harness/harness_spec.json: 0bcf529de054a7d659b09124ff0312f7998d048334dcc866b15701d2349f370a
+    artifacts/v62_non_target_decoupled_rank_state_dataset/result.json: 99a1f5139f7101b030d5ff661b03c8de5bc45a79044bb4ee7bfe32d74deebc44
+    artifacts/v62_non_target_decoupled_rank_state_dataset/audit.json: d2485af41dd20b035d4f48221c0fec4291233e524baac1806f1ae57b9250df0b
+    artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json: 1ae5e311ddd3c032be954c841a8f57e99b6c05fd7ffc1b41d9efad1b732e3867
+    artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json: 16a8e233d321d63ec92ffe4af6af01fbbaeaaa2598ef8e5eba6f4ae157bc5948
+    artifacts/v62_non_target_decoupled_rank_state_dataset/label_schema.json: eaa7c703cbff4a9bf553a198792d5adf7201abb59cd0b50216b53171223213ed
+    artifacts/v62_non_target_decoupled_rank_state_dataset/source_receipt.json: 0b92b99bdcf8b410521ad748ebcd3e39ab03d40458a4befb5a7df2c1a5c0ed0b
+    artifacts/v62_non_target_decoupled_rank_state_dataset/completion_receipt.json: bf487baaa3e3173d9f5fdabdb83f41e3b72b1f6de2acafffbb19cbbd25270c66
+    artifacts/v62_non_target_decoupled_rank_state_dataset/artifact_manifest.json: 6c26e62fbf85096db2acc1e69627e57f5581650890b96b547adc55eadb64201e
+    artifacts/v62_non_target_decoupled_rank_state_dataset/data_access.json: ba380f9accaedab933b7b5ab705688854bea4d93a4668b21175add981913ac77
+    artifacts/v62_non_target_decoupled_rank_state_dataset/triplet_derivation_smoke.json: fd69517f70fc23d6527e1c34f68ce4a9a3268e822da3470f5076a00371dfd5b2
+    artifacts/v32_selected_universe_dataset/feature_schema.json: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    data/processed/selected_universe_panel_v32.parquet: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    data/processed/decoupled_rank_state_labels_v62.parquet: 6ea78e634e2b444a7c83767754c772610a65f4b13a0c6473ae51472918f37ece
+    data/processed/decoupled_rank_state_sequence_roles_v62.parquet: eaefd5921ca9c79bddeafcdb7c3aefd4a480d1c887ccf1889f3f9355a0a710bd
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  non_target_symbol_count: 30
+  fold_count: 3
+  lookback_days: 256
+  triplet_size: 3
+
+parquet_access_contract:
+  full_table_materialization_then_filtering_allowed: false
+  per_fold_projected_read_required: true
+  feature_panel_projection:
+    - date
+    - symbol
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+    - target_realized_volatility_7d
+  label_projection:
+    - date
+    - symbol
+    - target_h1_maturity_date
+    - target_h1_open_to_open_log_return
+    - h1_label_complete
+  sequence_projection:
+    - date
+    - sequence_start_date
+    - symbol
+    - h1_label_complete
+    - eligible_train
+    - eligible_consumed_development_validation
+  row_filters_per_job:
+    symbols: exact_fold_train_symbols_only
+    pretraining_train_features: exact_eligible_train_sequence_contexts
+    pretraining_validation_features: exact_consumed_development_validation_sequence_contexts
+    supervised_train_labels: exact_eligible_train_signal_keys_with_finite_h1_and_finite_realized_volatility_target
+    supervised_validation_labels: exact_consumed_development_validation_signal_keys_with_finite_h1_and_finite_realized_volatility_target
+    pretraining_feature_only_rows_do_not_require_supervised_targets: true
+    feature_context: exact_union_of_registered_256_day_context_keys
+    heldout_fold_symbols: forbidden_in_scaler_pretraining_training_and_validation
+    maximum_signal_date: '2025-12-23'
+  forbidden_column_patterns:
+    - in_one_shot_non_target_confirmation
+    - target_asset
+    - portfolio
+    - pnl
+
+fold_sequence_and_scaler_contract:
+  train_symbols_source: exact_v32_asset_folds_train_symbols
+  validation_symbols_source: exact_same_fold_train_symbols
+  train_triplets_source: exact_v32_triplet_catalog_train_triplets
+  validation_triplets_source: exact_same_fold_train_triplets
+  asset_order: lexical_ascending
+  feature_order:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+    - within_triplet_relative_strength
+  state_feature_order:
+    - cross_asset_mean_of_nine_scaled_inputs
+    - cross_asset_population_std_of_nine_scaled_inputs
+  required_calendar_rows: 256
+  missing_value_imputation_or_repair_allowed: false
+  eligible_pair: all_three_symbols_have_exact_role_complete_h1_and_finite_features
+  base_feature_scalers:
+    count: 3
+    identity: fold_shared_across_three_seeds_and_both_modules
+    fit_role: eligible_train_only
+    fit_symbols: exact_fold_train_symbols
+    population: unique_finite_train_symbol_date_cells_without_context_duplication
+    statistics_dtype: float64
+    standard_deviation: population_ddof_zero
+    zero_standard_deviation_replacement: 1.0
+    application_dtype: float32
+  relative_feature_scaling:
+    subtract_mean: false
+    divisor: same_fold_train_std_of_log_close_to_close_return
+  ranker_excess_target_scale:
+    fit_role: exact_train_triplet_pairs_only
+    statistic: population_root_mean_square_of_centered_excess
+    minimum_value: 1.0e-6
+    validation_fit_allowed: false
+  state_market_target_scale:
+    fit_role: exact_train_triplet_pairs_only
+    statistic: population_root_mean_square_of_triplet_market_component
+    minimum_value: 1.0e-6
+    validation_fit_allowed: false
+
+model_and_objective_contract:
+  input_shape: [null, 256, 3, 9]
+  input_dtype: float32
+  ranker:
+    parameter_count: 1231634
+    output_shape: [null, 3, 2]
+    architecture_source: exact_v60_blueprint
+    pretraining:
+      scope: ranker_patch_encoder_only
+      mask_fraction: 0.15
+      loss: smooth_l1_beta_1_masked_patches_only
+      train_samples_per_epoch: 8192
+      fixed_validation_samples: 2048
+      batch_size: 128
+      maximum_epochs: 50
+      early_stopping_patience: 5
+    supervised_loss:
+      ranking: ranknet_non_tied_pairs_weight_1
+      centered_excess: smooth_l1_train_scaled_excess_beta_1_weight_1
+      log_volatility_7d: smooth_l1_log_clamped_realized_volatility_beta_1_weight_0_1
+      early_stopping_monitor: ranking_plus_centered_excess_without_volatility
+      target_clipping: false
+      outcome_weighting: false
+  state_gate:
+    parameter_count: 27489
+    output_shape: [null, 1]
+    architecture_source: exact_v60_blueprint
+    loss: smooth_l1_normalized_triplet_market_component_beta_1
+    early_stopping_monitor: state_gate_validation_loss
+    ranker_representation_input: none
+  total_parameter_count: 1259123
+  parameter_ceiling: 1300000
+  shared_parameters: false
+  combined_scalar_loss: false
+  ranker_gradients_enter_gate: false
+  gate_gradients_enter_ranker: false
+
+grid_optimizer_and_runtime_contract:
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  expected_jobs: 9
+  job_key_order: fold_seed
+  selected_or_discarded_jobs_allowed: false
+  train_role: eligible_train
+  validation_role: eligible_consumed_development_validation
+  train_signal_range: ['2021-03-01', '2024-12-23']
+  validation_signal_range: ['2025-01-01', '2025-12-23']
+  ranker_and_gate_optimizers_independent: true
+  optimizer:
+    name: AdamW
+    learning_rate: 0.0003
+    betas: [0.9, 0.999]
+    epsilon: 1.0e-8
+    weight_decay: 0.0001
+    scheduler: none
+  supervised_training:
+    train_samples_per_epoch: 8192
+    fixed_validation_samples: 2048
+    batch_size: 128
+    maximum_epochs: 30
+    early_stopping_patience: 5
+    early_stopping_minimum_delta: 0.0
+    strict_improvement: true
+    restore_best_state: true
+    gradient_clip_norm: 1.0
+  sampling:
+    unit: exact_lexical_triplet_on_eligible_signal_date
+    candidate_order: date_then_lexical_triplet_ascending
+    distribution: uniform_over_flattened_eligible_date_triplet_pairs
+    replacement: true
+    generator: numpy_default_rng_pcg64
+    validation_is_fixed_across_epochs: true
+  runtime:
+    device: mps
+    dtype: float32
+    amp: false
+    deterministic_algorithms: true
+    pytorch_mps_fallback: disabled
+    torch_threads: 10
+  initialization: fresh_registered_seed_with_in_phase_ranker_pretraining
+  prior_family_checkpoint_or_representation_reuse: false
+  resume: same_job_exact_phase_and_completed_epoch_boundary_only
+  checkpoint_retention: all_nine_final_jobs_without_selection
+
+operator_preflight_contract:
+  clean_committed_git_required: true
+  storage_policy: external_backup_or_phase_specific_owner_waiver_required_before_full_training
+  smoke_must_pass_before_full_training: true
+  smoke_job: {fold: 1, seed: 42}
+  smoke_train_samples_per_epoch: 128
+  smoke_validation_samples: 128
+  smoke_batch_size: 32
+  smoke_maximum_epochs_per_stage: 2
+
+runtime_contract:
+  device: mps
+  dtype: float32
+  amp: false
+  cpu_fallback_allowed: false
+  pytorch_enable_mps_fallback: '0'
+  deterministic_algorithms: true
+  torch_threads: 10
+  dataloader_workers: 0
+  maximum_active_optimizer_jobs: 1
+  process_lock: data/checkpoints/.v63_decoupled_rank_state_training.lock
+  process_lock_scope: smoke_full_verify_and_replay
+  clean_committed_git_required: true
+  minimum_free_gib: 20
+  external_backup_receipt_required: false
+  backup_policy:
+    mode: owner_waiver
+    waiver:
+      path: research/waivers/v063_external_backup_owner_waiver.json
+      file_sha256: ef3b02b5b84efba6d2e87cd22c13cfb697270c349a9ede86cd98a06c6dc85346
+    waived_safeguards:
+      - external_input_copy
+      - external_code_copy
+      - external_checkpoint_copy
+  full_phase_order: [doctor, preflight, smoke, full, verify, replay]
+
+checkpoint_contract:
+  final_format_version: v63_decoupled_rank_state_checkpoint_v1
+  resume_format_version: v63_decoupled_rank_state_resume_v1
+  resume_granularity: completed_phase_and_epoch_boundary_same_job_only
+  cross_job_resume_allowed: false
+  atomic_temporary_then_replace: true
+  current_and_best_state_are_distinct: true
+  final_ranker_state: strictly_best_supervised_core_validation_model
+  final_state_gate_state: strictly_best_state_gate_validation_model
+  completed_job_is_not_resumable: true
+  retain_every_final_checkpoint: true
+  required_state:
+    - ranker_current_state
+    - gate_current_state
+    - pretraining_best_state
+    - ranker_best_state
+    - gate_best_state
+    - pretraining_optimizer_state
+    - ranker_optimizer_state
+    - gate_optimizer_state
+    - stage
+    - stage_epoch
+    - optimizer_steps
+    - cpu_rng_state
+    - mps_rng_state
+    - early_stopping_states
+    - full_history
+    - fold_scale_sha256
+    - data_access_sha256
+    - phase_contract_sha256
+    - source_bundle_sha256
+    - job_metadata
+  verification:
+    - strict_metadata_and_fold_seed_job_key_match
+    - ranker_gate_and_optimizer_semantic_hashes_match
+    - independent_optimizer_step_counts_match
+    - early_stopping_history_and_phase_epoch_boundary_match
+    - scaler_data_access_contract_and_source_hashes_match
+    - no_active_or_orphan_resume_artifacts_after_completion
+
+smoke_contract:
+  fold: 1
+  seed: 42
+  train_samples_per_epoch: 128
+  fixed_validation_samples: 128
+  batch_size: 32
+  maximum_pretraining_epochs: 2
+  maximum_supervised_epochs: 2
+  early_stopping_patience: 2
+  pretraining_interrupt_after_completed_epoch: 1
+  supervised_interrupt_after_completed_epoch: 1
+  equivalence_requirements:
+    - ranker_state
+    - state_gate_state
+    - all_three_optimizer_states
+    - cpu_rng_state
+    - mps_rng_state
+    - sampler_receipts
+    - all_three_early_stopping_states
+    - full_history
+    - independent_optimizer_step_counts
+
+artifact_contract:
+  packet_files:
+    - artifact_manifest.json
+    - audit.json
+    - backup_policy_receipt.json
+    - checkpoint_manifest.json
+    - completion_receipt.json
+    - data_access.json
+    - grid_manifest.json
+    - history_manifest.json
+    - input_hash_receipt.json
+    - operator_packet_full.json
+    - operator_packet_replay.json
+    - operator_packet_smoke.json
+    - operator_packet_verify.json
+    - preflight.json
+    - replay.json
+    - report.md
+    - resolved_config.yaml
+    - result.json
+    - scaler_manifest.json
+    - smoke.json
+    - source_receipt.json
+    - training_result.json
+    - training_spec.json
+    - verification.json
+  training_spec: exact_canonical_projection_of_this_phase_contract
+  source_receipt_requires_clean_git_head: true
+  checkpoint_manifest_requires_all_nine_file_and_semantic_hashes: true
+  history_manifest_requires_all_nine_unselected_histories: true
+  artifact_manifest_excludes_itself_and_completion_receipt: true
+  atomic_writes_required: true
+  replay_behavior:
+    new_jobs: 0
+    new_optimizer_steps: 0
+    rewritten_checkpoints: 0
+    checkpoint_hashes_match: true
+
+data_access_ledger_contract:
+  development_evaluation_outcome_rows_read: 0
+  target_assets_loaded: []
+  heldout_fold_symbols_loaded_by_job: []
+  forbidden_columns_loaded: []
+  previous_checkpoints_loaded: []
+  predictions_written: false
+  policy_actions_emitted: false
+  performance_metrics_computed: false
+  pnl_computed: false
+  hyperparameters_changed: false
+  required_nonzero_diagnostics:
+    - authorized_panel_rows_by_fold
+    - authorized_label_rows_by_fold
+    - authorized_sequence_rows_by_fold_and_role
+    - scaler_fit_rows_by_fold
+    - optimizer_steps_by_job_and_module
+
+operator_enforcement_contract:
+  expected_job_grid_source: reconstruct_from_grid_optimizer_and_runtime_contract
+  authorized_operations_source: this_phase_contract_only
+  live_doctor_fields_must_match_packet:
+    - free_disk_bytes
+    - required_free_disk_bytes
+    - mps_available
+    - deterministic_algorithms
+    - fallback_enabled
+    - active_job_count
+    - process_lock
+    - backup_policy_and_owner_waiver
+  operation_order: [doctor, preflight, smoke, full, verify, replay]
+  preflight_precedes_smoke: true
+  training_spec_and_phase_contract_hash_required_before_smoke: true
+
+commands:
+  doctor: PYTHONPATH=src python3 -m tlm research-doctor
+  preflight: >-
+    PYTHONPATH=src python3 -m tlm decoupled-rank-state-training-preflight
+    --config configs/v63_decoupled_rank_state_training.yaml
+  smoke: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    decoupled-rank-state-training-smoke
+    --config configs/v63_decoupled_rank_state_training.yaml
+  full: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    decoupled-rank-state-training
+    --config configs/v63_decoupled_rank_state_training.yaml
+  verify: >-
+    PYTHONPATH=src python3 -m tlm decoupled-rank-state-training-verify
+    --config configs/v63_decoupled_rank_state_training.yaml
+  replay: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    decoupled-rank-state-training-replay
+    --config configs/v63_decoupled_rank_state_training.yaml
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: stop_after_v63_gate_before_any_v64_implementation

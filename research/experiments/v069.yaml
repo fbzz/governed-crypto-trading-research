@@ -1,0 +1,66 @@
+schema_version: 1
+experiment_id: v069_outcome_blind_v64_r2_prospective_confirmation_prepare
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: metadata_only_ex_ante_prospective_confirmation_prepare
+status: passed
+evidence_tier: ex_ante_metadata_only_prospective_protocol
+parent_experiment: research/experiments/v068.yaml
+blueprint:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  file_sha256: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+  canonical_sha256: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+phase_contract:
+  path: research/phase_contracts/v069.yaml
+  file_sha256: a894e92b7b205a0c247e28e1026cad089622f6400597cb61ae0ad76340e66587
+specification:
+  path: artifacts/v69_v64_r2_prospective_confirmation_prepare/specification.json
+  file_sha256: b384d5de5e9bbf5dad30497adee391c09c5276fae8f3c774556c69b4d30571f3
+  canonical_sha256: 46cae7ba08784107236f2d7c94509c6007c6c6c8f516f425ae326d862bca281b
+protocol:
+  path: artifacts/v69_v64_r2_prospective_confirmation_prepare/protocol.json
+  file_sha256: e3550ee792916e60482c6ca8571c5d0a0d3fa08f407c658540f805675337d845
+  canonical_sha256: 4e3b418b47058a325ee8636cdc828828a532a2b126682c86b8af84d86dae503f
+result:
+  path: artifacts/v69_v64_r2_prospective_confirmation_prepare/result.json
+  file_sha256: ef24b9662346e593ddacfa6aa0d57669366c416931b632521d1cb1ee9de9046c
+  registered_result_sha256: 37dad74cc494221a3242efc432a1d729c1b8ed5f558cac5dfe9536a65afc40d9
+audit:
+  path: artifacts/v69_v64_r2_prospective_confirmation_prepare/audit.json
+  file_sha256: 5c89e866f5a616c7c5e098f5394dd804fd88fa51d5457a89b61a3cbc98c7f305
+  canonical_sha256: a1bc72b23f3c920ad9aa187c7b66018c3740fdf2971890db5eef8fec72f6782d
+source_receipt:
+  path: artifacts/v69_v64_r2_prospective_confirmation_prepare/source_receipt.json
+  file_sha256: 67bc25d609971c103a48350a5c3ccedbc3d799bfc968b957f96f12528e3709f8
+  canonical_sha256: 7bd323d20b47a33d814c12f58f6d86b406a70dcb3d6d98175195f4e1428f1e1f
+artifact_manifest:
+  path: artifacts/v69_v64_r2_prospective_confirmation_prepare/artifact_manifest.json
+  file_sha256: 255fbbf6c652b4696b7ee13e65096d0eef40cbcfee7591702898f7c6876ce1ff
+  canonical_sha256: aeffe673721105806efca9589a083c63cc8875a1bafa0580fda64b114925508b
+completion_receipt:
+  path: artifacts/v69_v64_r2_prospective_confirmation_prepare/completion_receipt.json
+  file_sha256: fbeb8fbdc1f4ee615c239f66240100fafe197118c06819f078de54449df3baf3
+  canonical_sha256: 25d1c7e73563a9a3b9e2acb4364e1b38cb5a9cdb6f3fe4fee346b44456059c94
+v69_summary:
+  audit_passed: true
+  audit_check_count: 24
+  metadata_json_reads: 13
+  checkpoint_identity_receipts: 9
+  heldout_non_target_folds: 3
+  heldout_non_target_symbols: 30
+  mandatory_gate_count: 36
+  minimum_calendar_days: 120
+  minimum_matured_dates_per_fold: 90
+  maximum_calendar_days: 365
+  byte_identical_replay_passed: true
+  parquet_deserializations: 0
+  raw_market_data_reads: 0
+  checkpoint_deserializations: 0
+  model_instantiations: 0
+  predictions: 0
+  positions: 0
+  performance_metrics: 0
+  pnl_computations: 0
+  outcome_source_reads: 0
+  target_asset_rows: 0
+authorized_next_action: authorize_v70_prospective_non_target_capture_and_prediction_freeze_only

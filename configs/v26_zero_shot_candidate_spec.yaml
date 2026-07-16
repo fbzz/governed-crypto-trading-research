@@ -1,0 +1,108 @@
+seed: 20260713
+
+zero_shot_spec:
+  project_root: .
+  inputs:
+    v25_completion: artifacts/v25_final_audit/completion.json
+    v25_audit: artifacts/v25_final_audit/audit.json
+    v22_protocol: artifacts/v22_prospective_holdout/protocol.json
+    v22_audit: artifacts/v22_prospective_holdout/audit.json
+  release_tag: tlm-v25
+  release_commit: 4e8dd08ad0d873cf9eeac02ba4a7ccee60f1623a
+  verify_git_release: true
+  candidate_family_id: tlm_zero_shot_cross_asset_v1
+  target_assets: [BTC, ETH, SOL]
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  universe:
+    venue: Binance spot
+    quote_asset: USDT
+    minimum_assets: 24
+    maximum_assets: 48
+    listed_on_or_before: "2021-01-01"
+    minimum_daily_coverage: 0.98
+    selection_rule: Select every eligible base in lexical order after the policy-free v27 coverage audit; cap at 48 without liquidity or return ranking.
+    excluded_bases: [BTC, ETH, SOL]
+    target_proxy_bases: [WBTC, WETH, STETH, CBETH, WBETH, BETH, MSOL, JITOSOL, BSOL]
+    excluded_stablecoin_bases: [USDC, FDUSD, TUSD, USDP, DAI, BUSD]
+    excluded_token_suffixes: [UP, DOWN, BULL, BEAR]
+  data_contract:
+    source: Binance public monthly spot kline archives with published SHA-256 checksums
+    frequency: 1d
+    development_start: "2021-01-01T00:00:00Z"
+    development_cutoff: "2026-06-30T23:59:59Z"
+    raw_fields: [open, high, low, close, volume, quote_volume, trade_count]
+    derived_features:
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+      - within_triplet_relative_strength
+    target: next_open_to_next_open_log_return_and_7d_realized_volatility
+    timestamp_rule: Features at UTC day t use only finalized candles through t; their first eligible action is the open of t+1.
+  chronological_splits:
+    representation_train: ["2021-01-01", "2023-12-31"]
+    supervised_train: ["2021-03-01", "2023-12-31"]
+    validation: ["2024-01-01", "2024-12-31"]
+    calibration: ["2025-01-01", "2025-12-31"]
+    one_shot_non_target_confirmation: ["2026-01-01", "2026-06-30"]
+  architecture:
+    input_triplet_size: 3
+    lookback_days: 256
+    patch_length_days: 16
+    patch_stride_days: 8
+    d_model: 96
+    encoder_layers: 3
+    attention_heads: 4
+    feed_forward_width: 256
+    dropout: 0.20
+    shared_asset_encoder: true
+    cross_asset_attention_layers: 1
+    causal_inference_mask: true
+    prediction_heads: [return_q10, return_q50, return_q90, volatility_7d]
+  training:
+    seeds: [42, 7, 123]
+    ensemble_rule: Arithmetic mean of each frozen quantile/volatility head across all three seeds.
+    seed_selection_allowed: false
+    hyperparameter_search_allowed: false
+    representation_objective: masked_past_patch_reconstruction
+    mask_fraction: 0.15
+    supervised_objective: pinball_q10_q50_q90_plus_huber_log_volatility
+    optimizer: AdamW
+    learning_rate: 0.0003
+    weight_decay: 0.0001
+    batch_size: 128
+    maximum_pretrain_epochs: 50
+    maximum_finetune_epochs: 30
+    early_stopping_patience: 5
+    triplet_sampling: deterministic_epoch_seeded_uniform_without_target_assets
+  policy:
+    action_space: [long_top1, cash]
+    ranking_score: return_q50
+    enter_if_q50_above: 0.002
+    enter_if_q10_above: -0.03
+    maximum_gross_exposure: 1.0
+    leverage: false
+    shorting: false
+    base_cost_bps: 10
+    parameter_calibration_on_target_allowed: false
+  source_domain_gates:
+    evaluation_scope: asset_disjoint_non_target_triplets_only
+    minimum_asset_folds: 3
+    primary_control: dual_momentum_30
+    secondary_control: equal_weight_buy_hold
+    cost_bps: [10, 20, 30]
+    total_pnl_above_both_controls: true
+    sharpe_above_primary_control: true
+    max_drawdown_tolerance_vs_primary: 0.05
+    block_lengths_days: [7, 21, 63]
+    bootstrap_paths: 10000
+    paired_total_return_delta_p05_above_zero_all_blocks: true
+    maximum_absolute_drawdown: 0.35
+    failure_action: retire_candidate_family_without_target_evaluation
+  authorized_next_action: v27_non_target_universe_data_audit_only
+
+output_dir: artifacts/v26_zero_shot_candidate_spec

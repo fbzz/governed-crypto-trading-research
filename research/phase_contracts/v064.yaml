@@ -1,0 +1,262 @@
+schema_version: 1
+phase: v64
+stage_revision: v064_adaptive_development_evaluation_r1
+family_id: tlm_decoupled_rank_state_medium_v1
+status: frozen_outcome_blind_prepare_implementation_authorized
+evidence_tier: adaptive_development_only_not_confirmation
+parent_experiment:
+  path: research/experiments/v063.yaml
+  file_sha256: 9fe0d6e3c001be1bde7ed1cad37245d7f8a19f1189433dfc6ed8462d421c52e5
+authorization_receipt:
+  path: artifacts/v63_decoupled_rank_state_training/result.json
+  file_sha256: 79de7b451ed2fcbbc27d3ba9ba6fa6425a7aaf8620a533b1c7fbe9bc5aa3f48a
+  registered_result_sha256: 99d367e761028fa570c060e0b1d0c6164bac9d6158d1cb122a9706d22e29f5d8
+  decision: authorize_v64_frozen_adaptive_development_evaluation_only
+authorized_next_action: authorize_v64_frozen_adaptive_development_evaluation_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm decoupled-rank-state-evaluation-prepare
+  --config configs/v64_decoupled_rank_state_evaluation.yaml
+
+access_contract:
+  output_dir: artifacts/v64_decoupled_rank_state_evaluation
+  allowed_inputs:
+    - artifacts/v60_decoupled_rank_state_spec/blueprint.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/decoupled_rank_state_labels_v62.parquet
+    - data/processed/decoupled_rank_state_sequence_roles_v62.parquet
+    - artifacts/v63_decoupled_rank_state_training/result.json
+    - artifacts/v63_decoupled_rank_state_training/audit.json
+    - artifacts/v63_decoupled_rank_state_training/training_spec.json
+    - artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json
+    - artifacts/v63_decoupled_rank_state_training/grid_manifest.json
+    - artifacts/v63_decoupled_rank_state_training/history_manifest.json
+    - artifacts/v63_decoupled_rank_state_training/scaler_manifest.json
+    - artifacts/v63_decoupled_rank_state_training/data_access.json
+    - artifacts/v63_decoupled_rank_state_training/source_receipt.json
+    - artifacts/v63_decoupled_rank_state_training/completion_receipt.json
+    - artifacts/v63_decoupled_rank_state_training/artifact_manifest.json
+    - artifacts/v63_decoupled_rank_state_training/verification.json
+    - artifacts/v63_decoupled_rank_state_training/replay.json
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_42.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_7.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_123.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_42.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_7.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_123.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_42.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_7.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_123.final.pt
+  allowed_capabilities:
+    - implement_exact_outcome_blind_v64_prepare_and_one_shot_evaluation
+    - verify_all_v63_metadata_checkpoint_and_source_hashes
+    - infer_only_on_each_folds_exact_ten_heldout_non_target_assets
+    - freeze_all_context_seed_asset_and_policy_outputs_before_outcome_open
+    - open_exact_registered_2025_adaptive_development_outcome_packet_once
+    - calculate_preregistered_predictive_decomposition_policy_cost_and_drawdown_diagnostics
+    - preserve_all_fold_seed_asset_date_and_cost_cells_without_selection
+  forbidden_capabilities:
+    - target_asset_access
+    - training_scaler_fit_optimizer_step_or_checkpoint_write
+    - model_seed_fold_architecture_hyperparameter_or_policy_change
+    - select_or_discard_seed_fold_asset_date_or_context
+    - regenerate_predictions_after_outcome_access
+    - read_outcomes_before_prediction_and_position_freeze
+    - claim_clean_holdout_prospective_confirmation_or_deployability
+    - authorize_target_evaluation_from_v64_metrics
+    - historical_source_access_outside_exact_v62_outcome_packet
+    - v65_implementation_or_evaluation
+    - paper_shadow_live_or_real_money_trading
+  required_checks:
+    - every_input_and_checkpoint_file_and_semantic_hash_matches
+    - prepare_reads_only_feature_and_readiness_projections
+    - each_fold_infers_only_its_exact_ten_heldout_non_target_assets
+    - all_seed_context_asset_predictions_and_positions_freeze_before_outcomes
+    - prepare_records_zero_outcome_metric_pnl_and_target_access
+    - exactly_one_hash_bound_adaptive_outcome_packet_open
+    - no_prediction_position_or_policy_regeneration_after_outcome_open
+    - every_fold_seed_asset_date_context_and_cost_cell_is_preserved
+    - evidence_is_labeled_consumed_adaptive_development_only
+    - btc_eth_sol_remain_sealed
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v60_decoupled_rank_state_spec/blueprint.json: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+    artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json: 1ae5e311ddd3c032be954c841a8f57e99b6c05fd7ffc1b41d9efad1b732e3867
+    artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json: 16a8e233d321d63ec92ffe4af6af01fbbaeaaa2598ef8e5eba6f4ae157bc5948
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    data/processed/selected_universe_panel_v32.parquet: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    data/processed/decoupled_rank_state_labels_v62.parquet: 6ea78e634e2b444a7c83767754c772610a65f4b13a0c6473ae51472918f37ece
+    data/processed/decoupled_rank_state_sequence_roles_v62.parquet: eaefd5921ca9c79bddeafcdb7c3aefd4a480d1c887ccf1889f3f9355a0a710bd
+    artifacts/v63_decoupled_rank_state_training/result.json: 79de7b451ed2fcbbc27d3ba9ba6fa6425a7aaf8620a533b1c7fbe9bc5aa3f48a
+    artifacts/v63_decoupled_rank_state_training/audit.json: 6fad0a0e69433658cfb66f93d09ebde29e0b7beeb8a3d93df74df846ee24a2a0
+    artifacts/v63_decoupled_rank_state_training/training_spec.json: 37efa60195b1df3e09bf7159e7a11e9289c34a3874cabf19403b3bfefd240c60
+    artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json: 4c069d39d36d224ccc48adea449f7c7dad3a381b192b8af376dc2d470db0b0f9
+    artifacts/v63_decoupled_rank_state_training/grid_manifest.json: 543e5f494a74a975505b028ec385cf7616626a99b0f9759b60d83386113c8dc2
+    artifacts/v63_decoupled_rank_state_training/history_manifest.json: 2f2f9dc61ac526b6d9ab366b0c19d1bd9819dff4dcba1f9137da52ff96f9c873
+    artifacts/v63_decoupled_rank_state_training/scaler_manifest.json: 2d6848c4622cee2f55651f7832ed484023cf137a73665d8b959bb96a60e54a6a
+    artifacts/v63_decoupled_rank_state_training/data_access.json: a2821aca6eda7da8d0ba603f2a914772901a88a7314fb3bd1f7c25c75903db4f
+    artifacts/v63_decoupled_rank_state_training/source_receipt.json: 386ce636f2228df830a780173a65f396e5891f3e5f280dd594bb7353a73ad0c8
+    artifacts/v63_decoupled_rank_state_training/completion_receipt.json: 1f0fd83d71130860f4d189c43fbafda4ecfc00b2644025a290e2bf4f3a8bf3ba
+    artifacts/v63_decoupled_rank_state_training/artifact_manifest.json: fef2c5a4f08a735b9461df13845ca5984595eadb494c5608911c91c8d8912bf2
+    artifacts/v63_decoupled_rank_state_training/verification.json: c9011434f08d07a84a27a23ed63bd82e268ae9e24c76111badb51cc389ad2786
+    artifacts/v63_decoupled_rank_state_training/replay.json: 93d56f50e42b432376d4c5951c84f2ce1bf21b1fc6f5afa38168377f3e99ee3b
+    data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_42.final.pt: cb41888d535e6cf949d181385e7522283aeb999aa5a4e43b7bd7ca3358a65149
+    data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_7.final.pt: b5f6f2b8e859f2c8f5dde11f7d930f3a64bb0d8b6aa7a8ade426a75b9200db6e
+    data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_123.final.pt: f8e4e981d0be3820f9cb9d6cdbd4ab9096c776e2fffb4d6330eb1d0108075b29
+    data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_42.final.pt: 2b073411b030cf607d3e55a2615511768dd50aaa5cb9c0e31adbcce82489183c
+    data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_7.final.pt: 0be5799b7acda394989fc177aaf1346962285e24f9a2c23d430e591fbcc4a91c
+    data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_123.final.pt: 139b002b4204d618c3e169e130fd7d034dc3870f54ad856c487e1df56e6e283e
+    data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_42.final.pt: 9e9ce2d843d4497f4c0120da81b192f5bba2c61b6bb289ed50fcf8ab008d8c49
+    data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_7.final.pt: 43bbe4e460599e1107640df8b7a0fd65818447d664a4d728ca81aaef777d590a
+    data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_123.final.pt: e18f684307f529b74b4111de57b0e0e56a5421af029647ef0f39f913f5181ca8
+
+evaluation_contract:
+  role: consumed_adaptive_development_only
+  clean_holdout_claim: false
+  prospective_confirmation_claim: false
+  target_transfer_claim: false
+  window:
+    signal_start: '2025-01-01'
+    signal_end: '2025-12-23'
+    label: open_t_plus_1_to_open_t_plus_2_log_return
+  fold_scope:
+    inference_assets: exact_v32_test_symbols_for_same_fold
+    forbidden_assets: exact_v32_train_symbols_for_same_fold
+    seeds: [42, 7, 123]
+    context_triplets: exact_v32_test_triplets_for_same_fold
+    seed_aggregation: arithmetic_mean_without_selection
+    context_aggregation: arithmetic_mean_without_selection
+  outcome_blind_prepare:
+    feature_and_readiness_columns_only_before_freeze: true
+    label_or_outcome_columns_before_freeze: false
+    freeze_ranker_excess_state_market_absolute_edge_and_positions: true
+    content_addressed_prepare_manifest_required: true
+  one_shot_outcome_open:
+    exact_registered_packet_only: true
+    maximum_open_count: 1
+    regeneration_or_retuning_after_open: false
+  predictive_diagnostics:
+    - aggregate_and_fold_spearman_rank_correlation
+    - aggregate_and_fold_pairwise_accuracy
+    - aggregate_and_fold_top_one_centered_excess
+    - state_market_component_error_and_direction
+    - absolute_return_error_and_direction
+  policy:
+    source: exact_v60_blueprint_policy
+    action_space: [long_one_asset, cash]
+    costs_bps: [10, 20, 30]
+    switch_hurdle: 0.002
+    final_liquidation: true
+    shorting: false
+    leverage: false
+  economic_diagnostics:
+    - aggregate_and_fold_total_return
+    - aggregate_and_fold_sharpe
+    - aggregate_and_fold_maximum_drawdown
+    - turnover_and_transition_counts
+    - asset_month_and_holding_episode_attribution
+  decision_semantics:
+    v64_can_establish_deployability: false
+    v64_can_authorize_target_assets: false
+    v64_can_override_prior_family_retirements: false
+    favorable_result_may_only_support_future_prospective_non_target_specification: true
+  registered_prepare_spec:
+    config_path: configs/v64_decoupled_rank_state_evaluation.yaml
+    config_file_sha256: 72eadff4f884cd773405138c6a66e5656ddceb6fa007e2f61a23e3e32710b5c8
+    implementation: tlm.decoupled_rank_state_evaluation.prepare_decoupled_rank_state_evaluation
+    signal_dates: 357
+    folds: [1, 2, 3]
+    seeds: [42, 7, 123]
+    heldout_symbols_per_fold: 10
+    lookback_days: 256
+    feature_projection:
+      - date
+      - symbol
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+    readiness_projection:
+      - date
+      - sequence_start_date
+      - symbol
+      - h1_label_complete
+      - eligible_consumed_development_validation
+    outcome_projection_forbidden_during_prepare: true
+    checkpoint_aggregation: arithmetic_mean_all_three_seeds_without_selection
+    triplet_aggregation: arithmetic_mean_all_exact_eligible_contexts
+    market_aggregation: arithmetic_mean_all_seed_context_predictions_per_fold_date
+    momentum_30: rolling_sum_log_close_to_close_return_30_days_including_signal_date
+    positions_are_cost_specific: true
+  registered_accounting:
+    gross_return: sum_weight_times_expm1_action_log_return
+    turnover: l1_weight_change_including_entry_switch_exit_and_final_liquidation
+    net_return: gross_minus_turnover_cost
+    aggregate: equal_one_third_capital_per_fold_daily_mean
+    annualization_days: 365
+    sharpe_standard_deviation_ddof: 1
+    zero_volatility_sharpe: 0.0
+  registered_controls:
+    cash: all_zero_weights
+  registered_bootstrap:
+    method: circular_block
+    paths: 10000
+    block_lengths_days: [7, 21, 63]
+    base_seed: 20260715
+    batch_size: 250
+    top1_statistic: arithmetic_mean_centered_action_excess
+    economic_cost_bps: 10
+    economic_statistic: compounded_aggregate_net_return
+  registered_outcome_dependent_gates:
+    mean_spearman_strictly_positive_each_fold: true
+    mean_top1_centered_excess_strictly_positive_each_fold: true
+    aggregate_pairwise_accuracy_strictly_above: 0.50
+    aggregate_state_direction_accuracy_strictly_above: 0.50
+    aggregate_absolute_direction_accuracy_strictly_above: 0.50
+    positive_net_return_each_fold_at_10bps: true
+    aggregate_net_return_strictly_positive_all_costs: true
+    aggregate_sharpe_strictly_positive_all_costs: true
+    maximum_absolute_drawdown: 0.35
+    top1_bootstrap_p05_strictly_positive_all_blocks: true
+    economic_bootstrap_p05_strictly_positive_all_blocks: true
+    all_cells_required: true
+    failure_action: retire_family_without_target_evaluation_or_retuning
+    pass_action: authorize_future_prospective_non_target_specification_only
+  registered_outcome_blind_gates:
+    - all_registered_checkpoints_used_without_selection
+    - exact_fold_asset_and_triplet_scope
+    - missingness_matches_registered_readiness
+    - prediction_distribution_finite_and_nonconstant
+    - ensemble_disagreement_finite
+    - action_coverage_complete
+    - turnover_accounting_complete
+    - concentration_at_most_one_asset
+    - exposure_bounded_zero_to_one
+    - episode_and_churn_structure_complete
+    - quantile_crossing_not_applicable
+    - zero_outcome_and_target_access
+  one_shot_lifecycle:
+    generic_continue_is_not_unseal_authorization: true
+    explicit_user_authorization_after_prepare_required: true
+    maximum_unseal_count: 1
+    prepare_replay_is_hash_only: true
+    regeneration_after_unseal: false
+    exact_outcome_source_read_count: 1
+    interrupted_unseal_without_atomic_packet: fail_closed
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: stop_after_hash_valid_outcome_blind_prepare_before_explicit_unseal_authorization

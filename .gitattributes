@@ -1,0 +1,8 @@
+# The deterministic public snapshot builder honors these exclusions. Generated
+# research data, artifacts, and reviewed-out marketing media remain outside the
+# public source payload even when historical commits tracked them.
+/artifacts export-ignore
+/data export-ignore
+/docs/social export-ignore
+/docs/visuals export-ignore
+/research/backups export-ignore

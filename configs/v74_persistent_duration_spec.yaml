@@ -1,0 +1,272 @@
+persistent_duration_spec:
+  version: v74
+  project_root: .
+  candidate_family_id: tlm_persistent_multi_horizon_duration_v1
+  inputs:
+    v73_result: artifacts/v73_v72_posthoc_diagnostic_record/result.json
+    v73_audit: artifacts/v73_v72_posthoc_diagnostic_record/audit.json
+    v73_diagnostic_record: artifacts/v73_v72_posthoc_diagnostic_record/diagnostic_record.json
+    v73_artifact_manifest: artifacts/v73_v72_posthoc_diagnostic_record/artifact_manifest.json
+    candidate_note: research/candidates/v74_persistent_multi_horizon_duration_model.md
+    candidate_model_source: src/tlm/persistent_multi_horizon_duration_model.py
+    candidate_model_test: tests/test_persistent_multi_horizon_duration_model.py
+  json_metadata_inputs:
+    - v73_result
+    - v73_audit
+    - v73_diagnostic_record
+    - v73_artifact_manifest
+  expected_input_sha256:
+    v73_result: a760aa3e29e1158901cd34b7c9774047f61419bc7df8ae8d5cb4b028ee5e659c
+    v73_audit: 9a9c2e16251c68d0a1ea591be8b4e2f7d252bdcd60b622f5bdf303e4c40b406b
+    v73_diagnostic_record: 515770ee477e961a256f20091ec6e2e6cde76b1bf7f4d3531ad04c22a25659cb
+    v73_artifact_manifest: b5538505bb991bf8d97256f05cad02271a5063c63f1d00dc0b241cebd6671ba2
+    candidate_note: 20a3d79099fedaa116daf9053221ee45d89ab64a8b9e60cee743f00305079610
+    candidate_model_source: 3e1e39915e418c5497a7f28325d75642c8d820fc2c1b0593ed4fb0dc09c0b901
+    candidate_model_test: 847d4ee3e00f3951c5b4854e568516a4c8b78488bec538c3190b9bd94fbae348
+
+  lineage:
+    family_is_new: true
+    scientific_predecessor: tlm_decoupled_rank_state_probabilistic_gate_v2
+    scientific_predecessor_lineage_label: V64-R2
+    predecessor_diagnostic_phase: v72
+    predecessor_diagnostic_outcome: fail
+    predecessor_family_status_changed_by_posthoc_result: false
+    predecessor_evidence_remains_consumed_adaptive_only: true
+    checkpoint_reuse: none
+    prior_family_weights_reused: false
+    prior_family_scalers_reused: false
+    structural_hypothesis: jointly_learn_return_rank_and_economically_viable_state_duration
+
+  target_contract:
+    target_assets: [BTC, ETH, SOL]
+    target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+    status: sealed
+    target_data_allowed: false
+    target_prediction_count: 0
+    target_pnl_evaluation_count: 0
+
+  data_and_label_contract:
+    source_universe: exact_v32_non_target_selected_universe
+    source_panel_sha256: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    source_sequence_index_sha256: 3bb609586809bc7fe4d55e11df0581f147484005bc5eff9fd45b28b79d861
+    input_layout: [batch, time, assets, features]
+    input_shape: [null, 256, 3, 9]
+    input_dtype: float32
+    signal_timestamp: finalized_day_t_features
+    execution_timestamp: open_t_plus_1
+    cumulative_return_targets:
+      h1: log_open_t_plus_2_over_open_t_plus_1
+      h3: log_open_t_plus_4_over_open_t_plus_1
+      h7: log_open_t_plus_8_over_open_t_plus_1
+    duration_support_days: [1, 2, 3, 4, 5, 6, 7]
+    duration_target: earliest_argmax_day_of_cumulative_gross_open_to_open_log_return_days_1_through_7
+    duration_tie_break: earliest_day
+    duration_right_censor_rule: censored_when_earliest_argmax_is_day_7
+    duration_cost_adjustment: none_target_is_gross_policy_applies_costs
+    maximum_label_maturity_days: 8
+    purge_days: 8
+    embargo_days: 8
+    scaler_fit_role: train_only_within_fold
+    heldout_fold_asset_scaler_access: forbidden
+    missing_data: preserve_role_and_mask_without_future_imputation
+    implementation_state: not_implemented_v74_metadata_only
+
+  architecture:
+    variant_count: 1
+    input_features: 9
+    lookback_days: 256
+    input_triplet_size: 3
+    input_shape: [null, 256, 3, 9]
+    patch_length_days: 16
+    patch_stride_days: 8
+    patch_count: 31
+    d_model: 128
+    temporal_encoder_layers: 4
+    cross_asset_attention_layers: 1
+    attention_heads: 8
+    feed_forward_width: 512
+    dropout: 0.15
+    activation: gelu
+    norm_first: true
+    shared_causal_asset_encoder: true
+    asset_slot_embedding: false
+    asset_permutation_contract: equivariant_asset_outputs_invariant_market_outputs
+    fusion: gated_asset_and_triplet_market_state
+    output_horizons: [1, 3, 7]
+    maximum_duration_days: 7
+    return_distribution: student_t_location_scale
+    student_t_degrees_of_freedom: 5.0
+    student_t_degrees_of_freedom_trainable: false
+    scale_transform: softplus_plus_floor
+    scale_floor: 0.0001
+    output_heads:
+      - centered_asset_excess_location_1_3_7d
+      - positive_asset_excess_scale_1_3_7d
+      - triplet_market_location_1_3_7d
+      - positive_triplet_market_scale_1_3_7d
+      - discrete_duration_hazard_days_1_through_7
+    gross_location: market_location_plus_centered_asset_excess_location
+    gross_scale: square_root_market_variance_plus_asset_excess_variance
+    survival: cumulative_product_one_minus_duration_hazard
+    expected_parameter_count: 1083155
+
+  capacity_contract:
+    variant_count: 1
+    expected_total_parameter_count: 1083155
+    parameter_ceiling: 1100000
+    size_sweep_allowed: false
+    architecture_sweep_allowed: false
+    matched_capacity_ablation_allowed: false
+
+  objective:
+    return_distribution: student_t_df_5_location_scale
+    return_loss: mean_negative_log_likelihood_over_active_asset_horizon_cells
+    pairwise_ranking_loss: ranknet_non_tied_asset_pairs_at_each_horizon
+    duration_loss: discrete_time_event_negative_log_likelihood_with_right_censoring
+    weights:
+      return_nll: 1.0
+      pairwise_ranking: 0.25
+      duration_nll: 0.5
+    early_stopping_monitor: weighted_validation_joint_objective
+    pnl_loss: false
+    turnover_loss: false
+    outcome_weighting: false
+    target_clipping: false
+
+  policy:
+    policy_variant_count: 1
+    action_space: [long_one_asset, cash]
+    risky_gross: 1.0
+    horizon_weights: [0.2, 0.3, 0.5]
+    horizon_normalization: cumulative_location_divided_by_horizon_days
+    persistent_edge_formula: weighted_sum_horizon_survival_times_per_day_gross_location
+    current_state_is_explicit_input: true
+    transition_turnover:
+      hold: 0.0
+      enter: 1.0
+      exit: 1.0
+      switch: 2.0
+    transition_cost_formula: one_way_cost_times_l1_turnover_between_current_and_candidate_weights
+    candidate_utility: persistent_edge_minus_exact_transition_cost
+    cash_persistent_edge: 0.0
+    selection_rule: maximize_candidate_utility_over_three_assets_and_cash
+    transition_rule: change_state_only_when_best_candidate_strictly_exceeds_incumbent_utility
+    deterministic_tie_order: [incumbent, cash, lexical_asset]
+    seed_aggregation: equal_weight_distribution_parameter_mean_within_heldout_fold
+    fold_aggregation: none_each_fold_evaluates_only_its_asset_disjoint_holdout
+    base_cost_bps: 10
+    reporting_cost_bps: [10, 20, 30]
+    threshold_sweep_allowed: false
+    policy_tuning_allowed: false
+    final_liquidation: true
+    leverage: false
+    shorting: false
+
+  training_contract:
+    implementation_allowed_during_v74: false
+    initialization: fresh_registered_seed
+    checkpoint_reuse: none
+    folds: [1, 2, 3]
+    seeds: [42, 7, 123]
+    expected_job_count: 9
+    asset_disjoint_fold_training: true
+    heldout_fold_assets_excluded_from_training_validation_and_scaling: true
+    train_role: ["2021-03-01", "2023-12-23"]
+    internal_validation_role: ["2024-01-01", "2024-12-23"]
+    adaptive_evaluation_role: ["2025-01-01", "2025-12-23"]
+    evaluation_role_allowed_during_training: false
+    evaluation_role_allowed_for_early_stopping_or_selection: false
+    fold_selection_allowed: false
+    seed_selection_allowed: false
+    hyperparameter_search_allowed: false
+    maximum_epochs: 40
+    early_stopping_patience: 6
+    minimum_delta: 0.000001
+    batch_size: 128
+    train_samples_per_epoch: 8192
+    validation_samples_per_epoch: 2048
+    optimizer: AdamW
+    learning_rate: 0.0003
+    weight_decay: 0.0001
+    gradient_clip_norm: 1.0
+    device: mps
+    dtype: float32
+    mps_fallback_allowed: false
+    checkpoint_selection: lowest_internal_validation_joint_objective_per_fold_seed
+    all_nine_checkpoints_required: true
+
+  financial_evaluation_contract:
+    implementation_allowed_during_v74: false
+    evidence_tier: adaptive_consumed_2025_non_target_development_only
+    candidate: equal_weight_three_seed_ensemble_within_each_heldout_fold
+    controls:
+      - cash
+      - weekly_dual_momentum_30_long_one_or_cash
+      - daily_equal_weight_eligible_assets
+    costs_bps: [10, 20, 30]
+    accounting:
+      return_basis: open_to_open_log_returns
+      turnover: l1_weight_change
+      transaction_cost: one_way_cost_times_turnover
+      final_liquidation: true
+      missing_return: cash_for_unavailable_asset
+    bootstrap:
+      paths: 10000
+      method: circular_block_resampling_synchronized_across_candidate_and_controls
+      seed: 20260715
+      block_days: [7, 21, 63]
+      confidence_level: 0.95
+    mandatory_gates:
+      aggregate_net_total_return_positive_at_cost_bps: [10, 20, 30]
+      each_fold_net_total_return_positive_at_cost_bps: [10]
+      aggregate_sharpe_strictly_positive_at_cost_bps: [10]
+      aggregate_net_total_return_strictly_above_each_control_at_cost_bps: [10]
+      aggregate_maximum_drawdown_floor: -0.35
+      aggregate_turnover_ceiling_at_10_bps: 45.0
+      bootstrap_block_days: [7, 21, 63]
+      bootstrap_candidate_total_return_p05_strictly_positive_at_10_bps: true
+      bootstrap_candidate_minus_best_control_total_return_p05_strictly_positive_at_10_bps: true
+      aggregate_rescue_for_failed_fold: false
+      missing_cell_pass_allowed: false
+    pass_decision: keep_family_and_authorize_separate_target_transfer_specification_only
+    failure_decision: pivot_away_from_current_family_without_target_evaluation_or_retuning
+
+  evidence_contract:
+    v72_is_consumed_posthoc_adaptive_evidence: true
+    v72_outcomes_may_not_be_reread_during_v74: true
+    new_family_has_no_clean_confirmation_claim: true
+    immediate_historical_evaluation_is_adaptive_only: true
+    target_assets_remain_sealed_through_non_target_evaluation: true
+    deployable_claim_before_target_transfer_and_clean_confirmation: false
+
+  constraints:
+    metadata_only: true
+    parquet_deserialization_allowed: false
+    outcome_packet_read_allowed: false
+    checkpoint_access_allowed: false
+    model_instantiation_allowed: false
+    optimizer_step_allowed: false
+    prediction_allowed: false
+    position_generation_allowed: false
+    performance_metric_allowed: false
+    pnl_allowed: false
+    target_asset_allowed: false
+    v75_implementation_allowed: false
+
+  authorized_next_action: authorize_v75_synthetic_persistent_duration_harness_only
+  source_receipt_files:
+    - configs/v74_persistent_duration_spec.yaml
+    - research/current.yaml
+    - research/experiments/v074.yaml
+    - research/phase_contracts/v074.yaml
+    - research/candidates/v74_persistent_multi_horizon_duration_model.md
+    - src/tlm/__main__.py
+    - src/tlm/persistent_duration_spec.py
+    - src/tlm/persistent_multi_horizon_duration_model.py
+    - src/tlm/research_workflow.py
+    - tests/test_persistent_duration_spec.py
+    - tests/test_persistent_multi_horizon_duration_model.py
+    - pyproject.toml
+
+output_dir: artifacts/v74_persistent_duration_spec
+seed: 20260715

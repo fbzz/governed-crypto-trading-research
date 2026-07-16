@@ -1,0 +1,40 @@
+seed: 20260715
+
+v72_diagnostic_record:
+  version: v73
+  project_root: .
+  family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+  lineage_label: V64-R2
+  evidence_tier: posthoc_consumed_2025_diagnostic_only_not_confirmation
+  inputs:
+    result: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/result.json
+    audit: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/audit.json
+    completion_receipt: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/completion_receipt.json
+    replay: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/replay.json
+  expected_input_sha256:
+    result: 3a0ff56c77445ac05bf37fc8c020b392792007afd861475123d6ebcf95417c8f
+    audit: b55010b7f9294d49d95342835d6e1976f10c428f29532fe68ebf7666ab0f2d8b
+    completion_receipt: 025edb0ec18d9f17efce6e0c5b627aef1f3de286ffa2f3aa2fa8cd955c9a3395
+    replay: b102d3968daf85e92ece8d05294d298e25994be29706141d363e5ba8702c4f20
+  source_receipt_files:
+    - configs/v73_v72_diagnostic_record.yaml
+    - research/current.yaml
+    - research/experiments/v073.yaml
+    - research/phase_contracts/v073.yaml
+    - src/tlm/__main__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/research_workflow.py
+    - src/tlm/v72_diagnostic_record.py
+    - tests/test_v72_diagnostic_record.py
+    - pyproject.toml
+  constraints:
+    metadata_only: true
+    parquet_deserialization_allowed: false
+    outcome_packet_read_allowed: false
+    checkpoint_or_model_access_allowed: false
+    training_or_inference_allowed: false
+    target_asset_access_allowed: false
+    family_status_change_allowed: false
+    deployable_claim_allowed: false
+
+output_dir: artifacts/v73_v72_posthoc_diagnostic_record

@@ -1,0 +1,4 @@
+interface:
+  display_name: "TLM Training Operator"
+  short_description: "Run frozen MPS training safely and reproducibly"
+  default_prompt: "Use $tlm-training-operator to preflight and operate the frozen TLM training grid on MPS."

@@ -1,0 +1,203 @@
+schema_version: 1
+phase: v72
+stage_revision: v072_hash_bound_posthoc_outcome_unseal_r1
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: frozen_after_hash_bound_user_authorization_before_exactly_one_packet_unseal
+evidence_tier: posthoc_consumed_2025_diagnostic_only_not_confirmation
+
+parent_experiment:
+  path: research/experiments/v072.yaml
+  file_sha256: 105a580346d8f9a68ddc6d52c00fc92c5ce987898a59bfc7061f9e9168eb3a70
+scientific_parent:
+  path: research/experiments/v071.yaml
+  file_sha256: a539cc4f7d51fd5850c413a112a8e33caa934bfb9879cac5ccfe9cb0a0c61588
+base_phase_contract:
+  path: research/phase_contracts/v071.yaml
+  file_sha256: 04396d47e3ef96b102787310ee6ed8ba0f07573c9c1443f27e4db2611015ab5a
+
+prepare_packet:
+  output_dir: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic
+  evaluation_spec:
+    path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/evaluation_spec.json
+    file_sha256: 681258600514d0b66a694c0abb29ccee88cead68a20aa3e67e58152445b01609
+  prepare_receipt:
+    path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/prepare_receipt.json
+    file_sha256: d6d29ff80b6a833f7543673e3cf245d03be926fa024cb1b0e48e83b7357662ce
+  one_shot_packet:
+    path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/one_shot_packet.json
+    file_sha256: 2d77ac0e64916c9cb6cf3427db1dd6b1a4d5af829c13f861aa7d05fd5648cbc7
+  asset_predictions:
+    path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/asset_predictions.parquet
+    file_sha256: 488e695f529efaa50ca605ef4465379a0b504602cb5915d1530fec78a50e44af
+  candidate_positions:
+    path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/candidate_positions.parquet
+    file_sha256: 686c27a7054fd2cd4c30cf967966638eab60acc49cb389ee968806285f48103d
+  equal_weight_positions:
+    path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/equal_weight_positions.parquet
+    file_sha256: 37623d5092cd91210bb8d3054423ed257e81c776f159df86bdc0af544a236955
+  v64_control_positions:
+    path: artifacts/v64_decoupled_rank_state_evaluation/positions.parquet
+    file_sha256: 7722c68e522fba1a3bb708b803d08230677920998255fc3c37d697c1096cd88f
+  behavior_gates:
+    path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/behavior_gates.json
+    file_sha256: bf910eeb590b9f62765b0a290208587607c62156407b640908bb4a16e066e868
+  data_access_receipt:
+    path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/data_access_receipt.json
+    file_sha256: 1717c8b3bb81ec88875276a09685ec4f299402bb5440df5f45db82ec9151a6e7
+  registered_sha256: b1825271baffdff55669e84ac2c16e2f751a6edcfe2c49b3c24d38ffe02c67e9
+
+explicit_user_authorization:
+  path: research/authorizations/v072_posthoc_outcome_unseal.json
+  file_sha256: 938d6aeb1b947bb028302887215d15773a51e891ae4bb2d0f1d3067e4ce0866c
+  canonical_sha256: 817fed1b19ca1ab5b040e964e24676ac6c768ade0038d09c73b67f1f86fc8acb
+
+authorized_next_action: execute_v72_exactly_one_hash_bound_posthoc_outcome_unseal_and_complete_diagnostic
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm v64-r2-retrospective-diagnostic-unseal
+  --config configs/v72_v64_r2_retrospective_evaluation.yaml
+pass_action: authorize_v73_record_posthoc_diagnostic_result_only
+failure_action: authorize_v73_record_posthoc_diagnostic_result_only
+
+access_contract:
+  output_dir: artifacts/v72_v64_r2_posthoc_retrospective_evaluation
+  allowed_inputs:
+    - artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/evaluation_spec.json
+    - artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/prepare_receipt.json
+    - artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/one_shot_packet.json
+    - artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/asset_predictions.parquet
+    - artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/candidate_positions.parquet
+    - artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/equal_weight_positions.parquet
+    - artifacts/v64_decoupled_rank_state_evaluation/positions.parquet
+    - artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/behavior_gates.json
+    - artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/data_access_receipt.json
+    - artifacts/v64_decoupled_rank_state_evaluation/outcome_packet.parquet
+    - artifacts/v64_decoupled_rank_state_evaluation/outcome_receipt.json
+    - research/authorizations/v072_posthoc_outcome_unseal.json
+  allowed_capabilities:
+    - atomically_write_the_hash_bound_v72_authorization_receipt_before_packet_access
+    - deserialize_the_exact_registered_immutable_non_target_outcome_packet_once
+    - atomically_freeze_the_v72_outcome_packet_and_receipt
+    - compute_only_registered_economic_metrics_controls_bootstrap_and_gates
+    - preserve_every_failed_mandatory_cell_without_family_status_change
+    - replay_from_the_v72_packet_with_zero_source_packet_reads
+  required_checks:
+    - v71_prepare_and_exact_user_authorization_hashes_match
+    - exactly_one_sealed_packet_deserialization_and_zero_underlying_source_rereads
+    - exact_non_target_keys_dates_assets_and_maturity_match
+    - candidate_v64_equal_weight_and_cash_controls_are_preserved
+    - costs_10_20_30_and_turnover_accounting_are_unchanged
+    - all_registered_bootstrap_and_gate_cells_are_preserved
+    - target_assets_loads_predictions_and_pnl_equal_zero
+    - source_free_replay_result_hashes_match
+  forbidden_capabilities:
+    - target_asset_access_inference_prediction_position_outcome_or_pnl
+    - second_sealed_packet_deserialization_or_underlying_source_outcome_reread
+    - checkpoint_model_scaler_optimizer_or_feature_panel_access
+    - prediction_position_policy_threshold_cost_gate_or_bootstrap_regeneration
+    - retuning_selection_or_counterfactual_candidate_policy
+    - clean_holdout_prospective_confirmation_deployable_or_target_transfer_claim
+    - paper_shadow_live_or_real_money_trading
+
+outcome_access_contract:
+  source_packet: artifacts/v64_decoupled_rank_state_evaluation/outcome_packet.parquet
+  source_packet_sha256: 54dd42d528aa9d77aae277a954c4679adea9dfcda8ba12a29b5d4b5ef1a2d252
+  source_receipt: artifacts/v64_decoupled_rank_state_evaluation/outcome_receipt.json
+  source_receipt_sha256: 44f26a309991f2fa6fbb65990f896fbca23b93957202da02e3881879d6eea163
+  allowed_columns:
+    - date
+    - fold
+    - symbol
+    - target_h1_maturity_date
+    - target_h1_open_to_open_log_return
+  exact_key_source: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/asset_predictions.parquet
+  exact_key_columns: [date, fold, symbol]
+  exact_key_count: 9794
+  signal_start: '2025-01-01'
+  signal_end: '2025-12-23'
+  maximum_maturity: '2025-12-25'
+  maximum_sealed_packet_deserializations: 1
+  maximum_underlying_source_outcome_reads: 0
+  authorization_receipt_before_packet_access: true
+
+evaluation_contract:
+  scientific_contract_source: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/evaluation_spec.json
+  evidence_tier: posthoc_consumed_2025_diagnostic_only_not_confirmation
+  portfolios: [candidate, v64_control, equal_weight, cash]
+  costs_bps: [10, 20, 30]
+  accounting: frozen_v71_accounting
+  bootstrap:
+    method: circular_block
+    paths: 10000
+    block_lengths_days: [7, 21, 63]
+    base_seed: 20260715
+    batch_size: 250
+    economic_cost_bps: 10
+    portfolios: [candidate, v64_control, equal_weight]
+  mandatory_candidate_gate_count: 24
+  family_status_change_allowed: false
+  aggregate_rescue_allowed: false
+
+one_shot_contract:
+  current_stage: authorized_unseal_and_completion
+  explicit_user_authorization_present: true
+  authorization_receipt_written_atomically_before_packet_access: true
+  maximum_unseal_count: 1
+  sealed_packet_deserializations_first_execution: 1
+  sealed_packet_deserializations_replay: 0
+  underlying_source_outcome_reads: 0
+  prediction_or_position_regeneration: false
+  incomplete_authorization_without_atomic_packet: fail_closed
+  existing_complete_v72_outcome_packet: reuse_without_source_packet_read
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+runtime_contract:
+  require_clean_committed_git: true
+  process_lock: data/checkpoints/.v72_posthoc_retrospective_evaluation.lock
+
+source_receipt_files:
+  - configs/v72_v64_r2_retrospective_evaluation.yaml
+  - research/current.yaml
+  - research/experiments/v072.yaml
+  - research/phase_contracts/v072.yaml
+  - research/authorizations/v072_posthoc_outcome_unseal.json
+  - src/tlm/__main__.py
+  - src/tlm/core/artifacts.py
+  - src/tlm/monte_carlo.py
+  - src/tlm/research_workflow.py
+  - src/tlm/v64_r2_retrospective_evaluation.py
+  - tests/test_v64_r2_retrospective_evaluation.py
+  - pyproject.toml
+
+artifact_contract:
+  authorization_receipt: unseal_authorization_receipt.json
+  outcome_packet: outcome_packet.parquet
+  outcome_receipt: outcome_receipt.json
+  core_result_files:
+    - economic_metrics.json
+    - daily_returns.parquet
+    - bootstrap.json
+    - gate_matrix.json
+    - evaluation_result.json
+    - evaluation_audit.json
+    - evaluation_report.md
+    - result.json
+    - audit.json
+  completion_receipt: completion_receipt.json
+  complete_packet: one_shot_complete_packet.json
+  replay_receipt: replay.json
+  replay_packet: one_shot_replay_packet.json
+
+commands:
+  unseal: >-
+    PYTHONPATH=src python3 -m tlm v64-r2-retrospective-diagnostic-unseal
+    --config configs/v72_v64_r2_retrospective_evaluation.yaml
+  replay: >-
+    PYTHONPATH=src python3 -m tlm v64-r2-retrospective-diagnostic-replay
+    --config configs/v72_v64_r2_retrospective_evaluation.yaml

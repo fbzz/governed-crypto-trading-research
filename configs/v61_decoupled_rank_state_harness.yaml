@@ -1,0 +1,61 @@
+seed: 20260715
+
+decoupled_rank_state_harness:
+  version: v61
+  project_root: .
+  inputs:
+    v60_specification: artifacts/v60_decoupled_rank_state_spec/specification.json
+    v60_blueprint: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+    v60_audit: artifacts/v60_decoupled_rank_state_spec/audit.json
+    v60_result: artifacts/v60_decoupled_rank_state_spec/result.json
+    v60_artifact_manifest: artifacts/v60_decoupled_rank_state_spec/artifact_manifest.json
+    v60_completion_receipt: artifacts/v60_decoupled_rank_state_spec/completion_receipt.json
+  expected_input_sha256:
+    v60_specification: fa3fcb6c2ea2b7ac293ba36340af326ef1a816f99f8fadca7dfcdef9315e6415
+    v60_blueprint: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+    v60_audit: 32f8b6cf2490e2eaa131eabdad598596deccf3127656b17665a75d11e0ab8e4e
+    v60_result: 3a63e8d22dd4cbba9304e211e13fada23d6e6366ce337f9b74cf241dbcaf0e2c
+    v60_artifact_manifest: 54a6aae967e6094f6aa2d8d7956d2b4b191a47c58d3ce08d5840996b5b47964c
+    v60_completion_receipt: 6c23c405c773ddfd815247926106aaef99553beb2616a98abec7daba90984fc8
+  expected_canonical_sha256:
+    specification: 5b7be4657a6cd7769f21b34654171d3e7ce94e04bb08e2ba7fa993c16cfa620e
+    blueprint: 3cf97271c977633b1ee8ab4641a8a9fc95a1a9d79b72c80c063d21f553498232
+    result: 99eebbeecfbb4a6628a0429b7680babac7c929787a739721bfc00e1666664700
+    artifact_manifest: 9e66a1ac0788e5a4da15ab02650a1dc04d7ba5556cf0b3632d5589c9cf213589
+    completion_receipt: a1ad5a98e8f577363da331aa7d03bccced7d9d0490446f2ac197299c4f5c823d
+  synthetic:
+    device: cpu
+    input_features: 9
+    state_features: 18
+    batch_size: 2
+    optimizer_cycles_per_component: 2
+    policy_days: 7
+  mechanics:
+    excess_scale_floor: 1.0e-6
+    market_scale_floor: 1.0e-6
+    ranknet_tie_tolerance: 1.0e-12
+    causal_cutoff_day: 200
+    asset_permutation: [2, 0, 1]
+    entry_comparison: strict_greater_than_entry_turnover_cost
+    hold_comparison: incumbent_absolute_edge_strictly_positive
+    switch_comparison: strict_excess_gap_and_strict_switch_cost_coverage
+    tie_priority: current_then_cash_then_lexical_asset
+  checkpoint:
+    format_version: v61_decoupled_rank_state_synthetic_v1
+    status: synthetic_only_not_trained_candidate
+    contains_independent_optimizer_states: true
+    contains_cpu_rng_state: true
+  constraints:
+    parquet_deserialization_allowed: false
+    real_panel_or_label_access_allowed: false
+    previous_checkpoint_access_allowed: false
+    real_training_or_inference_allowed: false
+    real_prediction_allowed: false
+    real_performance_metric_allowed: false
+    real_pnl_allowed: false
+    outcome_source_read_allowed: false
+    target_asset_access_allowed: false
+    v62_implementation_allowed: false
+  authorized_next_action: authorize_v62_non_target_decoupled_rank_state_dataset_only
+
+output_dir: artifacts/v61_decoupled_rank_state_harness

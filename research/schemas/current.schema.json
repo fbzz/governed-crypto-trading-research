@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TLM current research state",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "current_experiment",
+    "phase_contract",
+    "active_family_id",
+    "active_family_status",
+    "authorized_next_action",
+    "authorized_phase",
+    "target_assets",
+    "families",
+    "forbidden_capabilities"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "current_experiment": {"type": "string", "minLength": 1},
+    "phase_contract": {
+      "type": "object",
+      "required": ["path", "file_sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "file_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "active_family_id": {"type": "string", "minLength": 1},
+    "active_family_status": {"type": "string", "minLength": 1},
+    "authorized_next_action": {"type": "string", "minLength": 1},
+    "authorized_phase": {"type": "string", "pattern": "^v[0-9]+$"},
+    "target_assets": {
+      "type": "object",
+      "required": ["symbols", "status"],
+      "properties": {
+        "symbols": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "status": {"const": "sealed"}
+      }
+    },
+    "families": {"type": "array", "minItems": 1},
+    "forbidden_capabilities": {"type": "array", "minItems": 1}
+  },
+  "additionalProperties": true
+}

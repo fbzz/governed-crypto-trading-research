@@ -1,0 +1,16 @@
+project_root: .
+research_state: research/current.yaml
+phase_contract: research/phase_contracts/v085.yaml
+prepare_dir: artifacts/v84_low_turnover_rank_evaluation
+output_dir: artifacts/v85_low_turnover_rank_evaluation
+prediction_path: data/predictions/v84_low_turnover_rank_predictions.parquet
+candidate_position_path: data/predictions/v84_low_turnover_rank_candidate_positions.parquet
+control_position_path: data/predictions/v84_low_turnover_rank_control_positions.parquet
+bootstrap:
+  method: circular_block_resampling_synchronized_across_candidate_and_controls
+  paths: 10000
+  block_lengths_days: [7, 21, 42]
+  base_seed: 20260716
+  seed_derivation: base_seed_plus_block_length
+  confidence_level: 0.90
+  economic_cost_bps: 10

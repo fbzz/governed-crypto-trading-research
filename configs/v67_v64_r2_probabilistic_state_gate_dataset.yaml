@@ -1,0 +1,59 @@
+seed: 20260715
+
+v64_r2_probabilistic_state_gate_dataset:
+  version: v67
+  project_root: .
+  phase_contract:
+    path: research/phase_contracts/v067.yaml
+    file_sha256: 12238a3fcdf04ce5da6b848728203bd15340fca0d04689141fb4efc80ca36180
+  inputs:
+    v66_result: artifacts/v66_v64_r2_probabilistic_state_gate_harness/result.json
+    v66_audit: artifacts/v66_v64_r2_probabilistic_state_gate_harness/audit.json
+    v66_harness_spec: artifacts/v66_v64_r2_probabilistic_state_gate_harness/harness_spec.json
+    v66_artifact_manifest: artifacts/v66_v64_r2_probabilistic_state_gate_harness/artifact_manifest.json
+    v66_completion_receipt: artifacts/v66_v64_r2_probabilistic_state_gate_harness/completion_receipt.json
+    v65_specification: artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json
+    v65_blueprint: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+    v62_result: artifacts/v62_non_target_decoupled_rank_state_dataset/result.json
+    v62_audit: artifacts/v62_non_target_decoupled_rank_state_dataset/audit.json
+    v62_dataset_spec: artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json
+    v62_dataset_manifest: artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json
+    v62_label_schema: artifacts/v62_non_target_decoupled_rank_state_dataset/label_schema.json
+    v62_source_receipt: artifacts/v62_non_target_decoupled_rank_state_dataset/source_receipt.json
+    v62_completion_receipt: artifacts/v62_non_target_decoupled_rank_state_dataset/completion_receipt.json
+    v62_artifact_manifest: artifacts/v62_non_target_decoupled_rank_state_dataset/artifact_manifest.json
+    v62_data_access: artifacts/v62_non_target_decoupled_rank_state_dataset/data_access.json
+    v62_triplet_derivation_smoke: artifacts/v62_non_target_decoupled_rank_state_dataset/triplet_derivation_smoke.json
+    labels: data/processed/decoupled_rank_state_labels_v62.parquet
+    sequence_roles: data/processed/decoupled_rank_state_sequence_roles_v62.parquet
+  parquet:
+    engine: pyarrow
+    compression: zstd
+  packet_files:
+    - artifact_manifest.json
+    - audit.json
+    - completion_receipt.json
+    - data_access.json
+    - dataset_manifest.json
+    - dataset_spec.json
+    - derivation_contract.json
+    - input_hash_receipt.json
+    - label_schema.json
+    - replay_receipt.json
+    - report.md
+    - resolved_config.yaml
+    - result.json
+    - role_schema.json
+    - source_receipt.json
+  source_receipt_files:
+    - configs/v67_v64_r2_probabilistic_state_gate_dataset.yaml
+    - research/phase_contracts/v067.yaml
+    - src/tlm/core/access.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/core/__init__.py
+    - src/tlm/v64_r2_probabilistic_state_gate_dataset.py
+    - src/tlm/__main__.py
+    - tests/test_v64_r2_probabilistic_state_gate_dataset.py
+    - pyproject.toml
+
+output_dir: artifacts/v67_v64_r2_probabilistic_state_gate_dataset

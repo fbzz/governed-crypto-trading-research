@@ -1,0 +1,42 @@
+seed: 20260716
+
+v78_terminal_record:
+  version: v79
+  project_root: .
+  retired_family_id: tlm_persistent_multi_horizon_duration_v1
+  successor_family_id: tlm_low_turnover_cross_sectional_rank_v1
+  evidence_tier: adaptive_consumed_2025_non_target_development_prepare_outcomes_sealed
+  owner_authorization_sha256: bf24b776fe7df07132d6b16beaea636a40221ee98fb9c6f45e9157023779b85c
+  inputs:
+    result: artifacts/v78_persistent_duration_evaluation/result.json
+    audit: artifacts/v78_persistent_duration_evaluation/audit.json
+    prepare_failure_receipt: artifacts/v78_persistent_duration_evaluation/prepare_failure_receipt.json
+    replay_receipt: artifacts/v78_persistent_duration_evaluation/replay_receipt.json
+  expected_input_sha256:
+    result: ce50db6966f3ebcbcde63994603a62bd2f20545ecd6e1ffd6f5aef2047db9bba
+    audit: 6003e7e358d52e3e83692bf1499f39551510aff1060d96a3b052dc859a30e818
+    prepare_failure_receipt: 3269eb9ceaa6d92bc96970793a69ac96f6e66bf7608d52740e199c8558e64f3a
+    replay_receipt: 651e8f1814be682c077dc5526c5b4bac90b12de77f4fdade7c541cfb18e134fc
+  source_receipt_files:
+    - configs/v79_v78_terminal_record.yaml
+    - research/experiments/v079.yaml
+    - research/phase_contracts/v079.yaml
+    - src/tlm/__main__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/research_workflow.py
+    - src/tlm/v78_terminal_record.py
+    - pyproject.toml
+  constraints:
+    metadata_only: true
+    parquet_deserialization_allowed: false
+    checkpoint_or_model_access_allowed: false
+    outcome_or_target_access_allowed: false
+    training_or_inference_allowed: false
+    prediction_or_position_generation_allowed: false
+    scientific_metric_or_gate_recomputation_allowed: false
+    family_retirement_registration_allowed: true
+    successor_specification_authorization_allowed: true
+    successor_specification_execution_allowed: false
+    deployable_claim_allowed: false
+
+output_dir: artifacts/v79_v78_terminal_record

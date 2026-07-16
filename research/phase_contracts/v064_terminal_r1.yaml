@@ -1,0 +1,84 @@
+schema_version: 1
+phase: v64
+stage_revision: v064_terminal_r1
+family_id: tlm_decoupled_rank_state_medium_v1
+status: retired
+evidence_tier: consumed_adaptive_development_only_not_confirmation
+parent_experiment:
+  path: research/experiments/v064.yaml
+  file_sha256: 880a6639f4cfbfcf10ab2ab0afb72201c354e216c6c26e60843a4500bbb96f99
+authorized_next_action: retire_family_without_target_evaluation_or_retuning
+authorized_command: null
+
+access_contract:
+  output_dir: artifacts/v64_decoupled_rank_state_evaluation
+  allowed_inputs:
+    - artifacts/v64_decoupled_rank_state_evaluation/evaluation_spec.json
+    - artifacts/v64_decoupled_rank_state_evaluation/prepare_receipt.json
+    - artifacts/v64_decoupled_rank_state_evaluation/one_shot_packet.json
+    - artifacts/v64_decoupled_rank_state_evaluation/outcome_packet.parquet
+    - artifacts/v64_decoupled_rank_state_evaluation/outcome_receipt.json
+    - artifacts/v64_decoupled_rank_state_evaluation/completion_receipt.json
+    - artifacts/v64_decoupled_rank_state_evaluation/one_shot_complete_packet.json
+    - artifacts/v64_decoupled_rank_state_evaluation/replay.json
+    - artifacts/v64_decoupled_rank_state_evaluation/one_shot_replay_packet.json
+  allowed_capabilities:
+    - read_hash_registered_v64_terminal_artifacts
+    - report_the_immutable_v64_decision_and_registered_metrics
+    - perform_read_only_failure_autopsy_without_new_outcome_access
+  forbidden_capabilities:
+    - target_asset_access_inference_prediction_or_pnl
+    - second_outcome_unseal_or_source_outcome_reread
+    - candidate_model_scaler_or_checkpoint_reopen
+    - prediction_position_policy_cost_gate_or_bootstrap_regeneration
+    - retuning_or_counterfactual_pnl
+    - override_v64_retirement_with_aggregate_or_selected_cells
+    - paper_shadow_live_or_real_money_trading
+    - v65_implementation_without_new_explicit_authorization
+  required_checks:
+    - terminal_decision_matches_all_registered_mandatory_cells
+    - exactly_one_unseal_and_exactly_one_source_read_are_hash_proven
+    - replay_uses_the_immutable_outcome_packet_with_zero_source_reads
+    - result_artifact_and_receipt_hashes_match
+    - target_assets_remain_sealed
+
+terminal_artifacts:
+  evaluation_result:
+    path: artifacts/v64_decoupled_rank_state_evaluation/evaluation_result.json
+    file_sha256: 4082c1e8f3da6595b8180f781daff1036799d8c287da4a95543a030e4a56414c
+  evaluation_audit:
+    path: artifacts/v64_decoupled_rank_state_evaluation/evaluation_audit.json
+    file_sha256: f86b6b99d786a8e3a7f56606b010bd388732a5df50765bc763b835ed5230c93a
+  outcome_receipt:
+    path: artifacts/v64_decoupled_rank_state_evaluation/outcome_receipt.json
+    file_sha256: 44f26a309991f2fa6fbb65990f896fbca23b93957202da02e3881879d6eea163
+  completion_receipt:
+    path: artifacts/v64_decoupled_rank_state_evaluation/completion_receipt.json
+    file_sha256: 4e97d1f92f7d72765f0f84790872708831c4f74d4a37b64439a625538f8898f2
+  complete_packet:
+    path: artifacts/v64_decoupled_rank_state_evaluation/one_shot_complete_packet.json
+    file_sha256: 7f0eb02a358fe9ccbf485392047387819e35ec793af6c29d547ea5ef976b6cc3
+  replay:
+    path: artifacts/v64_decoupled_rank_state_evaluation/replay.json
+    file_sha256: f67c822561b954dac9b8b4410d24357489c8f09613b05465ad4a53235cfd76b6
+  replay_packet:
+    path: artifacts/v64_decoupled_rank_state_evaluation/one_shot_replay_packet.json
+    file_sha256: 1aed4941ecbe1fa9e515775b0d6162814675e4027b5d42b81e42d628ae672745
+
+one_shot_terminal_contract:
+  explicit_user_authorization_present: true
+  unseal_count: 1
+  source_outcome_reads: 1
+  replay_source_outcome_reads: 0
+  replay_result_hashes_match: true
+  prediction_or_position_regeneration: false
+  retuning: false
+  terminal_decision: retire_family_without_target_evaluation_or_retuning
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable_strategy: false

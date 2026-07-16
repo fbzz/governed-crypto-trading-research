@@ -1,0 +1,44 @@
+seed: 20260713
+
+holdout_protocol:
+  evidence_ledger_path: artifacts/v20_evidence_ledger/ledger.json
+  evidence_audit_path: artifacts/v20_evidence_ledger/audit.json
+  control_certificate_path: artifacts/v21_control_certificate/certificate.json
+  control_audit_path: artifacts/v21_control_certificate/audit.json
+  last_exposed_return_at_utc: "2026-07-10T00:00:00Z"
+  earliest_candidate_registration_at_utc: "2026-07-13T23:59:59Z"
+  earliest_holdout_signal_at_utc: "2026-07-14T00:00:00Z"
+  initial_state: dormant_no_registered_candidate
+  registered_candidate: null
+  minimum_calendar_days: 365
+  minimum_daily_observations: 365
+  minimum_active_position_days: 60
+  minimum_regime_observations:
+    bull: 60
+    bear: 60
+    high_volatility: 30
+  regime_definitions:
+    bull: BTC trailing 90-day log return greater than zero.
+    bear: BTC trailing 90-day log return less than or equal to zero.
+    high_volatility: BTC trailing 30-day realized volatility above the candidate-registration 80th-percentile threshold.
+  outcome_source: Binance public daily spot kline archives for BTCUSDT, ETHUSDT, and SOLUSDT.
+  outcome_source_verification: Published SHA-256 checksum plus locally persisted archive hash; no API-only reconstruction.
+  allowed_integrity_metadata:
+    - archive_count
+    - UTC_date_continuity
+    - source_checksum_status
+    - schema_validation_status
+    - ingestion_job_health
+  forbidden_until_unseal:
+    - candidate_actions
+    - candidate_returns
+    - control_returns
+    - equity_curves
+    - comparative_metrics
+    - regime_performance
+  evaluation_cost_bps: [10, 20, 30]
+  bootstrap_block_lengths_days: [7, 21, 63]
+  bootstrap_paths: 10000
+  max_drawdown_tolerance: 0.05
+
+output_dir: artifacts/v22_prospective_holdout

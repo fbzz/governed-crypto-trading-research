@@ -1,0 +1,205 @@
+decoupled_rank_state_evaluation:
+  version: v64
+  family_id: tlm_decoupled_rank_state_medium_v1
+  project_root: .
+  research_state: research/current.yaml
+  phase_contract: research/phase_contracts/v064.yaml
+  output_dir: artifacts/v64_decoupled_rank_state_evaluation
+  require_clean_git: true
+
+  inputs:
+    blueprint: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+    dataset_spec: artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json
+    dataset_manifest: artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json
+    asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    panel: data/processed/selected_universe_panel_v32.parquet
+    labels: data/processed/decoupled_rank_state_labels_v62.parquet
+    sequence_roles: data/processed/decoupled_rank_state_sequence_roles_v62.parquet
+    training_result: artifacts/v63_decoupled_rank_state_training/result.json
+    training_spec: artifacts/v63_decoupled_rank_state_training/training_spec.json
+    checkpoint_manifest: artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json
+    scaler_manifest: artifacts/v63_decoupled_rank_state_training/scaler_manifest.json
+
+  source_receipt_files:
+    - configs/v64_decoupled_rank_state_evaluation.yaml
+    - research/current.yaml
+    - research/phase_contracts/v064.yaml
+    - src/tlm/__main__.py
+    - src/tlm/config.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/decoupled_rank_state_evaluation.py
+    - src/tlm/decoupled_rank_state_harness.py
+    - src/tlm/decoupled_rank_state_training_data.py
+    - src/tlm/decoupled_rank_state_training_engine.py
+    - src/tlm/non_target_pretraining.py
+    - src/tlm/patch_transformer.py
+    - src/tlm/ranking_excess_harness.py
+    - src/tlm/ranking_excess_pretraining.py
+    - src/tlm/ranking_excess_supervised.py
+    - src/tlm/research_workflow.py
+    - src/tlm/scientific_harness.py
+    - src/tlm/state_conditioned_multi_horizon_training_engine.py
+    - tests/test_decoupled_rank_state_evaluation.py
+    - pyproject.toml
+
+  runtime:
+    device: mps
+    inference_batch_size: 128
+    torch_threads: 10
+    dtype: float32
+    deterministic_algorithms: true
+    amp: false
+    cpu_fallback_allowed: false
+
+  data_access:
+    signal_start: '2025-01-01'
+    signal_end: '2025-12-23'
+    feature_start: '2024-04-21'
+    maturity_end: '2025-12-25'
+    feature_columns:
+      - date
+      - symbol
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+    readiness_columns:
+      - date
+      - sequence_start_date
+      - symbol
+      - h1_label_complete
+      - eligible_consumed_development_validation
+    outcome_columns:
+      - date
+      - symbol
+      - target_h1_maturity_date
+      - target_h1_open_to_open_log_return
+      - h1_label_complete
+    readiness_flag: eligible_consumed_development_validation
+    outcome_reads_during_prepare: 0
+    labels_path_may_be_opened_during_prepare: false
+    pushed_down_symbol_and_date_filters_required: true
+    raw_fields_forbidden: true
+    train_assets_forbidden_during_inference: true
+    target_assets_forbidden: true
+
+  inference:
+    folds: [1, 2, 3]
+    seeds: [42, 7, 123]
+    lookback_days: 256
+    feature_order:
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+    relative_source_feature: log_close_to_close_return
+    triplets: exact_v32_lexical_test_triplets_for_same_fold
+    seed_aggregation: arithmetic_mean_without_selection
+    context_aggregation: equal_mean_all_eligible_contexts
+    market_aggregation: equal_mean_all_seed_context_predictions_per_fold_date
+    score_centering: subtract_each_seed_triplet_mean_before_fold_scale
+    expected_test_symbols_per_fold: 10
+    expected_signal_dates: 357
+
+  policy:
+    action_space: [long_one_asset, cash]
+    reporting_cost_bps: [10, 20, 30]
+    base_cost_formula: bps_divided_by_10000
+    switch_hurdle: 0.002
+    risky_weight: 1.0
+    momentum_30: rolling_sum_log_close_to_close_return_30_days_including_signal_date
+    final_liquidation: true
+    shorting: false
+    leverage: false
+    controls:
+      cash: all_zero_weights
+
+  accounting:
+    gross_return: sum_weight_times_expm1_action_log_return
+    turnover: l1_weight_change_including_entry_switch_exit_and_final_liquidation
+    net_return: gross_minus_turnover_cost
+    aggregate: equal_one_third_capital_per_fold_daily_mean
+    annualization_days: 365
+    sharpe_standard_deviation_ddof: 1
+    zero_volatility_sharpe: 0.0
+
+  predictive_metrics:
+    spearman: average_tie_ranks_predicted_excess_vs_centered_action_return
+    pairwise_accuracy: all_three_pairs_actual_ties_at_or_below_1e-12_excluded_prediction_ties_incorrect
+    top1_centered_excess: selected_action_return_minus_same_triplet_mean_action_return
+    state_market_error: predicted_market_component_vs_triplet_mean_action_return
+    absolute_return_error: predicted_absolute_edge_vs_asset_action_return
+    exact_tie_tolerance: 1.0e-12
+    fold_aggregation: equal_mean_all_daily_context_values
+    aggregate_aggregation: equal_mean_all_fold_daily_values
+
+  bootstrap:
+    method: circular_block
+    paths: 10000
+    block_lengths_days: [7, 21, 63]
+    base_seed: 20260715
+    batch_size: 250
+    top1_statistic: arithmetic_mean_centered_action_excess
+    economic_cost_bps: 10
+    economic_statistic: compounded_aggregate_net_return
+
+  outcome_dependent_gates:
+    mean_spearman_strictly_positive_each_fold: true
+    mean_top1_centered_excess_strictly_positive_each_fold: true
+    aggregate_pairwise_accuracy_strictly_above: 0.50
+    aggregate_state_direction_accuracy_strictly_above: 0.50
+    aggregate_absolute_direction_accuracy_strictly_above: 0.50
+    positive_net_return_each_fold_at_10bps: true
+    aggregate_net_return_strictly_positive_all_costs: true
+    aggregate_sharpe_strictly_positive_all_costs: true
+    maximum_absolute_drawdown: 0.35
+    top1_bootstrap_p05_strictly_positive_all_blocks: true
+    economic_bootstrap_p05_strictly_positive_all_blocks: true
+    all_cells_required: true
+    failure_action: retire_family_without_target_evaluation_or_retuning
+    pass_action: authorize_future_prospective_non_target_specification_only
+
+  outcome_blind_gate_names:
+    - all_registered_checkpoints_used_without_selection
+    - exact_fold_asset_and_triplet_scope
+    - missingness_matches_registered_readiness
+    - prediction_distribution_finite_and_nonconstant
+    - ensemble_disagreement_finite
+    - action_coverage_complete
+    - turnover_accounting_complete
+    - concentration_at_most_one_asset
+    - exposure_bounded_zero_to_one
+    - episode_and_churn_structure_complete
+    - quantile_crossing_not_applicable
+    - zero_outcome_and_target_access
+
+  lifecycle:
+    prepare_is_outcome_blind: true
+    prepare_replay_is_hash_only: true
+    all_nine_checkpoints_required: true
+    predictions_and_positions_freeze_before_outcome_open: true
+    explicit_user_authorization_after_prepare_required: true
+    generic_continue_is_not_unseal_authorization: true
+    maximum_unseal_count: 1
+    regenerate_after_unseal: false
+    evidence_tier: consumed_adaptive_development_only
+    clean_holdout_claim: false
+    prospective_confirmation_claim: false
+    deployable_claim: false
+    target_transfer_claim: false
+
+  target_contract:
+    symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+    status: sealed
+    target_assets_loaded: []
+    target_predictions: 0
+    target_pnl_evaluations: 0

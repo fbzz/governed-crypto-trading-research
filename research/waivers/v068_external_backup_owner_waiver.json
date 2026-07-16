@@ -1,0 +1,18 @@
+{
+  "accepted_by": "repository_owner",
+  "authorization_context": "The repository owner previously instructed that no backup was required, authorized continuation, and the active goal explicitly requests training through financial validation.",
+  "family_id": "tlm_decoupled_rank_state_probabilistic_gate_v2",
+  "parent_experiment": {
+    "file_sha256": "964cd3c15834b4b92995c417ed985dadb8d0b90c7da3a72fc9decbc1a39e00e1",
+    "path": "research/experiments/v067.yaml"
+  },
+  "phase": "v68",
+  "risk_acceptance": true,
+  "schema_version": "tlm-owner-storage-waiver/v1",
+  "waived_safeguards": [
+    "external_input_copy",
+    "external_code_copy",
+    "external_checkpoint_copy"
+  ],
+  "waiver_id": "v068_external_backup_owner_waiver"
+}

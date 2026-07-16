@@ -1,0 +1,73 @@
+seed: 20260714
+
+state_conditioned_multi_horizon_training:
+  version: v58
+  project_root: .
+  research_state: research/current.yaml
+  experiment_contract: research/experiments/v057.yaml
+  phase_contract: research/phase_contracts/v058r1.yaml
+  inputs:
+    v55_blueprint: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+    v56_result: artifacts/v56_state_conditioned_multi_horizon_harness/result.json
+    v56_audit: artifacts/v56_state_conditioned_multi_horizon_harness/audit.json
+    v56_harness_spec: artifacts/v56_state_conditioned_multi_horizon_harness/harness_spec.json
+    v57_result: artifacts/v57_non_target_multi_horizon_dataset/result.json
+    v57_audit: artifacts/v57_non_target_multi_horizon_dataset/audit.json
+    v57_dataset_spec: artifacts/v57_non_target_multi_horizon_dataset/dataset_spec.json
+    v57_dataset_manifest: artifacts/v57_non_target_multi_horizon_dataset/dataset_manifest.json
+    v57_label_schema: artifacts/v57_non_target_multi_horizon_dataset/label_schema.json
+    v57_source_receipt: artifacts/v57_non_target_multi_horizon_dataset/source_receipt.json
+    v57_completion_receipt: artifacts/v57_non_target_multi_horizon_dataset/completion_receipt.json
+    v57_artifact_manifest: artifacts/v57_non_target_multi_horizon_dataset/artifact_manifest.json
+    v57_data_access: artifacts/v57_non_target_multi_horizon_dataset/data_access.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    feature_panel: data/processed/selected_universe_panel_v32.parquet
+    labels: data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+    sequence_roles: data/processed/state_conditioned_multi_horizon_sequence_roles_v57.parquet
+  source_receipt_files:
+    - .gitignore
+    - configs/v58_state_conditioned_multi_horizon_training.yaml
+    - research/experiments/v057.yaml
+    - research/current.yaml
+    - research/phase_contracts/v058.yaml
+    - research/phase_contracts/v058r1.yaml
+    - research/waivers/v058r1_external_backup_owner_waiver.json
+    - .agents/skills/tlm-research-governor/scripts/govern.py
+    - .agents/skills/tlm-loop-engineer/scripts/phase_guard.py
+    - .agents/skills/tlm-training-operator/SKILL.md
+    - .agents/skills/tlm-training-operator/references/operator-contract.md
+    - .agents/skills/tlm-training-operator/scripts/build_training_packet.py
+    - .agents/skills/tlm-training-operator/scripts/create_v58_backup.py
+    - .agents/skills/tlm-training-operator/scripts/validate_training_packet.py
+    - src/tlm/__main__.py
+    - src/tlm/__init__.py
+    - src/tlm/config.py
+    - src/tlm/core/__init__.py
+    - src/tlm/core/access.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/research_workflow.py
+    - src/tlm/scientific_harness.py
+    - src/tlm/state_conditioned_multi_horizon_model.py
+    - src/tlm/state_conditioned_multi_horizon_training.py
+    - src/tlm/state_conditioned_multi_horizon_training_artifacts.py
+    - src/tlm/state_conditioned_multi_horizon_training_data.py
+    - src/tlm/state_conditioned_multi_horizon_training_engine.py
+    - tests/test_research_workflow.py
+    - tests/test_training_operator_packet.py
+    - tests/test_training_operator_packet_builder.py
+    - tests/test_v58_backup_creator.py
+    - tests/test_state_conditioned_multi_horizon_training.py
+    - tests/test_state_conditioned_multi_horizon_training_artifacts.py
+    - tests/test_state_conditioned_multi_horizon_training_data.py
+    - tests/test_state_conditioned_multi_horizon_training_engine.py
+    - tests/test_state_conditioned_multi_horizon_training_resume_replay.py
+    - tests/test_state_conditioned_multi_horizon_model.py
+    - Makefile
+    - pyproject.toml
+  backup_policy: owner_waiver
+  backup_waiver: research/waivers/v058r1_external_backup_owner_waiver.json
+  require_clean_git: true
+
+output_dir: artifacts/v58_state_conditioned_multi_horizon_training

@@ -1,0 +1,117 @@
+schema_version: 1
+phase: v75
+stage_revision: v075_synthetic_persistent_duration_harness_r1
+family_id: tlm_persistent_multi_horizon_duration_v1
+status: synthetic_harness_authorized_not_started
+evidence_tier: synthetic_scientific_and_accounting_validation_only
+
+parent_experiment:
+  path: research/experiments/v075.yaml
+  file_sha256: 9e63c97b2abd94d6c8aa6ab7698777c52a868271af49042f60f56bc5034a1d90
+authorization_receipt:
+  path: artifacts/v74_persistent_duration_spec/result.json
+  file_sha256: 294da8a230b3fee5dd278816fbc0b1b3a9cfa3ee1c0a37f350a07b7df09d70b2
+  registered_result_sha256: 091f9ccc9ccb4005efa8db64f00eef463cd090cb2d937fef7aebc001fbe1962f
+  decision: authorize_v75_synthetic_persistent_duration_harness_only
+
+authorized_next_action: execute_v75_synthetic_persistent_duration_harness
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm persistent-duration-harness
+  --config configs/v75_persistent_duration_harness.yaml
+pass_action: authorize_v76_non_target_persistent_duration_dataset_only
+failure_action: keep_v76_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v75_persistent_duration_harness
+  allowed_inputs:
+    - artifacts/v74_persistent_duration_spec/specification.json
+    - artifacts/v74_persistent_duration_spec/blueprint.json
+    - artifacts/v74_persistent_duration_spec/audit.json
+    - artifacts/v74_persistent_duration_spec/result.json
+    - artifacts/v74_persistent_duration_spec/artifact_manifest.json
+    - artifacts/v74_persistent_duration_spec/source_receipt.json
+  allowed_capabilities:
+    - instantiate_exact_v74_model_on_deterministic_synthetic_tensors
+    - run_bounded_cpu_and_mps_forward_loss_backward_steps
+    - verify_causal_prefix_and_asset_permutation_contracts
+    - verify_student_t_scale_centering_duration_and_survival_contracts
+    - verify_exact_stateful_transition_cost_policy_and_tie_breaks
+    - write_one_synthetic_checkpoint_and_verify_interrupted_resume
+    - write_and_replay_one_deterministic_synthetic_harness_packet
+  required_checks:
+    - exact_1083155_parameter_count_and_output_shapes
+    - causal_temporal_prefix_invariance
+    - asset_permutation_equivariance_and_market_invariance
+    - centered_excess_positive_scales_and_monotone_survival
+    - finite_student_t_return_pairwise_ranking_and_duration_losses
+    - event_and_right_censor_duration_likelihood
+    - finite_cpu_and_mps_joint_backward
+    - exact_entry_hold_exit_switch_costs_and_incumbent_cash_lexical_ties
+    - synthetic_checkpoint_roundtrip_and_interrupted_resume_equivalence
+    - zero_real_data_prior_checkpoint_outcome_metric_pnl_or_target_access
+    - byte_identical_replay
+  forbidden_capabilities:
+    - parquet_market_panel_label_role_or_real_data_access
+    - prior_family_or_real_checkpoint_access_or_reuse
+    - real_training_inference_prediction_position_metric_pnl_or_bootstrap
+    - outcome_packet_or_outcome_source_read
+    - target_asset_access
+    - architecture_objective_policy_threshold_size_or_hyperparameter_change
+    - v76_implementation_or_dataset_build
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    artifacts/v74_persistent_duration_spec/specification.json: 58c7127d9d8b3606ce78d277789a6ea85839ce12186cd0277a90ec7f18d9e263
+    artifacts/v74_persistent_duration_spec/blueprint.json: 790b14fd3feacbc62f416e63a019f192ea09d0fd3756c9d757286968ece3632d
+    artifacts/v74_persistent_duration_spec/audit.json: 2615f0c611dab3b8d0352cb780dce31991eec5663d95bbeeeb28062077e02bda
+    artifacts/v74_persistent_duration_spec/result.json: 294da8a230b3fee5dd278816fbc0b1b3a9cfa3ee1c0a37f350a07b7df09d70b2
+    artifacts/v74_persistent_duration_spec/artifact_manifest.json: 7059b71727a1028ddaca090a5cac88027eaf5b7843b9439de8c3c636619f233c
+    artifacts/v74_persistent_duration_spec/source_receipt.json: 6284d76811469ffc0d2f351a35659d933ac341086f2bcce807a028cd7fa6b93e
+  expected_canonical_sha256:
+    specification: b967a6fa7e5620be9fe78814a87402eed0cd1b3e7457b6333fa7afee173cecdd
+    blueprint: de6c8eb9d65b586cc56c2f10848bf65ff7f2bec83563e7b1292d1dd106fb6e86
+    result: 091f9ccc9ccb4005efa8db64f00eef463cd090cb2d937fef7aebc001fbe1962f
+    artifact_manifest: 10130f78861b9545e8b72530442e54a412865245f9451b2f839667ba52f21f79
+    source_receipt: 4b5b6e7a3dc6d56693bdee26323e602ca3fdbb3613d5ccbc1a42cb842fca8eb3
+
+synthetic_harness_contract:
+  architecture_variant_count: 1
+  expected_total_parameters: 1083155
+  devices: [cpu, mps]
+  dtype: float32
+  batch_size: 2
+  optimizer_cycles: 2
+  optimizer: AdamW
+  learning_rate: 0.0003
+  weight_decay: 0.0001
+  gradient_clip_norm: 1.0
+  synthetic_policy_days: 8
+  checkpoint_kind: synthetic_only_not_trained_candidate
+  byte_identical_replay_required: true
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+artifact_contract:
+  output_dir: artifacts/v75_persistent_duration_harness
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - harness_spec.json
+    - synthetic_checkpoint.pt
+    - result.json
+    - audit.json
+    - replay_receipt.json
+    - report.md
+    - artifact_manifest.json
+  deterministic_replay_required: true
+  real_data_or_trained_checkpoint_artifact_allowed: false
+
+stop_condition: stop_after_v75_gate_before_any_v76_implementation_or_dataset_access
+seed: 20260715

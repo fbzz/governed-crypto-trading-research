@@ -1,0 +1,58 @@
+schema_version: 1
+experiment_id: v075_persistent_multi_horizon_duration_synthetic_harness
+family_id: tlm_persistent_multi_horizon_duration_v1
+phase: synthetic_harness
+status: authorized_not_started
+decision: execute_v75_synthetic_persistent_duration_harness
+authorized_next_action: execute_v75_synthetic_persistent_duration_harness
+evidence_tier: synthetic_scientific_and_accounting_validation_only
+parent_experiment:
+  path: research/experiments/v074.yaml
+  file_sha256: 8633a2a3e2106c723e631b5565a9b38d876754ee0890fb5ce1f4407d24149193
+specification:
+  path: artifacts/v74_persistent_duration_spec/specification.json
+  file_sha256: 58c7127d9d8b3606ce78d277789a6ea85839ce12186cd0277a90ec7f18d9e263
+  canonical_sha256: b967a6fa7e5620be9fe78814a87402eed0cd1b3e7457b6333fa7afee173cecdd
+blueprint:
+  path: artifacts/v74_persistent_duration_spec/blueprint.json
+  file_sha256: 790b14fd3feacbc62f416e63a019f192ea09d0fd3756c9d757286968ece3632d
+  canonical_sha256: de6c8eb9d65b586cc56c2f10848bf65ff7f2bec83563e7b1292d1dd106fb6e86
+result:
+  path: artifacts/v74_persistent_duration_spec/result.json
+  file_sha256: 294da8a230b3fee5dd278816fbc0b1b3a9cfa3ee1c0a37f350a07b7df09d70b2
+  registered_result_sha256: 091f9ccc9ccb4005efa8db64f00eef463cd090cb2d937fef7aebc001fbe1962f
+audit:
+  path: artifacts/v74_persistent_duration_spec/audit.json
+  file_sha256: 2615f0c611dab3b8d0352cb780dce31991eec5663d95bbeeeb28062077e02bda
+artifact_manifest:
+  path: artifacts/v74_persistent_duration_spec/artifact_manifest.json
+  file_sha256: 7059b71727a1028ddaca090a5cac88027eaf5b7843b9439de8c3c636619f233c
+  canonical_sha256: 10130f78861b9545e8b72530442e54a412865245f9451b2f839667ba52f21f79
+source_receipt:
+  path: artifacts/v74_persistent_duration_spec/source_receipt.json
+  file_sha256: 6284d76811469ffc0d2f351a35659d933ac341086f2bcce807a028cd7fa6b93e
+  canonical_sha256: 4b5b6e7a3dc6d56693bdee26323e602ca3fdbb3613d5ccbc1a42cb842fca8eb3
+v74_summary:
+  audit_checks_passed: 16
+  audit_checks_total: 16
+  total_parameters: 1083155
+  registered_future_training_jobs: 9
+  json_metadata_reads: 4
+  parquet_deserializations: 0
+  checkpoint_reads: 0
+  model_instantiations: 0
+  optimizer_steps: 0
+  predictions: 0
+  positions: 0
+  performance_metrics: 0
+  pnl_computations: 0
+  outcome_source_reads: 0
+  target_asset_rows: 0
+  byte_identical_replay: true
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

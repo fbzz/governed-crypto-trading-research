@@ -1,0 +1,88 @@
+{
+  "schema_version": "1",
+  "family_id": "tlm_state_conditioned_multi_horizon_quantile_small_v1",
+  "retirement": {
+    "input": "evaluation_result",
+    "decision": "retire_family_without_tuning",
+    "immutable": true
+  },
+  "inputs": {
+    "evaluation_result": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/result.json",
+      "sha256": "76da925c0f53ec09c8b748372b8c56a91a8d3c413c5d8be4755d46ea4a8e5185"
+    },
+    "evaluation_audit": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/audit.json",
+      "sha256": "e0a7703aaab7cfdca7c5b41c2265827bf82aa31f20b06e47923ad0d95a1d8b2f"
+    },
+    "registered_metrics": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/metrics.json",
+      "sha256": "90d96dfe36df20f467c25edb1d50b76bf1405e7a0dd8f7df0d9f9b74ec715a2c"
+    },
+    "registered_bootstrap": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/bootstrap.json",
+      "sha256": "4b4d5a01101b940f02a79efdfed0e3537f1b1d51c53c589a5ff0617ad56423b6"
+    },
+    "registered_gate_matrix": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/gate_matrix.json",
+      "sha256": "9430ebfb149cf7f6422962deb61f60c12a5deb9bdb592a0e6355c3bb0fb0655e"
+    },
+    "completion_receipt": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/completion_receipt.json",
+      "sha256": "7870baa035f46c21ca9576ca81ec75902db8501cdef95cc35f3f0346f76af6ae"
+    },
+    "artifact_manifest": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/artifact_manifest.json",
+      "sha256": "d92d1a58fc187c3da10e193dd3a671973ec5effe30295b96a5e2218286d54ec1"
+    },
+    "source_free_replay": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/replay.json",
+      "sha256": "7243c084bf6b4e6ee8aed2abfc09fa61b3bfad24550c7d6b0da2ec5fed971c39"
+    },
+    "evaluation_report": {
+      "path": "artifacts/v59_state_conditioned_multi_horizon_evaluation/report.md",
+      "sha256": "048f490571c123bf6e65414455048e8782ca3414c23b51bb72a2e0926b5ff4c4"
+    }
+  },
+  "diagnostics": {
+    "signal": [
+      "registered_h7_q50_pairwise_accuracy_by_cell",
+      "registered_h7_q50_spearman_by_cell",
+      "registered_candidate_bootstrap_p05_without_recomputation"
+    ],
+    "calibration": [
+      "registered_h7_q20_coverage_by_cell",
+      "registered_predictive_origin_and_geometry_drift",
+      "unavailable_forecast_bias_and_scale_not_recreated"
+    ],
+    "churn": [
+      "registered_risky_exposure_and_turnover_by_cell",
+      "registered_cash_only_and_sparse_exposure_cells",
+      "unavailable_transition_and_episode_rows_not_recreated"
+    ],
+    "cost": [
+      "registered_candidate_gross_cost_and_net_metrics",
+      "registered_candidate_vs_control_metrics_at_10_20_30bps",
+      "registered_cost_gate_failures_without_new_cost_grid"
+    ]
+  },
+  "forbidden": {
+    "counterfactual_pnl": true,
+    "parameter_or_threshold_tuning": true,
+    "model_training_or_inference": true,
+    "new_bootstrap_or_cost_grid": true,
+    "post_hoc_selection": true
+  },
+  "outputs": [
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/input_hash_receipt.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/signal_diagnostics.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/calibration_diagnostics.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/churn_diagnostics.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/cost_diagnostics.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/failure_attribution.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/audit.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/result.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/artifact_manifest.json",
+    "artifacts/v59_state_conditioned_multi_horizon_evaluation/retirement_autopsy/report.md"
+  ]
+}

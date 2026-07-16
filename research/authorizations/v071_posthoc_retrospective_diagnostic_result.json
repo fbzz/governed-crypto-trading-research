@@ -1,0 +1,15 @@
+{
+  "authorization_canonical_sha256": "adf1276b64a7a89d0841d04a7a796dceadf57a67cf7fd2520230b0bf38523017",
+  "authorization_file_sha256": "0deea9b57c92967e56116eeb1d5c43d6eb4cefb8afbfcfd5632ecd8061032936",
+  "authorization_path": "research/authorizations/v071_posthoc_retrospective_diagnostic.json",
+  "decision": "authorize_v71_posthoc_consumed_2025_diagnostic_prepare_only",
+  "deployable_claim_allowed": false,
+  "evidence_tier": "posthoc_consumed_2025_diagnostic_only_not_confirmation",
+  "family_id": "tlm_decoupled_rank_state_probabilistic_gate_v2",
+  "outcome_access_authorized": false,
+  "phase": "v71",
+  "prospective_claim_allowed": false,
+  "retuning_authorized": false,
+  "schema_version": "v71-posthoc-authorization-result/v1",
+  "target_asset_access_authorized": false
+}

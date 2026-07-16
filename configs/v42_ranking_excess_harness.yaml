@@ -1,0 +1,33 @@
+seed: 20260713
+
+ranking_excess_harness:
+  version: v42
+  project_root: .
+  inputs:
+    v41_specification: artifacts/v41_ranking_excess_spec/specification.json
+    v41_blueprint: artifacts/v41_ranking_excess_spec/blueprint.json
+    v41_audit: artifacts/v41_ranking_excess_spec/audit.json
+  expected_input_sha256:
+    v41_specification: fb14bacbc95efa23bc26c4fe6252eb7eaa950eba8dfe0b400b2c6d0fbf3ab7b0
+    v41_blueprint: a8410ff7fe9ccb56c61ec0095c668557d574799a15101d4129a5a41b85c709b9
+    v41_audit: 991c378fcb2c80ac0a77f8f53a375e1d4f3b49f09d8edb943e8a445ec4b038c2
+  synthetic:
+    input_features: 9
+    batch_size: 4
+    scale_fit_triplets: 64
+    optimizer_steps: 2
+    policy_days: 8
+    ridge_alpha: 10.0
+  checkpoint:
+    format_version: v42_ranking_excess_synthetic_v1
+    status: synthetic_smoke_only_not_trained_candidate
+  constraints:
+    real_panel_or_label_read_allowed: false
+    target_assets_allowed: false
+    real_pretraining_allowed: false
+    real_supervised_training_allowed: false
+    real_performance_or_pnl_allowed: false
+    old_checkpoint_reuse_allowed: false
+  authorized_next_action: v43_medium_non_target_pretraining_only
+
+output_dir: artifacts/v42_ranking_excess_harness

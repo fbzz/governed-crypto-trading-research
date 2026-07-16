@@ -1,0 +1,56 @@
+schema_version: 1
+amendment_id: v070_r1_ranker_excess_scale_allowlist_repair
+phase: v70
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: authorized_registered_metadata_only_repair
+reason: >-
+  The original V70 allowlist contained the frozen feature and probabilistic
+  market scales but omitted the frozen ranker excess-return RMS required to
+  convert excess_return_z into the raw-return units used by the immutable
+  0.002 switch hurdle and exact transition costs.
+owner_authorization:
+  path: research/authorizations/v070_r1_ranker_scale_amendment.json
+  file_sha256: 499fcd28123a88088a9c045c1011451a75c8f7572d62e08c12b0f490b8ae96a6
+  canonical_sha256: 4924c747b77d770f55bc729fc64f5b145f19a9f7dcf7b527b53c9e601ad2b9db
+incident:
+  path: research/incidents/v070_ranker_scale_allowlist_gap.json
+  file_sha256: 8927b868d0386c58b889602f7e7c5298142887180989adb84b52528d59bf2d5d
+  canonical_sha256: 7086cbc6011d25ebc15a0bd4c34bb78a9926a9dc4e813b925f7a9a56d3c09960
+ranker_excess_scale_receipt:
+  path: research/receipts/v070_ranker_excess_scale_receipt.json
+  file_sha256: 3e52944d0599a1b0c54022b4c6dccefe94ed5d64e1ae07ce346b14095a90f7af
+  canonical_sha256: c984d0858c8fc7bacfa0d0a216b06a4ed0f8f2a63da812ab74470add63f601a5
+repair_source:
+  path: artifacts/v63_decoupled_rank_state_training/scaler_manifest.json
+  file_sha256: 2d6848c4622cee2f55651f7832ed484023cf137a73665d8b959bb96a60e54a6a
+  canonical_sha256: f281a5c25682a1456b3fe539f5f7c4b12025a954ac85f1ebeeaad827b1cf6980
+  access: one_time_read_only_metadata_projection_complete
+  runtime_access_after_amendment: false
+superseded_registration:
+  phase_contract_path: research/phase_contracts/v070.yaml
+  phase_contract_file_sha256: 9ff5e6ce975a3ae1cb828d638f375519448ffd692f0a5fb1574edece5aeb2455
+  registration_anchor_commit: 6be1d15c61e14acc4a02fed4078860813e4481bc
+  prospective_packets_created: 0
+  predictions_frozen: 0
+  positions_frozen: 0
+  outcomes_read: 0
+scientific_contract:
+  architecture_changed: false
+  objective_changed: false
+  ranker_weights_changed: false
+  gate_weights_changed: false
+  scaler_fit_or_refit_performed: false
+  policy_changed: false
+  abstention_threshold_changed: false
+  switch_hurdle_changed: false
+  cost_or_accounting_changed: false
+  fold_seed_context_or_universe_changed: false
+  outcome_accessed: false
+  target_asset_accessed: false
+registration:
+  anchor_rule: first_ancestor_commit_containing_exact_amendment_file_sha256
+  first_admissible_feature_close: strictly_after_amendment_commit_timestamp
+  pre_amendment_history_allowed_as_causal_lookback_only: true
+  pre_amendment_signal_position_or_scored_outcome_allowed: false
+authorized_next_action: authorize_v70_prospective_non_target_capture_and_prediction_freeze_only

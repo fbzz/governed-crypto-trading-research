@@ -1,0 +1,43 @@
+seed: 20260713
+
+multi_asset_scope_amendment:
+  project_root: .
+  inputs:
+    v26_specification: artifacts/v26_zero_shot_candidate_spec/specification.json
+    v27_inventory: artifacts/v27_non_target_universe_audit/inventory.json
+    v28_result: artifacts/v28_non_target_dataset/result.json
+    v28_audit: artifacts/v28_non_target_dataset/audit.json
+  expected_input_sha256:
+    v26_specification: 04f92c35abd94642c30465cfe8a871eb34086d93dd13b41f692908a5aeb6a1e4
+    v27_inventory: 8ba08a2552c8511ad0a8ff3db547d1793a68f3257a3c9b1aaffb6236a7065920
+    v28_result: a03b131f8e6c1174ea3547d711a947d56c295884bb6cc05ec50867f1dacb2890
+    v28_audit: d3f5a67332cae84f802075dfe7e5d7d4528824b2e77d27a84d9269206c39c394
+  candidate_family_id: tlm_multi_asset_target_transfer_v2
+  supersedes_candidate_family_id: tlm_zero_shot_cross_asset_v1
+  target_assets: [BTC, ETH, SOL]
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  training_universe:
+    venue: Binance spot
+    quote_asset: USDT
+    selected_asset_count: 30
+    asset_fold_count: 3
+    listed_on_or_before: "2021-01-01"
+    selection_observation_start: "2021-01-01"
+    selection_observation_end: "2023-12-31"
+    minimum_daily_coverage: 0.995
+    minimum_nonzero_quote_volume_fraction: 0.99
+    ranking_metric: median_daily_quote_volume_usdt
+    ranking_direction: descending
+    tie_breaker: lexical_symbol_ascending
+    input_columns_allowed: [symbol, date, quote_volume]
+    validation_calibration_confirmation_used_for_selection: false
+    full_future_availability_used_for_selection: false
+    excluded_bases: [BTC, ETH, SOL]
+    target_proxy_bases: [WBTC, WETH, STETH, CBETH, WBETH, BETH, MSOL, JITOSOL, BSOL]
+    fiat_bases: [AUD, BRL, EUR, GBP, NGN, RUB, TRY, UAH, ZAR]
+    stablecoin_bases: [AEUR, BUSD, DAI, FDUSD, PAX, PYUSD, RLUSD, TUSD, USDC, USDP, USDS, UST, USTC]
+    fan_token_bases: [ACM, ALPINE, ASR, ATM, BAR, CITY, JUV, LAZIO, OG, PORTO, PSG, SANTOS]
+    excluded_token_suffixes: [UP, DOWN, BULL, BEAR]
+  authorized_next_action: v30_training_universe_liquidity_inventory_only
+
+output_dir: artifacts/v29_multi_asset_scope_amendment

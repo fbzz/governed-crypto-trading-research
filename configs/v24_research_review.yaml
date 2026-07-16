@@ -1,0 +1,16 @@
+seed: 20260713
+
+research_review:
+  project_root: .
+  inputs:
+    evidence_ledger: artifacts/v20_evidence_ledger/ledger.json
+    evidence_audit: artifacts/v20_evidence_ledger/audit.json
+    control_certificate: artifacts/v21_control_certificate/certificate.json
+    control_audit: artifacts/v21_control_certificate/audit.json
+    holdout_protocol: artifacts/v22_prospective_holdout/protocol.json
+    holdout_audit: artifacts/v22_prospective_holdout/audit.json
+    reproducibility_manifest: artifacts/v23_reproducibility_bundle/manifest.json
+    reproducibility_audit: artifacts/v23_reproducibility_bundle/audit.json
+    test_result: artifacts/v23_reproducibility_bundle/test_result.json
+
+output_dir: artifacts/v24_research_review

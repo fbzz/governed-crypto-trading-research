@@ -1,0 +1,4 @@
+interface:
+  display_name: "TLM Research Governor"
+  short_description: "Report lineage and enforce the next legal action"
+  default_prompt: "Use $tlm-research-governor to reconstruct the current TLM family, runs, checkpoints, evaluations, documentation drift, and only authorized next action from repository receipts."

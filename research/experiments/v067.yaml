@@ -1,0 +1,95 @@
+schema_version: 1
+experiment_id: v067_non_target_v64_r2_probabilistic_state_gate_dataset
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: non_target_probabilistic_state_gate_dataset
+status: passed
+evidence_tier: causal_non_target_gate_dataset_construction_only
+parent_experiment: research/experiments/v066.yaml
+blueprint:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  file_sha256: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+  canonical_sha256: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+harness_spec:
+  path: artifacts/v66_v64_r2_probabilistic_state_gate_harness/harness_spec.json
+  file_sha256: d581e79b484b695f12d9d1e01d093920ae8be7605d5267d21c9f2c9c19f0241a
+  canonical_sha256: 7f5e4f4787c38567d85870ce7722a302a42e19238a60ce4c90ce0fcc75740e25
+result:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/result.json
+  file_sha256: 2213038d10cecea427eb5c82a3b8a0b4f950ad9ae6bd3a46568170f993e0089d
+  registered_result_sha256: cca1e5d978038bd2f8eafff606fe3d492a9491578c86aad93d1898064ec115ae
+audit:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/audit.json
+  file_sha256: 4c2848fd5d2686e18e41d2aa7b5e51687f797fe95291facf99f4be24d33a7cdd
+dataset_spec:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/dataset_spec.json
+  file_sha256: 4789bbc92839ebf00a57822aaf80cf00f5b91b357b6cad1974acde96aedcff62
+  canonical_sha256: c4d2883d78aa1a644a44959511d98c47795e6c37307d19f302a58dbcdf80039b
+dataset_manifest:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/dataset_manifest.json
+  file_sha256: 6a5d9598033ef2f05d742159fd87c28557cae347a169aec6c80f26d207b2ca3f
+label_schema:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/label_schema.json
+  file_sha256: 220bcadd67de52d7de9127265939492a757154fc6b4266229953ebccf2c60796
+  canonical_sha256: 1c9973497dfc7bfd6d06373943e91de79cd2f16bc43fb9b16b8c009d44500acd
+role_schema:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/role_schema.json
+  file_sha256: 753d109aa165cbaa898a8b2975a45b228701d7a6a703f900f184d5981ea11e81
+  canonical_sha256: de0ffe5dda05549486567cb9eb3a3a0dfbb04c4f067b3779e3d6512bafbbb11c
+derivation_contract:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/derivation_contract.json
+  file_sha256: 854246faf5319f945e05f7a64f217ed8b140451adbf46d0d22b6d7e277ed2ec4
+  canonical_sha256: 10b1e434f0306e092d3f6df83a6642007e48a74701572daafc1d0a4e202cc448
+data_access:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/data_access.json
+  file_sha256: 19ad77e3c3b1e66529ced370867b3cc8ae7c0ba448a1507c2d39778b73cbd7fe
+source_receipt:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/source_receipt.json
+  file_sha256: 781ad55dc35dad7e7b636033839cb1ef29a6f307bd74e660026b71647f361a9f
+  bundle_sha256: ed941e1bd00a1c0b899e2bf60e121259e6b91fed165b3560522ef899c50b74f4
+artifact_manifest:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/artifact_manifest.json
+  file_sha256: 80465e1cf7547b733a9a52bdd04bfe614b7406957e6d43a836a959c438dadfe4
+  canonical_sha256: 08c46f2b14ee1fc0e05eb7b3eff941da3b067fca8c231ac98a21a3f29ef78d9f
+completion_receipt:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/completion_receipt.json
+  file_sha256: 4601f8c74ad9b150b5420e3c6a4d77338f00654d6e1d2e6ba6f779ebaf1b7951
+  canonical_sha256: 95f7a71be363983d4e92fdcce9a51dd8af899912507d24b6f42eb5ff7cd70ab9
+v67_summary:
+  audit_checks_passed: 15
+  audit_checks_total: 15
+  projected_label_rows: 41820
+  complete_h1_rows: 41714
+  incomplete_h1_rows_preserved: 106
+  eligible_v62_train_rows_scanned: 34934
+  admitted_gate_role_rows: 34874
+  gate_train_rows: 29700
+  gate_internal_validation_rows: 5174
+  split_boundary_rows_embargoed: 60
+  gate_train_last_signal_date: '2024-06-28'
+  gate_train_maximum_maturity: '2024-06-30'
+  gate_internal_validation_first_signal_date: '2024-07-01'
+  gate_internal_validation_last_signal_date: '2024-12-23'
+  labels_sha256: d2aa57b78692ca423143210afa6d90b6b0e314165b3bd2ad4fe5f8ac58b29839
+  sequence_roles_sha256: 8eed8ef8a6b61a91ea07a0a056c2a7c56de42e950c3b91384a9f37985aaa3041
+  authorized_metadata_reads: 18
+  authorized_parquet_deserializations: 2
+  authorized_parquet_writes: 4
+  loaded_2025_or_later_values: 0
+  scaler_fits: 0
+  model_instantiations: 0
+  optimizer_steps: 0
+  checkpoint_reads: 0
+  predictions: 0
+  performance_metrics: 0
+  pnl_evaluations: 0
+  target_asset_loads: 0
+  byte_identical_replay: true
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false
+authorized_next_action: authorize_v68_frozen_non_target_v64_r2_gate_training_only

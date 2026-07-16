@@ -1,0 +1,355 @@
+schema_version: 1
+phase: v83
+stage_revision: v083_frozen_non_target_low_turnover_rank_training_r2
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+status: dataset_passed_training_authorized
+evidence_tier: causal_non_target_training_only
+
+parent_experiment:
+  path: research/experiments/v083.yaml
+  file_sha256: 28d12bb5c70a0f2ae32ffbd234484837d241d48937194acaed78b5d56258f278
+preceding_phase_contract:
+  path: research/phase_contracts/v082.yaml
+  file_sha256: 939c55c760ab47e0157e2da04b3502aca9a003de3c5e91772c276b762977b378
+authorization_receipt:
+  path: artifacts/v82_low_turnover_rank_dataset/result.json
+  file_sha256: 00309bcb4691701f42ddeb061edb7412526ceeca8066f9c0b136dd1126137cd2
+  registered_result_sha256: 87d0b0dcd5e6b6b07be6572e73eb53eb2dffbddfc2b8c254d2144eb2f67cc0e6
+  decision: authorize_v83_frozen_non_target_low_turnover_rank_training_only
+
+authorized_next_action: authorize_v83_frozen_non_target_low_turnover_rank_training_only
+authorized_command: >-
+  PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+  low-turnover-rank-training
+  --config configs/v83_low_turnover_rank_training.yaml
+pass_action: authorize_v84_outcome_blind_low_turnover_rank_evaluation_prepare_only
+failure_action: retire_low_turnover_rank_family_without_evaluation_or_target_access
+
+contract_repair:
+  supersedes_revision: v083_frozen_non_target_low_turnover_rank_training_r1
+  trigger: deterministic_mps_feature_layer_norm_backward_nonfinite
+  timing: after_authorized_smoke_failure_before_any_optimizer_step_checkpoint_write_or_full_training
+  allowed_change_scope: algebraically_equivalent_feature_layer_norm_evaluation_only
+  architecture_parameter_objective_grid_sampling_scaler_and_hyperparameters_changed: false
+  observed_before_repair:
+    development_parquet_deserializations: 2
+    fold_feature_scaler_fits: 1
+    fold_target_scale_fits: 1
+    model_instantiations: 1
+    optimizer_steps: 0
+    checkpoint_writes: 0
+    predictions_positions_metrics_pnl_bootstrap_outcome_or_target_access: 0
+
+access_contract:
+  output_dir: artifacts/v83_low_turnover_rank_training
+  checkpoint_dir: data/checkpoints/v83_low_turnover_rank_training
+  smoke_checkpoint_dir: data/checkpoints/v83_low_turnover_rank_smoke
+  allowed_inputs:
+    - artifacts/v80_low_turnover_rank_spec/blueprint.json
+    - artifacts/v81_low_turnover_rank_harness/result.json
+    - artifacts/v81_low_turnover_rank_harness/audit.json
+    - artifacts/v81_low_turnover_rank_harness/harness_spec.json
+    - artifacts/v82_low_turnover_rank_dataset/result.json
+    - artifacts/v82_low_turnover_rank_dataset/audit.json
+    - artifacts/v82_low_turnover_rank_dataset/dataset_spec.json
+    - artifacts/v82_low_turnover_rank_dataset/dataset_manifest.json
+    - artifacts/v82_low_turnover_rank_dataset/feature_schema.json
+    - artifacts/v82_low_turnover_rank_dataset/source_receipt.json
+    - artifacts/v82_low_turnover_rank_dataset/replay_receipt.json
+    - artifacts/v82_low_turnover_rank_dataset/artifact_manifest.json
+    - artifacts/v82_low_turnover_rank_dataset/data_access.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - research/waivers/v083_external_backup_owner_waiver.json
+    - data/processed/low_turnover_rank_development_features_v82.parquet
+    - data/processed/low_turnover_rank_development_labels_v82.parquet
+  allowed_capabilities:
+    - verify_exact_v80_v81_v82_and_v32_receipts
+    - deserialize_only_projected_non_target_development_train_and_internal_validation_values
+    - fit_one_train_only_median_iqr_feature_scaler_and_excess_rms_per_fold
+    - instantiate_fresh_frozen_low_turnover_rank_model_per_fold_seed
+    - train_exactly_nine_jobs_on_apple_mps_float32
+    - early_stop_only_on_frozen_internal_validation_objective
+    - retain_every_registered_checkpoint_without_selection
+    - verify_interrupted_resume_complete_grid_and_zero_step_replay
+  required_checks:
+    - all_input_phase_contract_source_and_data_hashes_match
+    - clean_committed_git_and_registered_storage_policy
+    - mps_float32_finite_and_fallback_disabled
+    - exact_nine_fold_seed_jobs_and_fresh_initialization
+    - exact_train_and_internal_validation_roles_only
+    - one_train_only_feature_scaler_and_target_scale_per_fold
+    - heldout_fold_assets_evaluation_packet_and_2025_values_are_absent
+    - exact_registered_architecture_objective_and_sampling
+    - smoke_interrupted_resume_matches_uninterrupted
+    - all_nine_checkpoints_retained_and_semantically_verified
+    - replay_creates_zero_jobs_optimizer_steps_or_checkpoint_rewrites
+    - no_prediction_position_policy_performance_pnl_outcome_or_target_access
+  forbidden_capabilities:
+    - target_asset_access
+    - evaluation_feature_or_sealed_outcome_packet_access
+    - heldout_fold_asset_training_validation_or_scaler_fit
+    - prior_family_or_checkpoint_weight_scaler_optimizer_or_state_reuse
+    - architecture_objective_size_seed_fold_sampling_or_hyperparameter_change
+    - prediction_position_policy_or_portfolio_generation
+    - performance_metric_pnl_or_bootstrap
+    - outcome_packet_or_outcome_source_read
+    - seed_fold_checkpoint_or_epoch_selection_for_economic_use
+    - v84_implementation_or_evaluation
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v80_low_turnover_rank_spec/blueprint.json: d877adf553c6ba54e51302cdb058c361e15817daf16034e2744ed10a46d64abb
+    artifacts/v81_low_turnover_rank_harness/result.json: 7b8bf900d1283b3072dfa4a93f342b7fa2b96ba0312e52bdf108d0d2144f1a1f
+    artifacts/v81_low_turnover_rank_harness/audit.json: 9b14b40c021f742a2e8625e1ef42b10152924acdf9776e7efffab77b867176a2
+    artifacts/v81_low_turnover_rank_harness/harness_spec.json: 45b90b5e91ce973441373412bf20784cf4eb6c0b40c69be11e3392d919816600
+    artifacts/v82_low_turnover_rank_dataset/result.json: 00309bcb4691701f42ddeb061edb7412526ceeca8066f9c0b136dd1126137cd2
+    artifacts/v82_low_turnover_rank_dataset/audit.json: 9b02298ac42339c903543eea0800b64d706850f81804b161193927ccaf336729
+    artifacts/v82_low_turnover_rank_dataset/dataset_spec.json: ccdd859a1db68a9cd42eb2f2b104a78e1d28344271c37bae53817370a088a86f
+    artifacts/v82_low_turnover_rank_dataset/dataset_manifest.json: 3520c4fd0c6c8581c15f6fb4458f2e1840313163473c47d96eedc8c59c81aa2d
+    artifacts/v82_low_turnover_rank_dataset/feature_schema.json: 565bcfe0b4b9e392c16e7d9359e243b36cb2998f39cca38ea2ec98f38f273114
+    artifacts/v82_low_turnover_rank_dataset/source_receipt.json: 827dae11fd56d07f46e6b3de30ab114dc15d393a596ca35796de115eded42e41
+    artifacts/v82_low_turnover_rank_dataset/replay_receipt.json: c8794a8e3a71967ccabadbf947d6eb57dcc14ff1db684db09501e945eee36b42
+    artifacts/v82_low_turnover_rank_dataset/artifact_manifest.json: 522f5390059235260cd0b8b5e03613ba25c46be3f61459897971a00b8c7dac67
+    artifacts/v82_low_turnover_rank_dataset/data_access.json: 64fb2e48377247a4506fd80dbe3025b4b5908b45d31d027d54915662bba1b313
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    research/waivers/v083_external_backup_owner_waiver.json: cbed9db0d2f87993adc9ca26b4e35f6a68c630328939952202a8aee9f0274c05
+    data/processed/low_turnover_rank_development_features_v82.parquet: 122e5efc624d6d1c7f5c610c19707b007dc551c59182a82d196a1a52840a7139
+    data/processed/low_turnover_rank_development_labels_v82.parquet: 0b3ffb0e1448352919ba669a3a674733d4a3f46448a02ce4db7fffdcbad8700e
+  expected_canonical_sha256:
+    v80_blueprint: 3b080b6cfcea2be6ef2a3347397e7f669573870abba0f6966bc3eb76eeb1d649
+    v82_result: 87d0b0dcd5e6b6b07be6572e73eb53eb2dffbddfc2b8c254d2144eb2f67cc0e6
+    v82_dataset_spec: bf16e41d1ff414c7d6f0d3df74b49288ed76e778d5827061b2f5443c74bc7ee6
+    v82_dataset_manifest: 7d3131f17de5fdfbd294c34f6c92ae905ebe413421a1af551e427e177f290692
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  non_target_symbol_count: 30
+  fold_count: 3
+  seed_count: 3
+  expected_jobs: 9
+  lookback_days: 128
+  triplet_size: 3
+
+data_and_role_contract:
+  feature_projection:
+    - date
+    - symbol
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+    - sequence_start_date
+    - sequence_ready
+  label_projection:
+    - signal_date
+    - symbol
+    - role
+    - target_21d_open_to_open_log_return
+    - label_complete
+    - sequence_ready
+    - eligible_fold_1
+    - eligible_fold_2
+    - eligible_fold_3
+  train_role: train
+  internal_validation_role: internal_validation
+  internal_validation_is_clean_evidence: false
+  maximum_signal_date: '2024-11-18'
+  any_2025_or_later_value_allowed: false
+  heldout_fold_symbols: forbidden
+  missing_data: preserve_without_imputation
+
+feature_and_scaler_contract:
+  model_feature_order:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  scaler_count: 3
+  one_scaler_per_fold: true
+  shared_across_three_seeds_within_fold: true
+  fit_role: eligible_train_sequence_feature_cells_only
+  statistics_dtype: float64
+  location: median
+  scale: interquartile_range
+  scale_floor: 1.0e-6
+  application_dtype: float32
+  target_scale: complete_lexical_train_triplet_excess_rms
+  target_scale_floor: 1.0e-6
+
+sampling_contract:
+  train: six_disjoint_lexical_triplets_per_signal_date_per_epoch
+  train_rotation: date_ordinal_plus_epoch_modulo_10
+  train_samples_per_epoch: 12120
+  validation: all_ten_rotations_six_disjoint_triplets_per_signal_date
+  fixed_validation_samples: 19380
+  seed_dependent_sampling: false
+  exact_registered_v32_triplets_only: true
+
+model_and_objective_contract:
+  architecture:
+    input_shape: [null, 128, 3, 8]
+    temporal_channels: 32
+    dilations: [1, 2, 4, 8, 16, 32]
+    kernel_size: 3
+    dropout: 0.1
+    expected_parameter_count: 10993
+  point_loss: smooth_l1_centered_score_to_scaled_excess_beta_1
+  pairwise_loss: logistic_all_three_pairs_ignore_exact_ties
+  pairwise_weight: 0.5
+  early_stopping_monitor: internal_validation_total_objective
+  pnl_turnover_or_outcome_weighting: false
+
+grid_optimizer_and_runtime_contract:
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  expected_jobs: 9
+  all_jobs_retained_without_selection: true
+  initialization: fresh_registered_seed
+  prior_checkpoint_reuse: none
+  device: mps
+  dtype: float32
+  deterministic_algorithms: true
+  mps_fallback_allowed: false
+  optimizer:
+    name: AdamW
+    learning_rate: 0.001
+    betas: [0.9, 0.999]
+    epsilon: 1.0e-8
+    weight_decay: 0.0001
+  batch_size: 256
+  train_samples_per_epoch: 12120
+  fixed_validation_samples: 19380
+  maximum_epochs: 100
+  early_stopping_patience: 10
+  early_stopping_minimum_delta: 1.0e-6
+  gradient_clip_norm: 1.0
+  hyperparameter_search_allowed: false
+  seed_fold_or_epoch_selection_allowed: false
+
+runtime_contract:
+  device: mps
+  dtype: float32
+  amp: false
+  cpu_fallback_allowed: false
+  pytorch_enable_mps_fallback: '0'
+  deterministic_algorithms: true
+  torch_threads: 10
+  dataloader_workers: 0
+  maximum_active_optimizer_jobs: 1
+  process_lock: data/checkpoints/.v83_low_turnover_rank_training.lock
+  clean_committed_git_required: true
+  minimum_free_gib: 10
+  expected_checkpoint_storage_gib_upper_bound: 1
+  external_backup_receipt_required: false
+  backup_policy:
+    mode: owner_waiver
+    waiver:
+      path: research/waivers/v083_external_backup_owner_waiver.json
+      file_sha256: cbed9db0d2f87993adc9ca26b4e35f6a68c630328939952202a8aee9f0274c05
+    waived_safeguards:
+      - external_input_copy
+      - external_code_copy
+      - external_checkpoint_copy
+  full_phase_order: [doctor, preflight, smoke, full, verify, replay]
+
+checkpoint_and_replay_contract:
+  expected_final_checkpoint_count: 9
+  checkpoint_selection: lowest_internal_validation_objective_per_fold_seed
+  all_checkpoints_retained_without_seed_or_fold_selection: true
+  resume_only_same_job_phase_and_epoch: true
+  cross_job_resume_allowed: false
+  interrupted_resume_smoke_required: true
+  semantic_roundtrip_required: true
+  complete_grid_manifest_required: true
+  zero_step_replay_required: true
+
+checkpoint_contract:
+  cross_job_resume_allowed: false
+
+smoke_contract:
+  fold: 1
+  seed: 42
+  train_samples_per_epoch: 128
+  fixed_validation_samples: 128
+  batch_size: 32
+  maximum_epochs: 2
+  early_stopping_patience: 2
+  interrupt_after_completed_epoch: 1
+
+artifact_contract:
+  output_dir: artifacts/v83_low_turnover_rank_training
+  checkpoint_dir: data/checkpoints/v83_low_turnover_rank_training
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - training_spec.json
+    - scaler_manifest.json
+    - grid_manifest.json
+    - checkpoint_manifest.json
+    - history_manifest.json
+    - data_access.json
+    - preflight.json
+    - smoke.json
+    - smoke_data_access.json
+    - training_result.json
+    - verification.json
+    - replay_receipt.json
+    - backup_policy_receipt.json
+    - operator_packet_doctor.json
+    - operator_packet_smoke.json
+    - operator_packet_full.json
+    - operator_packet_verify.json
+    - operator_packet_replay.json
+    - result.json
+    - audit.json
+    - report.md
+    - completion_receipt.json
+    - artifact_manifest.json
+  checkpoint_files_required: 9
+  deterministic_zero_step_replay_required: true
+
+data_access_ledger_contract:
+  outcome_rows_read: 0
+  target_assets_loaded: []
+  heldout_fold_symbols_loaded_by_job: []
+  forbidden_columns_loaded: []
+  previous_checkpoints_loaded: []
+  predictions_written: false
+  policy_actions_emitted: false
+  performance_metrics_computed: false
+  pnl_computed: false
+  hyperparameters_changed: false
+
+operator_enforcement_contract:
+  expected_job_grid_source: reconstruct_from_grid_optimizer_and_runtime_contract
+  authorized_operations: [doctor, smoke, full, verify, replay]
+  operation_order: [doctor, smoke, full, verify, replay]
+  preflight_precedes_smoke: true
+
+commands:
+  doctor: PYTHONPATH=src python3 -m tlm research-doctor
+  preflight: PYTHONPATH=src python3 -m tlm low-turnover-rank-training-preflight --config configs/v83_low_turnover_rank_training.yaml
+  smoke: PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm low-turnover-rank-training-smoke --config configs/v83_low_turnover_rank_training.yaml
+  full: PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm low-turnover-rank-training --config configs/v83_low_turnover_rank_training.yaml
+  verify: PYTHONPATH=src python3 -m tlm low-turnover-rank-training-verify --config configs/v83_low_turnover_rank_training.yaml
+  replay: PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm low-turnover-rank-training-replay --config configs/v83_low_turnover_rank_training.yaml
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+stop_condition: stop_after_v83_training_gate_before_any_v84_implementation_evaluation_or_outcome_access
+seed: 20260716

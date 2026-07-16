@@ -1,0 +1,27 @@
+{
+  "authorization_date": "2026-07-15",
+  "authorization_scope": {
+    "allowed": [
+      "register_exact_three_preexisting_v63_ranker_excess_rms_values",
+      "register_metadata_access_incident",
+      "replace_v70_registration_anchor_with_post_amendment_commit"
+    ],
+    "forbidden": [
+      "outcome_access",
+      "retuning",
+      "target_asset_access",
+      "architecture_change",
+      "objective_change",
+      "policy_change",
+      "threshold_change",
+      "cost_change"
+    ]
+  },
+  "authorization_text": "Autorizo a emenda V70-R1 metadata-only, registrando os três ranker_excess_rms congelados, o incidente de acesso e uma nova âncora prospectiva, sem outcomes, retuning, targets ou mudança de política.",
+  "authorized_by": "repository_owner",
+  "family_id": "tlm_decoupled_rank_state_probabilistic_gate_v2",
+  "lineage_label": "V64-R2",
+  "phase": "v70",
+  "schema_version": "v70-r1-owner-authorization/v1",
+  "authorization_sha256": "4924c747b77d770f55bc729fc64f5b145f19a9f7dcf7b527b53c9e601ad2b9db"
+}

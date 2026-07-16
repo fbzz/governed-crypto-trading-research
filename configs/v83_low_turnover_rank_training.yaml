@@ -1,0 +1,60 @@
+seed: 20260716
+
+low_turnover_rank_training:
+  version: v83
+  project_root: .
+  research_state: research/current.yaml
+  phase_contract: research/phase_contracts/v083.yaml
+  inputs:
+    v80_blueprint: artifacts/v80_low_turnover_rank_spec/blueprint.json
+    v81_result: artifacts/v81_low_turnover_rank_harness/result.json
+    v81_audit: artifacts/v81_low_turnover_rank_harness/audit.json
+    v81_harness_spec: artifacts/v81_low_turnover_rank_harness/harness_spec.json
+    v82_result: artifacts/v82_low_turnover_rank_dataset/result.json
+    v82_audit: artifacts/v82_low_turnover_rank_dataset/audit.json
+    v82_dataset_spec: artifacts/v82_low_turnover_rank_dataset/dataset_spec.json
+    v82_dataset_manifest: artifacts/v82_low_turnover_rank_dataset/dataset_manifest.json
+    v82_feature_schema: artifacts/v82_low_turnover_rank_dataset/feature_schema.json
+    v82_source_receipt: artifacts/v82_low_turnover_rank_dataset/source_receipt.json
+    v82_replay_receipt: artifacts/v82_low_turnover_rank_dataset/replay_receipt.json
+    v82_artifact_manifest: artifacts/v82_low_turnover_rank_dataset/artifact_manifest.json
+    v82_data_access: artifacts/v82_low_turnover_rank_dataset/data_access.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v83_owner_waiver: research/waivers/v083_external_backup_owner_waiver.json
+    development_features: data/processed/low_turnover_rank_development_features_v82.parquet
+    development_labels: data/processed/low_turnover_rank_development_labels_v82.parquet
+  source_receipt_files:
+    - .gitignore
+    - configs/v83_low_turnover_rank_training.yaml
+    - research/current.yaml
+    - research/experiments/v083.yaml
+    - research/phase_contracts/v083.yaml
+    - research/waivers/v083_external_backup_owner_waiver.json
+    - .agents/skills/tlm-research-governor/scripts/govern.py
+    - .agents/skills/tlm-loop-engineer/scripts/phase_guard.py
+    - .agents/skills/tlm-training-operator/SKILL.md
+    - .agents/skills/tlm-training-operator/references/operator-contract.md
+    - .agents/skills/tlm-training-operator/scripts/build_training_packet.py
+    - .agents/skills/tlm-training-operator/scripts/validate_training_packet.py
+    - src/tlm/__init__.py
+    - src/tlm/__main__.py
+    - src/tlm/core/__init__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/low_turnover_rank_model.py
+    - src/tlm/low_turnover_rank_training.py
+    - src/tlm/low_turnover_rank_training_data.py
+    - src/tlm/low_turnover_rank_training_engine.py
+    - src/tlm/research_workflow.py
+    - src/tlm/state_conditioned_multi_horizon_training_engine.py
+    - tests/test_low_turnover_rank_training.py
+    - tests/test_low_turnover_rank_training_data.py
+    - tests/test_low_turnover_rank_training_engine.py
+    - tests/test_v83_phase_registration.py
+    - Makefile
+    - pyproject.toml
+  require_clean_git: true
+
+output_dir: artifacts/v83_low_turnover_rank_training
+checkpoint_dir: data/checkpoints/v83_low_turnover_rank_training
+smoke_checkpoint_dir: data/checkpoints/v83_low_turnover_rank_smoke

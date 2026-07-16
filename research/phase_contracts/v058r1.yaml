@@ -1,0 +1,532 @@
+schema_version: 1
+phase: v58
+revision: v058r1
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+status: frozen_before_scaler_fit_model_instantiation_or_optimizer
+evidence_tier: causal_non_target_training_only
+
+supersedes:
+  path: research/phase_contracts/v058.yaml
+  file_sha256: 23883bb354d8bb479778435188fb58962bf43b03f431981e4b963a674a09d868
+  allowed_change_scope: external_storage_redundancy_only
+operational_waiver:
+  path: research/waivers/v058r1_external_backup_owner_waiver.json
+  file_sha256: 067f23f39937e00c5b9ce40a0248c1683bc9329e195fb10bd9ffd24b69b7e6f9
+
+parent_experiment:
+  path: research/experiments/v057.yaml
+  file_sha256: b41f2e1f175a3e11efe231521131dccfdb65917247234e58a30ba3b83869c303
+preceding_phase_contract:
+  path: research/phase_contracts/v057.yaml
+  file_sha256: 84ee2400d47d96a0b0ce77f61d6e9b8afb39a8580a9597a6536360e7eec747a8
+authorization_receipt:
+  path: artifacts/v57_non_target_multi_horizon_dataset/result.json
+  file_sha256: 6bb1dcfddcc9198e1d75305af9fb983e2ddaca28bafa2acc64c58ba8a7147992
+  registered_result_sha256: 9c9bc12c9fd5b72fc4cbaf9fe6f3a7265600c360206a735a5ddb59173b3b8534
+v55_blueprint:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+  file_sha256: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+  canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+
+authorized_next_action: authorize_v58_frozen_non_target_training_only
+authorized_command: >-
+  PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+  state-conditioned-multi-horizon-training
+  --config configs/v58_state_conditioned_multi_horizon_training.yaml
+pass_action: authorize_v59_frozen_adaptive_development_evaluation_only
+failure_action: keep_v59_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v58_state_conditioned_multi_horizon_training
+  checkpoint_dir: data/checkpoints/v58_state_conditioned_multi_horizon_training
+  smoke_checkpoint_dir: data/checkpoints/v58_state_conditioned_multi_horizon_smoke
+  allowed_inputs:
+    - artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/result.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/audit.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/harness_spec.json
+    - artifacts/v57_non_target_multi_horizon_dataset/result.json
+    - artifacts/v57_non_target_multi_horizon_dataset/audit.json
+    - artifacts/v57_non_target_multi_horizon_dataset/dataset_spec.json
+    - artifacts/v57_non_target_multi_horizon_dataset/dataset_manifest.json
+    - artifacts/v57_non_target_multi_horizon_dataset/label_schema.json
+    - artifacts/v57_non_target_multi_horizon_dataset/source_receipt.json
+    - artifacts/v57_non_target_multi_horizon_dataset/completion_receipt.json
+    - artifacts/v57_non_target_multi_horizon_dataset/artifact_manifest.json
+    - artifacts/v57_non_target_multi_horizon_dataset/data_access.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+    - data/processed/state_conditioned_multi_horizon_sequence_roles_v57.parquet
+  allowed_capabilities:
+    - fit_train_only_feature_scaler_per_origin_geometry_fold
+    - instantiate_exact_v55_model_with_fresh_registered_seed
+    - train_exact_thirty_six_job_non_target_grid_on_mps
+    - retain_every_checkpoint_without_selection
+    - resume_only_same_job_at_epoch_boundary
+    - verify_checkpoint_roundtrips_and_zero_step_replay
+  forbidden_capabilities:
+    - target_asset_access
+    - heldout_fold_asset_scaler_fit_training_or_validation
+    - job_relative_development_evaluation_value_or_flag_access
+    - previous_checkpoint_or_representation_reuse
+    - hyperparameter_or_grid_change
+    - prediction_or_policy_generation
+    - performance_metric_or_pnl
+    - v59_implementation_or_evaluation
+  required_checks:
+    - all_input_phase_contract_and_source_hashes_match
+    - clean_committed_git_and_bound_owner_storage_waiver
+    - mps_float32_deterministic_fallback_disabled
+    - exact_thirty_six_job_cartesian_grid
+    - exact_role_relative_parquet_projection_and_row_scope
+    - train_only_scalers_and_no_target_or_heldout_assets
+    - no_job_relative_development_evaluation_values_or_flags_loaded
+    - exact_sequence_scaling_sampling_and_early_stopping_contract
+    - all_jobs_fresh_seed_and_all_checkpoints_retained
+    - smoke_interrupted_resume_matches_uninterrupted
+    - checkpoint_roundtrip_and_grid_complete
+    - replay_creates_zero_jobs_and_zero_optimizer_steps
+    - no_prediction_performance_or_pnl
+
+input_contract:
+  expected_sha256:
+    v55_blueprint: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+    v56_result: 40c1647986ed970804f4c6cc001de33ccb17e7f12887d6f6cef24abebf91d437
+    v56_audit: be799436c0a91eaff356d76640554d3412163b6e47085a72bb62931a75654d77
+    v56_harness_spec: 0d24ebeb412474f61b4f6de97ea2f251ce755b5972d5ae1961beecfb18c9fc29
+    v57_result: 6bb1dcfddcc9198e1d75305af9fb983e2ddaca28bafa2acc64c58ba8a7147992
+    v57_audit: cfcbf3a691fc8dc4e1f89e603feff546726da08b2ac7f33f18e93dde97fb1416
+    v57_dataset_spec: 35656e049d47d099b3861674ddb3602bbca45e038f6e3e9ea3b9bcc80bab8c78
+    v57_dataset_manifest: a4d339ca8ec8f7c59e9c1d62f82b80778457b2ad5d231ecad2ed190f124af29d
+    v57_label_schema: 7fbe744584f5e62151b2162329f547f9dbb80d40319e10d719f628b19c4a9fbb
+    v57_source_receipt: 16427f671fe0e81a8877e0b4cf0a64ad3f58137234400c295fe4ca4c11947497
+    v57_completion_receipt: f9dfeb4bed40941e7dd0d1ee887cfe2bbca83cb092e2fdc8c11226ea6cac2a2a
+    v57_artifact_manifest: 80e540178ad0628a0c13ca57b18dbfe9fc4c277844b7788c014aefa426e08001
+    v57_data_access: 164c860f3b4ba66ed5bc782066e769ab6527b0a6b63269d77d621a0c0d7fa369
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    feature_panel: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    labels: 6d12e9d49f1be807a1eba5596295fa40f43c3d89745a9a39f3e3f42d76544f50
+    sequence_roles: 1f12eff301984943d0a907e55b33aa65618cf2977f88bb318610f3cfebc52860
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  non_target_symbol_count: 30
+  fold_count: 3
+  lookback_days: 256
+  triplet_size: 3
+
+parquet_access_contract:
+  file_hashing: byte_stream_only_without_parquet_deserialization
+  access_definition: values_materialized_into_python_arrow_pandas_numpy_or_torch_objects
+  footer_and_predicate_evaluation_are_not_outcome_value_access: true
+  physical_row_group_isolation_claimed: false
+  full_table_materialization_then_filtering_allowed: false
+  role_semantics: relative_to_current_origin_geometry_fold_job
+  same_calendar_row_may_have_a_later_origin_role: true
+  panel_projection:
+    - date
+    - symbol
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  label_projection:
+    - date
+    - symbol
+    - target_h7_maturity_date
+    - target_h1_open_to_open_log_return
+    - target_h3_open_to_open_log_return
+    - target_h7_open_to_open_log_return
+    - multi_horizon_label_complete
+  sequence_base_projection: [date, sequence_start_date, symbol]
+  sequence_role_projection_per_job:
+    - exact_registered_train_flag
+    - exact_registered_validation_flag
+  forbidden_column_patterns:
+    - development_evaluation
+    - target_next_open_to_next_open_log_return
+    - target_realized_volatility_7d
+  row_filters_per_job:
+    symbols: exact_fold_train_symbols_only
+    sequence_rows: exact_train_or_validation_role_true
+    label_rows: exact_role_filtered_signal_keys_only
+    feature_rows: exact_union_of_registered_256_day_context_keys
+    maximum_signal_date: exact_current_job_validation_signal_end
+    heldout_fold_symbols: forbidden_in_train_validation_context_and_scaler
+  required_access_receipts:
+    - projected_columns_per_input
+    - materialized_date_min_max_per_role
+    - materialized_symbols_per_role
+    - train_validation_signal_key_counts
+    - feature_context_key_count
+    - forbidden_column_count_zero
+    - job_relative_development_evaluation_value_count_zero
+    - target_asset_load_count_zero
+
+fold_and_sequence_contract:
+  train_symbols_source: exact_v32_asset_folds_train_symbols
+  validation_symbols_source: exact_same_fold_train_symbols
+  train_triplets_source: exact_v32_triplet_catalog_train_triplets
+  validation_triplets_source: exact_same_fold_train_triplets
+  test_symbols_or_triplets_allowed_in_scaler_train_or_validation: false
+  asset_order: lexical_ascending
+  feature_order:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+    - within_triplet_relative_strength
+  time_order: utc_daily_ascending
+  sequence_start: exact_registered_sequence_start_date
+  sequence_end: signal_date_inclusive
+  required_calendar_rows: 256
+  skipping_missing_dates_or_tail_selection_allowed: false
+  missing_value_imputation_or_repair_allowed: false
+  eligible_pair: all_three_symbols_have_exact_role_and_complete_h1_h3_h7_labels
+
+scaler_contract:
+  count: 12
+  identity: origin_geometry_fold_shared_across_three_seeds
+  fit_role: train_only
+  fit_symbols: exact_fold_train_symbols
+  fit_population: unique_finite_train_symbol_signal_date_cells_within_exact_train_signal_range
+  duplicate_context_weighting_allowed: false
+  base_feature_row_rule: all_eight_base_features_finite
+  statistics_dtype: float64
+  mean: arithmetic_population_mean_per_base_feature
+  standard_deviation: population_ddof_zero_per_base_feature
+  nonfinite_statistic_action: fail
+  exactly_zero_standard_deviation_replacement: 1.0
+  validation_or_evaluation_fit_allowed: false
+  application_dtype: float32
+  relative_feature:
+    formula: raw_asset_log_close_to_close_return_minus_raw_equal_weight_triplet_mean
+    scale: same_cell_log_close_to_close_return_population_standard_deviation
+    subtract_base_feature_mean: false
+  target:
+    source_dtype: float64
+    tensor_dtype: float32
+    scaling: none
+    clipping: false
+    nonfinite_active_value_action: fail
+  required_receipt_fields:
+    - origin
+    - geometry
+    - fold
+    - fit_symbol_count
+    - fit_unique_symbol_date_count
+    - fit_min_date
+    - fit_max_date
+    - mean
+    - standard_deviation
+    - zero_scale_replacements
+    - scaler_sha256
+
+model_and_objective_contract:
+  architecture_source: exact_v55_blueprint
+  architecture_canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+  parameter_count: 465513
+  input_shape: [null, 256, 3, 9]
+  input_dtype: float32
+  output_shape: [null, 3, 3, 3]
+  initialization: fresh_per_registered_job_seed
+  prior_checkpoint_or_representation_reuse: false
+  loss_implementation: raw_multi_horizon_quantile_loss_from_v56
+  loss_weights: {pinball: 1.0, ranking: 0.5, crossing: 0.1}
+  ranknet_horizon_quantile: h7_q50
+  ranknet_tie_tolerance: 1.0e-12
+  quantile_crossing_reduction: mean_batch_asset_horizon_of_sum_adjacent_relu
+  target_scaling: none
+  target_clipping: false
+  outcome_weighting: false
+
+sampling_contract:
+  unit: exact_lexical_triplet_on_eligible_signal_date
+  candidate_order: date_then_lexical_triplet_ascending
+  distribution: uniform_over_flattened_eligible_date_triplet_pairs
+  replacement: true
+  generator: numpy_default_rng_pcg64
+  train_seed_derivation: >-
+    first_eight_big_endian_bytes_of_sha256_canonical_json_array
+    [20260714,"v58",origin,geometry,fold,job_seed,"train",epoch]
+  validation_seed_derivation: >-
+    first_eight_big_endian_bytes_of_sha256_canonical_json_array
+    [20260714,"v58",origin,geometry,fold,20260714,"validation",0]
+  validation_is_identical_across_job_seeds: true
+  validation_epoch: 0
+  train_samples_per_epoch: 8192
+  fixed_validation_samples: 2048
+  batch_size: 128
+  sample_receipt: canonical_ordered_draw_list_sha256
+
+grid_contract:
+  origins: [origin_2024, origin_2025]
+  geometries: [expanding, rolling]
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  expected_jobs: 36
+  job_key_order: origin_geometry_fold_seed
+  selected_or_discarded_jobs_allowed: false
+  origin_roles:
+    origin_2024:
+      expanding:
+        train_flag: eligible_origin_2024_expanding_train
+        validation_flag: eligible_origin_2024_expanding_validation
+        train_signal_range: ['2021-03-01', '2022-12-23']
+        validation_signal_range: ['2023-01-01', '2023-12-23']
+      rolling:
+        train_flag: eligible_origin_2024_rolling_train
+        validation_flag: eligible_origin_2024_rolling_validation
+        train_signal_range: ['2022-01-01', '2022-12-23']
+        validation_signal_range: ['2023-01-01', '2023-12-23']
+    origin_2025:
+      expanding:
+        train_flag: eligible_origin_2025_expanding_train
+        validation_flag: eligible_origin_2025_expanding_validation
+        train_signal_range: ['2021-03-01', '2023-12-23']
+        validation_signal_range: ['2024-01-01', '2024-12-23']
+      rolling:
+        train_flag: eligible_origin_2025_rolling_train
+        validation_flag: eligible_origin_2025_rolling_validation
+        train_signal_range: ['2023-01-01', '2023-12-23']
+        validation_signal_range: ['2024-01-01', '2024-12-23']
+
+optimizer_and_early_stopping_contract:
+  optimizer: AdamW
+  learning_rate: 0.0003
+  betas: [0.9, 0.999]
+  epsilon: 1.0e-8
+  weight_decay: 0.0001
+  amsgrad: false
+  foreach: false
+  fused: false
+  capturable: false
+  maximize: false
+  differentiable: false
+  scheduler: none
+  gradient_clip_norm: 1.0
+  gradient_clip_norm_type: 2.0
+  gradient_clip_error_if_nonfinite: true
+  maximum_epochs: 30
+  validation_mode: model_eval_no_grad_after_every_completed_epoch
+  validation_total_loss_aggregation: global_component_sums_divided_by_exact_cell_or_pair_counts
+  early_stopping_monitor: validation_total_loss
+  early_stopping_minimum_delta: 0.0
+  strict_improvement: current_loss_strictly_less_than_best_loss
+  equal_loss_is_non_improvement: true
+  early_stopping_patience: 5
+  stop_when_consecutive_non_improvements_greater_than_or_equal_to_patience: true
+  restore_state: strictly_best_validation_model
+  best_epoch_tie_policy: earliest_strict_best
+  evaluation_load_key: best_model_state
+
+runtime_contract:
+  device: mps
+  dtype: float32
+  amp: false
+  cpu_fallback_allowed: false
+  pytorch_enable_mps_fallback: '0'
+  deterministic_algorithms: true
+  torch_threads: 1
+  dataloader_workers: 0
+  maximum_active_optimizer_jobs: 1
+  process_lock: data/checkpoints/.v58_state_conditioned_multi_horizon_training.lock
+  process_lock_scope: smoke_full_verify_and_replay
+  clean_committed_git_required: true
+  minimum_free_gib: 50
+  external_backup_receipt_required: false
+  backup_policy:
+    mode: owner_waiver
+    waiver:
+      path: research/waivers/v058r1_external_backup_owner_waiver.json
+      file_sha256: 067f23f39937e00c5b9ce40a0248c1683bc9329e195fb10bd9ffd24b69b7e6f9
+    waived_safeguards:
+      - external_input_copy
+      - external_code_copy
+      - external_checkpoint_copy
+  full_phase_order: [doctor, preflight, smoke, full, verify, replay]
+
+checkpoint_contract:
+  final_format_version: v58_state_conditioned_multi_horizon_checkpoint_v1
+  resume_format_version: v58_state_conditioned_multi_horizon_resume_v1
+  resume_granularity: completed_epoch_boundary_same_job_only
+  cross_job_resume_allowed: false
+  atomic_temporary_then_replace: true
+  current_and_best_state_are_distinct: true
+  resume_model_state: current_end_of_last_completed_epoch
+  final_model_state: strictly_best_validation_model
+  completed_job_is_not_resumable: true
+  retain_every_final_checkpoint: true
+  required_state:
+    - current_model_state
+    - best_model_state
+    - optimizer_state
+    - completed_epoch
+    - next_epoch
+    - optimizer_step_count
+    - cpu_rng_state
+    - mps_rng_state
+    - sampler_epoch
+    - early_stopping_state
+    - full_history
+    - scaler_sha256
+    - data_access_sha256
+    - phase_contract_sha256
+    - source_bundle_sha256
+    - job_metadata
+  rng_contract:
+    sampling: deterministic_from_registered_hash_per_epoch_no_mutable_rng_resume_state
+    model_and_dropout: exact_cpu_and_mps_torch_rng_states
+    python_random_or_numpy_mutable_rng_in_optimizer_loop_allowed: false
+  verification:
+    - strict_metadata_and_job_key_match
+    - current_and_best_model_tensor_hashes_match_receipt
+    - optimizer_parameter_names_shapes_dtypes_and_step_count_match
+    - early_stopping_history_and_epoch_boundary_match
+    - scaler_data_access_contract_and_source_hashes_match
+    - semantic_roundtrip_passes
+    - no_active_or_orphan_resume_artifacts_after_completion
+
+smoke_contract:
+  origin: origin_2024
+  geometry: expanding
+  fold: 1
+  seed: 42
+  train_samples_per_epoch: 256
+  fixed_validation_samples: 256
+  batch_size: 64
+  maximum_epochs: 2
+  early_stopping_patience: 2
+  interrupt_after_completed_epoch: 1
+  equivalence_requirements:
+    - current_model_state
+    - best_model_state
+    - optimizer_state
+    - cpu_rng_state
+    - mps_rng_state
+    - sampler_receipts
+    - early_stopping_state
+    - history
+    - optimizer_step_count
+
+artifact_contract:
+  packet_files:
+    - artifact_manifest.json
+    - audit.json
+    - backup_policy_receipt.json
+    - checkpoint_manifest.json
+    - completion_receipt.json
+    - data_access.json
+    - grid_manifest.json
+    - history_manifest.json
+    - input_hash_receipt.json
+    - operator_packet_doctor.json
+    - operator_packet_full.json
+    - operator_packet_replay.json
+    - operator_packet_smoke.json
+    - operator_packet_verify.json
+    - preflight.json
+    - replay.json
+    - report.md
+    - resolved_config.yaml
+    - result.json
+    - scaler_manifest.json
+    - smoke.json
+    - source_receipt.json
+    - training_result.json
+    - training_spec.json
+    - verification.json
+  training_spec: exact_canonical_projection_of_this_phase_contract
+  source_receipt_requires_clean_git_head: true
+  checkpoint_manifest_requires_all_36_file_and_semantic_hashes: true
+  history_manifest_requires_all_36_unselected_histories: true
+  artifact_manifest_excludes_itself: true
+  atomic_writes_required: true
+  replay_behavior:
+    new_jobs: 0
+    new_optimizer_steps: 0
+    rewritten_checkpoints: 0
+    artifact_hashes_match: true
+
+data_access_ledger_contract:
+  development_evaluation_outcome_rows_read: 0
+  target_assets_loaded: []
+  heldout_fold_symbols_loaded_by_job: []
+  forbidden_columns_loaded: []
+  previous_checkpoints_loaded: []
+  predictions_written: false
+  policy_actions_emitted: false
+  performance_metrics_computed: false
+  pnl_computed: false
+  hyperparameters_changed: false
+  required_nonzero_diagnostics:
+    - authorized_panel_rows_by_job
+    - authorized_label_rows_by_job_and_role
+    - authorized_sequence_rows_by_job_and_role
+    - scaler_fit_rows_by_origin_geometry_fold
+    - optimizer_steps_by_job
+
+operator_enforcement_contract:
+  expected_job_grid_source: reconstruct_from_grid_contract_not_packet_claim
+  authorized_operations_source: this_phase_contract_only
+  live_doctor_fields_must_match_packet:
+    - free_disk_bytes
+    - required_free_disk_bytes
+    - mps_available
+    - deterministic_algorithms
+    - fallback_enabled
+    - active_job_count
+    - process_lock
+    - backup_policy_and_owner_waiver
+  operation_order: [doctor, smoke, full, verify, replay]
+  preflight_precedes_smoke: true
+  training_spec_and_phase_contract_hash_required_before_smoke: true
+
+required_checks:
+  - all_input_phase_contract_and_source_hashes_match
+  - clean_committed_git_and_bound_owner_storage_waiver
+  - mps_float32_deterministic_fallback_disabled
+  - exact_thirty_six_job_cartesian_grid
+  - exact_role_relative_parquet_projection_and_row_scope
+  - train_only_scalers_and_no_target_or_heldout_assets
+  - no_job_relative_development_evaluation_values_or_flags_loaded
+  - exact_sequence_scaling_sampling_and_early_stopping_contract
+  - all_jobs_fresh_seed_and_all_checkpoints_retained
+  - smoke_interrupted_resume_matches_uninterrupted
+  - checkpoint_roundtrip_and_grid_complete
+  - replay_creates_zero_jobs_and_zero_optimizer_steps
+  - no_prediction_performance_or_pnl
+
+commands:
+  doctor: PYTHONPATH=src python3 -m tlm research-doctor
+  preflight: >-
+    PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-training-preflight
+    --config configs/v58_state_conditioned_multi_horizon_training.yaml
+  smoke: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-training-smoke
+    --config configs/v58_state_conditioned_multi_horizon_training.yaml
+  full: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-training
+    --config configs/v58_state_conditioned_multi_horizon_training.yaml
+  verify: >-
+    PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-training-verify
+    --config configs/v58_state_conditioned_multi_horizon_training.yaml
+  replay: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-training-replay
+    --config configs/v58_state_conditioned_multi_horizon_training.yaml

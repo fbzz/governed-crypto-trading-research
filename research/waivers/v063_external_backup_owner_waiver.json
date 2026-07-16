@@ -1,0 +1,18 @@
+{
+  "accepted_by": "repository_owner",
+  "authorization_context": "The repository owner explicitly instructed that no backup was required and then authorized continuation of the governed TLM loop.",
+  "family_id": "tlm_decoupled_rank_state_medium_v1",
+  "parent_experiment": {
+    "file_sha256": "4f4900c3481e82e93712639eadc93fd9f5bff9dce306da767fb88b3188b453a9",
+    "path": "research/experiments/v062.yaml"
+  },
+  "phase": "v63",
+  "risk_acceptance": true,
+  "schema_version": "tlm-owner-storage-waiver/v1",
+  "waived_safeguards": [
+    "external_input_copy",
+    "external_code_copy",
+    "external_checkpoint_copy"
+  ],
+  "waiver_id": "v063_external_backup_owner_waiver"
+}

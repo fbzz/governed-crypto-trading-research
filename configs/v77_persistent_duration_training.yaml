@@ -1,0 +1,63 @@
+seed: 20260716
+
+persistent_duration_training:
+  version: v77
+  project_root: .
+  research_state: research/current.yaml
+  phase_contract: research/phase_contracts/v077.yaml
+  inputs:
+    v74_blueprint: artifacts/v74_persistent_duration_spec/blueprint.json
+    v75_result: artifacts/v75_persistent_duration_harness/result.json
+    v75_audit: artifacts/v75_persistent_duration_harness/audit.json
+    v75_harness_spec: artifacts/v75_persistent_duration_harness/harness_spec.json
+    v76_result: artifacts/v76_non_target_persistent_duration_dataset/result.json
+    v76_audit: artifacts/v76_non_target_persistent_duration_dataset/audit.json
+    v76_dataset_spec: artifacts/v76_non_target_persistent_duration_dataset/dataset_spec.json
+    v76_dataset_manifest: artifacts/v76_non_target_persistent_duration_dataset/dataset_manifest.json
+    v76_label_schema: artifacts/v76_non_target_persistent_duration_dataset/label_schema.json
+    v76_source_receipt: artifacts/v76_non_target_persistent_duration_dataset/source_receipt.json
+    v76_replay_receipt: artifacts/v76_non_target_persistent_duration_dataset/replay_receipt.json
+    v76_artifact_manifest: artifacts/v76_non_target_persistent_duration_dataset/artifact_manifest.json
+    v76_data_access: artifacts/v76_non_target_persistent_duration_dataset/data_access.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v77_owner_waiver: research/waivers/v077_external_backup_owner_waiver.json
+    feature_panel: data/processed/selected_universe_panel_v32.parquet
+    labels: data/processed/persistent_duration_labels_v76.parquet
+    sequence_roles: data/processed/persistent_duration_sequence_roles_v76.parquet
+  source_receipt_files:
+    - .gitignore
+    - AGENTS.md
+    - configs/v77_persistent_duration_training.yaml
+    - research/current.yaml
+    - research/experiments/v077.yaml
+    - research/phase_contracts/v077.yaml
+    - research/waivers/v077_external_backup_owner_waiver.json
+    - .agents/skills/tlm-research-governor/scripts/govern.py
+    - .agents/skills/tlm-loop-engineer/scripts/phase_guard.py
+    - .agents/skills/tlm-training-operator/SKILL.md
+    - .agents/skills/tlm-training-operator/references/operator-contract.md
+    - .agents/skills/tlm-training-operator/scripts/build_training_packet.py
+    - .agents/skills/tlm-training-operator/scripts/validate_training_packet.py
+    - src/tlm/__init__.py
+    - src/tlm/__main__.py
+    - src/tlm/core/__init__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/persistent_multi_horizon_duration_model.py
+    - src/tlm/persistent_duration_training_data.py
+    - src/tlm/persistent_duration_training_engine.py
+    - src/tlm/persistent_duration_training.py
+    - src/tlm/research_workflow.py
+    - src/tlm/state_conditioned_multi_horizon_training_engine.py
+    - tests/test_persistent_duration_training_data.py
+    - tests/test_persistent_duration_training_engine.py
+    - tests/test_persistent_duration_training.py
+    - tests/test_v77_phase_registration.py
+    - Makefile
+    - pyproject.toml
+  require_clean_git: true
+
+output_dir: artifacts/v77_persistent_duration_training
+checkpoint_dir: data/checkpoints/v77_persistent_duration_training
+smoke_checkpoint_dir: data/checkpoints/v77_persistent_duration_smoke

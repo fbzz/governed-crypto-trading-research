@@ -1,0 +1,170 @@
+schema_version: 1
+phase: v67
+stage_revision: v067_non_target_v64_r2_probabilistic_state_gate_dataset_r1
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: synthetic_harness_passed_dataset_authorized
+evidence_tier: causal_non_target_gate_dataset_construction_only
+parent_experiment:
+  path: research/experiments/v066.yaml
+  file_sha256: 1d7c994db4851dad229fb7365ff2176ef3c92a5c73a396e057cc29f003d578b5
+authorization_receipt:
+  path: artifacts/v66_v64_r2_probabilistic_state_gate_harness/result.json
+  file_sha256: 70e41cce11a606a438d678ed3c7ca7b071e3e447c664bb17bf6e09d0cc3fe201
+  registered_result_sha256: 21ddcfffd3c99c5ec9908dba771bd3d172806941ad5c434d928e094b0c586e04
+  decision: authorize_v67_non_target_v64_r2_probabilistic_state_gate_dataset_only
+authorized_next_action: authorize_v67_non_target_v64_r2_probabilistic_state_gate_dataset_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm v64-r2-probabilistic-state-gate-dataset
+  --config configs/v67_v64_r2_probabilistic_state_gate_dataset.yaml
+pass_action: authorize_v68_frozen_non_target_v64_r2_gate_training_only
+failure_action: keep_v68_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v67_v64_r2_probabilistic_state_gate_dataset
+  allowed_inputs:
+    - artifacts/v66_v64_r2_probabilistic_state_gate_harness/result.json
+    - artifacts/v66_v64_r2_probabilistic_state_gate_harness/audit.json
+    - artifacts/v66_v64_r2_probabilistic_state_gate_harness/harness_spec.json
+    - artifacts/v66_v64_r2_probabilistic_state_gate_harness/artifact_manifest.json
+    - artifacts/v66_v64_r2_probabilistic_state_gate_harness/completion_receipt.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/result.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/audit.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/label_schema.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/source_receipt.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/completion_receipt.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/artifact_manifest.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/data_access.json
+    - artifacts/v62_non_target_decoupled_rank_state_dataset/triplet_derivation_smoke.json
+    - data/processed/decoupled_rank_state_labels_v62.parquet
+    - data/processed/decoupled_rank_state_sequence_roles_v62.parquet
+  allowed_capabilities:
+    - verify_exact_v66_completion_v65_specification_and_v62_dataset_receipts
+    - deserialize_only_the_two_exact_registered_v62_non_target_parquets
+    - project_only_train_period_label_and_sequence_columns
+    - create_frozen_inner_gate_train_and_validation_roles_inside_2021_2024
+    - preserve_missing_rows_without_imputation
+    - preserve_triplet_market_target_and_eighteen_state_feature_derivation
+    - write_hash_audited_non_target_gate_dataset
+    - verify_byte_identical_replay
+  required_checks:
+    - all_input_hashes_match
+    - exact_v66_probabilistic_gate_and_abstention_contract_preserved
+    - exact_v62_non_target_dataset_receipts_preserved
+    - only_eligible_v62_train_rows_are_admitted
+    - gate_train_and_internal_validation_are_disjoint_and_chronological
+    - no_2025_or_later_signal_label_or_role_value_is_loaded_or_written
+    - exact_h1_open_t_plus_1_to_open_t_plus_2_market_component_target_preserved
+    - exact_eighteen_state_features_remain_derived_on_demand
+    - missing_rows_are_preserved_without_imputation
+    - target_assets_are_absent
+    - no_scaler_model_optimizer_checkpoint_prediction_performance_or_pnl
+    - byte_identical_replay
+  forbidden_capabilities:
+    - target_asset_access
+    - raw_v32_panel_or_sequence_index_access
+    - v62_consumed_development_validation_or_2025_value_access
+    - universe_fold_triplet_feature_or_label_reselection
+    - missing_row_imputation_or_repair
+    - scaler_fit
+    - model_instantiation
+    - optimizer_step_or_training
+    - v63_or_v64_checkpoint_access
+    - market_prediction
+    - performance_metric_or_pnl
+    - outcome_source_or_packet_read
+    - ranker_distribution_threshold_size_or_hyperparameter_change
+    - v68_implementation_or_training
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v66_v64_r2_probabilistic_state_gate_harness/result.json: 70e41cce11a606a438d678ed3c7ca7b071e3e447c664bb17bf6e09d0cc3fe201
+    artifacts/v66_v64_r2_probabilistic_state_gate_harness/audit.json: ebc7f8164876aca1938255dec780475541b8fe9b78d6e7ef14e37d4e7916f0a4
+    artifacts/v66_v64_r2_probabilistic_state_gate_harness/harness_spec.json: d581e79b484b695f12d9d1e01d093920ae8be7605d5267d21c9f2c9c19f0241a
+    artifacts/v66_v64_r2_probabilistic_state_gate_harness/artifact_manifest.json: aa2854ec463b83e4d52e49e9b2c966621db8021d96b27984608015dc586d2d73
+    artifacts/v66_v64_r2_probabilistic_state_gate_harness/completion_receipt.json: a657e388cee48abdc7d3de197c1acd100664a5d845e3de2762205919c9a78373
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json: 7f5b21c002b31f2851ba0479d1800da6ecdbb798cc1f5d94123d6da8e13d7463
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+    artifacts/v62_non_target_decoupled_rank_state_dataset/result.json: 99a1f5139f7101b030d5ff661b03c8de5bc45a79044bb4ee7bfe32d74deebc44
+    artifacts/v62_non_target_decoupled_rank_state_dataset/audit.json: d2485af41dd20b035d4f48221c0fec4291233e524baac1806f1ae57b9250df0b
+    artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json: 1ae5e311ddd3c032be954c841a8f57e99b6c05fd7ffc1b41d9efad1b732e3867
+    artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json: 16a8e233d321d63ec92ffe4af6af01fbbaeaaa2598ef8e5eba6f4ae157bc5948
+    artifacts/v62_non_target_decoupled_rank_state_dataset/label_schema.json: eaa7c703cbff4a9bf553a198792d5adf7201abb59cd0b50216b53171223213ed
+    artifacts/v62_non_target_decoupled_rank_state_dataset/source_receipt.json: 0b92b99bdcf8b410521ad748ebcd3e39ab03d40458a4befb5a7df2c1a5c0ed0b
+    artifacts/v62_non_target_decoupled_rank_state_dataset/completion_receipt.json: bf487baaa3e3173d9f5fdabdb83f41e3b72b1f6de2acafffbb19cbbd25270c66
+    artifacts/v62_non_target_decoupled_rank_state_dataset/artifact_manifest.json: 6c26e62fbf85096db2acc1e69627e57f5581650890b96b547adc55eadb64201e
+    artifacts/v62_non_target_decoupled_rank_state_dataset/data_access.json: ba380f9accaedab933b7b5ab705688854bea4d93a4668b21175add981913ac77
+    artifacts/v62_non_target_decoupled_rank_state_dataset/triplet_derivation_smoke.json: fd69517f70fc23d6527e1c34f68ce4a9a3268e822da3470f5076a00371dfd5b2
+    data/processed/decoupled_rank_state_labels_v62.parquet: 6ea78e634e2b444a7c83767754c772610a65f4b13a0c6473ae51472918f37ece
+    data/processed/decoupled_rank_state_sequence_roles_v62.parquet: eaefd5921ca9c79bddeafcdb7c3aefd4a480d1c887ccf1889f3f9355a0a710bd
+
+parquet_access_contract:
+  maximum_parquet_deserializations: 2
+  full_table_materialization_then_filtering_allowed: false
+  predicate_pushdown_required: true
+  labels_projection:
+    - date
+    - symbol
+    - target_h1_maturity_date
+    - target_h1_open_to_open_log_return
+    - h1_label_complete
+  labels_filter: date_between_2021_03_01_and_2024_12_23_only
+  sequence_projection:
+    - date
+    - sequence_start_date
+    - symbol
+    - h1_label_complete
+    - eligible_train
+  sequence_filter: eligible_train_true_and_date_not_after_2024_12_23
+  forbidden_columns:
+    - eligible_consumed_development_validation
+    - target_asset
+    - prediction
+    - portfolio
+    - pnl
+
+role_contract:
+  gate_train:
+    signal_start: '2021-03-01'
+    signal_end: '2024-06-30'
+  gate_internal_validation:
+    signal_start: '2024-07-01'
+    signal_end: '2024-12-23'
+  internal_validation_is_clean_evidence: false
+  internal_validation_may_select_architecture_distribution_threshold_seed_or_fold: false
+  maturity_rule: both_open_t_plus_1_and_open_t_plus_2_must_be_finite_inside_role
+  consumed_v64_2025_role_created: false
+  prospective_confirmation_role_created: false
+
+data_contract:
+  source_labels: data/processed/decoupled_rank_state_labels_v62.parquet
+  source_sequence_roles: data/processed/decoupled_rank_state_sequence_roles_v62.parquet
+  input_layout: [batch, time, assets, features]
+  input_shape: [null, 256, 3, 9]
+  input_dtype: float32
+  missing_data: preserve_without_imputation
+  action_return: log_open_t_plus_2_over_open_t_plus_1
+  probabilistic_gate_target: train_only_triplet_mean_next_open_log_return
+  state_features: per_day_cross_asset_mean_and_population_std_of_nine_inputs
+  state_feature_count: 18
+  materialization: derive_on_demand_inside_exact_lexical_triplet
+
+output_contract:
+  labels_path: data/processed/v67_v64_r2_gate_labels.parquet
+  sequence_roles_path: data/processed/v67_v64_r2_gate_sequence_roles.parquet
+  admitted_roles: [gate_train, gate_internal_validation]
+  maximum_signal_date: '2024-12-23'
+  target_assets_written: []
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: stop_after_v67_gate_before_any_v68_implementation

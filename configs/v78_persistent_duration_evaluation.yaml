@@ -1,0 +1,65 @@
+seed: 20260715
+
+persistent_duration_evaluation:
+  version: v78
+  project_root: .
+  research_state: research/current.yaml
+  phase_contract: research/phase_contracts/v078.yaml
+  inputs:
+    v74_blueprint: artifacts/v74_persistent_duration_spec/blueprint.json
+    v76_result: artifacts/v76_non_target_persistent_duration_dataset/result.json
+    v76_audit: artifacts/v76_non_target_persistent_duration_dataset/audit.json
+    v76_dataset_spec: artifacts/v76_non_target_persistent_duration_dataset/dataset_spec.json
+    v76_dataset_manifest: artifacts/v76_non_target_persistent_duration_dataset/dataset_manifest.json
+    v76_label_schema: artifacts/v76_non_target_persistent_duration_dataset/label_schema.json
+    v76_source_receipt: artifacts/v76_non_target_persistent_duration_dataset/source_receipt.json
+    v76_replay_receipt: artifacts/v76_non_target_persistent_duration_dataset/replay_receipt.json
+    v76_artifact_manifest: artifacts/v76_non_target_persistent_duration_dataset/artifact_manifest.json
+    v76_data_access: artifacts/v76_non_target_persistent_duration_dataset/data_access.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v77_result: artifacts/v77_persistent_duration_training/result.json
+    v77_audit: artifacts/v77_persistent_duration_training/audit.json
+    v77_training_spec: artifacts/v77_persistent_duration_training/training_spec.json
+    v77_checkpoint_manifest: artifacts/v77_persistent_duration_training/checkpoint_manifest.json
+    v77_grid_manifest: artifacts/v77_persistent_duration_training/grid_manifest.json
+    v77_history_manifest: artifacts/v77_persistent_duration_training/history_manifest.json
+    v77_scaler_manifest: artifacts/v77_persistent_duration_training/scaler_manifest.json
+    v77_data_access: artifacts/v77_persistent_duration_training/data_access.json
+    v77_source_receipt: artifacts/v77_persistent_duration_training/source_receipt.json
+    v77_completion_receipt: artifacts/v77_persistent_duration_training/completion_receipt.json
+    v77_artifact_manifest: artifacts/v77_persistent_duration_training/artifact_manifest.json
+    v77_verification: artifacts/v77_persistent_duration_training/verification.json
+    v77_replay_receipt: artifacts/v77_persistent_duration_training/replay_receipt.json
+    feature_panel: data/processed/selected_universe_panel_v32.parquet
+    sequence_roles: data/processed/persistent_duration_sequence_roles_v76.parquet
+  checkpoint_root: data/checkpoints/v77_persistent_duration_training
+  source_receipt_files:
+    - AGENTS.md
+    - configs/v78_persistent_duration_evaluation.yaml
+    - research/current.yaml
+    - research/experiments/v078.yaml
+    - research/phase_contracts/v078.yaml
+    - .agents/skills/tlm-research-governor/SKILL.md
+    - .agents/skills/tlm-loop-engineer/SKILL.md
+    - .agents/skills/tlm-one-shot-evaluator/SKILL.md
+    - .agents/skills/tlm-one-shot-evaluator/references/evaluation-contract.md
+    - .agents/skills/tlm-one-shot-evaluator/scripts/validate_evaluation_packet.py
+    - src/tlm/__init__.py
+    - src/tlm/__main__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/persistent_multi_horizon_duration_model.py
+    - src/tlm/persistent_duration_training_data.py
+    - src/tlm/persistent_duration_training_engine.py
+    - src/tlm/persistent_duration_policy.py
+    - src/tlm/persistent_duration_evaluation.py
+    - src/tlm/research_workflow.py
+    - tests/test_persistent_duration_evaluation.py
+    - tests/test_v78_phase_registration.py
+  require_clean_git: true
+
+output_dir: artifacts/v78_persistent_duration_evaluation
+prediction_path: data/predictions/v78_persistent_duration_predictions.parquet
+candidate_position_path: data/predictions/v78_persistent_duration_candidate_positions.parquet
+control_position_path: data/predictions/v78_persistent_duration_control_positions.parquet

@@ -1,0 +1,36 @@
+seed: 20260713
+
+reproducibility_bundle:
+  project_root: .
+  include_roots:
+    - src/tlm
+    - tests
+    - configs
+  include_files:
+    - pyproject.toml
+    - Makefile
+    - AGENTS.md
+    - TASKS.md
+    - README.md
+    - artifacts/v20_evidence_ledger/ledger.json
+    - artifacts/v20_evidence_ledger/audit.json
+    - artifacts/v20_evidence_ledger/report.md
+    - artifacts/v21_control_certificate/certificate.json
+    - artifacts/v21_control_certificate/audit.json
+    - artifacts/v21_control_certificate/report.md
+    - artifacts/v22_prospective_holdout/protocol.json
+    - artifacts/v22_prospective_holdout/protocol.sha256
+    - artifacts/v22_prospective_holdout/candidate_registration.schema.json
+    - artifacts/v22_prospective_holdout/audit.json
+    - artifacts/v22_prospective_holdout/report.md
+  exclude_suffixes: [.pyc]
+  packages: [tlm, numpy, pandas, pyarrow, PyYAML, scikit-learn, torch, matplotlib, pytest]
+  test_command: [python3, -m, pytest]
+  run_tests: true
+  required_decision_audits:
+    - artifacts/v20_evidence_ledger/audit.json
+    - artifacts/v21_control_certificate/audit.json
+    - artifacts/v22_prospective_holdout/audit.json
+  manifest_path: artifacts/v23_reproducibility_bundle/manifest.json
+
+output_dir: artifacts/v23_reproducibility_bundle

@@ -1,0 +1,232 @@
+schema_version: 1
+phase: v57
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+status: frozen_before_parquet_deserialization
+evidence_tier: causal_non_target_dataset_construction_only
+parent_experiment:
+  path: research/experiments/v056.yaml
+  file_sha256: 2a7a498b9adfcee616a7f21bc9e0bd898b184a385cffcbb5167eedcc206186db
+authorization_receipt:
+  path: artifacts/v56_state_conditioned_multi_horizon_harness/result.json
+  file_sha256: 40c1647986ed970804f4c6cc001de33ccb17e7f12887d6f6cef24abebf91d437
+v55_blueprint:
+  file_sha256: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+  canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+
+authorized_next_action: authorize_v57_non_target_multi_horizon_dataset_build_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm state-conditioned-multi-horizon-dataset
+  --config configs/v57_state_conditioned_multi_horizon_dataset.yaml
+pass_action: authorize_v58_frozen_non_target_training_only
+failure_action: keep_v58_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v57_non_target_multi_horizon_dataset
+  allowed_inputs:
+    - artifacts/v56_state_conditioned_multi_horizon_harness/result.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/audit.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/artifact_manifest.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/completion_receipt.json
+    - artifacts/v32_selected_universe_dataset/result.json
+    - artifacts/v32_selected_universe_dataset/audit.json
+    - artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/selected_universe_sequence_index_v32.parquet
+  allowed_capabilities:
+    - deserialize_exact_registered_non_target_v32_panel_and_sequence_index
+    - build_frozen_h1_h3_h7_open_to_open_labels
+    - apply_eight_day_maturity_purge_and_chronological_roles
+    - preserve_missing_rows_without_imputation
+    - write_hash_audited_non_target_dataset
+    - verify_byte_identical_replay
+  required_checks:
+    - all_input_hashes_match
+    - exact_thirty_asset_universe_and_three_folds
+    - exact_nine_feature_order
+    - exact_h1_h3_h7_label_definitions
+    - no_label_crosses_registered_role_boundary
+    - maximum_maturity_purge_is_eight_days
+    - panel_and_sequence_keys_are_unique
+    - missing_rows_are_preserved
+    - target_assets_are_absent
+    - no_scaler_model_optimizer_prediction_performance_or_pnl
+    - byte_identical_replay
+  forbidden_capabilities:
+    - target_asset_access
+    - universe_or_fold_reselection
+    - missing_row_imputation_or_repair
+    - scaler_fit
+    - model_instantiation
+    - optimizer_step
+    - market_prediction
+    - performance_metric_or_pnl
+    - v58_implementation_or_training
+
+input_contract:
+  expected_sha256:
+    v56_result: 40c1647986ed970804f4c6cc001de33ccb17e7f12887d6f6cef24abebf91d437
+    v56_audit: be799436c0a91eaff356d76640554d3412163b6e47085a72bb62931a75654d77
+    v56_artifact_manifest: cf42d378051aeb90c0c878d6cc699e6da826b823e6c812024441c8333b6b2cff
+    v56_completion_receipt: 0c3eb7e89bee55884e8aa6bbfb5425683f9ef5df6eff56624aa95389b792d0aa
+    v32_result: 9a41f84a7de9534472c9655a577c84de992604633f091080e3b7906420b1da53
+    v32_audit: 280c8857cf990cf62411628e1b3fe30bf04ffcc940db927f995aa487ad09f106
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    panel: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    sequence_index: 3bb609586809bc7fe4d55b55e11df0581f147484005bc5eff9fd45b28b79d861
+  panel_key: [symbol, date]
+  sequence_key: [symbol, date]
+  panel_rows: 60210
+  sequence_rows: 49919
+  calendar: ['2021-01-01', '2026-06-30']
+  symbol_count: 30
+  preserved_missing_panel_rows: 1619
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+
+feature_contract:
+  panel_columns:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  model_feature_order:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+    - within_triplet_relative_strength
+  triplet_feature:
+    name: within_triplet_relative_strength
+    source: log_close_to_close_return
+    formula: asset_value_minus_equal_weight_triplet_mean_same_date
+    materialization: v58_on_demand_inside_exact_lexical_triplet
+  asset_folds_sha256: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+  triplet_catalog_sha256: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+
+label_contract:
+  order: [h1, h3, h7]
+  dtype: float64
+  definitions:
+    h1:
+      column: target_h1_open_to_open_log_return
+      formula: log(open[t+2] / open[t+1])
+      maturity_offset_days: 2
+    h3:
+      column: target_h3_open_to_open_log_return
+      formula: log(open[t+4] / open[t+1])
+      maturity_offset_days: 4
+    h7:
+      column: target_h7_open_to_open_log_return
+      formula: log(open[t+8] / open[t+1])
+      maturity_offset_days: 8
+  endpoint_semantics: only_open_t_plus_1_and_open_t_plus_h_plus_1_must_be_finite
+  joint_eligibility: all_three_labels_finite_and_source_sequence_ready
+  partial_horizon_training_allowed: false
+  missing_policy:
+    imputation: forbidden
+    label_rows: preserve_all_60210_panel_keys_with_nan_when_an_endpoint_is_missing
+    sequence_rows: preserve_all_49919_source_sequence_keys
+    ineligible_rows: retain_with_false_eligibility_flags
+
+role_contract:
+  maximum_maturity_purge_days: 8
+  flag_semantics: source_sequence_key_and_all_three_labels_complete_and_signal_inside_role
+  origins:
+    - id: origin_2024
+      geometries:
+        expanding:
+          train: {signal_start: '2021-03-01', signal_end: '2022-12-23', maturity_end: '2022-12-31'}
+        rolling:
+          train: {signal_start: '2022-01-01', signal_end: '2022-12-23', maturity_end: '2022-12-31'}
+      validation: {signal_start: '2023-01-01', signal_end: '2023-12-23', maturity_end: '2023-12-31'}
+      development_evaluation: {signal_start: '2024-01-01', signal_end: '2024-12-23', maturity_end: '2024-12-31'}
+    - id: origin_2025
+      geometries:
+        expanding:
+          train: {signal_start: '2021-03-01', signal_end: '2023-12-23', maturity_end: '2023-12-31'}
+        rolling:
+          train: {signal_start: '2023-01-01', signal_end: '2023-12-23', maturity_end: '2023-12-31'}
+      validation: {signal_start: '2024-01-01', signal_end: '2024-12-23', maturity_end: '2024-12-31'}
+      development_evaluation: {signal_start: '2025-01-01', signal_end: '2025-12-23', maturity_end: '2025-12-31'}
+  physical_flags:
+    - eligible_origin_2024_expanding_train
+    - eligible_origin_2024_expanding_validation
+    - eligible_origin_2024_expanding_development_evaluation
+    - eligible_origin_2024_rolling_train
+    - eligible_origin_2024_rolling_validation
+    - eligible_origin_2024_rolling_development_evaluation
+    - eligible_origin_2025_expanding_train
+    - eligible_origin_2025_expanding_validation
+    - eligible_origin_2025_expanding_development_evaluation
+    - eligible_origin_2025_rolling_train
+    - eligible_origin_2025_rolling_validation
+    - eligible_origin_2025_rolling_development_evaluation
+
+output_contract:
+  labels_path: data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+  sequence_roles_path: data/processed/state_conditioned_multi_horizon_sequence_roles_v57.parquet
+  parquet_engine: pyarrow
+  compression: zstd
+  labels_columns:
+    - date
+    - symbol
+    - eligible_action_date
+    - target_h1_maturity_date
+    - target_h3_maturity_date
+    - target_h7_maturity_date
+    - target_h1_open_to_open_log_return
+    - target_h3_open_to_open_log_return
+    - target_h7_open_to_open_log_return
+    - h1_label_complete
+    - h3_label_complete
+    - h7_label_complete
+    - multi_horizon_label_complete
+  sequence_base_columns:
+    - date
+    - sequence_start_date
+    - symbol
+    - h1_label_complete
+    - h3_label_complete
+    - h7_label_complete
+    - multi_horizon_label_complete
+  packet_files:
+    - artifact_manifest.json
+    - audit.json
+    - completion_receipt.json
+    - data_access.json
+    - dataset_manifest.json
+    - dataset_spec.json
+    - input_hash_receipt.json
+    - label_schema.json
+    - report.md
+    - resolved_config.yaml
+    - result.json
+    - source_receipt.json
+  replay:
+    fresh_writes_per_output_per_invocation: 2
+    require_equal_sha256_within_invocation: true
+    require_full_packet_byte_identity_across_invocations: true
+
+constraints:
+  scaler_fit_count: 0
+  model_instantiation_count: 0
+  optimizer_step_count: 0
+  checkpoint_read_count: 0
+  prediction_count: 0
+  performance_metric_count: 0
+  pnl_count: 0
+  target_asset_load_count: 0
+  v58_implementation_allowed: false

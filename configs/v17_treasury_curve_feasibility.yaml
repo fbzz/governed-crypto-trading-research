@@ -1,0 +1,18 @@
+seed: 20260713
+
+treasury_feasibility:
+  csv_url_template: https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/{year}/all?type=daily_treasury_yield_curve&field_tdr_date_value={year}&_format=csv
+  start: "2021-12-06"
+  end: "2026-06-30"
+  methodology_start: "2021-12-06"
+  timeout_seconds: 30
+  required_columns: [Date, 2 Yr, 10 Yr]
+  minimum_weekday_coverage: 0.95
+  execution_lag_calendar_days: 3
+  maximum_carry_days: 7
+  evidence_urls:
+    - https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve
+    - https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rate-archives
+    - https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xmlview?data=daily_treasury_yield_curve
+
+output_dir: artifacts/v17_treasury_curve_feasibility

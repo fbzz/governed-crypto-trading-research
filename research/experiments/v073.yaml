@@ -1,0 +1,42 @@
+schema_version: 1
+experiment_id: v073_record_v72_posthoc_diagnostic_result
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: metadata_only_posthoc_diagnostic_result_record
+status: authorized_not_started
+decision: record_completed_v72_diagnostic_without_scientific_recomputation
+authorized_next_action: record_v73_v72_posthoc_diagnostic_result_metadata_only
+evidence_tier: posthoc_consumed_2025_diagnostic_only_not_confirmation
+parent_experiment:
+  path: research/experiments/v072.yaml
+  file_sha256: 105a580346d8f9a68ddc6d52c00fc92c5ce987898a59bfc7061f9e9168eb3a70
+blueprint:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  file_sha256: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+  canonical_sha256: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+result:
+  path: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/result.json
+  file_sha256: 3a0ff56c77445ac05bf37fc8c020b392792007afd861475123d6ebcf95417c8f
+audit:
+  path: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/audit.json
+  file_sha256: b55010b7f9294d49d95342835d6e1976f10c428f29532fe68ebf7666ab0f2d8b
+completion_receipt:
+  path: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/completion_receipt.json
+  file_sha256: 025edb0ec18d9f17efce6e0c5b627aef1f3de286ffa2f3aa2fa8cd955c9a3395
+replay_receipt:
+  path: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/replay.json
+  file_sha256: b102d3968daf85e92ece8d05294d298e25994be29706141d363e5ba8702c4f20
+observed_result:
+  diagnostic_outcome: fail
+  passed_gate_count: 13
+  failed_gate_count: 11
+  mandatory_gate_count: 24
+  family_status_changed: false
+  deployable: false
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

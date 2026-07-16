@@ -1,0 +1,40 @@
+schema_version: 1
+experiment_id: v064_decoupled_rank_state_evaluation_prepare
+family_id: tlm_decoupled_rank_state_medium_v1
+phase: outcome_blind_adaptive_development_evaluation_prepare
+status: passed_outcomes_sealed
+evidence_tier: adaptive_development_evaluation_prepared_outcomes_sealed
+parent_experiment: research/experiments/v063.yaml
+phase_contract:
+  path: research/phase_contracts/v064.yaml
+  file_sha256: 3cf7f4e0f0c364ad181801a5a4e7dc48a965dfbf32b6ed806ef960ab4c751672
+blueprint:
+  path: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+  file_sha256: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+  canonical_sha256: 3cf97271c977633b1ee8ab4641a8a9fc95a1a9d79b72c80c063d21f553498232
+result:
+  path: artifacts/v64_decoupled_rank_state_evaluation/result.json
+  file_sha256: 793b36c524314be999aba5918f33fe609a1fc01819a372ff9d7f685a942340d3
+audit:
+  path: artifacts/v64_decoupled_rank_state_evaluation/audit.json
+  file_sha256: ec7e10f9179f2eec18dca8a462ea9a5d9f046a73b3696f571b98bda83e16b697
+evaluation_spec:
+  path: artifacts/v64_decoupled_rank_state_evaluation/evaluation_spec.json
+  file_sha256: f6fbf371b5e33efdaaf0b0d1622acefce4938efe1e22d63ffa6e086e0a45d134
+prepare_receipt:
+  path: artifacts/v64_decoupled_rank_state_evaluation/prepare_receipt.json
+  file_sha256: 18429f83790cd16b57dbb4208c4b211c3f2600aed1adaadaef722ca4bded4e4e
+one_shot_packet:
+  path: artifacts/v64_decoupled_rank_state_evaluation/one_shot_packet.json
+  file_sha256: a18379581eabf694338837f5f7bd5c00faa73ac5a1be92ca17ee1e23eb94d5f3
+prepare_summary:
+  checkpoints: 9
+  context_prediction_rows: 875232
+  asset_prediction_rows: 9794
+  position_rows: 32130
+  outcome_blind_gates: 12
+  outcome_rows_read: 0
+  target_asset_rows: 0
+authorized_next_action: execute_v64_exactly_one_registered_non_target_outcome_unseal_and_complete_evaluation
+pass_action: authorize_future_prospective_non_target_specification_only
+failure_action: retire_family_without_target_evaluation_or_retuning

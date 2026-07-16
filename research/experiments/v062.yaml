@@ -1,0 +1,62 @@
+schema_version: 1
+experiment_id: v062_non_target_decoupled_rank_state_dataset
+family_id: tlm_decoupled_rank_state_medium_v1
+phase: non_target_decoupled_rank_state_dataset
+status: passed
+evidence_tier: causal_non_target_dataset_construction_only
+parent_experiment: research/experiments/v061.yaml
+blueprint:
+  path: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+  file_sha256: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+  canonical_sha256: 3cf97271c977633b1ee8ab4641a8a9fc95a1a9d79b72c80c063d21f553498232
+harness_spec:
+  path: artifacts/v61_decoupled_rank_state_harness/harness_spec.json
+  file_sha256: 0bcf529de054a7d659b09124ff0312f7998d048334dcc866b15701d2349f370a
+  canonical_sha256: 6961ed2b0d5479c9fab8ffa9dc4d27ee18cda96103151ada72090719634275a0
+result:
+  path: artifacts/v62_non_target_decoupled_rank_state_dataset/result.json
+  file_sha256: 99a1f5139f7101b030d5ff661b03c8de5bc45a79044bb4ee7bfe32d74deebc44
+  registered_result_sha256: da21231e37f8c0f596a1ae2469365aee143e3c62a2c4b67d03b09d3343d70b26
+audit:
+  path: artifacts/v62_non_target_decoupled_rank_state_dataset/audit.json
+  file_sha256: d2485af41dd20b035d4f48221c0fec4291233e524baac1806f1ae57b9250df0b
+dataset_spec:
+  path: artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json
+  file_sha256: 1ae5e311ddd3c032be954c841a8f57e99b6c05fd7ffc1b41d9efad1b732e3867
+  canonical_sha256: 82d6f649cde0eb64a752e18c239c27488ecc0530d383e2fc8743256b73cd5794
+dataset_manifest:
+  path: artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json
+  file_sha256: 16a8e233d321d63ec92ffe4af6af01fbbaeaaa2598ef8e5eba6f4ae157bc5948
+source_receipt:
+  path: artifacts/v62_non_target_decoupled_rank_state_dataset/source_receipt.json
+  file_sha256: 0b92b99bdcf8b410521ad748ebcd3e39ab03d40458a4befb5a7df2c1a5c0ed0b
+  bundle_sha256: 47462189841ca9e7598bc57355620f0ce6f573bcb040be51595f9d6eb95700d5
+artifact_manifest:
+  path: artifacts/v62_non_target_decoupled_rank_state_dataset/artifact_manifest.json
+  file_sha256: 6c26e62fbf85096db2acc1e69627e57f5581650890b96b547adc55eadb64201e
+  canonical_sha256: 4557944c43fd8c4746bedbfd3752631d1bc6e1c7763ad128350010dc36b64254
+completion_receipt:
+  path: artifacts/v62_non_target_decoupled_rank_state_dataset/completion_receipt.json
+  file_sha256: bf487baaa3e3173d9f5fdabdb83f41e3b72b1f6de2acafffbb19cbbd25270c66
+  canonical_sha256: 65b57c46dc37897773abb55006b1868ce3dfc37ecc3305ca7e3d605b1f28176c
+v62_summary:
+  audit_checks_passed: 15
+  audit_checks_total: 15
+  label_rows: 60210
+  complete_h1_rows: 58530
+  sequence_role_rows: 49919
+  eligible_train_rows: 34934
+  eligible_consumed_development_validation_rows: 9794
+  triplet_derivation_smoke_contexts: 6
+  authorized_parquet_deserializations: 2
+  authorized_parquet_writes: 4
+  scaler_fits: 0
+  model_instantiations: 0
+  optimizer_steps: 0
+  checkpoint_reads: 0
+  predictions: 0
+  performance_metrics: 0
+  pnl_evaluations: 0
+  target_asset_loads: 0
+  byte_identical_replay: true
+authorized_next_action: authorize_v63_frozen_non_target_decoupled_rank_state_training_only

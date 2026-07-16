@@ -1,0 +1,270 @@
+schema_version: 1
+experiment_id: v057_non_target_multi_horizon_dataset
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+phase: non_target_multi_horizon_dataset
+status: passed
+evidence_tier: causal_non_target_dataset_construction_only
+parent_experiment: research/experiments/v056.yaml
+blueprint:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+  file_sha256: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+  canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+result:
+  path: artifacts/v57_non_target_multi_horizon_dataset/result.json
+  file_sha256: 6bb1dcfddcc9198e1d75305af9fb983e2ddaca28bafa2acc64c58ba8a7147992
+  registered_result_sha256: 9c9bc12c9fd5b72fc4cbaf9fe6f3a7265600c360206a735a5ddb59173b3b8534
+audit:
+  path: artifacts/v57_non_target_multi_horizon_dataset/audit.json
+  file_sha256: cfcbf3a691fc8dc4e1f89e603feff546726da08b2ac7f33f18e93dde97fb1416
+dataset_spec:
+  path: artifacts/v57_non_target_multi_horizon_dataset/dataset_spec.json
+  file_sha256: 35656e049d47d099b3861674ddb3602bbca45e038f6e3e9ea3b9bcc80bab8c78
+  canonical_sha256: 38db6a66d8269e40259eeef3a690753550c31faf797ec97743efa25278101be1
+source_receipt:
+  path: artifacts/v57_non_target_multi_horizon_dataset/source_receipt.json
+  file_sha256: 16427f671fe0e81a8877e0b4cf0a64ad3f58137234400c295fe4ca4c11947497
+  bundle_sha256: 22a38a8bb146437c078860441018759f91ebf9bb51ef80a550295e4a0299233a
+artifact_manifest:
+  path: artifacts/v57_non_target_multi_horizon_dataset/artifact_manifest.json
+  file_sha256: 80e540178ad0628a0c13ca57b18dbfe9fc4c277844b7788c014aefa426e08001
+  registered_manifest_sha256: 082d2e07f5aae8ebb80779396e5534fc4a77b722d098e2f24aea1c9848037fb5
+completion_receipt:
+  path: artifacts/v57_non_target_multi_horizon_dataset/completion_receipt.json
+  file_sha256: f9dfeb4bed40941e7dd0d1ee887cfe2bbca83cb092e2fdc8c11226ea6cac2a2a
+v57_summary:
+  label_rows: 60210
+  sequence_role_rows: 49919
+  complete_all_horizon_rows: 58344
+  authorized_parquet_deserializations: 2
+  target_asset_loads: 0
+  scaler_fits: 0
+  model_instantiations: 0
+  optimizer_steps: 0
+  performance_metrics: 0
+  pnl_evaluations: 0
+  byte_identical_replay: true
+
+v58_contract:
+  output_dir: artifacts/v58_state_conditioned_multi_horizon_training
+  checkpoint_dir: data/checkpoints/v58_state_conditioned_multi_horizon_training
+  smoke_checkpoint_dir: data/checkpoints/v58_state_conditioned_multi_horizon_smoke
+  allowed_inputs:
+    - artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/result.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/audit.json
+    - artifacts/v56_state_conditioned_multi_horizon_harness/harness_spec.json
+    - artifacts/v57_non_target_multi_horizon_dataset/result.json
+    - artifacts/v57_non_target_multi_horizon_dataset/audit.json
+    - artifacts/v57_non_target_multi_horizon_dataset/dataset_spec.json
+    - artifacts/v57_non_target_multi_horizon_dataset/dataset_manifest.json
+    - artifacts/v57_non_target_multi_horizon_dataset/label_schema.json
+    - artifacts/v57_non_target_multi_horizon_dataset/source_receipt.json
+    - artifacts/v57_non_target_multi_horizon_dataset/completion_receipt.json
+    - artifacts/v57_non_target_multi_horizon_dataset/artifact_manifest.json
+    - artifacts/v57_non_target_multi_horizon_dataset/data_access.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+    - data/processed/state_conditioned_multi_horizon_sequence_roles_v57.parquet
+  expected_input_sha256:
+    v55_blueprint: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+    v56_result: 40c1647986ed970804f4c6cc001de33ccb17e7f12887d6f6cef24abebf91d437
+    v56_audit: be799436c0a91eaff356d76640554d3412163b6e47085a72bb62931a75654d77
+    v56_harness_spec: 0d24ebeb412474f61b4f6de97ea2f251ce755b5972d5ae1961beecfb18c9fc29
+    v57_result: 6bb1dcfddcc9198e1d75305af9fb983e2ddaca28bafa2acc64c58ba8a7147992
+    v57_audit: cfcbf3a691fc8dc4e1f89e603feff546726da08b2ac7f33f18e93dde97fb1416
+    v57_dataset_spec: 35656e049d47d099b3861674ddb3602bbca45e038f6e3e9ea3b9bcc80bab8c78
+    v57_dataset_manifest: a4d339ca8ec8f7c59e9c1d62f82b80778457b2ad5d231ecad2ed190f124af29d
+    v57_label_schema: 7fbe744584f5e62151b2162329f547f9dbb80d40319e10d719f628b19c4a9fbb
+    v57_source_receipt: 16427f671fe0e81a8877e0b4cf0a64ad3f58137234400c295fe4ca4c11947497
+    v57_completion_receipt: f9dfeb4bed40941e7dd0d1ee887cfe2bbca83cb092e2fdc8c11226ea6cac2a2a
+    v57_artifact_manifest: 80e540178ad0628a0c13ca57b18dbfe9fc4c277844b7788c014aefa426e08001
+    v57_data_access: 164c860f3b4ba66ed5bc782066e769ab6527b0a6b63269d77d621a0c0d7fa369
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    feature_panel: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    labels: 6d12e9d49f1be807a1eba5596295fa40f43c3d89745a9a39f3e3f42d76544f50
+    sequence_roles: 1f12eff301984943d0a907e55b33aa65618cf2977f88bb318610f3cfebc52860
+  allowed_capabilities:
+    - fit_train_only_feature_scaler_per_origin_geometry_fold
+    - instantiate_exact_v55_model_with_fresh_registered_seed
+    - train_exact_thirty_six_job_non_target_grid_on_mps
+    - retain_every_checkpoint_without_selection
+    - resume_only_same_job_at_epoch_boundary
+    - verify_checkpoint_roundtrips_and_zero_step_replay
+  forbidden_capabilities:
+    - target_asset_access
+    - heldout_fold_asset_training
+    - development_evaluation_row_or_flag_access
+    - previous_checkpoint_or_representation_reuse
+    - hyperparameter_or_grid_change
+    - prediction_or_policy_generation
+    - performance_metric_or_pnl
+    - v59_implementation_or_evaluation
+  architecture:
+    input_shape: [null, 256, 3, 9]
+    parameter_count: 465513
+    output_shape: [null, 3, 3, 3]
+    blueprint_canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+  objective:
+    implementation: raw_multi_horizon_quantile_loss_from_v56
+    weights: {pinball: 1.0, ranking: 0.5, crossing: 0.1}
+    ranknet_tie_tolerance: 1.0e-12
+    target_scaling: none
+    target_clipping: false
+    outcome_weighting: false
+  feature_scaling:
+    scope: per_origin_geometry_fold_train_rows_only
+    base_features: finite_complete_rows_mean_and_population_std
+    zero_scale_replacement: 1.0
+    relative_feature: divide_by_train_std_of_log_close_to_close_return
+    validation_or_evaluation_fit_allowed: false
+  data_access:
+    feature_columns:
+      - date
+      - symbol
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+    label_columns:
+      - date
+      - symbol
+      - target_h7_maturity_date
+      - target_h1_open_to_open_log_return
+      - target_h3_open_to_open_log_return
+      - target_h7_open_to_open_log_return
+      - multi_horizon_label_complete
+    sequence_base_columns: [date, sequence_start_date, symbol]
+    relative_source_feature: log_close_to_close_return
+    lookback_days: 256
+    evaluation_flag_substring_forbidden: development_evaluation
+  sampling:
+    unit: exact_lexical_triplet_on_eligible_signal_date
+    distribution: uniform_over_all_eligible_date_triplet_pairs
+    train_seed: registered_job_seed_fold_and_epoch
+    validation_seed: 20260714_fixed_across_job_seeds
+    validation_epoch: 0
+    train_samples_per_epoch: 8192
+    fixed_validation_samples: 2048
+    batch_size: 128
+  grid:
+    origins: [origin_2024, origin_2025]
+    geometries: [expanding, rolling]
+    folds: [1, 2, 3]
+    seeds: [42, 7, 123]
+    expected_jobs: 36
+    origin_roles:
+      origin_2024:
+        expanding_train_flag: eligible_origin_2024_expanding_train
+        rolling_train_flag: eligible_origin_2024_rolling_train
+        validation_flags:
+          expanding: eligible_origin_2024_expanding_validation
+          rolling: eligible_origin_2024_rolling_validation
+      origin_2025:
+        expanding_train_flag: eligible_origin_2025_expanding_train
+        rolling_train_flag: eligible_origin_2025_rolling_train
+        validation_flags:
+          expanding: eligible_origin_2025_expanding_validation
+          rolling: eligible_origin_2025_rolling_validation
+  optimizer:
+    name: AdamW
+    learning_rate: 0.0003
+    betas: [0.9, 0.999]
+    epsilon: 1.0e-8
+    weight_decay: 0.0001
+    amsgrad: false
+    gradient_clip_norm: 1.0
+    maximum_epochs: 30
+    early_stopping_patience: 5
+    early_stopping_monitor: validation_total_loss
+    restore_strictly_best_validation_state: true
+    early_stopping_minimum_delta: 0.0
+  smoke:
+    origin: origin_2024
+    geometry: expanding
+    fold: 1
+    seed: 42
+    train_samples_per_epoch: 256
+    fixed_validation_samples: 256
+    batch_size: 64
+    maximum_epochs: 2
+    early_stopping_patience: 2
+    interrupt_after_epoch: 1
+  runtime:
+    device: mps
+    dtype: float32
+    amp: false
+    cpu_fallback_allowed: false
+    deterministic_algorithms: true
+    pytorch_enable_mps_fallback: '0'
+    maximum_active_optimizer_jobs: 1
+    torch_threads: 1
+  checkpoint:
+    format_version: v58_state_conditioned_multi_horizon_checkpoint_v1
+    resume_format_version: v58_state_conditioned_multi_horizon_resume_v1
+    initialization: fresh_registered_seed
+    reuse: none
+    retain_all_jobs: true
+    resume_granularity: epoch_boundary_same_job_only
+    required_state:
+      - model
+      - best_model
+      - optimizer
+      - cpu_rng
+      - mps_rng
+      - sampler_epoch
+      - early_stopping
+      - history
+      - scaler_hash
+      - data_access_hash
+      - contract_hash
+      - source_hash
+  artifact_contract:
+    training_spec: training_spec.json
+    preflight: preflight.json
+    smoke: smoke.json
+    full_training_result: training_result.json
+    verification: verification.json
+    replay: replay.json
+    final_result: result.json
+    final_audit: audit.json
+    operator_packet_prefix: operator_packet_
+  safety:
+    minimum_free_gib: 50
+    clean_committed_git_required: true
+    mps_required: true
+    external_backup_receipt_required: true
+    external_backup_receipt: research/backups/v058.yaml
+  commands:
+    doctor: PYTHONPATH=src python3 -m tlm research-doctor
+    preflight: PYTHONPATH=src python3 -m tlm state-conditioned-multi-horizon-training-preflight --config configs/v58_state_conditioned_multi_horizon_training.yaml
+    smoke: PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm state-conditioned-multi-horizon-training-smoke --config configs/v58_state_conditioned_multi_horizon_training.yaml
+    full: PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm state-conditioned-multi-horizon-training --config configs/v58_state_conditioned_multi_horizon_training.yaml
+    verify: PYTHONPATH=src python3 -m tlm state-conditioned-multi-horizon-training-verify --config configs/v58_state_conditioned_multi_horizon_training.yaml
+    replay: PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm state-conditioned-multi-horizon-training-replay --config configs/v58_state_conditioned_multi_horizon_training.yaml
+  required_checks:
+    - all_input_and_source_hashes_match
+    - clean_committed_git_and_external_backup_receipt
+    - mps_float32_deterministic_fallback_disabled
+    - exact_thirty_six_job_cartesian_grid
+    - train_only_scalers_and_no_target_or_heldout_assets
+    - no_development_evaluation_rows_or_flags_loaded
+    - all_jobs_fresh_seed_and_all_checkpoints_retained
+    - smoke_interrupted_resume_matches_uninterrupted
+    - checkpoint_roundtrip_and_grid_complete
+    - replay_creates_zero_jobs_and_zero_optimizer_steps
+    - no_prediction_performance_or_pnl
+  pass_action: authorize_v59_frozen_adaptive_development_evaluation_only
+  failure_action: keep_v59_and_later_unauthorized
+
+authorized_next_action: authorize_v58_frozen_non_target_training_only
+pass_action: authorize_v59_frozen_adaptive_development_evaluation_only
+failure_action: keep_v59_and_later_unauthorized

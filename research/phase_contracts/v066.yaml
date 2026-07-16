@@ -1,0 +1,82 @@
+schema_version: 1
+phase: v66
+stage_revision: v066_synthetic_v64_r2_probabilistic_state_gate_harness_r1
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: specification_frozen_harness_authorized
+evidence_tier: metadata_specification_passed_synthetic_only
+parent_experiment:
+  path: research/experiments/v065.yaml
+  file_sha256: f9ca9cc6c839a92163cb1c3f5d5e73b91861a2e5c27351583a202be3fb825ed5
+authorization_receipt:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/result.json
+  file_sha256: e8d8849c5926f31f7b76dd8c83e7fce30c3064f728bdf87cb452eae9371da9ee
+  registered_result_sha256: d246dece1604a67f3a7cc1abaa7808a2ab5555a907f9dd49ff3e8f319e7ae9f6
+  decision: authorize_v66_synthetic_v64_r2_probabilistic_state_gate_harness_only
+authorized_next_action: authorize_v66_synthetic_v64_r2_probabilistic_state_gate_harness_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm v64-r2-probabilistic-state-gate-harness
+  --config configs/v66_v64_r2_probabilistic_state_gate_harness.yaml
+pass_action: authorize_v67_non_target_v64_r2_probabilistic_state_gate_dataset_only
+failure_action: retire_v64_r2_without_data_training_or_evaluation
+
+access_contract:
+  output_dir: artifacts/v66_v64_r2_probabilistic_state_gate_harness
+  allowed_inputs:
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/audit.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/result.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/artifact_manifest.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/completion_receipt.json
+  allowed_capabilities:
+    - instantiate_exact_frozen_ranker_architecture_on_synthetic_data_only
+    - instantiate_exact_probabilistic_state_gate_on_synthetic_data_only
+    - verify_student_t_location_scale_nll_and_scale_positivity
+    - verify_probability_abstention_entry_hold_switch_exit_accounting
+    - verify_gradient_isolation_and_frozen_ranker_contract
+    - verify_synthetic_checkpoint_roundtrip_and_resume
+    - write_deterministic_synthetic_harness_packet
+  required_checks:
+    - exact_v65_specification_hashes_match
+    - synthetic_inputs_only
+    - exact_ranker_architecture_and_objective_preserved
+    - state_gate_has_exactly_two_outputs_and_positive_scale
+    - fixed_student_t_degrees_of_freedom_and_nll_are_correct
+    - ranker_gate_gradient_isolation_is_structural
+    - ranker_optimizer_and_ranker_gradient_are_absent_in_gate_training
+    - probability_threshold_boundary_behavior_is_exact
+    - transition_specific_cost_probability_is_exact
+    - momentum_gate_switch_hurdle_and_long_one_cash_policy_are_preserved
+    - causal_prefix_and_asset_permutation_behavior_pass
+    - synthetic_roundtrip_resume_and_byte_replay_pass
+    - target_assets_remain_sealed
+    - zero_real_data_prior_checkpoint_prediction_metric_pnl_or_outcome_reads
+  forbidden_capabilities:
+    - real_data_parquet_or_market_panel_access
+    - v63_or_v64_checkpoint_file_access_or_reuse
+    - prior_v64_gate_state_access_or_reuse
+    - real_training_inference_or_prediction
+    - real_performance_metric_or_pnl_generation
+    - outcome_source_or_outcome_packet_read
+    - target_asset_access
+    - ranker_distribution_threshold_size_or_hyperparameter_change
+    - v67_implementation_or_data_build
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json: 7f5b21c002b31f2851ba0479d1800da6ecdbb798cc1f5d94123d6da8e13d7463
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/audit.json: 0c9451c5de8dd10058be20683798bff5fbd0c9898385a1efbed7f2cec50a963a
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/result.json: e8d8849c5926f31f7b76dd8c83e7fce30c3064f728bdf87cb452eae9371da9ee
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/artifact_manifest.json: 3d2e9ba1453a33528c2bfa9bf4b2e33fc32d6a81558d1a1131aa54f26908de81
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/completion_receipt.json: 27c19d3ae2d29696ba819d69d18389d6da8d608b2ece63418d62a9bda3a8b163
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: stop_after_v66_gate_before_any_v67_implementation

@@ -1,0 +1,116 @@
+seed: 20260713
+
+ranking_excess_pretraining:
+  version: v43
+  project_root: .
+  inputs:
+    v41_specification: artifacts/v41_ranking_excess_spec/specification.json
+    v41_blueprint: artifacts/v41_ranking_excess_spec/blueprint.json
+    v41_audit: artifacts/v41_ranking_excess_spec/audit.json
+    v42_result: artifacts/v42_ranking_excess_harness/result.json
+    v42_audit: artifacts/v42_ranking_excess_harness/audit.json
+    v32_dataset_manifest: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    panel: data/processed/selected_universe_panel_v32.parquet
+    sequence_index: data/processed/selected_universe_sequence_index_v32.parquet
+  expected_input_sha256:
+    v41_specification: fb14bacbc95efa23bc26c4fe6252eb7eaa950eba8dfe0b400b2c6d0fbf3ab7b0
+    v41_blueprint: a8410ff7fe9ccb56c61ec0095c668557d574799a15101d4129a5a41b85c709b9
+    v41_audit: 991c378fcb2c80ac0a77f8f53a375e1d4f3b49f09d8edb943e8a445ec4b038c2
+    v42_result: 754e321251460109f02cbe2d024cb2af1438526b6656d44f54421308f6d840bb
+    v42_audit: c3d391f8486cc678a0d5a46c5b6ccdb30cd284325798e02909d0440ba5596da5
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    panel: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    sequence_index: 3bb609586809bc7fe4d55b55e11df0581f147484005bc5eff9fd45b28b79d861
+  device: mps
+  torch_threads: 10
+  checkpoint_format: v43_ranking_excess_pretraining_v1
+  resume_format: v43_ranking_excess_resume_v1
+  best_state_format: v43_ranking_excess_best_state_v1
+  gradient_clip_norm: 1.0
+  mask_fraction: 0.15
+  loss: smooth_l1_beta_1_masked_patches_only
+  validation_monitor: fixed_2024_feature_only_masked_reconstruction_loss
+  validation_sampling_epoch: 0
+  expected_total_parameters: 1231634
+  expected_pretraining_parameters: 834576
+  data_access:
+    per_fold_filtered_read_required: true
+    panel_columns:
+      - date
+      - symbol
+      - log_open_to_open_return
+      - log_close_to_close_return
+      - log_high_low_range
+      - log_close_open_return
+      - log1p_quote_volume_change
+      - log1p_trade_count_change
+      - rolling_realized_volatility_7d
+      - rolling_realized_volatility_30d
+    sequence_columns:
+      - date
+      - sequence_start_date
+      - symbol
+    maximum_loaded_date: '2024-12-23'
+    representation_train_start: '2021-01-01'
+    representation_train_end: '2023-12-31'
+    feature_only_validation_start: '2024-01-01'
+    feature_only_validation_end: '2024-12-23'
+    labels_allowed: false
+    heldout_assets_allowed: false
+    target_assets_allowed: false
+    post_validation_dates_allowed: false
+    physical_row_group_isolation_claimed: false
+    expected_by_fold:
+      '1':
+        panel_rows: 29060
+        scaler_finite_train_rows: 21300
+        train_sequence_rows: 16200
+        validation_sequence_rows: 7160
+        train_eligible_pairs: 923400
+        validation_eligible_pairs: 408120
+      '2':
+        panel_rows: 29060
+        scaler_finite_train_rows: 21300
+        train_sequence_rows: 16200
+        validation_sequence_rows: 7056
+        train_eligible_pairs: 923400
+        validation_eligible_pairs: 390336
+      '3':
+        panel_rows: 29060
+        scaler_finite_train_rows: 21300
+        train_sequence_rows: 16200
+        validation_sequence_rows: 7056
+        train_eligible_pairs: 923400
+        validation_eligible_pairs: 390336
+  initialization:
+    source: fresh_registered_seed
+    parent_checkpoint_sha256: null
+    old_checkpoint_reuse_allowed: false
+    synthetic_v42_checkpoint_allowed: false
+  checkpoint_dir: data/checkpoints/v43_ranking_excess_pretraining
+  smoke_checkpoint_dir: data/checkpoints/v43_ranking_excess_pretraining_smoke
+  preflight_output_dir: artifacts/v43_ranking_excess_pretraining_preflight
+  smoke_output_dir: artifacts/v43_ranking_excess_pretraining_smoke
+  full_run:
+    folds: [1, 2, 3]
+    seeds: [42, 7, 123]
+    train_samples_per_epoch: 8192
+    validation_samples: 2048
+    batch_size: 128
+    maximum_epochs: 50
+    early_stopping_patience: 5
+  smoke:
+    folds: [1]
+    seeds: [42]
+    train_samples_per_epoch: 128
+    validation_samples: 128
+    batch_size: 32
+    maximum_epochs: 2
+    early_stopping_patience: 2
+  authorized_next_action: v44_ranking_excess_supervised_non_target_only
+
+output_dir: artifacts/v43_ranking_excess_pretraining

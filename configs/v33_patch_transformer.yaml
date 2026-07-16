@@ -1,0 +1,22 @@
+seed: 20260713
+
+patch_transformer_implementation:
+  project_root: .
+  inputs:
+    v29_amendment: artifacts/v29_multi_asset_scope_amendment/amendment.json
+    v32_result: artifacts/v32_selected_universe_dataset/result.json
+    v32_audit: artifacts/v32_selected_universe_dataset/audit.json
+    v32_dataset_manifest: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+  expected_input_sha256:
+    v29_amendment: c1aad19222398cc87717b72467b696498ca4a8109c78527ac63586094d50155d
+    v32_result: 9a41f84a7de9534472c9655a577c84de992604633f091080e3b7906420b1da53
+    v32_audit: 280c8857cf990cf62411628e1b3fe30bf04ffcc940db927f995aa487ad09f106
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+  expected_v29_blueprint_sha256: af5d24c368cd39d8db65fa20b05fbb42edfa3c64022fd466f0a799e83ecc9b5a
+  initialization_seed: 42
+
+output_dir: artifacts/v33_patch_transformer

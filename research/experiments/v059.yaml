@@ -1,0 +1,88 @@
+schema_version: 1
+experiment_id: v059_state_conditioned_multi_horizon_evaluation
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+phase: completed_adaptive_historical_development_evaluation
+status: retired
+evidence_tier: adaptive_historical_non_target_evaluation_negative
+parent_experiment: research/experiments/v059_prepare.yaml
+phase_contract:
+  path: research/phase_contracts/v059_unseal_r1.yaml
+  file_sha256: f23bbc7891a5754ecdc8261492fdb85cfe53ba94d3f0d2a9ca6019a49626771f
+blueprint:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+  file_sha256: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+  canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+result:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/result.json
+  file_sha256: 76da925c0f53ec09c8b748372b8c56a91a8d3c413c5d8be4755d46ea4a8e5185
+  registered_result_sha256: 6c672f9cd76fefa1679329d81c583cb089d86069e940777f6810de6d0e8e446d
+audit:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/audit.json
+  file_sha256: e0a7703aaab7cfdca7c5b41c2265827bf82aa31f20b06e47923ad0d95a1d8b2f
+metrics:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/metrics.json
+  file_sha256: 90d96dfe36df20f467c25edb1d50b76bf1405e7a0dd8f7df0d9f9b74ec715a2c
+bootstrap:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/bootstrap.json
+  file_sha256: 4b4d5a01101b940f02a79efdfed0e3537f1b1d51c53c589a5ff0617ad56423b6
+gate_matrix:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/gate_matrix.json
+  file_sha256: 9430ebfb149cf7f6422962deb61f60c12a5deb9bdb592a0e6355c3bb0fb0655e
+completion_receipt:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/completion_receipt.json
+  file_sha256: 7870baa035f46c21ca9576ca81ec75902db8501cdef95cc35f3f0346f76af6ae
+  canonical_sha256: f344d4eb24d599c97c9f8742ff245ad810c5e5a324dd93f9cdd6e1577548298f
+artifact_manifest:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/artifact_manifest.json
+  file_sha256: d92d1a58fc187c3da10e193dd3a671973ec5effe30295b96a5e2218286d54ec1
+  canonical_sha256: 94dceba627f58fcbd16f662bf382f828d8d09f98d85fad11fad2bc2f214ede16
+replay:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/replay.json
+  file_sha256: 7243c084bf6b4e6ee8aed2abfc09fa61b3bfad24550c7d6b0da2ec5fed971c39
+  canonical_sha256: c5a39f5c8a8d94e6f40d0c098133ccc4d46e833b44a8ed5005979e1f05753f18
+outcome_receipt:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/outcome_receipt.json
+  file_sha256: 410b2d4e055d689516011468ba8e005a885831862f0334cb0b3f8e19942f56d7
+report:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/report.md
+  file_sha256: 048f490571c123bf6e65414455048e8782ca3414c23b51bb72a2e0926b5ff4c4
+evaluation_summary:
+  decision: retire_family_without_tuning
+  mandatory_gates: 700
+  passed_gates: 97
+  failed_gates: 603
+  unseal_count: 1
+  source_outcome_reads: 1
+  replay_source_outcome_reads: 0
+  target_asset_loads: 0
+  target_predictions: 0
+  target_pnl_evaluations: 0
+  retuning_performed: false
+authorized_next_action: retire_family_without_tuning
+v59_contract:
+  output_dir: artifacts/v59_state_conditioned_multi_horizon_evaluation
+  allowed_inputs:
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/result.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/audit.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/metrics.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/bootstrap.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/gate_matrix.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/completion_receipt.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/artifact_manifest.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/replay.json
+    - artifacts/v59_state_conditioned_multi_horizon_evaluation/report.md
+  allowed_capabilities:
+    - inspect_immutable_v59_failure_evidence
+    - perform_retirement_autopsy_without_retuning_or_new_outcome_reads
+  required_checks:
+    - preserve_terminal_retirement_decision
+    - use_only_immutable_result_artifacts
+    - source_outcome_reads_remain_zero
+    - target_assets_remain_sealed
+  forbidden_capabilities:
+    - second_outcome_unseal_or_source_outcome_reread
+    - refit_retrain_or_regenerate_predictions_positions_or_controls
+    - change_costs_metrics_bootstrap_gates_or_failure_decision
+    - access_target_assets
+    - implement_v60_or_register_a_new_family_without_new_explicit_authorization
+    - paper_shadow_live_or_real_money_trading

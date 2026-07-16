@@ -1,0 +1,237 @@
+schema_version: 1
+phase: v85
+stage_revision: v085_hash_bound_low_turnover_rank_unseal_r1
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+status: frozen_after_hash_bound_user_authorization_before_exactly_one_outcome_unseal
+evidence_tier: retrospective_non_target_first_use_2026_not_prospective_confirmation
+
+parent_experiment:
+  path: research/experiments/v085.yaml
+  file_sha256: 2d9bb6086671b961a05ebf871d1cab5d7d9a9de47c9cca4cb7d676f37d56a896
+scientific_parent:
+  path: research/experiments/v084.yaml
+  file_sha256: 0a8c1f3dfb06832653a79b073146a38771378ccc92291f8cf77d1fe5ce5a24df
+base_phase_contract:
+  path: research/phase_contracts/v084.yaml
+  file_sha256: fb99f016f6b368e0ccc0f18ed20e8b5dad957158dcdf64703e8c29e504136c65
+
+prepare_packet:
+  output_dir: artifacts/v84_low_turnover_rank_evaluation
+  evaluation_spec:
+    path: artifacts/v84_low_turnover_rank_evaluation/evaluation_spec.json
+    file_sha256: 70191a2e02e82f405cec9112b0708e20db8e658932ac0448a794f811db12ec80
+  prepare_receipt:
+    path: artifacts/v84_low_turnover_rank_evaluation/prepare_receipt.json
+    file_sha256: e0d65959afca7b928bb74d466bdbfb8e5ff2c2f46b08fa075c7ab04c649e611e
+  one_shot_packet:
+    path: artifacts/v84_low_turnover_rank_evaluation/one_shot_packet.json
+    file_sha256: a5a21254eed06b7f95c875aa5b01046e4168e2dde5dcd442dd3cc6d0c4e180ea
+  result:
+    path: artifacts/v84_low_turnover_rank_evaluation/result.json
+    file_sha256: ac2d0201b64a375743aa143c92d32012417ea505f99f5e86bef6e3fdd1df0361
+  audit:
+    path: artifacts/v84_low_turnover_rank_evaluation/audit.json
+    file_sha256: 9f02f133b06326ad217b91bb9e6762fee9a6f93d59743e699eb8f19c97ec8a75
+  behavior_audit:
+    path: artifacts/v84_low_turnover_rank_evaluation/behavior_audit.json
+    file_sha256: b23ea529ba91359979e486dbb8150c1a0ddfc36ede4e6a30d9f72064e7128e1f
+  data_access:
+    path: artifacts/v84_low_turnover_rank_evaluation/data_access.json
+    file_sha256: b3dcde49bed5502bbca0e4dd58a632ca49d178b45b351db3e1858050c5729522
+  predictions:
+    path: data/predictions/v84_low_turnover_rank_predictions.parquet
+    file_sha256: d704dbffaea16e42f022bf27296301df0b52857b12e511bc62162aeb376a5df9
+  candidate_positions:
+    path: data/predictions/v84_low_turnover_rank_candidate_positions.parquet
+    file_sha256: 427968efccd9187169791de6831a99cec6a731b8d5858ede638f244ca0649aa6
+  control_positions:
+    path: data/predictions/v84_low_turnover_rank_control_positions.parquet
+    file_sha256: 0e3da2cc7f162c53b8dfb1298600953cb27e05948628ef992b1ccfa7ab70d3f1
+  registered_sha256: 82ee01cba2815c57a59cde16cf03d9a47b5bcb75421d0e350011793889548560
+
+explicit_user_authorization:
+  path: research/authorizations/v085_low_turnover_rank_outcome_unseal.json
+  file_sha256: 1574ee1ce6359f1f090d147eef9bb4b96a6c565b0341a39944423082b6ed1509
+  canonical_sha256: 9400f8987a596237fce6d09ac98019f02d5b1c804ce7706dcdd9e869690009ca
+
+authorized_next_action: execute_v85_exactly_one_registered_non_target_outcome_unseal_and_complete_evaluation
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm low-turnover-rank-evaluation-unseal
+  --config configs/v85_low_turnover_rank_evaluation.yaml
+pass_action: retain_family_and_authorize_separate_target_transfer_specification_only
+failure_action: retire_final_family_without_target_evaluation_or_retuning
+stop_condition: stop_after_one_shot_economic_decision_and_source_free_replay
+
+access_contract:
+  output_dir: artifacts/v85_low_turnover_rank_evaluation
+  allowed_inputs: &allowed_inputs
+    - artifacts/v84_low_turnover_rank_evaluation/result.json
+    - artifacts/v84_low_turnover_rank_evaluation/audit.json
+    - artifacts/v84_low_turnover_rank_evaluation/evaluation_spec.json
+    - artifacts/v84_low_turnover_rank_evaluation/prepare_receipt.json
+    - artifacts/v84_low_turnover_rank_evaluation/one_shot_packet.json
+    - artifacts/v84_low_turnover_rank_evaluation/behavior_audit.json
+    - artifacts/v84_low_turnover_rank_evaluation/data_access.json
+    - data/predictions/v84_low_turnover_rank_predictions.parquet
+    - data/predictions/v84_low_turnover_rank_candidate_positions.parquet
+    - data/predictions/v84_low_turnover_rank_control_positions.parquet
+    - data/processed/low_turnover_rank_evaluation_outcomes_v82.parquet
+    - research/authorizations/v085_low_turnover_rank_outcome_unseal.json
+  allowed_capabilities:
+    - atomically_write_the_exact_hash_bound_authorization_receipt_before_source_access
+    - deserialize_the_exact_registered_non_target_outcome_projection_once
+    - atomically_freeze_the_outcome_packet_and_receipt
+    - compute_only_registered_cost_accounting_control_bootstrap_and_gate_cells
+    - preserve_every_failed_mandatory_cell_without_aggregate_rescue
+    - replay_from_the_immutable_v85_packet_with_zero_source_outcome_reads
+  required_checks:
+    - exact_v84_spec_prepare_registered_and_packet_hashes_match_user_authorization
+    - authorization_receipt_is_atomic_and_precedes_the_single_source_deserialization
+    - exact_5370_non_target_rows_columns_dates_symbols_and_maturity
+    - immutable_v84_predictions_candidate_and_control_positions_are_reused
+    - costs_10_20_30_accounting_controls_bootstrap_and_gates_are_unchanged
+    - every_mandatory_cell_is_preserved_without_aggregate_rescue
+    - unseal_count_equals_one_and_source_outcome_rows_read_equals_5370
+    - target_asset_loads_predictions_and_pnl_equal_zero
+    - source_free_replay_result_hashes_match
+  forbidden_capabilities:
+    - target_asset_access_inference_prediction_position_outcome_or_pnl
+    - second_source_packet_deserialization_or_source_outcome_reread
+    - checkpoint_model_scaler_optimizer_feature_panel_or_training_access
+    - prediction_position_policy_threshold_cost_accounting_control_gate_or_bootstrap_regeneration
+    - retuning_selection_counterfactual_policy_or_aggregate_rescue
+    - clean_holdout_prospective_confirmation_deployable_or_direct_target_transfer_claim
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v84_low_turnover_rank_evaluation/result.json: ac2d0201b64a375743aa143c92d32012417ea505f99f5e86bef6e3fdd1df0361
+    artifacts/v84_low_turnover_rank_evaluation/audit.json: 9f02f133b06326ad217b91bb9e6762fee9a6f93d59743e699eb8f19c97ec8a75
+    artifacts/v84_low_turnover_rank_evaluation/evaluation_spec.json: 70191a2e02e82f405cec9112b0708e20db8e658932ac0448a794f811db12ec80
+    artifacts/v84_low_turnover_rank_evaluation/prepare_receipt.json: e0d65959afca7b928bb74d466bdbfb8e5ff2c2f46b08fa075c7ab04c649e611e
+    artifacts/v84_low_turnover_rank_evaluation/one_shot_packet.json: a5a21254eed06b7f95c875aa5b01046e4168e2dde5dcd442dd3cc6d0c4e180ea
+    artifacts/v84_low_turnover_rank_evaluation/behavior_audit.json: b23ea529ba91359979e486dbb8150c1a0ddfc36ede4e6a30d9f72064e7128e1f
+    artifacts/v84_low_turnover_rank_evaluation/data_access.json: b3dcde49bed5502bbca0e4dd58a632ca49d178b45b351db3e1858050c5729522
+    data/predictions/v84_low_turnover_rank_predictions.parquet: d704dbffaea16e42f022bf27296301df0b52857b12e511bc62162aeb376a5df9
+    data/predictions/v84_low_turnover_rank_candidate_positions.parquet: 427968efccd9187169791de6831a99cec6a731b8d5858ede638f244ca0649aa6
+    data/predictions/v84_low_turnover_rank_control_positions.parquet: 0e3da2cc7f162c53b8dfb1298600953cb27e05948628ef992b1ccfa7ab70d3f1
+    data/processed/low_turnover_rank_evaluation_outcomes_v82.parquet: 9cc5be0e9dfdc40b4fe8d6433602769d67bfa6b269b5f02fa2d241e6eca0024a
+    research/authorizations/v085_low_turnover_rank_outcome_unseal.json: 1574ee1ce6359f1f090d147eef9bb4b96a6c565b0341a39944423082b6ed1509
+
+outcome_access_contract:
+  source_packet: data/processed/low_turnover_rank_evaluation_outcomes_v82.parquet
+  source_packet_sha256: 9cc5be0e9dfdc40b4fe8d6433602769d67bfa6b269b5f02fa2d241e6eca0024a
+  allowed_columns:
+    - interval_start_date
+    - interval_end_date
+    - symbol
+    - open_to_next_open_log_return
+    - outcome_complete
+  expected_rows: 5370
+  interval_start: '2026-01-02'
+  interval_end: '2026-06-29'
+  final_maturity: '2026-06-30'
+  maximum_source_packet_deserializations: 1
+  replay_source_packet_deserializations: 0
+  authorization_receipt_before_source_access: true
+  packet_is_immutable: true
+
+evaluation_contract:
+  scientific_contract_source: artifacts/v84_low_turnover_rank_evaluation/evaluation_spec.json
+  evidence_tier: retrospective_non_target_first_use_2026_not_prospective_confirmation
+  portfolios:
+    - candidate
+    - cash
+    - decision_21d_equal_weight_three_assets
+    - decision_21d_top_trailing_21d_momentum_with_same_63d_market_gate
+  costs_bps: [10, 20, 30]
+  fold_aggregation: equal_weight_120_triplet_subaccounts_daily_mean
+  cross_fold_aggregation: equal_one_third_capital_per_fold_daily_mean
+  accounting: frozen_v84_registered_accounting
+  bootstrap:
+    method: circular_block_resampling_synchronized_across_candidate_and_controls
+    paths: 10000
+    block_lengths_days: [7, 21, 42]
+    base_seed: 20260716
+    seed_derivation: base_seed_plus_block_length
+    confidence_level: 0.90
+    economic_cost_bps: 10
+  mandatory_gate_categories: 9
+  mandatory_gate_cells: 19
+  family_status_change_on_failure: retire
+  aggregate_rescue_allowed: false
+  missing_cell_pass_allowed: false
+
+one_shot_contract:
+  current_stage: authorized_unseal_and_completion
+  explicit_user_authorization_present: true
+  authorization_receipt_written_atomically_before_source_access: true
+  maximum_unseal_count: 1
+  source_packet_deserializations_first_execution: 1
+  source_outcome_rows_read_first_execution: 5370
+  source_packet_deserializations_replay: 0
+  source_outcome_rows_read_replay: 0
+  prediction_or_position_regeneration: false
+  incomplete_authorization_without_atomic_packet: fail_closed
+  existing_complete_v85_outcome_packet: reuse_without_source_access
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+runtime_contract:
+  require_clean_committed_git: true
+  process_lock: data/checkpoints/.v85_low_turnover_rank_evaluation.lock
+
+source_receipt_files:
+  - AGENTS.md
+  - configs/v85_low_turnover_rank_evaluation.yaml
+  - research/current.yaml
+  - research/experiments/v085.yaml
+  - research/phase_contracts/v085.yaml
+  - research/authorizations/v085_low_turnover_rank_outcome_unseal.json
+  - .agents/skills/tlm-research-governor/SKILL.md
+  - .agents/skills/tlm-loop-engineer/SKILL.md
+  - .agents/skills/tlm-one-shot-evaluator/SKILL.md
+  - .agents/skills/tlm-one-shot-evaluator/references/evaluation-contract.md
+  - .agents/skills/tlm-one-shot-evaluator/scripts/validate_evaluation_packet.py
+  - src/tlm/__init__.py
+  - src/tlm/__main__.py
+  - src/tlm/core/artifacts.py
+  - src/tlm/low_turnover_rank_evaluation.py
+  - src/tlm/low_turnover_rank_evaluation_complete.py
+  - src/tlm/monte_carlo.py
+  - src/tlm/research_workflow.py
+  - tests/test_low_turnover_rank_evaluation_complete.py
+  - tests/test_v85_phase_registration.py
+  - pyproject.toml
+
+artifact_contract:
+  authorization_receipt: unseal_authorization_receipt.json
+  outcome_packet: outcome_packet.parquet
+  outcome_receipt: outcome_receipt.json
+  core_result_files:
+    - economic_metrics.json
+    - daily_returns.parquet
+    - bootstrap.json
+    - gate_matrix.json
+    - evaluation_result.json
+    - evaluation_audit.json
+    - evaluation_report.md
+    - result.json
+    - audit.json
+  completion_receipt: completion_receipt.json
+  complete_packet: one_shot_complete_packet.json
+  replay_receipt: replay.json
+  replay_packet: one_shot_replay_packet.json
+
+commands:
+  unseal: >-
+    PYTHONPATH=src python3 -m tlm low-turnover-rank-evaluation-unseal
+    --config configs/v85_low_turnover_rank_evaluation.yaml
+  replay: >-
+    PYTHONPATH=src python3 -m tlm low-turnover-rank-evaluation-replay
+    --config configs/v85_low_turnover_rank_evaluation.yaml

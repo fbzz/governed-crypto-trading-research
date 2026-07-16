@@ -1,0 +1,44 @@
+schema_version: 1
+experiment_id: v060_decoupled_rank_state_specification
+family_id: tlm_decoupled_rank_state_medium_v1
+phase: metadata_only_ex_ante_specification
+status: passed
+evidence_tier: metadata_only_ex_ante_design
+parent_experiment: research/experiments/v060_authorized.yaml
+scientific_parent:
+  family_id: tlm_cross_sectional_rank_excess_medium_v1
+  terminal_phase: v45
+  decision_remains_immutable: retire_family_without_target_evaluation_or_parameter_tuning
+  weights_or_checkpoints_reused: false
+specification:
+  path: artifacts/v60_decoupled_rank_state_spec/specification.json
+  file_sha256: fa3fcb6c2ea2b7ac293ba36340af326ef1a816f99f8fadca7dfcdef9315e6415
+  canonical_sha256: 5b7be4657a6cd7769f21b34654171d3e7ce94e04bb08e2ba7fa993c16cfa620e
+blueprint:
+  path: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+  file_sha256: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+  canonical_sha256: 3cf97271c977633b1ee8ab4641a8a9fc95a1a9d79b72c80c063d21f553498232
+result:
+  path: artifacts/v60_decoupled_rank_state_spec/result.json
+  file_sha256: 3a63e8d22dd4cbba9304e211e13fada23d6e6366ce337f9b74cf241dbcaf0e2c
+  registered_result_sha256: 99eebbeecfbb4a6628a0429b7680babac7c929787a739721bfc00e1666664700
+audit:
+  path: artifacts/v60_decoupled_rank_state_spec/audit.json
+  file_sha256: 32f8b6cf2490e2eaa131eabdad598596deccf3127656b17665a75d11e0ab8e4e
+artifact_manifest:
+  path: artifacts/v60_decoupled_rank_state_spec/artifact_manifest.json
+  file_sha256: 54a6aae967e6094f6aa2d8d7956d2b4b191a47c58d3ce08d5840996b5b47964c
+  canonical_sha256: 9e66a1ac0788e5a4da15ab02650a1dc04d7ba5556cf0b3632d5589c9cf213589
+completion_receipt:
+  path: artifacts/v60_decoupled_rank_state_spec/completion_receipt.json
+  file_sha256: 6c23c405c773ddfd815247926106aaef99553beb2616a98abec7daba90984fc8
+  canonical_sha256: a1ad5a98e8f577363da331aa7d03bccced7d9d0490446f2ac197299c4f5c823d
+family_contract:
+  ranker_parameters: 1231634
+  independent_state_gate_parameters: 27489
+  total_parameters: 1259123
+  parameter_ceiling: 1300000
+  size_sweep_allowed: false
+  registered_future_training_jobs: 9
+  target_assets_status: sealed
+authorized_next_action: authorize_v61_synthetic_decoupled_rank_state_harness_only

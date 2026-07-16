@@ -1,0 +1,49 @@
+seed: 20260713
+
+scientific_harness:
+  project_root: .
+  inputs:
+    v29_amendment: artifacts/v29_multi_asset_scope_amendment/amendment.json
+    v32_dataset_manifest: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v33_result: artifacts/v33_patch_transformer/result.json
+    v33_audit: artifacts/v33_patch_transformer/audit.json
+    v33_model_spec: artifacts/v33_patch_transformer/model_spec.json
+  expected_input_sha256:
+    v29_amendment: c1aad19222398cc87717b72467b696498ca4a8109c78527ac63586094d50155d
+    v32_dataset_manifest: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    v33_result: bc6907212167ffa8c19d95a32c2485b796f2ec2bde03c21c470ab67f8d36b49e
+    v33_audit: 9e4f56f11ef97d3c1c04d06f57519fd45908cc1aece21bbb040892988d74643e
+    v33_model_spec: c72fbce5a51a8fb6b62136aeff2be7209dbd6ee40eb1bd5e4ade2efaccddb8f5
+  scaler:
+    fit_scope: representation_train_2021_2023_only
+    base_feature_method: per_feature_population_mean_std
+    relative_feature_scaling: divide_by_source_feature_scale_without_centering
+    zero_scale_replacement: 1.0
+  sampler:
+    distribution: uniform_over_eligible_date_triplet_pairs_with_replacement
+    pretrain_samples_per_epoch: 8192
+    supervised_samples_per_epoch: 8192
+    epoch_seed_components: [model_seed, fold, epoch]
+  patch_mask:
+    fraction: 0.15
+    exact_masked_patches_per_sample: 14
+    seed_components: [model_seed, fold, epoch, batch_index]
+  losses:
+    reconstruction: smooth_l1_beta_1
+    return_quantiles: mean_pinball_q10_q50_q90
+    volatility: smooth_l1_of_log_realized_volatility_beta_1
+    volatility_weight: 0.1
+    volatility_floor: 0.000001
+    quantile_crossing_penalty: 0.0
+  optimizer:
+    gradient_clip_norm: 1.0
+  early_stopping:
+    minimum_delta: 0.0
+  smoke:
+    observations: 128
+
+output_dir: artifacts/v34_scientific_harness

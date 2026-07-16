@@ -1,0 +1,120 @@
+schema_version: 1
+phase: v81
+stage_revision: v081_synthetic_low_turnover_rank_harness_r1
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+status: specification_frozen_synthetic_harness_authorized
+evidence_tier: deterministic_synthetic_harness_only
+
+parent_experiment:
+  path: research/experiments/v081.yaml
+  file_sha256: c05e4a77e27bed8cde501c66c56699010923ccc62f7f9bb8c4486e958b1d50f8
+preceding_phase_contract:
+  path: research/phase_contracts/v080.yaml
+  file_sha256: 7114987af993cdce355c32d87f87e22976cd093d526b08ab2cd96779b60e3c04
+authorization_receipt:
+  path: artifacts/v80_low_turnover_rank_spec/result.json
+  file_sha256: c0a49d6444e150a8081d48ebbce3394b4af21257b15a1f332594999fa4503f3c
+  registered_result_sha256: 4008ce046d0d05665708c4cd3dba7fd2405d40314d7b4dafdc7e4b573f6008ad
+  decision: authorize_v81_synthetic_low_turnover_rank_harness_only
+
+authorized_next_action: authorize_v81_synthetic_low_turnover_rank_harness_only
+authorized_command: >-
+  PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+  low-turnover-rank-harness
+  --config configs/v81_low_turnover_rank_harness.yaml
+pass_action: authorize_v82_non_target_low_turnover_rank_dataset_only
+failure_action: retire_final_family_on_synthetic_contract_failure
+stop_condition: freeze_and_validate_v81_synthetic_harness_then_stop_before_v82
+
+access_contract:
+  output_dir: artifacts/v81_low_turnover_rank_harness
+  allowed_inputs:
+    - artifacts/v80_low_turnover_rank_spec/specification.json
+    - artifacts/v80_low_turnover_rank_spec/blueprint.json
+    - artifacts/v80_low_turnover_rank_spec/audit.json
+    - artifacts/v80_low_turnover_rank_spec/result.json
+    - artifacts/v80_low_turnover_rank_spec/artifact_manifest.json
+    - artifacts/v80_low_turnover_rank_spec/input_hash_receipt.json
+  allowed_capabilities:
+    - read_six_exact_hash_bound_v80_json_metadata_files
+    - instantiate_exact_10993_parameter_model_on_synthetic_tensors_only
+    - run_synthetic_cpu_and_mps_forward_backward
+    - write_and_read_synthetic_checkpoint_only
+    - verify_causality_asset_permutation_centered_scores_and_loss
+    - verify_structural_turnover_bound_on_adversarial_synthetic_scores
+    - emit_deterministic_synthetic_harness_packet
+  required_checks:
+    - exact_v80_specification_blueprint_and_result_hashes
+    - exact_10993_parameter_count_and_shapes
+    - causal_prefix_invariance
+    - asset_permutation_equivariance
+    - centered_score_sum_zero
+    - finite_pairwise_and_point_loss
+    - finite_cpu_and_mps_backward
+    - synthetic_checkpoint_roundtrip_and_interrupted_resume
+    - adversarial_turnover_never_exceeds_16
+    - zero_real_data_prior_checkpoint_outcome_or_target_access
+  forbidden_capabilities:
+    - real_data_parquet_market_panel_label_or_outcome_access
+    - prior_checkpoint_weight_scaler_optimizer_or_state_access
+    - real_training_inference_prediction_position_metric_pnl_or_bootstrap
+    - architecture_objective_policy_threshold_hyperparameter_or_gate_change
+    - implement_or_execute_v82_dataset
+    - target_asset_access
+    - deployable_paper_shadow_live_or_real_money_claim
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    artifacts/v80_low_turnover_rank_spec/specification.json: 691ca1a2b847292a94896254d06e5c9f50e1416676e202b84e2246c10e4f731a
+    artifacts/v80_low_turnover_rank_spec/blueprint.json: d877adf553c6ba54e51302cdb058c361e15817daf16034e2744ed10a46d64abb
+    artifacts/v80_low_turnover_rank_spec/audit.json: 0dab6307ed1a3c9d39e5de56dffa4d3c5fa8379a9917430fe6b56559fb3b9354
+    artifacts/v80_low_turnover_rank_spec/result.json: c0a49d6444e150a8081d48ebbce3394b4af21257b15a1f332594999fa4503f3c
+    artifacts/v80_low_turnover_rank_spec/artifact_manifest.json: a030679115f01d85ca2a86364602a5b4669b5bb0828d26780de2f6280c6a1a92
+    artifacts/v80_low_turnover_rank_spec/input_hash_receipt.json: 331fa93cc1617eb8a04d4711937e45bfa7d472685aaea408d81f50dffba62095
+  allowed_extensions: [.json]
+  expected_json_metadata_reads: 6
+  maximum_real_data_or_parquet_reads: 0
+  maximum_prior_checkpoint_reads: 0
+  maximum_outcome_or_target_reads: 0
+
+synthetic_contract:
+  input_shape: [4, 128, 3, 8]
+  parameter_count: 10993
+  temporal_dilations: [1, 2, 4, 8, 16, 32]
+  receptive_field_days: 127
+  output_shape: [4, 3]
+  output_centered_across_assets: true
+  cpu_backward_steps: 2
+  mps_backward_steps: 2
+  synthetic_checkpoint_write_reads: 1
+  interrupted_steps_before_resume: 1
+  total_resume_steps: 3
+  adversarial_policy_signal_dates: 160
+  decision_interval_days: 21
+  maximum_decisions: 8
+  structural_maximum_turnover: 16.0
+  architecture_or_scientific_contract_change_allowed: false
+
+artifact_contract:
+  output_dir: artifacts/v81_low_turnover_rank_harness
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - harness_spec.json
+    - smoke.json
+    - audit.json
+    - result.json
+    - report.md
+    - artifact_manifest.json
+  deterministic_replay_required: true
+  real_data_or_model_checkpoint_artifact_allowed: false
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+deployable: false

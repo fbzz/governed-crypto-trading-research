@@ -1,0 +1,80 @@
+seed: 20260713
+
+data:
+  source: binance
+  interval: 1d
+  start: "2018-01-01"
+  end: null
+  cache_dir: data/raw
+  assets:
+    BTC: BTCUSDT
+    ETH: ETHUSDT
+    SOL: SOLUSDT
+
+target:
+  mode: next_open_to_open
+
+derivatives_signal_study:
+  derivatives_artifact_dir: artifacts/v10_derivatives_data
+  start: "2021-12-01"
+  end: "2026-06-30"
+  momentum_lookback: 30
+  purge_samples: 1
+  quantile_bins: 5
+  tail_quantile: 0.10
+  signals:
+    - control__funding_rate_sum
+    - control__funding_rate_7d_sum
+    - control__funding_rate_30d_mean
+    - control__basis_close
+    - control__basis_7d_mean
+    - control__basis_30d_z
+    - control__open_interest_log_change_1d
+    - control__open_interest_log_change_7d
+    - control__open_interest_value_log_change_1d
+    - control__toptrader_count_ratio_mean
+    - control__toptrader_position_ratio_mean
+    - control__global_long_short_ratio_mean
+    - control__taker_long_short_ratio_mean
+    - market_mean__funding_rate_7d_sum
+    - market_mean__basis_30d_z
+    - market_mean__open_interest_log_change_7d
+    - cross_dispersion__funding_rate_7d_sum
+    - cross_dispersion__basis_30d_z
+  minimum_observed_coverage: 0.90
+  minimum_test_rho: 0.50
+  minimum_orientation_consistency: 0.66
+  minimum_monotonic_fold_fraction: 0.50
+  minimum_risk_coverage: 0.12
+  maximum_risk_coverage: 0.28
+  minimum_downside_lift: 1.25
+  minimum_tail_lift: 1.25
+  minimum_bootstrap_probability: 0.70
+
+validation_suite:
+  monte_carlo:
+    method: paired_circular_block_bootstrap_risk_lift
+    paths: 3000
+    block_lengths: [7, 21, 63]
+    seed: 20260713
+    batch_size: 250
+  scenarios:
+    - name: reference_expanding_3
+      validation:
+        mode: expanding
+        folds: 3
+        min_train_fraction: 0.50
+    - name: expanding_6
+      validation:
+        mode: expanding
+        folds: 6
+        min_train_fraction: 0.40
+    - name: rolling_6_730d
+      validation:
+        mode: rolling
+        folds: 6
+        # 730 / 1673 = 43.63%; 44% preserves the frozen 730-day window.
+        min_train_fraction: 0.44
+        train_window_samples: 730
+
+output_dir: artifacts/v11_derivatives_signal_existence

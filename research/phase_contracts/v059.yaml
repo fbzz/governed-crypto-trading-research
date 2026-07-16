@@ -1,0 +1,766 @@
+schema_version: 1
+phase: v59
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+status: frozen_before_outcome_blind_prepare_or_any_development_outcome_access
+evidence_tier: adaptive_historical_development_evaluation_only
+
+parent_experiment:
+  path: research/experiments/v058.yaml
+  file_sha256: 2e702b1bf322d1ffd0ea30aedaf473f52761431d28a896163bdec7591e9191c5
+preceding_phase_contract:
+  path: research/phase_contracts/v058r1.yaml
+  file_sha256: fbb03653f2c3a9eb62356d28a3e2890bc9645ef94d79d67a26d3727a6d09bcc4
+authorization_receipt:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/result.json
+  file_sha256: 3d3a78eb8ccc62593a9bfebc2e1ab03e16da452e1e858e1ad71452405d6f9440
+  registered_result_sha256: 2b76a66015fda7b5899ed242cbb8bfb909535f828ffaeaaa81f982258a421273
+  decision: authorize_v59_frozen_adaptive_development_evaluation_only
+completion_receipt:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/completion_receipt.json
+  file_sha256: 55271f8ec6c5a4a8cc6643fe5070abde11fec8c8666cdc8c91d1cdcef86008d2
+  registered_completion_sha256: 7ceb4864536b3af9a01c95221874e675d306869c143736b793a223d407eec409
+blueprint:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+  file_sha256: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+  canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+operational_waiver:
+  path: research/waivers/v059_local_artifacts_owner_waiver.json
+  file_sha256: c31f88585e248eac17f6c4f1d0c03df9029d4712f9c5c2180bbf677b68c73ae0
+
+authorized_next_action: authorize_v59_frozen_adaptive_development_evaluation_only
+authorized_command: >-
+  PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+  state-conditioned-multi-horizon-evaluation-prepare
+  --config configs/v59_state_conditioned_multi_horizon_evaluation.yaml
+prepare_pass_action: await_explicit_v59_registered_outcome_unseal_authorization
+prepare_failure_action: keep_v59_outcomes_sealed_and_allow_code_only_contract_preserving_prepare_fix
+pass_action: authorize_v60_immutable_registration_without_refit
+failure_action: retire_family_without_tuning
+
+access_contract:
+  output_dir: artifacts/v59_state_conditioned_multi_horizon_evaluation
+  allowed_inputs:
+    - artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+    - artifacts/v57_non_target_multi_horizon_dataset/dataset_spec.json
+    - artifacts/v57_non_target_multi_horizon_dataset/dataset_manifest.json
+    - artifacts/v57_non_target_multi_horizon_dataset/label_schema.json
+    - artifacts/v57_non_target_multi_horizon_dataset/source_receipt.json
+    - artifacts/v57_non_target_multi_horizon_dataset/completion_receipt.json
+    - artifacts/v57_non_target_multi_horizon_dataset/artifact_manifest.json
+    - artifacts/v57_non_target_multi_horizon_dataset/data_access.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/result.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/audit.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/training_result.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/training_spec.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/grid_manifest.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/checkpoint_manifest.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/scaler_manifest.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/history_manifest.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/data_access.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/source_receipt.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/completion_receipt.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/artifact_manifest.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/verification.json
+    - artifacts/v58_state_conditioned_multi_horizon_training/replay.json
+    - research/waivers/v059_local_artifacts_owner_waiver.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+    - data/processed/state_conditioned_multi_horizon_sequence_roles_v57.parquet
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_1/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_2/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_3/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_1/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_2/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_3/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_1/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_2/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_3/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_1/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_2/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_3/scaler.json
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_1/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_1/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_1/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_2/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_2/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_2/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_3/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_3/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_3/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_1/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_1/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_1/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_2/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_2/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_2/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_3/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_3/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_3/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_1/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_1/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_1/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_2/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_2/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_2/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_3/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_3/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_3/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_1/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_1/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_1/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_2/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_2/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_2/seed_123/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_3/seed_42/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_3/seed_7/final.pt
+    - data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_3/seed_123/final.pt
+  allowed_capabilities:
+    - implement_and_execute_outcome_blind_v59_prepare_only
+    - verify_registered_metadata_input_checkpoint_and_scaler_hashes
+    - fit_the_frozen_shared_linear_control_on_train_role_values_only
+    - load_all_thirty_six_best_model_states_without_selection
+    - infer_all_registered_non_target_test_triplets
+    - freeze_candidate_and_control_predictions_positions_and_outcome_keys
+    - run_pre_outcome_behavior_shape_accounting_and_access_gates
+    - write_an_immutable_prepare_packet_and_receipt
+  required_checks:
+    - current_v58_result_decision_and_completion_receipt_match
+    - all_input_source_contract_and_manifest_hashes_match
+    - clean_committed_git_and_exact_v59_contract_projection
+    - all_thirty_six_checkpoints_and_twelve_scalers_match_without_selection
+    - target_assets_absent_from_every_loaded_symbol_set
+    - only_train_role_label_values_materialized_for_the_linear_control
+    - development_evaluation_outcome_value_reads_equal_zero_during_prepare
+    - predictions_and_positions_cover_every_registered_available_triplet
+    - policy_controls_costs_and_accounting_match_the_frozen_contract
+    - prepared_outcome_key_set_is_exact_unique_and_hash_bound
+    - prepare_replay_is_byte_identical_with_zero_new_inference_when_cached
+    - no_performance_metric_pnl_gate_or_outcome_unseal_during_prepare
+    - exact_prepare_parquet_projections_predicates_and_materialized_roles_match
+    - prepare_pass_stops_before_a_separate_hash_bound_unseal_stage_contract
+  forbidden_capabilities:
+    - target_asset_access_inference_prediction_or_pnl
+    - development_evaluation_outcome_value_access_during_prepare
+    - outcome_unseal_without_new_explicit_user_authorization
+    - second_outcome_unseal_or_source_outcome_reread
+    - candidate_model_or_scaler_fit_refit_or_optimizer_step
+    - checkpoint_mutation_selection_discard_or_weighting
+    - prediction_or_position_regeneration_after_outcome_unseal
+    - hyperparameter_policy_control_cost_gate_or_bootstrap_change
+    - missing_value_imputation_repair_or_tail_substitution
+    - aggregate_result_rescue_of_any_failed_mandatory_cell
+    - v60_implementation_registration_or_confirmation
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_sha256:
+    v55_blueprint: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+    v57_dataset_spec: 35656e049d47d099b3861674ddb3602bbca45e038f6e3e9ea3b9bcc80bab8c78
+    v57_dataset_manifest: a4d339ca8ec8f7c59e9c1d62f82b80778457b2ad5d231ecad2ed190f124af29d
+    v57_label_schema: 7fbe744584f5e62151b2162329f547f9dbb80d40319e10d719f628b19c4a9fbb
+    v57_artifact_manifest: 80e540178ad0628a0c13ca57b18dbfe9fc4c277844b7788c014aefa426e08001
+    v57_completion_receipt: f9dfeb4bed40941e7dd0d1ee887cfe2bbca83cb092e2fdc8c11226ea6cac2a2a
+    v32_feature_schema: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    v32_asset_folds: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    v32_triplet_catalog: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    feature_panel: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    labels: 6d12e9d49f1be807a1eba5596295fa40f43c3d89745a9a39f3e3f42d76544f50
+    sequence_roles: 1f12eff301984943d0a907e55b33aa65618cf2977f88bb318610f3cfebc52860
+    v58_result: 3d3a78eb8ccc62593a9bfebc2e1ab03e16da452e1e858e1ad71452405d6f9440
+    v58_training_result: bcd0bbda9fecf47d069c6afe2187ef0b0566007b6cca57c639fea8c410333506
+    v58_training_spec: b4fbb12a0dc77f3ba877a20e27d411654fa60fd4afeaba30641c1cfa8bbb556a
+    v58_grid_manifest: 82d0174bbab419c73aa6a3c00f7482ca6bd0af836312dc24a0c44616b3542340
+    v58_checkpoint_manifest: 7130b8c7570f7146c02e73d8664aa037b296af1c45b85a8a09d500f565b00efc
+    v58_scaler_manifest: b2d07fb5a562124c01aa2017aaee4ffe17ec96a7a1084450e27e14d9dc70b249
+    v58_completion_receipt: 55271f8ec6c5a4a8cc6643fe5070abde11fec8c8666cdc8c91d1cdcef86008d2
+    v58_artifact_manifest: 2358bf47ca26a902ca1431c09cfbd9880d10d9cf3ff78e651698b61e892ec57b
+  expected_file_sha256_by_path:
+    artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+    artifacts/v57_non_target_multi_horizon_dataset/dataset_spec.json: 35656e049d47d099b3861674ddb3602bbca45e038f6e3e9ea3b9bcc80bab8c78
+    artifacts/v57_non_target_multi_horizon_dataset/dataset_manifest.json: a4d339ca8ec8f7c59e9c1d62f82b80778457b2ad5d231ecad2ed190f124af29d
+    artifacts/v57_non_target_multi_horizon_dataset/label_schema.json: 7fbe744584f5e62151b2162329f547f9dbb80d40319e10d719f628b19c4a9fbb
+    artifacts/v57_non_target_multi_horizon_dataset/source_receipt.json: 16427f671fe0e81a8877e0b4cf0a64ad3f58137234400c295fe4ca4c11947497
+    artifacts/v57_non_target_multi_horizon_dataset/completion_receipt.json: f9dfeb4bed40941e7dd0d1ee887cfe2bbca83cb092e2fdc8c11226ea6cac2a2a
+    artifacts/v57_non_target_multi_horizon_dataset/artifact_manifest.json: 80e540178ad0628a0c13ca57b18dbfe9fc4c277844b7788c014aefa426e08001
+    artifacts/v57_non_target_multi_horizon_dataset/data_access.json: 164c860f3b4ba66ed5bc782066e769ab6527b0a6b63269d77d621a0c0d7fa369
+    artifacts/v32_selected_universe_dataset/feature_schema.json: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    artifacts/v58_state_conditioned_multi_horizon_training/result.json: 3d3a78eb8ccc62593a9bfebc2e1ab03e16da452e1e858e1ad71452405d6f9440
+    artifacts/v58_state_conditioned_multi_horizon_training/audit.json: 836f801f2ab2654b7a536b84b2e8e273666c55f025ef70c2e40795f2d0ae66ac
+    artifacts/v58_state_conditioned_multi_horizon_training/training_result.json: bcd0bbda9fecf47d069c6afe2187ef0b0566007b6cca57c639fea8c410333506
+    artifacts/v58_state_conditioned_multi_horizon_training/training_spec.json: b4fbb12a0dc77f3ba877a20e27d411654fa60fd4afeaba30641c1cfa8bbb556a
+    artifacts/v58_state_conditioned_multi_horizon_training/grid_manifest.json: 82d0174bbab419c73aa6a3c00f7482ca6bd0af836312dc24a0c44616b3542340
+    artifacts/v58_state_conditioned_multi_horizon_training/checkpoint_manifest.json: 7130b8c7570f7146c02e73d8664aa037b296af1c45b85a8a09d500f565b00efc
+    artifacts/v58_state_conditioned_multi_horizon_training/scaler_manifest.json: b2d07fb5a562124c01aa2017aaee4ffe17ec96a7a1084450e27e14d9dc70b249
+    artifacts/v58_state_conditioned_multi_horizon_training/history_manifest.json: 30ed6bcc375129b767efd15cd89dadb8097439ddbaa1423007121c666d06d61c
+    artifacts/v58_state_conditioned_multi_horizon_training/data_access.json: 305e897f557f8d69c64eb0744eb8ac8b00b4175c8793209d0f0b91d7bfcfa78b
+    artifacts/v58_state_conditioned_multi_horizon_training/source_receipt.json: 93fec16a0a47a22797d377dba745ff2c3e3b8143dddab2d9020ca9c1bbcb02a0
+    artifacts/v58_state_conditioned_multi_horizon_training/completion_receipt.json: 55271f8ec6c5a4a8cc6643fe5070abde11fec8c8666cdc8c91d1cdcef86008d2
+    artifacts/v58_state_conditioned_multi_horizon_training/artifact_manifest.json: 2358bf47ca26a902ca1431c09cfbd9880d10d9cf3ff78e651698b61e892ec57b
+    artifacts/v58_state_conditioned_multi_horizon_training/verification.json: b657e574b09f62015532446ed8a8726eccbb81d1744f90667068b8040121298a
+    artifacts/v58_state_conditioned_multi_horizon_training/replay.json: 2cf18e3941e9fe45f72d2bbc111dfbba614c654d918bf7a2f07c0a9685cb7ff4
+    data/processed/selected_universe_panel_v32.parquet: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    data/processed/state_conditioned_multi_horizon_labels_v57.parquet: 6d12e9d49f1be807a1eba5596295fa40f43c3d89745a9a39f3e3f42d76544f50
+    data/processed/state_conditioned_multi_horizon_sequence_roles_v57.parquet: 1f12eff301984943d0a907e55b33aa65618cf2977f88bb318610f3cfebc52860
+    research/waivers/v059_local_artifacts_owner_waiver.json: c31f88585e248eac17f6c4f1d0c03df9029d4712f9c5c2180bbf677b68c73ae0
+  expected_scaler_file_sha256_by_path:
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_1/scaler.json: a42ff0f8a72da7e7f99b095368c5442935dc84c28324f4ed8c961a7184672c8d
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_2/scaler.json: f0fa34c8c9d51255321e1d7e024ed2f5c1fb45a8e2536aa82f7a597f6502b80e
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/expanding/fold_3/scaler.json: 6ce08f029b41324fbc8aed2e4ffaa001a15c81f51267a78e96025304468383ff
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_1/scaler.json: 10546118883bc916af5d188a20415588d149dd02539cbb19a1b3465d4e7905fd
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_2/scaler.json: 76db3c8bbda1b928588d61774c4916686534607a3d743e95a0907ac5ad89f3b8
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2024/rolling/fold_3/scaler.json: 2f38ae8c91c20b8f3056a0933af45d3781fbc1254be8a608d083ed489b811342
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_1/scaler.json: 46a94adab2adfb29c8309ab429b14d6abb465aef3e000e87473ef752b7d7bae3
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_2/scaler.json: ea23fa19bd200be5072a518152d3f5de28f669e7a27e62229be18a09700bafa2
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/expanding/fold_3/scaler.json: bd2a3ca8a64020b49dba890f1d134dab4b677ce7bb7d33c3268914066b4e938b
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_1/scaler.json: 9ce4ec1368f59795d3b1bbf2f9ec44ac9c3c8c07b66055f97c59aa152958003a
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_2/scaler.json: 551e9afbca81f645d185312e0740b2b7f9a0a373e7b2cf0c548a49794b31409b
+    data/checkpoints/v58_state_conditioned_multi_horizon_training/origin_2025/rolling/fold_3/scaler.json: 29df3fe4a2dc59c224ccfb4d4b425cb7ddda2f0732c6e2840e71e389753ba3f9
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  target_status: sealed
+  non_target_symbol_count: 30
+  folds: 3
+  test_symbols_per_fold: 10
+  lexical_test_triplets_per_fold: 120
+  registered_jobs: 36
+  registered_scalers: 12
+
+prepare_parquet_access_contract:
+  file_hashing: byte_stream_only_without_parquet_deserialization
+  access_definition: values_materialized_into_python_arrow_pandas_numpy_or_torch_objects
+  footer_and_predicate_evaluation_are_not_outcome_value_access: true
+  physical_row_group_isolation_claimed: false
+  full_table_materialization_then_filtering_allowed: false
+  role_semantics: relative_to_current_origin_geometry_fold_cell
+  same_calendar_row_may_have_a_later_origin_role: true
+  reader_requirement: projected_columns_and_predicate_dnf_must_be_passed_to_the_parquet_reader
+  panel_projection:
+    - date
+    - symbol
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  sequence_base_projection: [date, sequence_start_date, symbol]
+  sequence_role_projection_per_cell:
+    train_flag: exact_eligible_origin_geometry_train
+    development_flag: exact_eligible_origin_geometry_development_evaluation
+  exact_role_flags:
+    origin_2024:
+      expanding:
+        train: eligible_origin_2024_expanding_train
+        development: eligible_origin_2024_expanding_development_evaluation
+      rolling:
+        train: eligible_origin_2024_rolling_train
+        development: eligible_origin_2024_rolling_development_evaluation
+    origin_2025:
+      expanding:
+        train: eligible_origin_2025_expanding_train
+        development: eligible_origin_2025_expanding_development_evaluation
+      rolling:
+        train: eligible_origin_2025_rolling_train
+        development: eligible_origin_2025_rolling_development_evaluation
+  sequence_predicates_per_cell:
+    train_rows:
+      symbols: exact_fold_train_symbols_only
+      role: exact_train_flag_true
+      dates: exact_registered_train_signal_range
+    development_rows:
+      symbols: exact_fold_test_symbols_only
+      role: exact_development_flag_true
+      dates: exact_registered_development_signal_range
+  train_label_projection_only:
+    - date
+    - symbol
+    - target_h7_maturity_date
+    - target_h7_open_to_open_log_return
+    - multi_horizon_label_complete
+  train_label_predicate:
+    keys: exact_train_signal_keys_derived_from_projected_train_sequence_rows
+    symbols: exact_fold_train_symbols_only
+    role: exact_train_role_only
+  development_label_projection_during_prepare: []
+  development_outcome_columns_materialized_during_prepare: []
+  development_outcome_value_reads_during_prepare: 0
+  panel_predicates_per_cell:
+    train_linear_rows: exact_train_signal_keys_for_exact_fold_train_symbols
+    development_context_rows: exact_union_of_registered_256_day_context_keys_for_test_triplets
+    momentum_rows: exact_last_30_consecutive_calendar_rows_are_a_subset_of_development_context
+    full_table_then_filter: forbidden
+  forbidden_prepare_projections:
+    - target_h1_open_to_open_log_return_on_development_keys
+    - target_h3_open_to_open_log_return_on_development_keys
+    - target_h7_open_to_open_log_return_on_development_keys
+    - any_development_outcome_value_before_unseal
+    - any_target_symbol_row
+  required_access_receipts:
+    - projected_columns_and_predicate_dnf_per_input_and_cell
+    - materialized_date_min_max_symbols_and_logical_keys_per_role
+    - exact_train_label_key_count_and_hash
+    - exact_development_sequence_key_count_and_hash
+    - exact_feature_context_key_count_and_hash
+    - development_outcome_value_reads_zero
+    - target_asset_loads_zero
+    - full_table_materializations_zero
+
+evaluation_cells:
+  origins:
+    origin_2024:
+      signal_start: '2024-01-01'
+      signal_end: '2024-12-23'
+      maturity_end: '2024-12-31'
+    origin_2025:
+      signal_start: '2025-01-01'
+      signal_end: '2025-12-23'
+      maturity_end: '2025-12-31'
+  geometries: [expanding, rolling]
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  test_triplets: exact_lexical_test_triplets_from_v32_catalog
+  checkpoint_count: 36
+  selected_jobs: []
+  checkpoint_weighting_allowed: false
+  expanding_rolling_blending_allowed: false
+  mandatory_fold_cells: 12
+
+feature_tensor_contract:
+  source_base_feature_order:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  model_feature_order:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+    - within_triplet_relative_strength
+  base_feature_transform: subtract_matching_cell_train_mean_then_divide_matching_cell_train_population_std
+  relative_feature:
+    source: raw_log_close_to_close_return
+    formula: raw_asset_value_minus_arithmetic_mean_of_the_three_raw_same_date_triplet_values
+    compute_scope: independently_per_exact_triplet_and_calendar_date
+    pre_scale_sum_across_triplet: exact_zero_within_float64_tolerance_1e_minus_12
+    transform: divide_by_matching_cell_log_close_to_close_return_population_std
+    subtract_scaler_mean: false
+    source_feature_index: 1
+    output_feature_index: 8
+  scaler: exact_matching_origin_geometry_fold_v58_train_only_scaler
+  transform_compute_dtype: float64
+  model_input_dtype_after_transform: float32
+  missing_or_nonfinite_input: triplet_date_unavailable_without_imputation
+  cross_triplet_reuse_or_averaging: false
+  exact_output_shape: [null, 256, 3, 9]
+
+inference_contract:
+  device: mps
+  dtype: float32
+  amp: false
+  cpu_fallback_allowed: false
+  deterministic_algorithms: true
+  model_mode: eval
+  autograd_context: torch_inference_mode
+  batch_size: 128
+  final_partial_batch: allowed_without_padding_or_duplication
+  checkpoint_state: best_model_state
+  checkpoint_reuse: exact_matching_origin_geometry_fold_seed_only
+  scaler: exact_matching_origin_geometry_fold_train_only_scaler
+  input_shape: [null, 256, 3, 9]
+  asset_order: lexical_ascending_within_exact_test_triplet
+  time_order: utc_daily_ascending
+  missing_data: preserve_without_imputation
+  sequence_rule: exact_256_calendar_rows_ending_on_signal_date
+  seed_aggregation:
+    method: elementwise_arithmetic_mean
+    members: [42, 7, 123]
+    ordered_members: [42, 7, 123]
+    accumulator_device: cpu
+    accumulator_dtype: float64
+    arithmetic: ordered_sum_seed_42_then_7_then_123_divided_by_exact_integer_3
+    output_dtype: float64
+    stage: before_policy_and_metrics
+    weights: [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+  quantile_repair_or_clipping_allowed: false
+  cross_triplet_prediction_averaging_allowed: false
+  prediction_unit: origin_geometry_fold_lexical_triplet_signal_date_asset
+
+linear_control_contract:
+  name: shared_linear_h7_q50_with_train_residual_q20
+  fit_scope: exact_origin_geometry_fold_train_role_only
+  fit_population: every_finite_train_date_lexical_train_triplet_asset_row
+  input: final_timestep_exact_nine_scaled_features
+  shared_across_assets_and_triplet_slots: true
+  estimator: ridge
+  alpha: 1.0
+  fit_intercept: true
+  solver: svd
+  target: target_h7_open_to_open_log_return
+  target_scaling: none
+  validation_or_development_evaluation_fit_allowed: false
+  residual_q20:
+    population: finite_in_sample_train_residuals
+    quantile: 0.2
+    method: linear
+  q50_prediction: ridge_point_prediction
+  q20_prediction: ridge_point_prediction_plus_train_residual_q20
+  random_state: none
+
+decision_contract:
+  decision_unit: one_exact_lexical_triplet
+  independent_state_per_triplet: true
+  initial_state_per_origin_geometry_fold_triplet: cash
+  state_resets_between_origin_geometry_fold_triplet_episodes: true
+  forecast: h7_q20_three_seed_arithmetic_mean
+  eligible_clock_unit: exact_triplet_dates_with_all_three_registered_sequences_and_finite_features
+  decision_clock: first_triplet_eligible_signal_date_then_every_seventh_triplet_eligible_signal_date
+  between_decisions: hold_current_action
+  actions: [cash, long_one_asset]
+  risky_weight: 0.3333333333333333
+  cash_remainder: 0.6666666666666667
+  shorting: false
+  leverage: false
+  utility:
+    long_asset: risky_weight_times_h7_q20_log_return_minus_transition_cost_decimal
+    cash: negative_transition_cost_to_cash_decimal
+  policy_cost_bps: 10
+  positions_frozen_once_at_policy_cost: true
+  tie_tolerance: 1.0e-12
+  tie_order: [current_action, cash, lexical_symbol]
+  unavailable_triplet_action: cash
+  unavailable_triplet_fold_return: 0.0
+  forced_missing_selected_asset_action: cash
+  availability_return_before_next_decision: remain_cash_until_next_registered_triplet_decision
+
+control_contract:
+  shared_rules:
+    decision_clock: same_as_candidate
+    availability: same_as_candidate
+    independent_state_per_triplet: true
+    positions_frozen_once_at_10bps: true
+    accounting: same_as_candidate
+    fixed_fold_triplet_denominator: 120
+  cash:
+    weights: all_zero
+  weekly_dual_momentum_30:
+    score: sum_of_exact_30_consecutive_calendar_log_open_to_open_returns_ending_on_signal_date
+    required_consecutive_calendar_rows: 30
+    every_required_value_must_be_finite: true
+    scan_farther_back_to_replace_missing_values: false
+    incomplete_asset_score: unavailable
+    action: long_lexical_highest_score_at_one_third_gross_only_if_score_strictly_positive_else_cash
+    tie_order: [current_action, cash, lexical_symbol]
+  weekly_equal_weight_total_gross_one_third:
+    eligible_weights: [0.1111111111111111, 0.1111111111111111, 0.1111111111111111]
+    unavailable_action: cash
+  shared_linear_h7_q50_with_train_residual_q20:
+    fit_and_forecast: exact_linear_control_contract
+    action_policy: exact_candidate_state_conditioned_policy_using_control_q20
+
+accounting_contract:
+  realized_return_source: target_h1_open_to_open_log_return
+  log_to_simple: expm1
+  reporting_cost_bps: [10, 20, 30, 50]
+  mandatory_cost_bps: [10, 20, 30]
+  diagnostic_cost_bps: [50]
+  positions_are_identical_across_reporting_costs: true
+  turnover: l1_distance_over_risky_asset_weights
+  entry_turnover: 0.3333333333333333
+  switch_turnover: 0.6666666666666666
+  exit_turnover: 0.3333333333333333
+  net_daily_return: gross_simple_return_minus_turnover_times_cost_bps_divided_by_10000
+  charged_events: [entry, switch, exit, forced_exit, final_liquidation]
+  episode_initial_position: cash
+  episode_scope: one_origin_geometry_fold_lexical_triplet
+  final_liquidation_row: last_registered_return_row_of_each_episode
+  final_row_order: apply_last_held_position_gross_return_then_charge_final_liquidation_turnover_on_same_row
+  state_carry_across_episodes: false
+  wealth: cumulative_product_of_one_plus_net_daily_return
+  nonpositive_wealth_action: fail_cell
+  fold_aggregation:
+    triplet_weights: equal
+    fixed_denominator: 120
+    unavailable_triplet_contribution: cash_zero
+  aggregate_aggregation:
+    fold_weights: [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+    origins: separate_mandatory_cells
+    geometries: separate_mandatory_cells
+    concatenated_2024_then_2025: diagnostic_only
+
+metric_contract:
+  annualization_days: 365
+  risk_free_rate: 0.0
+  standard_deviation_ddof: 1
+  economic:
+    - cumulative_return
+    - annualized_arithmetic_return
+    - annualized_volatility
+    - sharpe
+    - maximum_drawdown
+    - total_turnover
+    - annualized_turnover
+    - action_counts
+    - risky_exposure_fraction
+    - selected_asset_concentration
+  predictive:
+    h7_q20_coverage:
+      definition: mean_of_indicator_realized_h7_less_than_or_equal_to_predicted_q20
+      population: all_finite_triplet_signal_date_asset_rows_in_fold_cell
+    h7_q50_spearman:
+      definition: arithmetic_mean_of_triplet_date_cross_sectional_spearman
+      prediction_and_outcome_tie_method: average_rank
+      invalid_constant_cross_sections: excluded_and_counted
+    h7_q50_pairwise_accuracy:
+      comparison_unit: unordered_asset_pair_within_triplet_signal_date
+      outcome_tie_tolerance: 1.0e-12
+      outcome_ties: excluded_and_counted
+      prediction_tie_tolerance: 1.0e-12
+      prediction_ties: score_one_half
+  diagnostics_only:
+    - all_horizon_quantile_crossing_rate
+    - three_seed_prediction_standard_deviation
+    - h1_h3_quantile_coverage
+
+bootstrap_contract:
+  method: paired_circular_moving_block
+  paths: 10000
+  block_lengths: [7, 21, 63]
+  quantile_method: linear
+  lower_quantile: 0.05
+  random_generator: numpy_default_rng_pcg64
+  seed_derivation: >-
+    first_eight_big_endian_bytes_of_sha256_canonical_json_array
+    [20260714,"v59","bootstrap",origin,geometry,fold,cost_bps,block_length]
+  pairing: candidate_and_all_controls_share_the_same_resampled_dates
+  statistic_absolute: compounded_candidate_return
+  statistic_delta: compounded_candidate_return_minus_compounded_control_return
+  required_controls: [cash, weekly_dual_momentum_30, weekly_equal_weight_total_gross_one_third, shared_linear_h7_q50_with_train_residual_q20]
+
+outcome_blind_gate_contract:
+  evaluated_before_any_development_outcome_value_read: true
+  every_gate_mandatory: true
+  gates:
+    input_bindings_exact:
+      pass: every_allowed_input_matches_its_direct_or_registered_manifest_hash
+    parquet_access_exact:
+      pass: every_projection_predicate_role_and_receipt_matches_prepare_parquet_access_contract
+    checkpoint_grid_exact:
+      pass: all_36_registered_best_model_states_loaded_once_without_selection_weighting_or_mutation
+    scaler_grid_exact:
+      pass: all_12_registered_scaler_wrapper_and_semantic_hashes_match_without_fit_or_refit
+    targets_absent:
+      pass: target_symbols_loaded_predictions_and_pnl_are_exactly_empty_zero_zero
+    development_outcomes_sealed:
+      pass: development_outcome_value_reads_and_materialized_outcome_columns_are_exactly_zero_and_empty
+    prediction_keys_exact:
+      pass: each_available_registered_origin_geometry_fold_triplet_date_asset_has_exactly_27_seed_level_values_and_9_ensemble_values
+      unavailable: exact_missing_context_keys_are_recorded_once_and_never_imputed
+    predictions_finite:
+      pass: every_available_seed_level_and_ensemble_prediction_is_finite
+      quantile_crossing: allowed_only_as_a_frozen_diagnostic_without_repair_or_selection
+      seed_disagreement: allowed_only_as_a_frozen_diagnostic_without_selection
+    seed_aggregation_exact:
+      pass: every_ensemble_uses_all_three_ordered_seed_members_and_exact_registered_float64_arithmetic
+    candidate_positions_exact:
+      pass: actions_weights_ties_clock_forced_cash_and_initial_state_match_decision_contract
+      gross_exposure_allowed: [0.0, 0.3333333333333333]
+      maximum_single_asset_weight: 0.3333333333333333
+      action_change_dates: registered_decision_dates_or_forced_missing_exit_only
+    control_positions_exact:
+      pass: all_four_controls_match_control_contract_on_identical_triplet_clocks_and_availability
+    turnover_structure_exact:
+      pass: every_entry_switch_exit_forced_exit_and_final_liquidation_matches_accounting_contract_before_returns
+    outcome_request_exact:
+      pass: unique_sorted_keys_equal_exact_registered_development_sequence_keys_and_columns_equal_unseal_allowed_columns
+    prepare_packet_complete_atomic:
+      pass: every_required_prepare_artifact_is_hash_bound_and_no_partial_file_is_visible
+    prepare_replay_exact:
+      pass: cached_replay_writes_identical_bytes_with_zero_new_inference_outcome_reads_or_position_regeneration
+  failure_contract:
+    always_keep_development_outcomes_and_targets_sealed: true
+    unseal_authorized_after_failure: false
+    code_only_fix_allowed_without_new_family: >-
+      only an implementation defect that prevents exact execution of this frozen
+      contract may be fixed without changing inputs checkpoints predictions
+      policy controls costs gates or outcomes
+    completed_nonfinite_candidate_output: retire_family_without_outcome_unseal
+    protocol_or_scientific_change: requires_new_family_and_new_contract
+
+gate_contract:
+  aggregate_rescue_allowed: false
+  mandatory:
+    per_origin_geometry_fold_candidate_return_at_10bps: strictly_positive
+    per_origin_geometry_fold_h7_q20_coverage:
+      lower: 0.15
+      lower_inclusive: true
+      upper: 0.25
+      upper_inclusive: true
+    per_origin_geometry_fold_h7_q50_pairwise_accuracy: strictly_above_0.5
+    per_origin_geometry_fold_h7_q50_spearman: strictly_positive
+    per_origin_geometry_aggregate_candidate_return_vs_every_control_at_10_20_30bps: strictly_greater
+    per_origin_geometry_aggregate_sharpe_vs_weekly_dual_momentum_at_10_20_30bps: strictly_greater
+    per_origin_geometry_fold_candidate_bootstrap_p05_at_every_mandatory_cost_and_block: strictly_positive
+    per_origin_geometry_fold_candidate_minus_each_control_bootstrap_p05_at_every_mandatory_cost_and_block: strictly_positive
+    per_origin_geometry_fold_and_aggregate_maximum_drawdown_at_every_mandatory_cost: at_most_0.35
+    per_origin_geometry_aggregate_turnover_vs_weekly_dual_momentum_at_10bps: at_most_control
+  failure: retire_family_without_tuning
+  pass: authorize_v60_immutable_registration_without_refit
+  diagnostic_cost_or_overall_series_can_change_decision: false
+
+one_shot_contract:
+  current_stage: outcome_blind_prepare
+  prepare:
+    development_evaluation_outcome_value_reads: 0
+    target_asset_loads: 0
+    freeze_all_thirty_six_checkpoint_predictions: true
+    freeze_candidate_and_all_control_positions: true
+    freeze_exact_outcome_key_and_column_request: true
+    behavior_gates_before_outcomes: true
+    required_artifacts:
+      - evaluation_spec.json
+      - source_receipt.json
+      - input_hash_receipt.json
+      - checkpoint_binding.json
+      - scaler_binding.json
+      - linear_control_receipt.json
+      - predictions.parquet
+      - candidate_positions.parquet
+      - control_positions.parquet
+      - outcome_request.json
+      - behavior_audit.json
+      - prepare_manifest.json
+      - prepare_receipt.json
+    pass_action: await_explicit_v59_registered_outcome_unseal_authorization
+    pass_authorizes_unseal: false
+    failure_action: keep_v59_outcomes_sealed_and_allow_code_only_contract_preserving_prepare_fix
+  stage_transition:
+    automatic_current_state_transition_after_prepare: false
+    explicit_new_user_authorization_required: true
+    required_unseal_stage_contract_revision: v059_unseal_r1
+    unseal_stage_contract_created_only_after_prepare_and_explicit_authorization: true
+    required_hash_bindings:
+      - base_v059_phase_contract
+      - evaluation_spec
+      - prepare_manifest
+      - prepare_receipt
+      - explicit_user_authorization_receipt
+    current_yaml_must_bind_unseal_stage_contract_before_source_read: true
+    unseal_stage_authorized_command: exact_commands_unseal
+    generic_continue_or_bora_can_create_unseal_stage: false
+  unseal:
+    authorized_now: false
+    explicit_new_user_authorization_required: true
+    generic_continue_is_authorization: false
+    authorization_must_bind_evaluation_spec_and_prepare_receipt_hashes: true
+    maximum_unseal_count: 1
+    atomic_authorization_receipt_before_source_read: true
+    source: data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+    allowed_symbols: exact_non_target_test_symbols_for_current_fold
+    allowed_roles: exact_origin_development_evaluation_role_only
+    allowed_columns:
+      - date
+      - symbol
+      - target_h1_open_to_open_log_return
+      - target_h3_open_to_open_log_return
+      - target_h7_open_to_open_log_return
+    allowed_keys: exact_hash_bound_outcome_request_only
+    output: artifacts/v59_state_conditioned_multi_horizon_evaluation/outcome_packet.parquet
+    atomic_outcome_receipt_required: true
+  completion:
+    prediction_or_position_regeneration_after_unseal: false
+    mandatory_gate_failure_is_terminal: true
+    v60_before_pass: false
+  replay:
+    source_outcome_reads: 0
+    new_unseal_authorization_receipts: 0
+    new_outcome_packets: 0
+    new_inference: 0
+    use_existing_prepare_and_outcome_packets_only: true
+    identical_result_audit_report_and_completion_hashes: true
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+  remains_sealed_through_v61: true
+
+runtime_contract:
+  prepare_requires_clean_committed_git: true
+  inference_device: mps
+  inference_dtype: float32
+  deterministic_algorithms: true
+  pytorch_enable_mps_fallback: '0'
+  dataloader_workers: 0
+  maximum_active_prepare_jobs: 1
+  minimum_free_gib: 5
+  process_lock: data/checkpoints/.v59_state_conditioned_multi_horizon_evaluation.lock
+
+storage_contract:
+  phase: v59
+  mode: repository_owner_accepted_local_only_without_external_redundancy
+  accepted_by: repository_owner
+  owner_instruction: no_backup_continue
+  waiver:
+    path: research/waivers/v059_local_artifacts_owner_waiver.json
+    file_sha256: c31f88585e248eac17f6c4f1d0c03df9029d4712f9c5c2180bbf677b68c73ae0
+  external_input_copy_required: false
+  external_code_copy_required: false
+  external_prediction_position_or_outcome_copy_required: false
+  risk_accepted: loss_of_local_v59_artifacts_requires_restarting_v59_under_the_same_frozen_contract
+  required_local_artifacts_may_be_deleted: false
+  atomic_writes_and_content_hashes_required: true
+  free_space_preflight_gib: 5
+  applies_only_to_phase: v59
+  does_not_modify_scientific_contract: true
+
+artifact_contract:
+  output_dir: artifacts/v59_state_conditioned_multi_horizon_evaluation
+  prepare_is_atomic: true
+  unseal_is_atomic_and_exactly_once: true
+  result_packet_files:
+    - evaluation_spec.json
+    - prepare_receipt.json
+    - authorization_receipt.json
+    - outcome_packet.parquet
+    - outcome_receipt.json
+    - metrics.json
+    - bootstrap.json
+    - gate_matrix.json
+    - result.json
+    - audit.json
+    - report.md
+    - completion_receipt.json
+    - artifact_manifest.json
+    - replay.json
+  one_shot_validator_must_bind_live_phase_contract_and_exact_registered_projection: true
+
+commands:
+  prepare: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-evaluation-prepare
+    --config configs/v59_state_conditioned_multi_horizon_evaluation.yaml
+  unseal: >-
+    PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-evaluation-unseal
+    --config configs/v59_state_conditioned_multi_horizon_evaluation.yaml
+  replay: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    state-conditioned-multi-horizon-evaluation-replay
+    --config configs/v59_state_conditioned_multi_horizon_evaluation.yaml

@@ -1,0 +1,91 @@
+schema_version: 1
+experiment_id: v076_non_target_persistent_duration_dataset
+family_id: tlm_persistent_multi_horizon_duration_v1
+phase: non_target_persistent_duration_dataset
+status: authorized_not_started
+decision: authorize_v76_non_target_persistent_duration_dataset_only
+authorized_next_action: authorize_v76_non_target_persistent_duration_dataset_only
+evidence_tier: causal_non_target_dataset_construction_only
+parent_experiment:
+  path: research/experiments/v075.yaml
+  file_sha256: 9e63c97b2abd94d6c8aa6ab7698777c52a868271af49042f60f56bc5034a1d90
+blueprint:
+  path: artifacts/v74_persistent_duration_spec/blueprint.json
+  file_sha256: 790b14fd3feacbc62f416e63a019f192ea09d0fd3756c9d757286968ece3632d
+  canonical_sha256: de6c8eb9d65b586cc56c2f10848bf65ff7f2bec83563e7b1292d1dd106fb6e86
+result:
+  path: artifacts/v75_persistent_duration_harness/result.json
+  file_sha256: e99c62c3a339f9c17d1fd3c444e6130be448d214c8f44e80fdc22aa1ec285f96
+  registered_result_sha256: 70143946d090fd397f2f814ffaf36eb1775a56bad7f9d997a5f180583937993e
+audit:
+  path: artifacts/v75_persistent_duration_harness/audit.json
+  file_sha256: a905e90ccd371243d70eac170d6ab672b618dd3bfaea25b45a16489cbbd80730
+v75_result:
+  path: artifacts/v75_persistent_duration_harness/result.json
+  file_sha256: e99c62c3a339f9c17d1fd3c444e6130be448d214c8f44e80fdc22aa1ec285f96
+  canonical_sha256: 70143946d090fd397f2f814ffaf36eb1775a56bad7f9d997a5f180583937993e
+v75_audit:
+  path: artifacts/v75_persistent_duration_harness/audit.json
+  file_sha256: a905e90ccd371243d70eac170d6ab672b618dd3bfaea25b45a16489cbbd80730
+v75_harness_spec:
+  path: artifacts/v75_persistent_duration_harness/harness_spec.json
+  file_sha256: 22d173850daf9a2c427eea520292ff5adfda8e3d6471a31bab6a909004efa839
+  canonical_sha256: 9287cc8728788c8dd005ffb97ee6bc6a4855bee0fa3952a710a8cd98f32bcccf
+v75_replay_receipt:
+  path: artifacts/v75_persistent_duration_harness/replay_receipt.json
+  file_sha256: a7758e4ea3e2d53378359c5504d82f306f890e5831a57b63d292bcc5717024a9
+  canonical_sha256: 1539d6f793d184917f6200411c3efa9e11f5d9c82fa49fed540bf574a0130e6f
+v75_artifact_manifest:
+  path: artifacts/v75_persistent_duration_harness/artifact_manifest.json
+  file_sha256: 43fbfa52870a7df3fc4ee228a23b8d9728bf1e62c81c9da2d7d6b25db2fda3ab
+  canonical_sha256: 7c98d6183163cfa9869a7c06529c74ed558cce2aef47ddcae384753d782142cc
+v75_source_receipt:
+  path: artifacts/v75_persistent_duration_harness/source_receipt.json
+  file_sha256: 897eaadfcaba023db9705e7331c1a5ae87d99bc0c55951201996b4e405df1090
+  canonical_sha256: 9811f05ea5ff4414cbe2356530461ef244529798b441b02846a993dc1b630a11
+v75_summary:
+  audit_checks_passed: 17
+  audit_checks_total: 17
+  total_parameters: 1083155
+  cpu_joint_backward_finite: true
+  mps_joint_backward_finite: true
+  synthetic_optimizer_steps: 6
+  synthetic_checkpoint_writes: 1
+  synthetic_checkpoint_reads: 1
+  json_metadata_reads: 6
+  parquet_deserializations: 0
+  real_panel_or_label_reads: 0
+  previous_checkpoint_reads: 0
+  real_training_epochs: 0
+  real_predictions: 0
+  performance_metrics: 0
+  pnl_evaluations: 0
+  target_asset_loads: 0
+  byte_identical_replay: true
+source_receipt_correction:
+  status: registered_before_v76_dataset_deserialization
+  field: data_and_label_contract.source_sequence_index_sha256
+  malformed_v74_value: 3bb609586809bc7fe4d55e11df0581f147484005bc5eff9fd45b28b79d861
+  malformed_v74_length: 61
+  authoritative_v32_value: 3bb609586809bc7fe4d55b55e11df0581f147484005bc5eff9fd45b28b79d861
+  authoritative_v32_length: 64
+  authority: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+  scientific_contract_changed: false
+  panel_or_sequence_deserialized_during_registration: false
+  post_v75_gate_hash_only_reads: 2
+  post_v75_gate_parquet_deserializations: 0
+pre_deserialization_hardening:
+  stage_revision: v076_non_target_persistent_duration_dataset_r2
+  status: registered_before_first_v76_parquet_deserialization
+  maximum_panel_value_date: '2024-12-31'
+  adaptive_evaluation_role_source: sequence_index_dates_only
+  adaptive_evaluation_label_values_materialized: false
+  scientific_semantics_changed: false
+  first_v76_parquet_deserialization_completed_before_hardening: false
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

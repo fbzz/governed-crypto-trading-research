@@ -1,0 +1,57 @@
+seed: 20260714
+
+state_conditioned_multi_horizon_harness:
+  version: v56
+  project_root: .
+  inputs:
+    v55_result: artifacts/v55_state_conditioned_multi_horizon_spec/result.json
+    v55_blueprint: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+    v55_audit: artifacts/v55_state_conditioned_multi_horizon_spec/audit.json
+  expected_input_sha256:
+    v55_result: 8247f430774ee05cdb1463dfa31306d39bca4bf184b647a14eb98ff15f39ab3f
+    v55_blueprint: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+    v55_audit: 758f72182e7a65d9a13ca700c4021f4773aee9200e135be1997d6b3408d79436
+  expected_blueprint_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+  synthetic:
+    device: cpu
+    input_features: 9
+    batch_size: 2
+    optimizer_steps: 2
+    policy_days: 15
+  mechanics:
+    ranknet_tie_tolerance: 1.0e-12
+    crossing_reduction: mean_batch_asset_horizon_of_sum_adjacent_relu
+    eligible_signal_date: exact_triplet_inference_row_has_all_three_assets_eligible
+    decision_indexes_over_eligible_dates: [0, 7, 14]
+    forced_missing_between_decisions: immediate_cash_without_same_day_replacement
+  checkpoint:
+    format_version: v56_state_conditioned_multi_horizon_synthetic_v1
+    status: synthetic_smoke_only_not_trained_candidate
+    mps_rng_schema: optional_uint8_tensor_or_null
+  source_receipt:
+    files:
+      - pyproject.toml
+      - Makefile
+      - configs/v56_state_conditioned_multi_horizon_harness.yaml
+      - research/experiments/v055.yaml
+      - src/tlm/__main__.py
+      - src/tlm/core/__init__.py
+      - src/tlm/core/access.py
+      - src/tlm/core/accounting.py
+      - src/tlm/core/artifacts.py
+      - src/tlm/state_conditioned_multi_horizon_model.py
+      - src/tlm/state_conditioned_multi_horizon_harness.py
+      - tests/test_core_artifacts.py
+      - tests/test_state_conditioned_multi_horizon_model.py
+      - tests/test_state_conditioned_multi_horizon_harness.py
+  constraints:
+    parquet_deserialization_allowed: false
+    real_panel_or_label_access_allowed: false
+    previous_checkpoint_access_allowed: false
+    real_training_allowed: false
+    real_market_prediction_allowed: false
+    real_performance_or_pnl_allowed: false
+    target_asset_access_allowed: false
+  authorized_next_action: authorize_v57_non_target_multi_horizon_dataset_build_only
+
+output_dir: artifacts/v56_state_conditioned_multi_horizon_harness

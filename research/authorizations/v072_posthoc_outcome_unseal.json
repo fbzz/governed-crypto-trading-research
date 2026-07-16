@@ -1,0 +1,18 @@
+{
+  "schema_version": "tlm-explicit-user-authorization/v1",
+  "authorization_id": "v072_posthoc_outcome_unseal_20260715",
+  "phase": "v72",
+  "authorized_by": "repository_owner",
+  "authorized_action": "execute_v72_exactly_one_hash_bound_posthoc_outcome_unseal_and_complete_diagnostic",
+  "authorization_text": "Autorizo exatamente uma abertura V72 do packet de outcomes não-target já imutável de 2025 para o diagnóstico post-hoc V64-R2, vinculada ao evaluation spec 681258600514d0b66a694c0abb29ccee88cead68a20aa3e67e58152445b01609, prepare receipt d6d29ff80b6a833f7543673e3cf245d03be926fa024cb1b0e48e83b7357662ce e registered contract b1825271baffdff55669e84ac2c16e2f751a6edcfe2c49b3c24d38ffe02c67e9, sem regeneração, retuning ou mudança de política/custos, mantendo BTC, ETH e SOL selados.",
+  "evaluation_spec_sha256": "681258600514d0b66a694c0abb29ccee88cead68a20aa3e67e58152445b01609",
+  "prepare_receipt_sha256": "d6d29ff80b6a833f7543673e3cf245d03be926fa024cb1b0e48e83b7357662ce",
+  "registered_sha256": "b1825271baffdff55669e84ac2c16e2f751a6edcfe2c49b3c24d38ffe02c67e9",
+  "one_shot_prepare_packet_sha256": "2d77ac0e64916c9cb6cf3427db1dd6b1a4d5af829c13f861aa7d05fd5648cbc7",
+  "maximum_unseal_count": 1,
+  "source_outcome_reread_allowed": false,
+  "regeneration_retuning_or_policy_cost_change_allowed": false,
+  "target_assets": ["BTCUSDT", "ETHUSDT", "SOLUSDT"],
+  "target_assets_status": "sealed",
+  "authorization_sha256": "817fed1b19ca1ab5b040e964e24676ac6c768ade0038d09c73b67f1f86fc8acb"
+}

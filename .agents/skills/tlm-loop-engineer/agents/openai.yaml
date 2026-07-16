@@ -1,0 +1,4 @@
+interface:
+  display_name: "TLM Loop Engineer"
+  short_description: "Implement one authorized phase, then stop at its gate"
+  default_prompt: "Use $tlm-loop-engineer to preflight and implement exactly the TLM phase authorized by the latest passing receipt, verify its frozen gate, and stop before the following phase."

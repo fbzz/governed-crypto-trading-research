@@ -1,0 +1,403 @@
+schema_version: 1
+phase: v78
+stage_revision: v078_outcome_blind_persistent_duration_evaluation_prepare_r3
+family_id: tlm_persistent_multi_horizon_duration_v1
+status: trained_outcome_blind_evaluation_prepare_authorized
+evidence_tier: adaptive_consumed_2025_non_target_development_prepare_outcomes_sealed
+
+parent_experiment:
+  path: research/experiments/v078.yaml
+  file_sha256: be3f1b597c00eac9f48fd2540dd877a6bfd928d67e8b5f2777752fda0abbc518
+preceding_phase_contract:
+  path: research/phase_contracts/v077.yaml
+  file_sha256: 3013ec99850ab3b0a8159fd338d52bb13fed3bbf18b5d270b8dd6da078f8fd3b
+authorization_receipt:
+  path: artifacts/v77_persistent_duration_training/result.json
+  file_sha256: 2cc83be56288e0af81cbc68e71194e3cc36d00832eb89e58efe20089498dffed
+  registered_result_sha256: 4a5fd26a68e68fc44ca0a316bcb44b59de6300bc4a1844e520a56975dedcf097
+  decision: authorize_v78_outcome_blind_persistent_duration_evaluation_prepare_only
+completion_receipt:
+  path: artifacts/v77_persistent_duration_training/completion_receipt.json
+  file_sha256: 52b9b879c39bd0ef8545f34eb01cb6708da221732983052f5031715389f1f4a1
+  registered_completion_sha256: f3e5bbad74022aef6016a9db2117b0426e592f29ed9435e3234bd8eddc7654d1
+
+authorized_next_action: authorize_v78_outcome_blind_persistent_duration_evaluation_prepare_only
+authorized_command: >-
+  PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+  persistent-duration-evaluation-prepare
+  --config configs/v78_persistent_duration_evaluation.yaml
+prepare_pass_action: await_explicit_v79_registered_non_target_outcome_unseal_authorization
+prepare_failure_action: keep_v78_outcomes_sealed_and_allow_contract_preserving_prepare_fix
+pass_action: keep_family_and_authorize_separate_target_transfer_specification_only
+failure_action: pivot_away_from_current_family_without_target_evaluation_or_retuning
+stop_condition: stop_after_hash_valid_outcome_blind_prepare_before_explicit_unseal_authorization
+
+contract_repair:
+  supersedes_revision: v078_outcome_blind_persistent_duration_evaluation_prepare_r2
+  timing: before_any_v78_parquet_or_checkpoint_deserialization
+  allowed_change_scope: bind_fixed_capital_missing_triplet_cash_semantics
+  seed_fold_epoch_architecture_objective_policy_or_gate_selection_changed: false
+
+access_contract:
+  output_dir: artifacts/v78_persistent_duration_evaluation
+  allowed_inputs:
+    - artifacts/v74_persistent_duration_spec/blueprint.json
+    - artifacts/v76_non_target_persistent_duration_dataset/result.json
+    - artifacts/v76_non_target_persistent_duration_dataset/audit.json
+    - artifacts/v76_non_target_persistent_duration_dataset/dataset_spec.json
+    - artifacts/v76_non_target_persistent_duration_dataset/dataset_manifest.json
+    - artifacts/v76_non_target_persistent_duration_dataset/label_schema.json
+    - artifacts/v76_non_target_persistent_duration_dataset/source_receipt.json
+    - artifacts/v76_non_target_persistent_duration_dataset/replay_receipt.json
+    - artifacts/v76_non_target_persistent_duration_dataset/artifact_manifest.json
+    - artifacts/v76_non_target_persistent_duration_dataset/data_access.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - artifacts/v77_persistent_duration_training/result.json
+    - artifacts/v77_persistent_duration_training/audit.json
+    - artifacts/v77_persistent_duration_training/training_spec.json
+    - artifacts/v77_persistent_duration_training/checkpoint_manifest.json
+    - artifacts/v77_persistent_duration_training/grid_manifest.json
+    - artifacts/v77_persistent_duration_training/history_manifest.json
+    - artifacts/v77_persistent_duration_training/scaler_manifest.json
+    - artifacts/v77_persistent_duration_training/data_access.json
+    - artifacts/v77_persistent_duration_training/source_receipt.json
+    - artifacts/v77_persistent_duration_training/completion_receipt.json
+    - artifacts/v77_persistent_duration_training/artifact_manifest.json
+    - artifacts/v77_persistent_duration_training/verification.json
+    - artifacts/v77_persistent_duration_training/replay_receipt.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/persistent_duration_sequence_roles_v76.parquet
+    - data/checkpoints/v77_persistent_duration_training/fold_1/fold_scale.json
+    - data/checkpoints/v77_persistent_duration_training/fold_1/seed_42.final.pt
+    - data/checkpoints/v77_persistent_duration_training/fold_1/seed_7.final.pt
+    - data/checkpoints/v77_persistent_duration_training/fold_1/seed_123.final.pt
+    - data/checkpoints/v77_persistent_duration_training/fold_2/fold_scale.json
+    - data/checkpoints/v77_persistent_duration_training/fold_2/seed_42.final.pt
+    - data/checkpoints/v77_persistent_duration_training/fold_2/seed_7.final.pt
+    - data/checkpoints/v77_persistent_duration_training/fold_2/seed_123.final.pt
+    - data/checkpoints/v77_persistent_duration_training/fold_3/fold_scale.json
+    - data/checkpoints/v77_persistent_duration_training/fold_3/seed_42.final.pt
+    - data/checkpoints/v77_persistent_duration_training/fold_3/seed_7.final.pt
+    - data/checkpoints/v77_persistent_duration_training/fold_3/seed_123.final.pt
+  allowed_capabilities:
+    - verify_exact_v74_v76_v77_v32_metadata_and_all_checkpoint_hashes
+    - deserialize_feature_and_readiness_projections_only
+    - load_every_registered_v77_checkpoint_without_selection
+    - infer_every_exact_lexical_heldout_triplet_on_apple_mps_float32
+    - ensemble_all_three_seeds_in_registered_order_without_selection
+    - freeze_predictions_candidate_positions_and_control_positions
+    - run_registered_outcome_blind_behavior_gates
+    - emit_content_addressed_one_shot_prepare_packet
+  required_checks:
+    - clean_committed_git_source_receipt
+    - exact_registered_input_file_hashes
+    - all_nine_checkpoint_file_and_semantic_hashes
+    - exact_fold_heldout_symbols_and_120_lexical_triplets
+    - exact_2025_signal_window_and_readiness_projection
+    - panel_feature_projection_stops_at_signal_end
+    - no_raw_open_label_outcome_or_post_signal_value_during_prepare
+    - predictions_positions_controls_and_gates_freeze_before_any_outcome_access
+    - every_registered_checkpoint_used_without_selection
+    - outcome_rows_read_equals_zero
+    - target_assets_loaded_equals_empty
+    - one_shot_prepare_packet_validates_against_live_committed_state
+  forbidden_capabilities:
+    - target_asset_access
+    - label_or_outcome_column_access_during_prepare
+    - raw_open_column_access_during_prepare
+    - panel_value_access_after_2025_12_23_during_prepare
+    - training_scaler_fit_optimizer_step_or_checkpoint_write
+    - model_seed_fold_epoch_architecture_hyperparameter_or_policy_selection
+    - checkpoint_seed_or_fold_discard
+    - prediction_or_position_regeneration_after_outcome_access
+    - performance_metric_pnl_drawdown_sharpe_bootstrap_or_gate_computation_during_prepare
+    - explicit_or_implicit_outcome_unseal_without_new_hash_bound_user_authorization
+    - claim_clean_holdout_prospective_confirmation_deployability_or_target_transfer
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v74_persistent_duration_spec/blueprint.json: 790b14fd3feacbc62f416e63a019f192ea09d0fd3756c9d757286968ece3632d
+    artifacts/v76_non_target_persistent_duration_dataset/result.json: 0c47084321f2da98699bd736742613e92b32a1657ffd0b19ca392a9b86d11cdd
+    artifacts/v76_non_target_persistent_duration_dataset/audit.json: 64587b8fde34d33ac2d5a5d1d70bb5423527cd8f10a73fea4dcaedaf57c1b4b0
+    artifacts/v76_non_target_persistent_duration_dataset/dataset_spec.json: fa9b5c8b95b893cea0a360e1573d9b4e4bfc9a28fbb15e70c7ff6943e9f75edc
+    artifacts/v76_non_target_persistent_duration_dataset/dataset_manifest.json: 86d021a1e45988aa55c11ecb779b852d238faaa27433df1d26b9c871bafb30b4
+    artifacts/v76_non_target_persistent_duration_dataset/label_schema.json: 132e0b146b015431425601f927c525eac0b6fd0a2ac1258349a5b2b7f50743ce
+    artifacts/v76_non_target_persistent_duration_dataset/source_receipt.json: 73a4939c0aa3ad20fa02effa0e4a779a5de5afcb2860df4f887a4edc2fc19894
+    artifacts/v76_non_target_persistent_duration_dataset/replay_receipt.json: d427852a3a9d7ae57c28b28d4eb08bca11b557cee5354656ddda9086e1817abb
+    artifacts/v76_non_target_persistent_duration_dataset/artifact_manifest.json: e5487df7162ec2cf5d651d4fe825e09a3f02aa904f7946be448a470af5a9ddb3
+    artifacts/v76_non_target_persistent_duration_dataset/data_access.json: d9012102f12a339c38a470c1f6487537d8e83d914a5d3b631bd58ea3f1d86232
+    artifacts/v32_selected_universe_dataset/feature_schema.json: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    artifacts/v77_persistent_duration_training/result.json: 2cc83be56288e0af81cbc68e71194e3cc36d00832eb89e58efe20089498dffed
+    artifacts/v77_persistent_duration_training/audit.json: 19bca91d5b9815ef886b8a502b09fad9909e723f1ce42a276bfaa334a22a0b27
+    artifacts/v77_persistent_duration_training/training_spec.json: a782cbe68c51b9d009f6eb72fdc16807a4c9ff012e482ec4ba5fac350c786afe
+    artifacts/v77_persistent_duration_training/checkpoint_manifest.json: 525191736d24eb3a3e267f5494a2491aa45fd4e471b9896b881fd777000cccba
+    artifacts/v77_persistent_duration_training/grid_manifest.json: fc078b5b10b13341fdf8c9c7f25ea357e5ccd1d85061d6756d6cd4d2ed8fa36d
+    artifacts/v77_persistent_duration_training/history_manifest.json: 459b179f3cc642bd7300e0e41cdcd1d33c81d2661e5be9f457e5a943e5b16595
+    artifacts/v77_persistent_duration_training/scaler_manifest.json: 7d35078bb127df214b486565738db9380d785a961b98626af008650423d4ff88
+    artifacts/v77_persistent_duration_training/data_access.json: 59355c54f42f1c1bf921beda3af9189971eb0f9f8105f5ee42534d8b4a06c1db
+    artifacts/v77_persistent_duration_training/source_receipt.json: f8fb07db6e6010f30572370dd24f50a333d52c6219141471d9f949ff3cc14182
+    artifacts/v77_persistent_duration_training/completion_receipt.json: 52b9b879c39bd0ef8545f34eb01cb6708da221732983052f5031715389f1f4a1
+    artifacts/v77_persistent_duration_training/artifact_manifest.json: d08e4e67833c8d47dd1ebac3610a87832e50fd9fae7ea7bd9903b35db4826189
+    artifacts/v77_persistent_duration_training/verification.json: fb7451359551b3f7443ea151f038c524a79c5c51f9332d7d6a36c1c134272c1f
+    artifacts/v77_persistent_duration_training/replay_receipt.json: 531ead6fc45a015e43321acb2108e8b309eff676d58e19ab96a3f39ba03d9716
+    data/processed/selected_universe_panel_v32.parquet: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    data/processed/persistent_duration_sequence_roles_v76.parquet: 549c6bb61136d5d38b312b422f6cdc544b997c5162d9282a6414ca8c9451fea3
+    data/checkpoints/v77_persistent_duration_training/fold_1/fold_scale.json: ae5514393c7b978fdd6525bc7e8ca43ab0bd10b40676074dc67b39aaa68ffd71
+    data/checkpoints/v77_persistent_duration_training/fold_1/seed_42.final.pt: 5c2c8f8e2cb052d2be784ede798e94c6d5359b5345aaa7efa78d0f5750f07493
+    data/checkpoints/v77_persistent_duration_training/fold_1/seed_7.final.pt: aae7dc87e25b14b932dc2dc25b9a5258286b8d40997c2a55f5c93f89d3804c5e
+    data/checkpoints/v77_persistent_duration_training/fold_1/seed_123.final.pt: ddaa15b0c5ff3c3fdc9263c7e4a8dfc382b7b658b4d5c690c7992d29d477ef7d
+    data/checkpoints/v77_persistent_duration_training/fold_2/fold_scale.json: 92ed124f398f3209916b1afa4a8a3f061f146598ab36f4f726279ca711e220e7
+    data/checkpoints/v77_persistent_duration_training/fold_2/seed_42.final.pt: 16a2ec39437bd30ae2f7b42ce8b9744c734eb126fdcce9cd4c7c21172c325c87
+    data/checkpoints/v77_persistent_duration_training/fold_2/seed_7.final.pt: 4df4003220e229f75b9d6f34093b0ec61f02a59b251f11f8a340220b3fa109c7
+    data/checkpoints/v77_persistent_duration_training/fold_2/seed_123.final.pt: 80fd4ada2be22e9d5982279856fd158b106a1f2f3b517aee1914e5aa8e851ed0
+    data/checkpoints/v77_persistent_duration_training/fold_3/fold_scale.json: 238650e1be117dd5f06f8da3b29f8bd2086c8be669d455b50c097f63d3c8f769
+    data/checkpoints/v77_persistent_duration_training/fold_3/seed_42.final.pt: d071709ce52e1b9eca962de59750f30ef006f512c8cf3a117ad84b3a63e4ac15
+    data/checkpoints/v77_persistent_duration_training/fold_3/seed_7.final.pt: 3a0c176f111b673afc7a0e6bc0129a171a36dcc16277a494841b762e498d1748
+    data/checkpoints/v77_persistent_duration_training/fold_3/seed_123.final.pt: 42e79e9573476c23b7987d305210b023bfd50f2c3f9a816c4ff0a4603fbeff7b
+  expected_canonical_sha256:
+    v74_blueprint: de6c8eb9d65b586cc56c2f10848bf65ff7f2bec83563e7b1292d1dd106fb6e86
+    v77_result: 4a5fd26a68e68fc44ca0a316bcb44b59de6300bc4a1844e520a56975dedcf097
+    v77_audit: 24e48be46649740c3c456685c8391d933685f6d318dd05a81ccd5ae96a68f11a
+    v77_completion_receipt: f3e5bbad74022aef6016a9db2117b0426e592f29ed9435e3234bd8eddc7654d1
+    v77_scaler_manifest: 3453ffcc490d235b076f9ba6ef4ce67bc60c86c6bfc050cf0c371bada73ae291
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  fold_count: 3
+  seeds: [42, 7, 123]
+  checkpoint_count: 9
+  heldout_symbols_per_fold: 10
+  heldout_triplets_per_fold: 120
+  lookback_days: 256
+
+evaluation_contract:
+  role: adaptive_consumed_2025_non_target_development_only
+  clean_holdout_claim: false
+  prospective_confirmation_claim: false
+  target_transfer_claim: false
+  window:
+    signal_start: '2025-01-01'
+    signal_end: '2025-12-23'
+    outcome_maturity_end: '2025-12-31'
+    signal_dates: 357
+    outcome_label: open_t_plus_1_to_open_t_plus_2_log_return
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  seed_aggregation: ordered_float64_arithmetic_mean_42_7_123_without_selection
+  triplet_scope: exact_120_lexical_combinations_of_each_folds_ten_heldout_assets
+  fold_portfolio_aggregation: equal_weight_120_exact_triplet_subaccounts_without_selection
+  fold_triplet_calendar: every_triplet_has_all_357_registered_signal_dates
+  cross_fold_aggregation: equal_one_third_capital_per_fold_daily_mean
+  inference:
+    device: mps
+    dtype: float32
+    mps_fallback_allowed: false
+    batch_size: 128
+    model_mode: eval
+    gradient_enabled: false
+    checkpoints: every_registered_fold_seed_checkpoint
+    checkpoint_state: model_best_state_at_registered_early_stopping_best_epoch
+  feature_projection:
+    - date
+    - symbol
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  readiness_projection:
+    - date
+    - sequence_start_date
+    - symbol
+    - eligible_adaptive_development_evaluation
+  forbidden_prepare_columns:
+    - raw_open
+    - target_h1_open_to_open_log_return
+    - target_h3_open_to_open_log_return
+    - target_h7_open_to_open_log_return
+    - target_duration_days
+    - duration_right_censored
+  prediction_projection:
+    - fold
+    - triplet_id
+    - signal_date
+    - symbol
+    - seed
+    - gross_location_h1
+    - gross_location_h3
+    - gross_location_h7
+    - gross_scale_h1
+    - gross_scale_h3
+    - gross_scale_h7
+    - survival_h1
+    - survival_h3
+    - survival_h7
+    - expected_holding_days
+    - persistent_edge
+    - ensemble_seed_disagreement
+  outcome_projection_forbidden_during_prepare: true
+  realized_return_or_pnl_columns_in_prepare_outputs: false
+
+policy_contract:
+  source: exact_v74_blueprint_policy
+  action_space: [long_one_asset, cash]
+  base_cost_bps: 10
+  reporting_cost_bps: [10, 20, 30]
+  risky_gross: 1.0
+  horizons: [1, 3, 7]
+  horizon_weights: [0.2, 0.3, 0.5]
+  persistent_edge: weighted_survival_times_per_day_gross_location
+  state_transition: incumbent_first_cash_second_lexical_asset
+  transition_turnover: {enter: 1.0, exit: 1.0, hold: 0.0, switch: 2.0}
+  final_liquidation: true
+  unavailable_triplet_action: force_cash_with_exact_exit_turnover_and_no_capital_redistribution
+  shorting: false
+  leverage: false
+  policy_tuning_allowed: false
+  threshold_sweep_allowed: false
+
+registered_accounting:
+  return_basis: open_to_open_log_returns
+  gross_return: sum_weight_times_expm1_action_log_return
+  turnover: l1_weight_change_including_entry_switch_exit_and_final_liquidation
+  transaction_cost: one_way_cost_times_turnover
+  net_return: gross_minus_turnover_cost
+  missing_return: cash_for_unavailable_asset
+  fold: equal_weight_120_triplet_subaccounts_daily_mean
+  aggregate: equal_one_third_capital_per_fold_daily_mean
+  annualization_days: 365
+  sharpe_standard_deviation_ddof: 1
+  zero_volatility_sharpe: 0.0
+  maximum_drawdown: minimum_equity_divided_by_prior_running_peak_minus_one
+
+registered_controls:
+  cash:
+    rule: all_zero_weights
+  weekly_dual_momentum_30_long_one_or_cash:
+    decision_clock: first_eligible_triplet_date_then_every_seven_eligible_triplet_dates
+    signal: trailing_30_consecutive_calendar_day_sum_log_close_to_close_return_including_signal_date
+    action: long_lexical_first_highest_strictly_positive_asset_else_cash
+    holding: carry_between_decision_dates
+    final_liquidation: true
+  daily_equal_weight_eligible_assets:
+    action: equal_one_third_each_available_triplet_asset_else_cash
+    final_liquidation: true
+
+registered_bootstrap:
+  method: circular_block_resampling_synchronized_across_candidate_and_controls
+  paths: 10000
+  block_lengths_days: [7, 21, 63]
+  base_seed: 20260715
+  confidence_level: 0.95
+  economic_cost_bps: 10
+  candidate_statistic: compounded_aggregate_net_total_return
+  comparison_statistic: candidate_minus_best_control_compounded_total_return
+
+registered_outcome_dependent_gates:
+  aggregate_maximum_drawdown_at_10_bps_at_least: -0.35
+  aggregate_net_total_return_strictly_positive_at_cost_bps: [10, 20, 30]
+  aggregate_net_total_return_strictly_above_every_control_at_cost_bps: [10]
+  aggregate_sharpe_strictly_positive_at_cost_bps: [10]
+  aggregate_turnover_at_10_bps_at_most: 45.0
+  every_fold_net_total_return_strictly_positive_at_cost_bps: [10]
+  bootstrap_candidate_total_return_p05_strictly_positive_all_block_lengths: true
+  bootstrap_candidate_minus_best_control_total_return_p05_strictly_positive_all_block_lengths: true
+  aggregate_rescue_for_failed_fold: false
+  missing_cell_pass_allowed: false
+
+outcome_blind_gate_contract:
+  gates:
+    - all_registered_checkpoints_used_without_selection
+    - exact_fold_triplet_date_scope
+    - missingness_matches_registered_readiness
+    - prediction_distribution_finite_and_nonconstant
+    - positive_scale_and_valid_survival
+    - ensemble_disagreement_finite
+    - permutation_and_lexical_structure_complete
+    - action_space_and_state_transitions_exact
+    - turnover_and_final_liquidation_exact
+    - control_positions_exact
+    - aggregate_turnover_within_registered_ceiling
+    - zero_outcome_and_target_access
+  all_required: true
+  failure_keeps_outcomes_sealed: true
+
+outcome_request_contract:
+  source_path: data/processed/selected_universe_panel_v32.parquet
+  source_sha256: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+  source_projection_after_unseal_only: [date, symbol, raw_open]
+  source_date_start: '2025-01-02'
+  source_date_end: '2025-12-31'
+  derived_packet_columns: [signal_date, symbol, action_log_return]
+  formula: log_raw_open_t_plus_2_div_raw_open_t_plus_1
+  exact_source_read_count: 1
+  packet_is_immutable: true
+  target_symbols_forbidden: [BTCUSDT, ETHUSDT, SOLUSDT]
+
+one_shot_contract:
+  current_stage: outcome_blind_prepare
+  prepare:
+    predictions_positions_controls_and_behavior_gates_frozen: true
+    outcome_rows_read: 0
+    target_assets_loaded: []
+    one_shot_prepare_packet_required: true
+    prepare_replay_is_hash_only: true
+  unseal:
+    explicit_hash_bound_user_authorization_required_after_prepare: true
+    generic_continue_is_not_authorization: true
+    maximum_unseal_count: 1
+    exact_outcome_request_only: true
+    prediction_or_position_regeneration: false
+    retuning_or_policy_change: false
+  completion:
+    pass_decision: keep_family_and_authorize_separate_target_transfer_specification_only
+    failure_decision: pivot_away_from_current_family_without_target_evaluation_or_retuning
+    target_evaluation_authorized_directly: false
+    deployability_authorized: false
+  replay:
+    reuse_immutable_outcome_packet: true
+    underlying_source_outcome_reads: 0
+    new_unseal_receipts: 0
+    result_hashes_must_match: true
+
+artifact_contract:
+  output_dir: artifacts/v78_persistent_duration_evaluation
+  required_prepare_files:
+    - evaluation_spec.json
+    - predictions_manifest.json
+    - candidate_positions_manifest.json
+    - control_positions_manifest.json
+    - outcome_request.json
+    - behavior_audit.json
+    - data_access.json
+    - input_hash_receipt.json
+    - source_receipt.json
+    - prepare_receipt.json
+    - one_shot_packet.json
+    - artifact_manifest.json
+    - replay_receipt.json
+    - result.json
+    - report.md
+    - resolved_config.yaml
+  frozen_data_files:
+    - data/predictions/v78_persistent_duration_predictions.parquet
+    - data/predictions/v78_persistent_duration_candidate_positions.parquet
+    - data/predictions/v78_persistent_duration_control_positions.parquet
+  parquet_compression: zstd
+  deterministic_row_order_required: true
+  prepare_replay_mode: hash_only_no_model_or_parquet_source_read
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+deployable: false

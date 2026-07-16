@@ -1,0 +1,431 @@
+schema_version: 1
+phase: v77
+stage_revision: v077_frozen_non_target_persistent_duration_training_r3
+family_id: tlm_persistent_multi_horizon_duration_v1
+status: dataset_passed_training_authorized
+evidence_tier: causal_non_target_training_only
+
+parent_experiment:
+  path: research/experiments/v077.yaml
+  file_sha256: 83b66f7de2a168dad03dcfb638cf186a886d31433e9e0b70c93f36f8fa5c277c
+preceding_phase_contract:
+  path: research/phase_contracts/v076.yaml
+  file_sha256: d2c8b2dbf701837d15e54d7eca2bba4fc406e46f97aec22cfa2b808b40f98b3e
+authorization_receipt:
+  path: artifacts/v76_non_target_persistent_duration_dataset/result.json
+  file_sha256: 0c47084321f2da98699bd736742613e92b32a1657ffd0b19ca392a9b86d11cdd
+  registered_result_sha256: 786ae804709d5899416306a3b699716177f3ed2216ca2891f2ccf136d03d4acc
+  decision: authorize_v77_frozen_non_target_persistent_duration_training_only
+
+authorized_next_action: authorize_v77_frozen_non_target_persistent_duration_training_only
+authorized_command: >-
+  PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+  persistent-duration-training
+  --config configs/v77_persistent_duration_training.yaml
+pass_action: authorize_v78_outcome_blind_persistent_duration_evaluation_prepare_only
+failure_action: retire_persistent_duration_family_without_evaluation_or_target_access
+
+contract_repair:
+  supersedes_revision: v077_frozen_non_target_persistent_duration_training_r2
+  timing: before_any_v77_data_deserialization_scaler_fit_model_instantiation_or_training
+  allowed_change_scope: add_smoke_data_access_receipt_to_terminal_artifact_packet_only
+  scientific_architecture_objective_grid_roles_and_hyperparameters_changed: false
+
+access_contract:
+  output_dir: artifacts/v77_persistent_duration_training
+  checkpoint_dir: data/checkpoints/v77_persistent_duration_training
+  smoke_checkpoint_dir: data/checkpoints/v77_persistent_duration_smoke
+  allowed_inputs:
+    - artifacts/v74_persistent_duration_spec/blueprint.json
+    - artifacts/v75_persistent_duration_harness/result.json
+    - artifacts/v75_persistent_duration_harness/audit.json
+    - artifacts/v75_persistent_duration_harness/harness_spec.json
+    - artifacts/v76_non_target_persistent_duration_dataset/result.json
+    - artifacts/v76_non_target_persistent_duration_dataset/audit.json
+    - artifacts/v76_non_target_persistent_duration_dataset/dataset_spec.json
+    - artifacts/v76_non_target_persistent_duration_dataset/dataset_manifest.json
+    - artifacts/v76_non_target_persistent_duration_dataset/label_schema.json
+    - artifacts/v76_non_target_persistent_duration_dataset/source_receipt.json
+    - artifacts/v76_non_target_persistent_duration_dataset/replay_receipt.json
+    - artifacts/v76_non_target_persistent_duration_dataset/artifact_manifest.json
+    - artifacts/v76_non_target_persistent_duration_dataset/data_access.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - research/waivers/v077_external_backup_owner_waiver.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/persistent_duration_labels_v76.parquet
+    - data/processed/persistent_duration_sequence_roles_v76.parquet
+  allowed_capabilities:
+    - verify_exact_v74_v75_v76_and_v32_receipts
+    - deserialize_only_projected_non_target_train_and_internal_validation_values
+    - fit_one_train_only_feature_scaler_per_fold_shared_across_seeds
+    - instantiate_fresh_frozen_persistent_duration_model_per_fold_seed
+    - train_exactly_nine_jobs_on_apple_mps_float32
+    - early_stop_only_on_frozen_internal_validation_joint_objective
+    - retain_every_registered_checkpoint_without_seed_or_fold_selection
+    - verify_interrupted_resume_checkpoint_roundtrip_complete_grid_and_zero_step_replay
+  required_checks:
+    - all_input_phase_contract_source_and_data_hashes_match
+    - clean_committed_git_and_registered_storage_policy
+    - mps_float32_finite_and_fallback_disabled
+    - exact_nine_fold_seed_jobs_and_fresh_initialization
+    - exact_train_and_internal_validation_roles_only
+    - one_train_only_feature_scaler_per_fold_shared_across_seeds
+    - heldout_fold_assets_and_2025_values_are_absent
+    - exact_registered_architecture_parameter_count_and_joint_objective
+    - smoke_interrupted_resume_matches_uninterrupted
+    - all_nine_checkpoints_retained_and_semantically_verified
+    - replay_creates_zero_jobs_optimizer_steps_or_checkpoint_rewrites
+    - no_prediction_position_policy_performance_pnl_outcome_or_target_access
+  forbidden_capabilities:
+    - target_asset_access
+    - adaptive_evaluation_role_or_any_2025_value_access
+    - heldout_fold_asset_training_validation_or_scaler_fit
+    - prior_family_or_prior_checkpoint_weight_scaler_optimizer_or_state_reuse
+    - architecture_objective_size_seed_fold_or_hyperparameter_change
+    - missing_row_imputation_repair_or_future_fill
+    - prediction_position_policy_or_portfolio_generation
+    - performance_metric_pnl_or_bootstrap
+    - outcome_packet_or_outcome_source_read
+    - seed_fold_checkpoint_or_epoch_selection_for_economic_use
+    - v78_implementation_or_evaluation
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v74_persistent_duration_spec/blueprint.json: 790b14fd3feacbc62f416e63a019f192ea09d0fd3756c9d757286968ece3632d
+    artifacts/v75_persistent_duration_harness/result.json: e99c62c3a339f9c17d1fd3c444e6130be448d214c8f44e80fdc22aa1ec285f96
+    artifacts/v75_persistent_duration_harness/audit.json: a905e90ccd371243d70eac170d6ab672b618dd3bfaea25b45a16489cbbd80730
+    artifacts/v75_persistent_duration_harness/harness_spec.json: 22d173850daf9a2c427eea520292ff5adfda8e3d6471a31bab6a909004efa839
+    artifacts/v76_non_target_persistent_duration_dataset/result.json: 0c47084321f2da98699bd736742613e92b32a1657ffd0b19ca392a9b86d11cdd
+    artifacts/v76_non_target_persistent_duration_dataset/audit.json: 64587b8fde34d33ac2d5a5d1d70bb5423527cd8f10a73fea4dcaedaf57c1b4b0
+    artifacts/v76_non_target_persistent_duration_dataset/dataset_spec.json: fa9b5c8b95b893cea0a360e1573d9b4e4bfc9a28fbb15e70c7ff6943e9f75edc
+    artifacts/v76_non_target_persistent_duration_dataset/dataset_manifest.json: 86d021a1e45988aa55c11ecb779b852d238faaa27433df1d26b9c871bafb30b4
+    artifacts/v76_non_target_persistent_duration_dataset/label_schema.json: 132e0b146b015431425601f927c525eac0b6fd0a2ac1258349a5b2b7f50743ce
+    artifacts/v76_non_target_persistent_duration_dataset/source_receipt.json: 73a4939c0aa3ad20fa02effa0e4a779a5de5afcb2860df4f887a4edc2fc19894
+    artifacts/v76_non_target_persistent_duration_dataset/replay_receipt.json: d427852a3a9d7ae57c28b28d4eb08bca11b557cee5354656ddda9086e1817abb
+    artifacts/v76_non_target_persistent_duration_dataset/artifact_manifest.json: e5487df7162ec2cf5d651d4fe825e09a3f02aa904f7946be448a470af5a9ddb3
+    artifacts/v76_non_target_persistent_duration_dataset/data_access.json: d9012102f12a339c38a470c1f6487537d8e83d914a5d3b631bd58ea3f1d86232
+    artifacts/v32_selected_universe_dataset/feature_schema.json: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    research/waivers/v077_external_backup_owner_waiver.json: c08a7f0711df03159a9bf2f770a71dfcba8d1d11741beeb7c3556732d42e7629
+    data/processed/selected_universe_panel_v32.parquet: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    data/processed/persistent_duration_labels_v76.parquet: cd9df5aee873c2c73f0c46feaf654eff846fb761ce2fb439991c3f5f4882613f
+    data/processed/persistent_duration_sequence_roles_v76.parquet: 549c6bb61136d5d38b312b422f6cdc544b997c5162d9282a6414ca8c9451fea3
+  expected_canonical_sha256:
+    v74_blueprint: de6c8eb9d65b586cc56c2f10848bf65ff7f2bec83563e7b1292d1dd106fb6e86
+    v75_harness_spec: 9287cc8728788c8dd005ffb97ee6bc6a4855bee0fa3952a710a8cd98f32bcccf
+    v75_result: 70143946d090fd397f2f814ffaf36eb1775a56bad7f9d997a5f180583937993e
+    v76_result: 786ae804709d5899416306a3b699716177f3ed2216ca2891f2ccf136d03d4acc
+    v76_dataset_spec: 9617826b3802fc19990d410e333f0aa9dd203978bef8a637e83c364b8d431512
+    v76_dataset_manifest: 39305b7200635739638936aad3e226e58632cb1291e5900beca29729f233f51c
+    v76_label_schema: d4e29c6d30ab2b5ec2053346c0638e79fdf8805fa4231f98dca129632d4e23a5
+    v76_source_receipt: e0380c976037fb2cf7132e8a0b4215bda161413dfc72bc2545cf3c085d7b008b
+    v76_replay_receipt: e1edaa1b92ac29a90459f2f114ead749e06a636be6538d955d7fbbf0a33c5baf
+    v76_artifact_manifest: 98d8d66bdf0d03935609f2bdcf357f54a4701b5a09b453cd8cc671d0923ebbe5
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  non_target_symbol_count: 30
+  fold_count: 3
+  seed_count: 3
+  expected_jobs: 9
+  lookback_days: 256
+  triplet_size: 3
+
+data_and_role_contract:
+  feature_panel_projection:
+    - date
+    - symbol
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  label_projection:
+    - date
+    - symbol
+    - target_h1_open_to_open_log_return
+    - target_h3_open_to_open_log_return
+    - target_h7_open_to_open_log_return
+    - target_duration_days
+    - duration_right_censored
+    - h1_label_complete
+    - h3_label_complete
+    - h7_label_complete
+    - duration_label_complete
+    - persistent_label_complete
+  role_projection:
+    - date
+    - sequence_start_date
+    - symbol
+    - persistent_label_complete
+    - eligible_train
+    - eligible_internal_validation
+  forbidden_role_columns:
+    - eligible_adaptive_development_evaluation
+  train_role: eligible_train
+  internal_validation_role: eligible_internal_validation
+  internal_validation_is_clean_evidence: false
+  maximum_signal_date: '2024-12-23'
+  maximum_feature_context_date: '2024-12-31'
+  any_2025_or_later_value_allowed: false
+  read_strategy: predicate_and_column_projection_per_fold_before_materialization
+  full_table_materialization_then_filter_allowed: false
+  train_symbols: exact_v32_fold_train_symbols
+  heldout_fold_symbols: forbidden
+  triplets: exact_v32_fold_train_triplets_in_lexical_order
+  missing_data: preserve_without_imputation
+
+feature_and_scaler_contract:
+  model_feature_order:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+    - within_triplet_relative_strength
+  relative_strength_source: log_close_to_close_return
+  relative_strength_formula: asset_value_minus_equal_weight_triplet_mean_same_date
+  scaler_count: 3
+  one_scaler_per_fold: true
+  shared_across_three_seeds_within_fold: true
+  fit_role: eligible_train_only
+  fit_symbols: exact_v32_fold_train_symbols
+  heldout_fold_asset_access: forbidden
+  statistics_dtype: float64
+  application_dtype: float32
+  zero_scale_replacement: 1.0
+
+model_and_objective_contract:
+  architecture:
+    input_shape: [null, 256, 3, 9]
+    d_model: 128
+    patch_length_days: 16
+    patch_stride_days: 8
+    patch_count: 31
+    temporal_encoder_layers: 4
+    cross_asset_attention_layers: 1
+    attention_heads: 8
+    feed_forward_width: 512
+    dropout: 0.15
+    activation: gelu
+    norm_first: true
+    shared_causal_asset_encoder: true
+    asset_slot_embedding: false
+    maximum_duration_days: 7
+    expected_parameter_count: 1083155
+  return_distribution: student_t_location_scale
+  student_t_degrees_of_freedom: 5.0
+  student_t_degrees_of_freedom_trainable: false
+  scale_transform: softplus_plus_floor
+  scale_floor: 0.0001
+  output_horizons: [1, 3, 7]
+  return_loss: mean_negative_log_likelihood_over_active_asset_horizon_cells
+  pairwise_ranking_loss: ranknet_non_tied_asset_pairs_at_each_horizon
+  duration_loss: discrete_time_event_negative_log_likelihood_with_right_censoring
+  objective_weights:
+    return_nll: 1.0
+    pairwise_ranking: 0.25
+    duration_nll: 0.5
+  early_stopping_monitor: weighted_validation_joint_objective
+  target_clipping: false
+  pnl_turnover_or_outcome_weighting: false
+
+grid_optimizer_and_runtime_contract:
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  expected_jobs: 9
+  all_jobs_retained_without_selection: true
+  initialization: fresh_registered_seed
+  prior_checkpoint_reuse: none
+  device: mps
+  dtype: float32
+  deterministic_algorithms: true
+  mps_fallback_allowed: false
+  optimizer:
+    name: AdamW
+    learning_rate: 0.0003
+    betas: [0.9, 0.999]
+    epsilon: 1.0e-8
+    weight_decay: 0.0001
+  batch_size: 128
+  train_samples_per_epoch: 8192
+  fixed_validation_samples: 2048
+  maximum_epochs: 40
+  early_stopping_patience: 6
+  early_stopping_minimum_delta: 1.0e-6
+  gradient_clip_norm: 1.0
+  hyperparameter_search_allowed: false
+  seed_fold_or_epoch_selection_allowed: false
+
+operator_preflight_contract:
+  clean_committed_git_required: true
+  storage_policy: phase_specific_owner_waiver
+  smoke_must_pass_before_full_training: true
+  smoke_job: {fold: 1, seed: 42}
+  smoke_train_samples_per_epoch: 128
+  smoke_validation_samples: 128
+  smoke_batch_size: 32
+  smoke_maximum_epochs: 2
+
+runtime_contract:
+  device: mps
+  dtype: float32
+  amp: false
+  cpu_fallback_allowed: false
+  pytorch_enable_mps_fallback: '0'
+  deterministic_algorithms: true
+  torch_threads: 10
+  dataloader_workers: 0
+  maximum_active_optimizer_jobs: 1
+  process_lock: data/checkpoints/.v77_persistent_duration_training.lock
+  process_lock_scope: smoke_full_verify_and_replay
+  clean_committed_git_required: true
+  minimum_free_gib: 10
+  expected_checkpoint_storage_gib_upper_bound: 2
+  external_backup_receipt_required: false
+  backup_policy:
+    mode: owner_waiver
+    waiver:
+      path: research/waivers/v077_external_backup_owner_waiver.json
+      file_sha256: c08a7f0711df03159a9bf2f770a71dfcba8d1d11741beeb7c3556732d42e7629
+    waived_safeguards:
+      - external_input_copy
+      - external_code_copy
+      - external_checkpoint_copy
+  full_phase_order: [doctor, preflight, smoke, full, verify, replay]
+
+checkpoint_and_replay_contract:
+  expected_final_checkpoint_count: 9
+  checkpoint_selection: lowest_internal_validation_joint_objective_per_fold_seed
+  all_checkpoints_retained_without_seed_or_fold_selection: true
+  resume_only_same_job_phase_and_epoch: true
+  cross_job_resume_allowed: false
+  interrupted_resume_smoke_required: true
+  semantic_roundtrip_required: true
+  complete_grid_manifest_required: true
+  zero_step_replay_required: true
+
+checkpoint_contract:
+  cross_job_resume_allowed: false
+
+smoke_contract:
+  fold: 1
+  seed: 42
+  train_samples_per_epoch: 128
+  fixed_validation_samples: 128
+  batch_size: 32
+  maximum_epochs: 2
+  early_stopping_patience: 2
+  interrupt_after_completed_epoch: 1
+  equivalence_requirements:
+    - model_state
+    - optimizer_state
+    - cpu_rng_state
+    - mps_rng_state
+    - sampler_receipt
+    - validation_history
+
+artifact_contract:
+  output_dir: artifacts/v77_persistent_duration_training
+  checkpoint_dir: data/checkpoints/v77_persistent_duration_training
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - training_spec.json
+    - scaler_manifest.json
+    - grid_manifest.json
+    - checkpoint_manifest.json
+    - history_manifest.json
+    - data_access.json
+    - preflight.json
+    - smoke.json
+    - smoke_data_access.json
+    - training_result.json
+    - verification.json
+    - replay_receipt.json
+    - backup_policy_receipt.json
+    - operator_packet_doctor.json
+    - operator_packet_smoke.json
+    - operator_packet_full.json
+    - operator_packet_verify.json
+    - operator_packet_replay.json
+    - result.json
+    - audit.json
+    - report.md
+    - completion_receipt.json
+    - artifact_manifest.json
+  checkpoint_files_required: 9
+  deterministic_zero_step_replay_required: true
+
+data_access_ledger_contract:
+  outcome_rows_read: 0
+  target_assets_loaded: []
+  heldout_fold_symbols_loaded_by_job: []
+  forbidden_columns_loaded: []
+  previous_checkpoints_loaded: []
+  predictions_written: false
+  policy_actions_emitted: false
+  performance_metrics_computed: false
+  pnl_computed: false
+  hyperparameters_changed: false
+  required_nonzero_diagnostics:
+    - authorized_panel_rows_by_fold
+    - authorized_label_rows_by_fold
+    - authorized_sequence_rows_by_fold_and_role
+    - scaler_fit_rows_by_fold
+    - optimizer_steps_by_job
+
+operator_enforcement_contract:
+  expected_job_grid_source: reconstruct_from_grid_optimizer_and_runtime_contract
+  authorized_operations: [doctor, smoke, full, verify, replay]
+  live_doctor_fields_must_match_packet:
+    - free_disk_bytes
+    - required_free_disk_bytes
+    - mps_available
+    - deterministic_algorithms
+    - fallback_enabled
+    - active_job_count
+    - process_lock
+    - backup_policy_and_owner_waiver
+  operation_order: [doctor, smoke, full, verify, replay]
+  preflight_precedes_smoke: true
+  training_spec_and_phase_contract_hash_required_before_smoke: true
+
+commands:
+  doctor: PYTHONPATH=src python3 -m tlm research-doctor
+  preflight: >-
+    PYTHONPATH=src python3 -m tlm persistent-duration-training-preflight
+    --config configs/v77_persistent_duration_training.yaml
+  smoke: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    persistent-duration-training-smoke
+    --config configs/v77_persistent_duration_training.yaml
+  full: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    persistent-duration-training
+    --config configs/v77_persistent_duration_training.yaml
+  verify: >-
+    PYTHONPATH=src python3 -m tlm persistent-duration-training-verify
+    --config configs/v77_persistent_duration_training.yaml
+  replay: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    persistent-duration-training-replay
+    --config configs/v77_persistent_duration_training.yaml
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+stop_condition: stop_after_v77_training_gate_before_any_v78_implementation_evaluation_or_outcome_access

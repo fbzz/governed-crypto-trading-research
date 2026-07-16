@@ -1,0 +1,33 @@
+seed: 20260713
+
+dvol:
+  source: deribit_public_dvol_api
+  endpoint: https://www.deribit.com/api/v2/public/get_volatility_index_data
+  currencies: [BTC, ETH]
+  start: "2021-12-01"
+  end: "2026-06-30"
+  resolution: 1D
+  timeout_seconds: 30
+  raw_dir: data/raw/deribit_dvol
+  minimum_daily_coverage: 0.98
+  rolling_z_window: 30
+  change_vol_window: 14
+  feature_columns:
+    - market__btc_dvol_close
+    - market__btc_dvol_log_change_1d
+    - market__btc_dvol_intraday_log_range
+    - market__btc_dvol_close_z30
+    - market__btc_dvol_range_z30
+    - market__btc_dvol_change_vol14
+    - market__eth_dvol_close
+    - market__eth_dvol_log_change_1d
+    - market__eth_dvol_intraday_log_range
+    - market__eth_dvol_close_z30
+    - market__eth_dvol_range_z30
+    - market__eth_dvol_change_vol14
+    - market__dvol_mean_close
+    - market__dvol_mean_log_change_1d
+    - market__dvol_close_dispersion
+    - market__dvol_change_dispersion
+
+output_dir: artifacts/v14_dvol_data

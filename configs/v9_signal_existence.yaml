@@ -1,0 +1,66 @@
+seed: 20260713
+
+data:
+  source: binance
+  interval: 1d
+  start: "2018-01-01"
+  end: null
+  cache_dir: data/raw
+  assets:
+    BTC: BTCUSDT
+    ETH: ETHUSDT
+    SOL: SOLUSDT
+
+target:
+  mode: next_open_to_open
+
+signal_study:
+  momentum_lookback: 30
+  purge_samples: 1
+  quantile_bins: 5
+  tail_quantile: 0.10
+  signals:
+    - control__return_30
+    - control__momentum_vol_adjusted_30
+    - control__volatility_21
+    - control__drawdown_90
+    - control__trend_100
+    - control__volume_z21
+    - control__correlation_market_30
+    - market__volatility_21
+    - cross__momentum_dispersion_30
+  minimum_test_rho: 0.50
+  minimum_orientation_consistency: 0.66
+  minimum_monotonic_fold_fraction: 0.50
+  minimum_risk_coverage: 0.12
+  maximum_risk_coverage: 0.28
+  minimum_downside_lift: 1.25
+  minimum_tail_lift: 1.25
+  minimum_bootstrap_probability: 0.70
+
+validation_suite:
+  monte_carlo:
+    method: paired_circular_block_bootstrap_risk_lift
+    paths: 3000
+    block_lengths: [7, 21, 63]
+    seed: 20260713
+    batch_size: 250
+  scenarios:
+    - name: reference_expanding_3
+      validation:
+        mode: expanding
+        folds: 3
+        min_train_fraction: 0.50
+    - name: expanding_6
+      validation:
+        mode: expanding
+        folds: 6
+        min_train_fraction: 0.40
+    - name: rolling_6_730d
+      validation:
+        mode: rolling
+        folds: 6
+        min_train_fraction: 0.40
+        train_window_samples: 730
+
+output_dir: artifacts/v9_signal_existence

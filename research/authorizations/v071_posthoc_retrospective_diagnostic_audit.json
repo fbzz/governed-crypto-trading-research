@@ -1,0 +1,17 @@
+{
+  "checks": {
+    "owner_scope_is_explicit": true,
+    "prepare_is_outcome_blind": true,
+    "retrospective_evidence_label_is_mandatory": true,
+    "retuning_retraining_and_selection_are_forbidden": true,
+    "separate_hash_bound_unseal_is_required": true,
+    "target_assets_remain_sealed": true,
+    "v68_checkpoints_policy_costs_and_accounting_are_frozen": true,
+    "v70_artifacts_are_preserved": true
+  },
+  "outcome_rows_read": 0,
+  "passed": true,
+  "phase": "v71",
+  "schema_version": "v71-posthoc-authorization-audit/v1",
+  "target_assets_loaded": []
+}

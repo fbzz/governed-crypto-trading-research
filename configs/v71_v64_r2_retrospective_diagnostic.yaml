@@ -1,0 +1,30 @@
+project_root: .
+research_state: research/current.yaml
+phase_contract: research/phase_contracts/v071.yaml
+output_dir: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic
+inputs:
+  blueprint: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+  triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+  checkpoint_manifest: artifacts/v68_v64_r2_probabilistic_state_gate_training/checkpoint_manifest.json
+  scaler_manifest: artifacts/v68_v64_r2_probabilistic_state_gate_training/scaler_manifest.json
+  ranker_scale_receipt: research/receipts/v070_ranker_excess_scale_receipt.json
+  feature_panel: data/processed/selected_universe_panel_v32.parquet
+  readiness_roles: data/processed/decoupled_rank_state_sequence_roles_v62.parquet
+  v64_evaluation_spec: artifacts/v64_decoupled_rank_state_evaluation/evaluation_spec.json
+  v64_prepare_receipt: artifacts/v64_decoupled_rank_state_evaluation/prepare_receipt.json
+  v64_control_positions: artifacts/v64_decoupled_rank_state_evaluation/positions.parquet
+  sealed_outcome_receipt: artifacts/v64_decoupled_rank_state_evaluation/outcome_receipt.json
+runtime:
+  device: mps
+  inference_batch_size: 256
+evaluation:
+  signal_start: '2025-01-01'
+  signal_end: '2025-12-23'
+  expected_signal_dates: 357
+  lookback_days: 256
+  readiness_flag: eligible_consumed_development_validation
+  reporting_cost_bps: [10, 20, 30]
+  bootstrap_paths: 10000
+  bootstrap_block_lengths_days: [7, 21, 63]
+  bootstrap_base_seed: 20260715

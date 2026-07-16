@@ -1,0 +1,18 @@
+seed: 20260713
+
+training_universe_inventory:
+  project_root: .
+  v29_amendment_path: artifacts/v29_multi_asset_scope_amendment/amendment.json
+  v29_audit_path: artifacts/v29_multi_asset_scope_amendment/audit.json
+  expected_v29_amendment_sha256: c1aad19222398cc87717b72467b696498ca4a8109c78527ac63586094d50155d
+  expected_v29_audit_sha256: 8a490afb461559045b63837f53454a93298f630b797d5a7147060b2a60e9734f
+  expected_v29_blueprint_sha256: af5d24c368cd39d8db65fa20b05fbb42edfa3c64022fd466f0a799e83ecc9b5a
+  s3_endpoint: https://s3-ap-northeast-1.amazonaws.com/data.binance.vision
+  download_base_url: https://data.binance.vision
+  root_prefix: data/spot/monthly/klines/
+  raw_dir: data/raw/binance_spot_non_target
+  timeout_seconds: 30
+  listing_workers: 24
+  archive_workers: 32
+
+output_dir: artifacts/v30_training_universe_inventory

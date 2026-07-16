@@ -1,0 +1,71 @@
+seed: 20260715
+
+decoupled_rank_state_training:
+  version: v63
+  project_root: .
+  research_state: research/current.yaml
+  experiment_contract: research/experiments/v062.yaml
+  phase_contract: research/phase_contracts/v063.yaml
+  inputs:
+    v60_specification: artifacts/v60_decoupled_rank_state_spec/specification.json
+    v60_blueprint: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+    v61_result: artifacts/v61_decoupled_rank_state_harness/result.json
+    v61_audit: artifacts/v61_decoupled_rank_state_harness/audit.json
+    v61_harness_spec: artifacts/v61_decoupled_rank_state_harness/harness_spec.json
+    v62_result: artifacts/v62_non_target_decoupled_rank_state_dataset/result.json
+    v62_audit: artifacts/v62_non_target_decoupled_rank_state_dataset/audit.json
+    v62_dataset_spec: artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_spec.json
+    v62_dataset_manifest: artifacts/v62_non_target_decoupled_rank_state_dataset/dataset_manifest.json
+    v62_label_schema: artifacts/v62_non_target_decoupled_rank_state_dataset/label_schema.json
+    v62_source_receipt: artifacts/v62_non_target_decoupled_rank_state_dataset/source_receipt.json
+    v62_completion_receipt: artifacts/v62_non_target_decoupled_rank_state_dataset/completion_receipt.json
+    v62_artifact_manifest: artifacts/v62_non_target_decoupled_rank_state_dataset/artifact_manifest.json
+    v62_data_access: artifacts/v62_non_target_decoupled_rank_state_dataset/data_access.json
+    v62_triplet_smoke: artifacts/v62_non_target_decoupled_rank_state_dataset/triplet_derivation_smoke.json
+    v32_feature_schema: artifacts/v32_selected_universe_dataset/feature_schema.json
+    v32_asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    v32_triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    feature_panel: data/processed/selected_universe_panel_v32.parquet
+    labels: data/processed/decoupled_rank_state_labels_v62.parquet
+    sequence_roles: data/processed/decoupled_rank_state_sequence_roles_v62.parquet
+  source_receipt_files:
+    - .gitignore
+    - configs/v63_decoupled_rank_state_training.yaml
+    - research/current.yaml
+    - research/experiments/v062.yaml
+    - research/phase_contracts/v063.yaml
+    - research/waivers/v063_external_backup_owner_waiver.json
+    - .agents/skills/tlm-research-governor/scripts/govern.py
+    - .agents/skills/tlm-loop-engineer/scripts/phase_guard.py
+    - .agents/skills/tlm-training-operator/SKILL.md
+    - .agents/skills/tlm-training-operator/references/operator-contract.md
+    - .agents/skills/tlm-training-operator/scripts/build_training_packet.py
+    - .agents/skills/tlm-training-operator/scripts/validate_training_packet.py
+    - src/tlm/__init__.py
+    - src/tlm/__main__.py
+    - src/tlm/core/__init__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/decoupled_rank_state_harness.py
+    - src/tlm/decoupled_rank_state_training.py
+    - src/tlm/decoupled_rank_state_training_data.py
+    - src/tlm/decoupled_rank_state_training_engine.py
+    - src/tlm/patch_transformer.py
+    - src/tlm/ranking_excess_harness.py
+    - src/tlm/ranking_excess_pretraining.py
+    - src/tlm/ranking_excess_supervised.py
+    - src/tlm/research_workflow.py
+    - src/tlm/scientific_harness.py
+    - src/tlm/state_conditioned_multi_horizon_training_engine.py
+    - tests/test_decoupled_rank_state_training.py
+    - tests/test_decoupled_rank_state_training_data.py
+    - tests/test_decoupled_rank_state_training_engine.py
+    - tests/test_v63_phase_registration.py
+    - Makefile
+    - pyproject.toml
+  require_clean_git: true
+  backup_policy: owner_waiver
+  backup_waiver: research/waivers/v063_external_backup_owner_waiver.json
+
+output_dir: artifacts/v63_decoupled_rank_state_training
+checkpoint_dir: data/checkpoints/v63_decoupled_rank_state_training
+smoke_checkpoint_dir: data/checkpoints/v63_decoupled_rank_state_smoke

@@ -1,0 +1,294 @@
+schema_version: 1
+phase: v76
+stage_revision: v076_non_target_persistent_duration_dataset_r2
+family_id: tlm_persistent_multi_horizon_duration_v1
+status: dataset_authorized_not_started
+evidence_tier: causal_non_target_dataset_construction_only
+
+parent_experiment:
+  path: research/experiments/v076.yaml
+  file_sha256: 340698a5fc2bb4d25299eca49bc3a28b2cd3033c281710bb71d102af3200c181
+authorization_receipt:
+  path: artifacts/v75_persistent_duration_harness/result.json
+  file_sha256: e99c62c3a339f9c17d1fd3c444e6130be448d214c8f44e80fdc22aa1ec285f96
+  registered_result_sha256: 70143946d090fd397f2f814ffaf36eb1775a56bad7f9d997a5f180583937993e
+  decision: authorize_v76_non_target_persistent_duration_dataset_only
+
+authorized_next_action: authorize_v76_non_target_persistent_duration_dataset_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm persistent-duration-dataset
+  --config configs/v76_persistent_duration_dataset.yaml
+pass_action: authorize_v77_frozen_non_target_persistent_duration_training_only
+failure_action: keep_v77_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v76_non_target_persistent_duration_dataset
+  allowed_inputs:
+    - artifacts/v75_persistent_duration_harness/result.json
+    - artifacts/v75_persistent_duration_harness/audit.json
+    - artifacts/v75_persistent_duration_harness/harness_spec.json
+    - artifacts/v75_persistent_duration_harness/replay_receipt.json
+    - artifacts/v75_persistent_duration_harness/artifact_manifest.json
+    - artifacts/v75_persistent_duration_harness/source_receipt.json
+    - artifacts/v32_selected_universe_dataset/result.json
+    - artifacts/v32_selected_universe_dataset/audit.json
+    - artifacts/v32_selected_universe_dataset/dataset_manifest.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/selected_universe_sequence_index_v32.parquet
+  allowed_capabilities:
+    - verify_v75_harness_and_v32_metadata_receipts
+    - deserialize_exact_registered_non_target_v32_panel_and_sequence_index_once_per_execution
+    - build_frozen_h1_h3_h7_cumulative_open_to_open_labels
+    - build_earliest_argmax_duration_with_day7_right_censoring
+    - apply_eight_day_maturity_purge_embargo_and_chronological_roles
+    - preserve_missing_rows_without_imputation
+    - write_hash_audited_non_target_dataset
+    - verify_byte_identical_replay
+  required_checks:
+    - all_input_hashes_match
+    - v74_sequence_hash_typo_is_explicitly_corrected_from_authoritative_v32_receipt
+    - exact_thirty_asset_universe_and_three_folds
+    - exact_nine_feature_order
+    - exact_h1_h3_h7_cumulative_return_labels
+    - exact_earliest_argmax_duration_and_day7_right_censoring
+    - no_label_crosses_registered_role_boundary
+    - maximum_maturity_purge_and_embargo_are_eight_days
+    - panel_and_sequence_keys_are_unique
+    - missing_rows_are_preserved_without_imputation
+    - target_assets_are_absent
+    - no_scaler_model_optimizer_checkpoint_prediction_performance_or_pnl
+    - byte_identical_replay
+  forbidden_capabilities:
+    - target_asset_access
+    - universe_fold_or_triplet_reselection
+    - missing_row_imputation_repair_or_future_fill
+    - scaler_fit
+    - model_instantiation
+    - checkpoint_deserialization
+    - optimizer_step_or_training
+    - market_prediction_or_position
+    - performance_metric_pnl_or_bootstrap
+    - outcome_packet_or_outcome_source_read
+    - architecture_objective_policy_threshold_size_or_hyperparameter_change
+    - v77_implementation_or_training
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    artifacts/v75_persistent_duration_harness/result.json: e99c62c3a339f9c17d1fd3c444e6130be448d214c8f44e80fdc22aa1ec285f96
+    artifacts/v75_persistent_duration_harness/audit.json: a905e90ccd371243d70eac170d6ab672b618dd3bfaea25b45a16489cbbd80730
+    artifacts/v75_persistent_duration_harness/harness_spec.json: 22d173850daf9a2c427eea520292ff5adfda8e3d6471a31bab6a909004efa839
+    artifacts/v75_persistent_duration_harness/replay_receipt.json: a7758e4ea3e2d53378359c5504d82f306f890e5831a57b63d292bcc5717024a9
+    artifacts/v75_persistent_duration_harness/artifact_manifest.json: 43fbfa52870a7df3fc4ee228a23b8d9728bf1e62c81c9da2d7d6b25db2fda3ab
+    artifacts/v75_persistent_duration_harness/source_receipt.json: 897eaadfcaba023db9705e7331c1a5ae87d99bc0c55951201996b4e405df1090
+    artifacts/v32_selected_universe_dataset/result.json: 9a41f84a7de9534472c9655a577c84de992604633f091080e3b7906420b1da53
+    artifacts/v32_selected_universe_dataset/audit.json: 280c8857cf990cf62411628e1b3fe30bf04ffcc940db927f995aa487ad09f106
+    artifacts/v32_selected_universe_dataset/dataset_manifest.json: 921dbb3d85194f4367a2bcdf1475188c31c2bf438a7c7c28bb8770ff688acc53
+    artifacts/v32_selected_universe_dataset/feature_schema.json: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    data/processed/selected_universe_panel_v32.parquet: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    data/processed/selected_universe_sequence_index_v32.parquet: 3bb609586809bc7fe4d55b55e11df0581f147484005bc5eff9fd45b28b79d861
+  expected_canonical_sha256:
+    v75_harness_spec: 9287cc8728788c8dd005ffb97ee6bc6a4855bee0fa3952a710a8cd98f32bcccf
+    v75_result: 70143946d090fd397f2f814ffaf36eb1775a56bad7f9d997a5f180583937993e
+    v75_replay_receipt: 1539d6f793d184917f6200411c3efa9e11f5d9c82fa49fed540bf574a0130e6f
+    v75_artifact_manifest: 7c98d6183163cfa9869a7c06529c74ed558cce2aef47ddcae384753d782142cc
+    v75_source_receipt: 9811f05ea5ff4414cbe2356530461ef244529798b441b02846a993dc1b630a11
+  panel_key: [symbol, date]
+  sequence_key: [symbol, date]
+  panel_rows: 60210
+  sequence_rows: 49919
+  admitted_panel_rows_after_outcome_blind_filter: 43830
+  admitted_panel_date_end: '2024-12-31'
+  calendar: ['2021-01-01', '2026-06-30']
+  symbol_count: 30
+  preserved_missing_panel_rows: 1619
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+
+source_receipt_correction:
+  registration_timing: after_v75_gate_before_v76_dataset_deserialization
+  field: data_and_label_contract.source_sequence_index_sha256
+  malformed_v74_value: 3bb609586809bc7fe4d55e11df0581f147484005bc5eff9fd45b28b79d861
+  malformed_v74_length: 61
+  authoritative_v32_value: 3bb609586809bc7fe4d55b55e11df0581f147484005bc5eff9fd45b28b79d861
+  authoritative_v32_length: 64
+  authoritative_metadata_path: artifacts/v32_selected_universe_dataset/dataset_manifest.json
+  scientific_semantics_changed: false
+  source_rows_changed: false
+  source_values_changed: false
+  panel_or_sequence_deserializations_during_registration: 0
+  post_v75_gate_hash_only_reads: 2
+
+pre_deserialization_hardening:
+  status: registered_before_first_v76_parquet_deserialization
+  reason: enforce_existing_evaluation_values_may_be_loaded_during_v76_false_boundary
+  maximum_panel_value_date: '2024-12-31'
+  adaptive_evaluation_role_source: sequence_index_dates_only
+  adaptive_evaluation_label_values_materialized: false
+  scientific_semantics_changed: false
+  first_v76_parquet_deserialization_completed_before_hardening: false
+
+feature_contract:
+  panel_columns:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  model_feature_order:
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+    - within_triplet_relative_strength
+  triplet_feature:
+    name: within_triplet_relative_strength
+    source: log_close_to_close_return
+    formula: asset_value_minus_equal_weight_triplet_mean_same_date
+    materialization: v77_on_demand_inside_exact_lexical_triplet
+
+label_contract:
+  return_order: [h1, h3, h7]
+  cumulative_return_definitions:
+    h1: log(open[t+2] / open[t+1])
+    h3: log(open[t+4] / open[t+1])
+    h7: log(open[t+8] / open[t+1])
+  duration_support_days: [1, 2, 3, 4, 5, 6, 7]
+  duration_definition: earliest_argmax_day_of_cumulative_gross_open_to_open_log_return_days_1_through_7
+  duration_tie_break: earliest_day
+  duration_right_censor_rule: censored_when_earliest_argmax_is_day_7
+  maximum_label_maturity_days: 8
+  purge_days: 8
+  embargo_days: 8
+  joint_eligibility: source_sequence_ready_and_all_return_and_duration_endpoints_finite
+  target_clipping: false
+  missing_policy: preserve_rows_and_masks_without_imputation
+
+role_contract:
+  train:
+    signal_start: '2021-03-01'
+    signal_end: '2023-12-23'
+    maturity_end: '2023-12-31'
+  internal_validation:
+    signal_start: '2024-01-01'
+    signal_end: '2024-12-23'
+    maturity_end: '2024-12-31'
+  adaptive_development_evaluation:
+    signal_start: '2025-01-01'
+    signal_end: '2025-12-23'
+    maturity_end: '2025-12-31'
+  evaluation_values_may_be_loaded_during_v76: false
+  role_flags_may_be_constructed_during_v76: true
+  physical_flags:
+    - eligible_train
+    - eligible_internal_validation
+    - eligible_adaptive_development_evaluation
+
+data_access_contract:
+  panel_projection:
+    - date
+    - symbol
+    - raw_observation_available
+    - raw_open
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  panel_filter:
+    column: date
+    operator: less_than_or_equal
+    value: '2024-12-31'
+  sequence_projection: [date, sequence_start_date, symbol]
+  authorized_parquet_deserializations_per_execution: 2
+  post_2024_panel_value_rows_allowed: 0
+  adaptive_evaluation_values_allowed: false
+
+output_contract:
+  labels_path: data/processed/persistent_duration_labels_v76.parquet
+  sequence_roles_path: data/processed/persistent_duration_sequence_roles_v76.parquet
+  artifact_output_dir: artifacts/v76_non_target_persistent_duration_dataset
+  parquet_engine: pyarrow
+  compression: zstd
+  require_byte_identical_replay: true
+  labels_columns:
+    - date
+    - symbol
+    - eligible_action_date
+    - target_h1_maturity_date
+    - target_h3_maturity_date
+    - target_h7_maturity_date
+    - target_duration_maturity_date
+    - target_h1_open_to_open_log_return
+    - target_h3_open_to_open_log_return
+    - target_h7_open_to_open_log_return
+    - target_duration_days
+    - duration_right_censored
+    - h1_label_complete
+    - h3_label_complete
+    - h7_label_complete
+    - duration_label_complete
+    - persistent_label_complete
+  sequence_base_columns:
+    - date
+    - sequence_start_date
+    - symbol
+    - h1_label_complete
+    - h3_label_complete
+    - h7_label_complete
+    - duration_label_complete
+    - persistent_label_complete
+  packet_files:
+    - artifact_manifest.json
+    - audit.json
+    - data_access.json
+    - dataset_manifest.json
+    - dataset_spec.json
+    - input_hash_receipt.json
+    - label_schema.json
+    - replay_receipt.json
+    - report.md
+    - resolved_config.yaml
+    - result.json
+    - source_receipt.json
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+artifact_contract:
+  output_dir: artifacts/v76_non_target_persistent_duration_dataset
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - dataset_spec.json
+    - label_schema.json
+    - dataset_manifest.json
+    - data_access.json
+    - result.json
+    - audit.json
+    - replay_receipt.json
+    - report.md
+    - artifact_manifest.json
+  deterministic_replay_required: true
+  model_or_checkpoint_artifact_allowed: false
+
+stop_condition: stop_after_v76_dataset_gate_before_any_v77_implementation_or_training

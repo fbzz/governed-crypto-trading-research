@@ -1,0 +1,45 @@
+schema_version: 1
+experiment_id: v059_state_conditioned_multi_horizon_evaluation_prepare
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+phase: outcome_blind_development_evaluation_prepare
+status: passed_outcomes_sealed
+evidence_tier: adaptive_historical_development_evaluation_prepared_outcomes_sealed
+parent_experiment: research/experiments/v058.yaml
+phase_contract:
+  path: research/phase_contracts/v059.yaml
+  file_sha256: 321c6a805b94f73d441def62af7478337b5e33f5f23631808dba032a376df6a2
+blueprint:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+  file_sha256: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+  canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+result:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/prepare_receipt.json
+  file_sha256: 7ba2bd928922f50d1b9893426111ae61e113e88c5a1f7ffd99dbe6246c8bef29
+  registered_result_sha256: be930d7a5166bbba597748c6e8a4a7144ef66d3fffb213d097d77bf64e39e30e
+audit:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/behavior_audit.json
+  file_sha256: 1db58240db09649fd517560e5b93883bc2fa6991cc1a9fcfca2ec7a3831cf4a4
+evaluation_spec:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/evaluation_spec.json
+  file_sha256: a20aa7aed28c56f13445f2aa07993318723bb2a1e22773664a4db65e82d271fa
+  canonical_sha256: 31bd555f333e0b3c039f39e09b269b30446c0b372df55946e8bf473283308291
+prepare_manifest:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/prepare_manifest.json
+  file_sha256: 329094f33bd5bd29e58e1f31edcc07f6cc472ed80824922e0e0bd86b59e4670f
+  canonical_sha256: 27e171d3d540f0edc0142ad06c3e892aa73d3c8fb39a1020727ca16c17dd1eb5
+outcome_request:
+  path: artifacts/v59_state_conditioned_multi_horizon_evaluation/outcome_request.json
+  file_sha256: 2ed2a1d2c271b9011e46e6aa1d35566c4efa082522d5ef7c4be42c0c252b7c34
+  canonical_sha256: 6414d3d842e55c73ab85d786666301e1e18c6d41a5f1c003cf73250dbe2aea56
+prepare_summary:
+  cells: 12
+  checkpoints: 36
+  prediction_rows: 1330272
+  candidate_position_rows: 514800
+  control_position_rows: 2059200
+  outcome_rows_read: 0
+  performance_metrics_computed: 0
+  pnl_evaluations: 0
+authorized_next_action: execute_v59_exactly_one_registered_outcome_unseal_and_complete_evaluation
+pass_action: authorize_v60_immutable_registration_without_refit
+failure_action: retire_family_without_tuning

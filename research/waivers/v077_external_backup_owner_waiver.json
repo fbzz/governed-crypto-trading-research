@@ -1,0 +1,18 @@
+{
+  "accepted_by": "repository_owner",
+  "authorization_context": "The repository owner previously instructed that no backup was required, authorized continuation, and the active goal explicitly requests training through financial validation.",
+  "family_id": "tlm_persistent_multi_horizon_duration_v1",
+  "parent_experiment": {
+    "file_sha256": "83b66f7de2a168dad03dcfb638cf186a886d31433e9e0b70c93f36f8fa5c277c",
+    "path": "research/experiments/v077.yaml"
+  },
+  "phase": "v77",
+  "risk_acceptance": true,
+  "schema_version": "tlm-owner-storage-waiver/v1",
+  "waived_safeguards": [
+    "external_input_copy",
+    "external_code_copy",
+    "external_checkpoint_copy"
+  ],
+  "waiver_id": "v077_external_backup_owner_waiver"
+}

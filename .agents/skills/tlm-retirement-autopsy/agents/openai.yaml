@@ -1,0 +1,4 @@
+interface:
+  display_name: "TLM Retirement Autopsy"
+  short_description: "Diagnose frozen failures without retuning"
+  default_prompt: "Use $tlm-retirement-autopsy to diagnose a retired TLM family from its hash-locked evidence packet."

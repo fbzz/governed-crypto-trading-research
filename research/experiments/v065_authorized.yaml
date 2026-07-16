@@ -1,0 +1,34 @@
+schema_version: 1
+experiment_id: v065_v64_r2_probabilistic_state_gate_authorization
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: explicit_user_authorization
+status: registered
+evidence_tier: owner_authorized_metadata_only_design
+scientific_parent:
+  family_id: tlm_decoupled_rank_state_medium_v1
+  terminal_phase: v64
+  terminal_decision: retire_family_without_target_evaluation_or_retuning
+  retirement_immutable: true
+  direct_successor: true
+blueprint:
+  path: artifacts/authorization_v65_v64_r2_probabilistic_state_gate/blueprint.json
+  file_sha256: 8f48d63c538e5540b130b1cd2a3c68f41ccc79f9adb7a540a0afe456a5bc4847
+  canonical_sha256: 43a49b45f53e2b27352bcd470275967eb67ce029174ffeb0a74767b3df449036
+result:
+  path: artifacts/authorization_v65_v64_r2_probabilistic_state_gate/result.json
+  file_sha256: 8f0be59719463748fd741d6042b1665cba1c8b17ea1ae6d8aeb49dc3846cb381
+  registered_result_sha256: e65c937801ec3c62ba9c7c49dd32bb1158bdb2875c6a18c010044ece348a5314
+audit:
+  path: artifacts/authorization_v65_v64_r2_probabilistic_state_gate/audit.json
+  file_sha256: 6be23da3c077a6e02ad0eefb1d069aca33f27ae3ba5adceba9931623d9c1fe66
+authorization:
+  source_user_message: >-
+    Autorizo uma especificação V64-R2, sucessora direta da V64, mantendo o
+    ranker e a arquitetura relativa congelados e alterando somente o state gate
+    probabilístico e sua regra de abstention, sem abrir dados, checkpoints ou
+    outcomes nesta fase, mantendo BTC, ETH e SOL selados.
+  authorization_date: '2026-07-15'
+  scope: metadata_only_v65_v64_r2_probabilistic_state_gate_specification
+  target_assets_status: sealed
+authorized_next_action: execute_v65_metadata_only_v64_r2_probabilistic_state_gate_specification

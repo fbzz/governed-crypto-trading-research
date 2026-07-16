@@ -1,0 +1,200 @@
+v64_r2_probabilistic_state_gate_spec:
+  version: v65
+  lineage_label: V64-R2
+  project_root: .
+  candidate_family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+  inputs:
+    user_authorization_blueprint: artifacts/authorization_v65_v64_r2_probabilistic_state_gate/blueprint.json
+    user_authorization_audit: artifacts/authorization_v65_v64_r2_probabilistic_state_gate/audit.json
+    user_authorization_result: artifacts/authorization_v65_v64_r2_probabilistic_state_gate/result.json
+    v60_specification: artifacts/v60_decoupled_rank_state_spec/specification.json
+    v63_checkpoint_manifest: artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json
+    v64_evaluation_result: artifacts/v64_decoupled_rank_state_evaluation/evaluation_result.json
+    v64_evaluation_audit: artifacts/v64_decoupled_rank_state_evaluation/evaluation_audit.json
+    v64_postmortem_contract: artifacts/v64_decoupled_rank_state_evaluation/postmortem/autopsy_contract.json
+    v64_postmortem_result: artifacts/v64_decoupled_rank_state_evaluation/postmortem/result.json
+  expected_input_sha256:
+    user_authorization_blueprint: 8f48d63c538e5540b130b1cd2a3c68f41ccc79f9adb7a540a0afe456a5bc4847
+    user_authorization_audit: 6be23da3c077a6e02ad0eefb1d069aca33f27ae3ba5adceba9931623d9c1fe66
+    user_authorization_result: 8f0be59719463748fd741d6042b1665cba1c8b17ea1ae6d8aeb49dc3846cb381
+    v60_specification: fa3fcb6c2ea2b7ac293ba36340af326ef1a816f99f8fadca7dfcdef9315e6415
+    v63_checkpoint_manifest: 4c069d39d36d224ccc48adea449f7c7dad3a381b192b8af376dc2d470db0b0f9
+    v64_evaluation_result: 4082c1e8f3da6595b8180f781daff1036799d8c287da4a95543a030e4a56414c
+    v64_evaluation_audit: f86b6b99d786a8e3a7f56606b010bd388732a5df50765bc763b835ed5230c93a
+    v64_postmortem_contract: ab2978e7a583b61e45ccf9ca31f7e0c794f15cd6fdc763e75381e618955a4e60
+    v64_postmortem_result: 01b43e0c0a8f0b30d1d0da97d6fdc4456f4932adb52ff2303680783d3ced705a
+
+  lineage:
+    direct_successor: true
+    lineage_label: V64-R2
+    technical_family_is_new: true
+    technical_family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+    scientific_parent_family: tlm_decoupled_rank_state_medium_v1
+    scientific_parent_terminal_phase: v64
+    scientific_parent_decision: retire_family_without_target_evaluation_or_retuning
+    scientific_parent_retirement_immutable: true
+    permitted_changes:
+      - state_gate_point_head_to_probabilistic_location_scale_head
+      - deterministic_edge_abstention_to_probability_of_net_positive_return_abstention
+    all_other_components_frozen: true
+
+  target_contract:
+    target_assets: [BTC, ETH, SOL]
+    target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+    status: sealed
+    target_data_allowed: false
+    target_prediction_count: 0
+    target_pnl_evaluation_count: 0
+
+  ranker_contract:
+    status: frozen_exactly_from_v64
+    architecture:
+      variant_count: 1
+      lookback_days: 256
+      patch_length_days: 16
+      patch_stride_days: 8
+      d_model: 128
+      encoder_layers: 4
+      cross_asset_attention_layers: 2
+      attention_heads: 4
+      feed_forward_width: 512
+      dropout: 0.20
+      shared_asset_encoder: true
+      asset_slot_embedding: false
+      prediction_heads: [excess_return_z, log_volatility_7d]
+      expected_parameter_count: 1231634
+    objective:
+      ranking_loss: ranknet_non_tied_pairs
+      excess_loss: smooth_l1_centered_score_vs_train_scaled_excess
+      log_volatility_loss: smooth_l1_auxiliary
+      weights: {ranking: 1.0, excess: 1.0, log_volatility: 0.1}
+      early_stopping_monitor: ranking_plus_excess_without_volatility
+    weights:
+      source_manifest: artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json
+      expected_job_count: 9
+      identity_binding: exact_ranker_state_sha256_per_fold_and_seed
+      gate_state_reuse: forbidden
+      checkpoint_deserialization_during_v65: false
+      future_ranker_substate_reuse_requires_separate_phase_authorization: true
+      future_ranker_requires_grad: false
+      future_ranker_optimizer: none
+
+  state_gate_architecture:
+    independent_encoder: true
+    ranker_representation_input: none
+    gradient_path_to_ranker: blocked_by_architecture
+    input_features: 18
+    lookback_days: 256
+    patch_length_days: 16
+    patch_stride_days: 8
+    d_model: 32
+    encoder_layers: 2
+    attention_heads: 4
+    feed_forward_width: 64
+    dropout: 0.20
+    output_width: 2
+    outputs:
+      - normalized_triplet_market_location
+      - normalized_triplet_market_raw_scale
+    expected_parameter_count: 27522
+
+  probabilistic_gate:
+    distribution: student_t_location_scale
+    degrees_of_freedom: 5.0
+    degrees_of_freedom_trainable: false
+    location: normalized_triplet_market_location
+    scale_transform: softplus_normalized_triplet_market_raw_scale_plus_floor
+    scale_floor: 0.0001
+    denormalization: train_only_rms_market_component_per_fold
+    target: train_only_triplet_mean_next_open_log_return
+    loss: mean_negative_student_t_log_likelihood
+    early_stopping_monitor: validation_negative_student_t_log_likelihood
+    optimizer_state: independent_fresh
+    distribution_aggregation: equal_weight_mixture_across_context_and_seed
+    ranker_uncertainty_added: false
+
+  decomposition:
+    formula: selected_asset_return_distribution_equals_market_state_distribution_plus_frozen_selected_asset_excess_location
+    selected_asset: highest_context_and_seed_averaged_raw_excess
+    absolute_location: market_location_plus_selected_asset_raw_excess
+    absolute_scale: market_scale_only
+    ranker_scores_or_order_changed: false
+
+  capacity_contract:
+    ranker_parameters: 1231634
+    state_gate_parameters: 27522
+    expected_total_parameter_count: 1259156
+    parameter_ceiling: 1300000
+    size_sweep_allowed: false
+    larger_ranker_allowed: false
+    state_gate_variant_count: 1
+
+  policy:
+    action_space: [long_one_asset, cash]
+    risky_gross: 1.0
+    momentum_cash_gate: all_currently_eligible_momentum_30_nonpositive
+    desired_asset: highest_context_and_seed_averaged_raw_excess
+    abstention_probability_threshold: 0.60
+    threshold_source: preregistered_fixed_supermajority_not_selected_from_v64
+    threshold_sweep_allowed: false
+    probability_event: selected_asset_next_return_strictly_above_exact_transition_cost
+    probability_computation: one_minus_equal_weight_student_t_mixture_cdf_at_exact_transition_cost
+    entry_rule: enter_desired_asset_only_when_momentum_gate_open_and_probability_event_at_least_0_60
+    hold_rule: retain_eligible_incumbent_only_when_probability_event_at_least_0_60
+    switch_rule: switch_only_when_challenger_minus_incumbent_raw_excess_strictly_above_0_002_and_challenger_probability_event_at_least_0_60
+    exit_rule: cash_when_momentum_gate_closes_or_incumbent_probability_event_below_0_60
+    base_cost_bps: 10
+    reporting_cost_bps: [10, 20, 30]
+    switch_hurdle: 0.002
+    final_liquidation: true
+    leverage: false
+    shorting: false
+    changed_fields_from_v64: [abstention_probability_threshold, probability_event, probability_computation, entry_rule, hold_rule, switch_rule, exit_rule]
+
+  future_training_contract:
+    implementation_allowed_during_v65: false
+    ranker_status: frozen_no_gradient_no_optimizer
+    state_gate_initialization: fresh_registered_seed
+    seeds: [42, 7, 123]
+    folds: [1, 2, 3]
+    expected_job_count: 9
+    supervised_train: ["2021-03-01", "2024-12-23"]
+    v64_2025_outcomes_allowed_for_training_validation_tuning_or_evaluation: false
+    seed_or_fold_selection_allowed: false
+    hyperparameter_search_allowed: false
+    maximum_epochs: 30
+    early_stopping_patience: 5
+    batch_size: 128
+    optimizer: AdamW
+    learning_rate: 0.0003
+    weight_decay: 0.0001
+    gradient_clip_norm: 1.0
+    device: mps
+    dtype: float32
+
+  evidence_contract:
+    v64_is_consumed_adaptive_development_evidence: true
+    v64_outcomes_may_not_be_reread_or_reused: true
+    v64_retirement_remains_immutable: true
+    direct_successor_claim_is_architectural_not_confirmatory: true
+    prospective_non_target_confirmation_required: true
+    target_assets_remain_sealed_through_confirmation: true
+    no_deployable_claim_before_confirmation: true
+
+  constraints:
+    metadata_only: true
+    parquet_deserialization_allowed: false
+    checkpoint_access_allowed: false
+    model_instantiation_allowed: false
+    optimizer_step_allowed: false
+    prediction_allowed: false
+    performance_metric_allowed: false
+    pnl_allowed: false
+    outcome_source_read_allowed: false
+    target_asset_allowed: false
+    v66_implementation_allowed: false
+
+  authorized_next_action: authorize_v66_synthetic_v64_r2_probabilistic_state_gate_harness_only
+
+output_dir: artifacts/v65_v64_r2_probabilistic_state_gate_spec
+seed: 20260715

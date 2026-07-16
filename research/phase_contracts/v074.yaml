@@ -1,0 +1,117 @@
+schema_version: 1
+phase: v74
+stage_revision: v074_persistent_duration_family_specification_r1
+family_id: tlm_persistent_multi_horizon_duration_v1
+status: metadata_only_specification_authorized_not_started
+evidence_tier: metadata_only_ex_ante_design
+
+parent_experiment:
+  path: research/experiments/v074.yaml
+  file_sha256: 8633a2a3e2106c723e631b5565a9b38d876754ee0890fb5ce1f4407d24149193
+scientific_parent:
+  path: research/experiments/v073.yaml
+  file_sha256: fd0488732528b5173d890e2cf140daf87427e91f6dd0f0c249a90dcd169195fe
+authorization_receipt:
+  path: artifacts/v73_v72_posthoc_diagnostic_record/result.json
+  file_sha256: a760aa3e29e1158901cd34b7c9774047f61419bc7df8ae8d5cb4b028ee5e659c
+  decision: authorize_v74_persistent_duration_family_specification_only
+
+authorized_next_action: execute_v74_metadata_only_persistent_duration_family_specification
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm persistent-duration-spec
+  --config configs/v74_persistent_duration_spec.yaml
+pass_action: authorize_v75_synthetic_persistent_duration_harness_only
+failure_action: keep_v75_and_later_unauthorized
+
+access_contract:
+  output_dir: artifacts/v74_persistent_duration_spec
+  allowed_inputs:
+    - artifacts/v73_v72_posthoc_diagnostic_record/result.json
+    - artifacts/v73_v72_posthoc_diagnostic_record/audit.json
+    - artifacts/v73_v72_posthoc_diagnostic_record/diagnostic_record.json
+    - artifacts/v73_v72_posthoc_diagnostic_record/artifact_manifest.json
+    - research/candidates/v74_persistent_multi_horizon_duration_model.md
+    - src/tlm/persistent_multi_horizon_duration_model.py
+    - tests/test_persistent_multi_horizon_duration_model.py
+  allowed_capabilities:
+    - read_four_exact_hash_bound_v73_json_metadata_files
+    - verify_three_exact_hash_bound_candidate_source_files
+    - preserve_v72_failure_and_v73_record_without_recomputation
+    - compute_analytic_parameter_count_without_model_instantiation
+    - freeze_one_new_architecture_objective_policy_training_and_evaluation_contract
+    - write_one_deterministic_metadata_only_specification_packet
+  required_checks:
+    - v73_receipt_authorizes_only_v74_specification
+    - predecessor_failure_and_unchanged_status_are_preserved
+    - new_family_reuses_no_prior_checkpoint_weight_or_scaler
+    - exact_single_architecture_has_1083155_parameters
+    - joint_return_ranking_duration_objective_is_frozen
+    - stateful_cost_conditioned_policy_is_frozen_without_threshold_sweep
+    - nine_job_mps_training_grid_is_frozen_without_selection
+    - strict_financial_gates_have_no_fold_aggregate_rescue
+    - target_assets_remain_sealed
+    - zero_data_checkpoint_model_prediction_position_metric_pnl_or_outcome_access
+  forbidden_capabilities:
+    - parquet_market_panel_or_source_data_deserialization
+    - outcome_packet_or_outcome_source_read
+    - checkpoint_scaler_or_prior_weight_access_or_reuse
+    - model_instantiation_training_optimizer_or_inference
+    - prediction_position_metric_pnl_bootstrap_or_gate_computation
+    - target_asset_access
+    - architecture_size_objective_policy_threshold_or_hyperparameter_sweep
+    - v75_harness_implementation_or_execution
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    artifacts/v73_v72_posthoc_diagnostic_record/result.json: a760aa3e29e1158901cd34b7c9774047f61419bc7df8ae8d5cb4b028ee5e659c
+    artifacts/v73_v72_posthoc_diagnostic_record/audit.json: 9a9c2e16251c68d0a1ea591be8b4e2f7d252bdcd60b622f5bdf303e4c40b406b
+    artifacts/v73_v72_posthoc_diagnostic_record/diagnostic_record.json: 515770ee477e961a256f20091ec6e2e6cde76b1bf7f4d3531ad04c22a25659cb
+    artifacts/v73_v72_posthoc_diagnostic_record/artifact_manifest.json: b5538505bb991bf8d97256f05cad02271a5063c63f1d00dc0b241cebd6671ba2
+    research/candidates/v74_persistent_multi_horizon_duration_model.md: 20a3d79099fedaa116daf9053221ee45d89ab64a8b9e60cee743f00305079610
+    src/tlm/persistent_multi_horizon_duration_model.py: 3e1e39915e418c5497a7f28325d75642c8d820fc2c1b0593ed4fb0dc09c0b901
+    tests/test_persistent_multi_horizon_duration_model.py: 847d4ee3e00f3951c5b4854e568516a4c8b78488bec538c3190b9bd94fbae348
+  expected_json_metadata_reads: 4
+  expected_source_hash_checks: 3
+  maximum_parquet_deserializations: 0
+  maximum_outcome_packet_reads: 0
+  maximum_checkpoint_reads: 0
+  maximum_model_instantiations: 0
+
+frozen_family_contract:
+  architecture_variant_count: 1
+  expected_total_parameters: 1083155
+  parameter_ceiling: 1100000
+  return_horizons_days: [1, 3, 7]
+  duration_support_days: [1, 2, 3, 4, 5, 6, 7]
+  maximum_label_maturity_days: 8
+  objective_weights: {return_nll: 1.0, pairwise_ranking: 0.25, duration_nll: 0.5}
+  policy_variant_count: 1
+  reporting_cost_bps: [10, 20, 30]
+  future_training_jobs: 9
+  size_or_hyperparameter_sweep_allowed: false
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+artifact_contract:
+  output_dir: artifacts/v74_persistent_duration_spec
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - specification.json
+    - blueprint.json
+    - result.json
+    - audit.json
+    - report.md
+    - artifact_manifest.json
+  deterministic_replay_required: true
+  scientific_data_artifact_allowed: false
+
+stop_condition: freeze_and_validate_v74_specification_then_stop_before_v75_harness
+seed: 20260715

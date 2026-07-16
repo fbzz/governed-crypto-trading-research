@@ -1,0 +1,76 @@
+schema_version: 1
+experiment_id: v063_frozen_non_target_decoupled_rank_state_training
+family_id: tlm_decoupled_rank_state_medium_v1
+phase: frozen_non_target_decoupled_rank_state_training
+status: passed
+evidence_tier: causal_non_target_training_only
+parent_experiment: research/experiments/v062.yaml
+blueprint:
+  path: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+  file_sha256: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+  canonical_sha256: 3cf97271c977633b1ee8ab4641a8a9fc95a1a9d79b72c80c063d21f553498232
+phase_contract:
+  path: research/phase_contracts/v063.yaml
+  file_sha256: 6ebbcb5daadf4d887d66085d0484f5b046851b600e08d7ef609f7e137c26ca8d
+result:
+  path: artifacts/v63_decoupled_rank_state_training/result.json
+  file_sha256: 79de7b451ed2fcbbc27d3ba9ba6fa6425a7aaf8620a533b1c7fbe9bc5aa3f48a
+  registered_result_sha256: 99d367e761028fa570c060e0b1d0c6164bac9d6158d1cb122a9706d22e29f5d8
+audit:
+  path: artifacts/v63_decoupled_rank_state_training/audit.json
+  file_sha256: 6fad0a0e69433658cfb66f93d09ebde29e0b7beeb8a3d93df74df846ee24a2a0
+  canonical_sha256: e8f987cf27fb71a970cfc5d9f021abdda7036318713f8a6ab479e26ce6be2db8
+training_spec:
+  path: artifacts/v63_decoupled_rank_state_training/training_spec.json
+  file_sha256: 37efa60195b1df3e09bf7159e7a11e9289c34a3874cabf19403b3bfefd240c60
+checkpoint_manifest:
+  path: artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json
+  file_sha256: 4c069d39d36d224ccc48adea449f7c7dad3a381b192b8af376dc2d470db0b0f9
+  canonical_sha256: 129e6f9be9788c2aa053cd95f61a495e5aaaba1297cbe27005d4e50ba59b2bd5
+grid_manifest:
+  path: artifacts/v63_decoupled_rank_state_training/grid_manifest.json
+  file_sha256: 543e5f494a74a975505b028ec385cf7616626a99b0f9759b60d83386113c8dc2
+history_manifest:
+  path: artifacts/v63_decoupled_rank_state_training/history_manifest.json
+  file_sha256: 2f2f9dc61ac526b6d9ab366b0c19d1bd9819dff4dcba1f9137da52ff96f9c873
+scaler_manifest:
+  path: artifacts/v63_decoupled_rank_state_training/scaler_manifest.json
+  file_sha256: 2d6848c4622cee2f55651f7832ed484023cf137a73665d8b959bb96a60e54a6a
+data_access:
+  path: artifacts/v63_decoupled_rank_state_training/data_access.json
+  file_sha256: a2821aca6eda7da8d0ba603f2a914772901a88a7314fb3bd1f7c25c75903db4f
+verification:
+  path: artifacts/v63_decoupled_rank_state_training/verification.json
+  file_sha256: c9011434f08d07a84a27a23ed63bd82e268ae9e24c76111badb51cc389ad2786
+  canonical_sha256: 324d8dc119c96c5ace00b4ff97df61d9a7e31e7e45dedfa2ea8122a9d7d82360
+replay:
+  path: artifacts/v63_decoupled_rank_state_training/replay.json
+  file_sha256: 93d56f50e42b432376d4c5951c84f2ce1bf21b1fc6f5afa38168377f3e99ee3b
+  canonical_sha256: 820645e3158b2d9f85221a1eeb515b467fe515eec15790d1f8cb9dbff817c713
+source_receipt:
+  path: artifacts/v63_decoupled_rank_state_training/source_receipt.json
+  file_sha256: 386ce636f2228df830a780173a65f396e5891f3e5f280dd594bb7353a73ad0c8
+  git_head: aa4a310a4f1afac448ecaa88ad342726f5ec4318
+artifact_manifest:
+  path: artifacts/v63_decoupled_rank_state_training/artifact_manifest.json
+  file_sha256: fef2c5a4f08a735b9461df13845ca5984595eadb494c5608911c91c8d8912bf2
+  canonical_sha256: 2a98db4c52b1df314f8ba1d774b1daa093964038c3e97ddf828b6a06a5e687e8
+completion_receipt:
+  path: artifacts/v63_decoupled_rank_state_training/completion_receipt.json
+  file_sha256: 1f0fd83d71130860f4d189c43fbafda4ecfc00b2644025a290e2bf4f3a8bf3ba
+  canonical_sha256: 269f95b264721f030db801e9b8ecaf0f83b2cef7acc5bc5c2812015e93a69b2f
+v63_summary:
+  audit_passed: true
+  completed_jobs: 9
+  checkpoint_count: 9
+  total_optimizer_steps: 34496
+  fold_scalers: 3
+  smoke_pretraining_resume_matched: true
+  smoke_supervised_resume_matched: true
+  checkpoint_roundtrip_passed: true
+  zero_step_replay_passed: true
+  predictions: 0
+  performance_metrics: 0
+  pnl_evaluations: 0
+  target_asset_loads: 0
+authorized_next_action: authorize_v64_frozen_adaptive_development_evaluation_only

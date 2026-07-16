@@ -1,0 +1,12 @@
+project_root: .
+research_state: research/current.yaml
+phase_contract: research/phase_contracts/v072.yaml
+prepare_dir: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic
+output_dir: artifacts/v72_v64_r2_posthoc_retrospective_evaluation
+bootstrap:
+  method: circular_block
+  paths: 10000
+  block_lengths_days: [7, 21, 63]
+  base_seed: 20260715
+  batch_size: 250
+  economic_cost_bps: 10

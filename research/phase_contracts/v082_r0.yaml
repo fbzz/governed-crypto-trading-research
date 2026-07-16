@@ -1,0 +1,142 @@
+schema_version: 1
+phase: v82-r0
+stage_revision: v082_r0_metadata_only_chronology_erratum_r1
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+status: metadata_only_chronology_erratum_authorized_not_started
+evidence_tier: metadata_only_chronology_erratum
+
+parent_experiment:
+  path: research/experiments/v082_r0.yaml
+  file_sha256: 16f55e01aa8b98b862748e6733d637f86107fe40f68ac6042c66baff2a6549b9
+preceding_phase_contract:
+  path: research/phase_contracts/v081.yaml
+  file_sha256: f56a184bf920504e38d8120ad2007e2438df20a24b5a8eadb49e71fd24a71324
+authorization_receipt:
+  path: research/authorizations/v082_r0_chronology_erratum.json
+  file_sha256: 249e6d2a2e60bf2da5c34c687dbb37513e67f495adce5cb68fb0d682775413f5
+  registered_authorization_sha256: 7120faa7e6267e2234bb34b576a65aa4834bc1b527a9012ab100b7d3c409394c
+  decision: record_v82_r0_low_turnover_rank_chronology_erratum_metadata_only
+
+authorized_next_action: record_v82_r0_low_turnover_rank_chronology_erratum_metadata_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm low-turnover-rank-chronology-erratum
+  --config configs/v82_r0_low_turnover_rank_chronology_erratum.yaml
+pass_action: authorize_v82_non_target_low_turnover_rank_dataset_only
+failure_action: stop_v82_r0_on_metadata_hash_semantic_or_scope_drift
+stop_condition: freeze_and_validate_v82_r0_erratum_then_stop_before_v82_dataset
+
+access_contract:
+  output_dir: artifacts/v82_r0_low_turnover_rank_chronology_erratum
+  allowed_inputs:
+    - research/authorizations/v082_r0_chronology_erratum.json
+    - artifacts/v80_low_turnover_rank_spec/specification.json
+    - artifacts/v80_low_turnover_rank_spec/blueprint.json
+    - artifacts/v80_low_turnover_rank_spec/result.json
+    - artifacts/v81_low_turnover_rank_harness/harness_spec.json
+    - artifacts/v81_low_turnover_rank_harness/audit.json
+    - artifacts/v81_low_turnover_rank_harness/result.json
+    - artifacts/v81_low_turnover_rank_harness/artifact_manifest.json
+  allowed_capabilities:
+    - read_eight_exact_hash_bound_json_metadata_files
+    - verify_user_authorization_v80_specification_and_v81_harness_receipts
+    - register_only_two_chronology_field_corrections
+    - prove_corrected_last_maturity_and_structural_policy_bounds_from_metadata
+    - emit_deterministic_metadata_only_erratum_packet
+    - authorize_only_v82_non_target_dataset_phase
+  required_checks:
+    - exact_user_authorization_hash_scope_and_forbidden_accesses
+    - exact_v80_specification_blueprint_and_result_receipts
+    - exact_v81_harness_audit_result_and_manifest_receipts
+    - old_last_signal_matures_after_frozen_outcome_end
+    - corrected_signal_date_count_is_159
+    - corrected_last_signal_plus_22_days_is_2026_06_30
+    - target_architecture_objective_policy_costs_gates_and_turnover_unchanged
+    - maximum_decisions_remains_8
+    - structural_maximum_turnover_remains_16
+    - zero_data_outcome_checkpoint_model_training_inference_or_target_access
+    - deterministic_packet_replay_is_byte_identical
+  forbidden_capabilities:
+    - parquet_market_panel_raw_data_label_or_outcome_access
+    - checkpoint_scaler_model_optimizer_training_or_inference_access
+    - prediction_position_performance_metric_pnl_or_bootstrap_computation
+    - target_architecture_objective_policy_cost_gate_turnover_universe_fold_seed_or_hyperparameter_change
+    - v80_v81_artifact_rewrite
+    - v82_dataset_implementation_or_execution
+    - target_asset_access
+    - deployable_paper_shadow_live_or_real_money_claim
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    research/authorizations/v082_r0_chronology_erratum.json: 249e6d2a2e60bf2da5c34c687dbb37513e67f495adce5cb68fb0d682775413f5
+    artifacts/v80_low_turnover_rank_spec/specification.json: 691ca1a2b847292a94896254d06e5c9f50e1416676e202b84e2246c10e4f731a
+    artifacts/v80_low_turnover_rank_spec/blueprint.json: d877adf553c6ba54e51302cdb058c361e15817daf16034e2744ed10a46d64abb
+    artifacts/v80_low_turnover_rank_spec/result.json: c0a49d6444e150a8081d48ebbce3394b4af21257b15a1f332594999fa4503f3c
+    artifacts/v81_low_turnover_rank_harness/harness_spec.json: 45b90b5e91ce973441373412bf20784cf4eb6c0b40c69be11e3392d919816600
+    artifacts/v81_low_turnover_rank_harness/audit.json: 9b14b40c021f742a2e8625e1ef42b10152924acdf9776e7efffab77b867176a2
+    artifacts/v81_low_turnover_rank_harness/result.json: 7b8bf900d1283b3072dfa4a93f342b7fa2b96ba0312e52bdf108d0d2144f1a1f
+    artifacts/v81_low_turnover_rank_harness/artifact_manifest.json: b8548a487d64434054293c4d7a7e18d85456d7ba760b65127416ad57c953e204
+  allowed_extensions: [.json]
+  expected_json_metadata_reads: 8
+  maximum_parquet_market_panel_raw_data_reads: 0
+  maximum_outcome_or_target_value_reads: 0
+  maximum_checkpoint_model_or_scaler_loads: 0
+
+erratum_contract:
+  immutable_base_blueprint_sha256: 3b080b6cfcea2be6ef2a3347397e7f669573870abba0f6966bc3eb76eeb1d649
+  immutable_base_specification_sha256: d7fd9306ede1afc0fc193e705c2d1d539e5fde60c023b587012ecfa8812f9cfd
+  corrected_fields_exactly:
+    final_evaluation_signal_end:
+      before: '2026-06-09'
+      after: '2026-06-08'
+    final_evaluation_signal_dates:
+      before: 160
+      after: 159
+  final_evaluation_signal_start: '2026-01-01'
+  final_evaluation_outcome_maturity_end: '2026-06-30'
+  maturity_offset_days: 22
+  corrected_last_maturity: '2026-06-30'
+  maximum_decisions_after: 8
+  structural_maximum_turnover_after: 16.0
+
+frozen_unchanged_contract:
+  target_asset_return: log_open_t_plus_22_div_open_t_plus_1
+  execution_open: t_plus_1
+  exit_open: t_plus_22
+  horizon_intervals: 21
+  expected_total_parameters: 10993
+  architecture_variant_count: 1
+  decision_interval_days: 21
+  maximum_evaluation_decisions: 8
+  structural_maximum_turnover: 16.0
+  costs_bps: [10, 20, 30]
+  mandatory_financial_gate_count: 9
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  scientific_change_count: 0
+
+specification_config:
+  path: configs/v82_r0_low_turnover_rank_chronology_erratum.yaml
+  file_sha256: a41b8b2cf0d1a709646a290fdeeafbcd19242d8ba1aea2ba0567fb09dc498134
+
+artifact_contract:
+  output_dir: artifacts/v82_r0_low_turnover_rank_chronology_erratum
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - chronology_erratum.json
+    - audit.json
+    - result.json
+    - report.md
+    - artifact_manifest.json
+  deterministic_replay_required: true
+  scientific_artifact_allowed: false
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+deployable: false

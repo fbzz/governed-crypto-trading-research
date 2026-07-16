@@ -1,0 +1,18 @@
+{
+  "schema_version": "tlm-explicit-user-authorization/v1",
+  "authorization_id": "v085_low_turnover_rank_outcome_unseal_20260716",
+  "phase": "v85",
+  "authorized_by": "repository_owner",
+  "authorized_action": "execute_v85_exactly_one_registered_non_target_outcome_unseal_and_complete_evaluation",
+  "authorization_text": "Autorizo exatamente uma abertura V85 do packet de outcomes não-target já imutável de 2026 para a avaliação da V84, vinculada ao evaluation spec 70191a2e02e82f405cec9112b0708e20db8e658932ac0448a794f811db12ec80, prepare receipt e0d65959afca7b928bb74d466bdbfb8e5ff2c2f46b08fa075c7ab04c649e611e e registered contract 82ee01cba2815c57a59cde16cf03d9a47b5bcb75421d0e350011793889548560, sem regeneração, retuning ou mudança de política/custos, mantendo BTC, ETH e SOL selados",
+  "evaluation_spec_sha256": "70191a2e02e82f405cec9112b0708e20db8e658932ac0448a794f811db12ec80",
+  "prepare_receipt_sha256": "e0d65959afca7b928bb74d466bdbfb8e5ff2c2f46b08fa075c7ab04c649e611e",
+  "registered_sha256": "82ee01cba2815c57a59cde16cf03d9a47b5bcb75421d0e350011793889548560",
+  "one_shot_prepare_packet_sha256": "a5a21254eed06b7f95c875aa5b01046e4168e2dde5dcd442dd3cc6d0c4e180ea",
+  "maximum_unseal_count": 1,
+  "source_outcome_reread_allowed": false,
+  "regeneration_retuning_or_policy_cost_change_allowed": false,
+  "target_assets": ["BTCUSDT", "ETHUSDT", "SOLUSDT"],
+  "target_assets_status": "sealed",
+  "authorization_sha256": "9400f8987a596237fce6d09ac98019f02d5b1c804ce7706dcdd9e869690009ca"
+}

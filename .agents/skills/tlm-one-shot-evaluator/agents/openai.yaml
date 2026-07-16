@@ -1,0 +1,4 @@
+interface:
+  display_name: "TLM One-Shot Evaluator"
+  short_description: "Seal predictions and evaluate outcomes exactly once"
+  default_prompt: "Use $tlm-one-shot-evaluator to prepare and execute the registered one-shot TLM evaluation."

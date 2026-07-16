@@ -1,0 +1,99 @@
+seed: 20260713
+
+data_family_audit:
+  weights:
+    causal_timestamp_semantics: 0.25
+    historical_coverage: 0.25
+    public_reproducibility: 0.20
+    solo_project_cost: 0.15
+    information_independence: 0.15
+
+  deribit_dvol:
+    endpoint: https://www.deribit.com/api/v2/public/get_volatility_index_data
+    currencies: [BTC, ETH]
+    start: "2021-12-01"
+    end: "2026-06-30"
+    resolution: 1D
+    timeout_seconds: 30
+    minimum_daily_coverage: 0.98
+
+  candidates:
+    deribit_dvol:
+      family: options_implied_volatility
+      principal_constraint: BTC/ETH only; daily candle finalizes at the UTC boundary and requires a strict one-day post-close buffer.
+      evidence_urls:
+        - https://docs.deribit.com/#public-get_volatility_index_data
+        - https://support.deribit.com/hc/en-us/articles/29748629634205-API-Authentication-Guide
+        - https://support.deribit.com/hc/en-us/articles/25944617449373-API-Usage-Policy
+      criteria:
+        causal_timestamp_semantics: 1.0
+        historical_coverage: 0.0
+        public_reproducibility: 1.0
+        solo_project_cost: 1.0
+        information_independence: 1.0
+      hard_gates:
+        genuinely_independent: true
+        no_credentials: true
+        no_paid_license: true
+        historical_coverage: false
+        strict_causal_contract: false
+        reproducible_public_endpoint: true
+    fred_alfred_vintage_macro:
+      family: revision_aware_macro
+      principal_constraint: Revision-safe vintage observations require an API key plus release-time alignment; plain latest-vintage CSV is not sufficient.
+      evidence_urls:
+        - https://fred.stlouisfed.org/docs/api/fred/series_observations.html
+        - https://fred.stlouisfed.org/docs/api/fred/series_vintagedates.html
+      criteria:
+        causal_timestamp_semantics: 0.5
+        historical_coverage: 1.0
+        public_reproducibility: 0.5
+        solo_project_cost: 0.5
+        information_independence: 1.0
+      hard_gates:
+        genuinely_independent: true
+        no_credentials: false
+        no_paid_license: true
+        historical_coverage: true
+        strict_causal_contract: false
+        reproducible_public_endpoint: false
+    binance_orderbook_liquidations:
+      family: market_microstructure
+      principal_constraint: Official public catalog exposes current snapshots/streams but no complete historical order-book and liquidation archive for the registered window.
+      evidence_urls:
+        - https://github.com/binance/binance-public-data
+        - https://developers.binance.com/docs/derivatives/usds-margined-futures/market-data/rest-api/Order-Book
+        - https://developers.binance.com/docs/derivatives/usds-margined-futures/websocket-market-streams/Liquidation-Order-Streams
+      criteria:
+        causal_timestamp_semantics: 1.0
+        historical_coverage: 0.0
+        public_reproducibility: 0.0
+        solo_project_cost: 0.5
+        information_independence: 1.0
+      hard_gates:
+        genuinely_independent: true
+        no_credentials: true
+        no_paid_license: true
+        historical_coverage: false
+        strict_causal_contract: true
+        reproducible_public_endpoint: false
+    clean_future_holdout:
+      family: validation_only
+      principal_constraint: A future holdout improves evidential independence but adds no new predictive information and is not a data family.
+      evidence_urls:
+        - https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html
+      criteria:
+        causal_timestamp_semantics: 1.0
+        historical_coverage: 0.0
+        public_reproducibility: 1.0
+        solo_project_cost: 0.5
+        information_independence: 0.0
+      hard_gates:
+        genuinely_independent: false
+        no_credentials: true
+        no_paid_license: true
+        historical_coverage: false
+        strict_causal_contract: true
+        reproducible_public_endpoint: true
+
+output_dir: artifacts/v13_data_family_feasibility

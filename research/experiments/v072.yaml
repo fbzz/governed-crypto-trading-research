@@ -1,0 +1,38 @@
+schema_version: 1
+experiment_id: v072_v64_r2_posthoc_retrospective_evaluation
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: posthoc_consumed_2025_diagnostic_evaluation
+status: authorized_not_started
+decision: execute_exactly_one_hash_bound_posthoc_outcome_unseal
+authorized_next_action: execute_v72_exactly_one_hash_bound_posthoc_outcome_unseal_and_complete_diagnostic
+evidence_tier: posthoc_consumed_2025_diagnostic_only_not_confirmation
+parent_experiment: research/experiments/v071.yaml
+blueprint:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  file_sha256: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+  canonical_sha256: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+result:
+  path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/result.json
+  file_sha256: 81689316e4551ce42c99a6e89ad3e070db2579fc3eba0b7fd594235267aebee8
+audit:
+  path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/audit.json
+  file_sha256: 3dc1db08f64f6fc2af4f881b90aca02b8a2783fe7f9d3da33d2153d8e98854c6
+evaluation_spec:
+  path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/evaluation_spec.json
+  file_sha256: 681258600514d0b66a694c0abb29ccee88cead68a20aa3e67e58152445b01609
+prepare_receipt:
+  path: artifacts/v71_v64_r2_posthoc_retrospective_diagnostic/prepare_receipt.json
+  file_sha256: d6d29ff80b6a833f7543673e3cf245d03be926fa024cb1b0e48e83b7357662ce
+registered_sha256: b1825271baffdff55669e84ac2c16e2f751a6edcfe2c49b3c24d38ffe02c67e9
+explicit_user_authorization:
+  path: research/authorizations/v072_posthoc_outcome_unseal.json
+  file_sha256: 938d6aeb1b947bb028302887215d15773a51e891ae4bb2d0f1d3067e4ce0866c
+  canonical_sha256: 817fed1b19ca1ab5b040e964e24676ac6c768ade0038d09c73b67f1f86fc8acb
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

@@ -1,0 +1,18 @@
+seed: 20260713
+
+non_target_inventory:
+  project_root: .
+  v26_specification_path: artifacts/v26_zero_shot_candidate_spec/specification.json
+  v26_audit_path: artifacts/v26_zero_shot_candidate_spec/audit.json
+  expected_blueprint_sha256: 974685bf9f92b70e867c2079dc3def734dba39c81d14c3dfda449b000d69817b
+  s3_endpoint: https://s3-ap-northeast-1.amazonaws.com/data.binance.vision
+  download_base_url: https://data.binance.vision
+  root_prefix: data/spot/monthly/klines/
+  raw_dir: data/raw/binance_spot_non_target
+  timeout_seconds: 30
+  listing_workers: 24
+  archive_workers: 32
+  candidate_batch_size: 12
+  minimum_month_prefilter: 0.98
+
+output_dir: artifacts/v27_non_target_universe_audit

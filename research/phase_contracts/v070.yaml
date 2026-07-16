@@ -1,0 +1,227 @@
+schema_version: 1
+phase: v70
+stage_revision: v070_prospective_non_target_capture_prediction_freeze_r2
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: prospective_capture_prediction_freeze_authorized_not_started
+evidence_tier: prospective_non_target_outcome_blind_prediction_accumulation
+parent_experiment:
+  path: research/experiments/v069.yaml
+  file_sha256: 23457c8e3e7710c999f74eabc3fd3dde9e4a19b8a81b9400d9714ea181e10959
+authorization_receipt:
+  path: artifacts/v69_v64_r2_prospective_confirmation_prepare/result.json
+  file_sha256: ef24b9662346e593ddacfa6aa0d57669366c416931b632521d1cb1ee9de9046c
+  registered_result_sha256: 37dad74cc494221a3242efc432a1d729c1b8ed5f558cac5dfe9536a65afc40d9
+  decision: authorize_v70_prospective_non_target_capture_and_prediction_freeze_only
+amendment_authorization:
+  path: research/authorizations/v070_r1_ranker_scale_amendment.json
+  file_sha256: 499fcd28123a88088a9c045c1011451a75c8f7572d62e08c12b0f490b8ae96a6
+  canonical_sha256: 4924c747b77d770f55bc729fc64f5b145f19a9f7dcf7b527b53c9e601ad2b9db
+amendment_registration:
+  path: research/amendments/v070_r1_metadata_only.yaml
+  file_sha256: d6a052da57a62bf59258771987b56c131187d629fff16ce424cdb2baa4cf6006
+authorized_next_action: authorize_v70_prospective_non_target_capture_and_prediction_freeze_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm v64-r2-prospective-capture
+  --config configs/v70_v64_r2_prospective_capture.yaml
+interim_action: continue_v70_prospective_non_target_capture_without_outcome_access
+pass_action: authorize_v71_outcome_blind_prospective_one_shot_prepare_only
+failure_action: retire_v64_r2_without_target_evaluation_or_retuning
+
+access_contract:
+  output_dir: artifacts/v70_v64_r2_prospective_capture
+  allowed_inputs:
+    - artifacts/v69_v64_r2_prospective_confirmation_prepare/specification.json
+    - artifacts/v69_v64_r2_prospective_confirmation_prepare/protocol.json
+    - artifacts/v69_v64_r2_prospective_confirmation_prepare/audit.json
+    - artifacts/v69_v64_r2_prospective_confirmation_prepare/result.json
+    - artifacts/v69_v64_r2_prospective_confirmation_prepare/report.md
+    - artifacts/v69_v64_r2_prospective_confirmation_prepare/source_receipt.json
+    - artifacts/v69_v64_r2_prospective_confirmation_prepare/artifact_manifest.json
+    - artifacts/v69_v64_r2_prospective_confirmation_prepare/completion_receipt.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/checkpoint_manifest.json
+    - artifacts/v68_v64_r2_probabilistic_state_gate_training/scaler_manifest.json
+    - research/authorizations/v070_r1_ranker_scale_amendment.json
+    - research/incidents/v070_ranker_scale_allowlist_gap.json
+    - research/receipts/v070_ranker_excess_scale_receipt.json
+    - research/amendments/v070_r1_metadata_only.yaml
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_1/seed_42.final.pt
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_1/seed_7.final.pt
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_1/seed_123.final.pt
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_2/seed_42.final.pt
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_2/seed_7.final.pt
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_2/seed_123.final.pt
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_3/seed_42.final.pt
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_3/seed_7.final.pt
+    - data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_3/seed_123.final.pt
+  allowed_capabilities:
+    - verify_exact_v69_protocol_v68_checkpoint_scaler_and_v32_universe_receipts
+    - resolve_the_first_git_commit_registering_the_exact_v70_r1_amendment_file
+    - fetch_public_unauthenticated_daily_utc_klines_for_v32_non_target_symbols_only
+    - preserve_pre_registration_history_only_as_causal_lookback_not_scored_evidence
+    - deserialize_exactly_nine_v68_checkpoints_without_training_or_selection
+    - instantiate_the_frozen_family_in_eval_and_inference_only_mode
+    - generate_equal_weight_context_and_seed_aggregated_predictions_and_positions
+    - freeze_one_immutable_prediction_position_receipt_before_each_h1_maturity
+    - append_only_source_integrity_capture_and_prediction_ledgers
+    - inspect_counts_hashes_dates_continuity_and_job_health_without_outcomes_or_metrics
+    - replay_or_resume_idempotently_without_rewriting_frozen_signal_dates
+    - close_capture_only_after_all_preregistered_time_count_and_activity_minimums
+  required_checks:
+    - v70_r1_amendment_commit_is_resolved_and_precedes_every_admissible_feature_close
+    - exact_ranker_excess_scale_receipt_matches_v63_and_v68_fold_identities
+    - no_2025_or_pre_registration_2026_signal_or_outcome_is_admitted
+    - every_v32_non_target_fold_symbol_and_triplet_is_preserved_without_selection
+    - all_nine_checkpoint_file_semantic_ranker_and_gate_hashes_match
+    - all_three_frozen_scalers_match_without_refit
+    - exact_policy_cost_timestamp_and_accounting_contract_is_unchanged
+    - prediction_and_position_receipts_freeze_before_target_maturity
+    - no_frozen_signal_date_is_regenerated_or_overwritten
+    - minimum_120_calendar_days_90_matured_dates_and_20_active_days_each_fold
+    - no_outcome_projection_metric_pnl_equity_or_interim_mark_to_market
+    - no_target_asset_order_paper_shadow_live_or_real_money_operation
+  forbidden_capabilities:
+    - target_asset_access
+    - consumed_2025_or_pre_registration_2026_signal_or_outcome_admission
+    - training_optimizer_scaler_refit_or_checkpoint_mutation
+    - checkpoint_seed_fold_context_or_date_selection
+    - architecture_objective_policy_threshold_cost_gate_or_accounting_change
+    - frozen_prediction_or_position_regeneration_or_rewrite
+    - outcome_column_projection_packet_unseal_or_source_role_read
+    - predictive_or_financial_metric_pnl_equity_drawdown_bootstrap_or_gate_computation
+    - interim_performance_or_mark_to_market_access
+    - v71_outcome_prepare_or_any_evaluation_implementation
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    artifacts/v69_v64_r2_prospective_confirmation_prepare/specification.json: b384d5de5e9bbf5dad30497adee391c09c5276fae8f3c774556c69b4d30571f3
+    artifacts/v69_v64_r2_prospective_confirmation_prepare/protocol.json: e3550ee792916e60482c6ca8571c5d0a0d3fa08f407c658540f805675337d845
+    artifacts/v69_v64_r2_prospective_confirmation_prepare/audit.json: 5c89e866f5a616c7c5e098f5394dd804fd88fa51d5457a89b61a3cbc98c7f305
+    artifacts/v69_v64_r2_prospective_confirmation_prepare/result.json: ef24b9662346e593ddacfa6aa0d57669366c416931b632521d1cb1ee9de9046c
+    artifacts/v69_v64_r2_prospective_confirmation_prepare/report.md: d67bb8809be043e0d8ddd9a6ad314f3c4c009c5c11aad157acec0e44c0a607b6
+    artifacts/v69_v64_r2_prospective_confirmation_prepare/source_receipt.json: 67bc25d609971c103a48350a5c3ccedbc3d799bfc968b957f96f12528e3709f8
+    artifacts/v69_v64_r2_prospective_confirmation_prepare/artifact_manifest.json: 255fbbf6c652b4696b7ee13e65096d0eef40cbcfee7591702898f7c6876ce1ff
+    artifacts/v69_v64_r2_prospective_confirmation_prepare/completion_receipt.json: fbeb8fbdc1f4ee615c239f66240100fafe197118c06819f078de54449df3baf3
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/checkpoint_manifest.json: 1aa25f83ab1dd66d813c91b584b46146bfb5a20659f9496bdbcf2c7941acb1c0
+    artifacts/v68_v64_r2_probabilistic_state_gate_training/scaler_manifest.json: 9584d43a9b5c0d3b788fedc1c7a47bf023f8662c50ae9338021518ddb9166e31
+    research/authorizations/v070_r1_ranker_scale_amendment.json: 499fcd28123a88088a9c045c1011451a75c8f7572d62e08c12b0f490b8ae96a6
+    research/incidents/v070_ranker_scale_allowlist_gap.json: 8927b868d0386c58b889602f7e7c5298142887180989adb84b52528d59bf2d5d
+    research/receipts/v070_ranker_excess_scale_receipt.json: 3e52944d0599a1b0c54022b4c6dccefe94ed5d64e1ae07ce346b14095a90f7af
+    research/amendments/v070_r1_metadata_only.yaml: d6a052da57a62bf59258771987b56c131187d629fff16ce424cdb2baa4cf6006
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_1/seed_42.final.pt: 388d4f6540c94419ea8b678f58c8d11e47876322a398bce986736e934a249a72
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_1/seed_7.final.pt: 3ecec4d9dac32c1a27e9b7b77a2aa3c8ce3e8efee85bebed20bdd0c99a9a456c
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_1/seed_123.final.pt: 8e76bfebe4f3da85c08e7603e8e70945f494544899b81605d8a38b8c45c19d52
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_2/seed_42.final.pt: 25fc046cd2e8cf480ec4a9b299814359f117f4f7dd66de509b63236a3468a019
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_2/seed_7.final.pt: 7d89b5a0faf5026c2a95399b9332fdc8a6fb701bdc0c5ff3a235e2a9806226a1
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_2/seed_123.final.pt: d4e7eebf3fbbf69b304d4489158c83b8bc9066042a07837976c674161d17fbcb
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_3/seed_42.final.pt: ffa10f52f827f64bf3a50c7455bfc46f61a71b5db7d91961792115d83c91665b
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_3/seed_7.final.pt: 2c00825c5313f66518cb792936a6e3b8016b4dab0ffd42d6a38f1368b3cce714
+    data/checkpoints/v68_v64_r2_probabilistic_state_gate_training/fold_3/seed_123.final.pt: 4cb060b6fe48553f0c4418de00e6ed1fcb9e8e49b6e538df2a4fd68de9716495
+  checkpoint_count: 9
+  fold_ids: [1, 2, 3]
+  seeds: [42, 7, 123]
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  target_status: sealed
+
+registration_anchor_contract:
+  amendment_path: research/amendments/v070_r1_metadata_only.yaml
+  amendment_file_sha256: d6a052da57a62bf59258771987b56c131187d629fff16ce424cdb2baa4cf6006
+  resolver: first_ancestor_commit_containing_exact_amendment_file_sha256
+  commit_timestamp_timezone: UTC
+  first_admissible_feature_close: strictly_after_registration_commit_timestamp
+  pre_registration_lookback_allowed_as_features: true
+  pre_registration_signal_position_or_scored_outcome_allowed: false
+
+amendment_contract:
+  amendment_id: v070_r1_ranker_excess_scale_allowlist_repair
+  incident:
+    path: research/incidents/v070_ranker_scale_allowlist_gap.json
+    file_sha256: 8927b868d0386c58b889602f7e7c5298142887180989adb84b52528d59bf2d5d
+    canonical_sha256: 7086cbc6011d25ebc15a0bd4c34bb78a9926a9dc4e813b925f7a9a56d3c09960
+  ranker_excess_scale_receipt:
+    path: research/receipts/v070_ranker_excess_scale_receipt.json
+    file_sha256: 3e52944d0599a1b0c54022b4c6dccefe94ed5d64e1ae07ce346b14095a90f7af
+    canonical_sha256: c984d0858c8fc7bacfa0d0a216b06a4ed0f8f2a63da812ab74470add63f601a5
+  source_v63_scaler_manifest:
+    path: artifacts/v63_decoupled_rank_state_training/scaler_manifest.json
+    file_sha256: 2d6848c4622cee2f55651f7832ed484023cf137a73665d8b959bb96a60e54a6a
+    canonical_sha256: f281a5c25682a1456b3fe539f5f7c4b12025a954ac85f1ebeeaad827b1cf6980
+    runtime_access_after_amendment: false
+  extracted_field: ranker_excess_rms
+  exact_fold_count: 3
+  scaler_fit_or_refit_performed: false
+  policy_architecture_objective_threshold_cost_or_accounting_changed: false
+  outcome_or_target_accessed: false
+
+external_source_contract:
+  source: Binance public spot daily UTC klines
+  authentication_required: false
+  symbols: exact_v32_non_target_fold_symbols_only
+  interval: 1d
+  capture_not_before_utc: '00:05:00'
+  raw_response_hash_required: true
+  archive_checksum_reconciliation_required: true
+  missing_or_late_source_action: omit_signal_date_without_imputation_and_extend_clock
+  revised_source_action: preserve_original_packet_and_fail_integrity_gate
+
+recurring_capture_contract:
+  mode: append_only_one_packet_per_admissible_feature_date
+  idempotent_same_date_replay_required: true
+  overwrite_or_regeneration_allowed: false
+  prior_v70_packets_may_be_read_only_for_resume_and_integrity: true
+  prediction_freeze_must_precede_h1_maturity: true
+  interim_allowed_fields:
+    - packet_counts
+    - source_hashes
+    - UTC_date_continuity
+    - schema_validity
+    - checkpoint_identity
+    - prediction_and_position_packet_hashes
+    - activity_day_counts_without_returns
+    - maturity_timestamps_without_values
+    - job_health
+  interim_forbidden_fields:
+    - realized_returns
+    - predictive_metrics
+    - financial_metrics
+    - pnl
+    - equity
+    - drawdown
+    - bootstrap
+    - gate_results
+
+maturity_contract:
+  minimum_calendar_days: 120
+  minimum_eligible_signal_dates_per_fold: 90
+  minimum_fully_matured_signal_dates_per_fold: 90
+  minimum_active_position_days_per_fold: 20
+  maximum_calendar_days: 365
+  close_only_when_every_minimum_is_met: true
+  maximum_expiry_action: retire_as_inconclusive_without_retuning
+  maturity_is_timestamp_and_count_only_without_outcome_values: true
+
+artifact_contract:
+  immutable_daily_source_receipt_required: true
+  immutable_daily_prediction_packet_required: true
+  immutable_daily_position_packet_required: true
+  append_only_capture_ledger_required: true
+  append_only_prediction_ledger_required: true
+  cumulative_manifest_required: true
+  no_outcome_packet_during_v70: true
+  no_metric_or_pnl_artifact_during_v70: true
+  completed_capture_receipt_required_before_v71: true
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: remain_in_v70_until_maturity_then_stop_before_v71_outcome_prepare

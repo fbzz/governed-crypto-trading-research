@@ -1,0 +1,61 @@
+seed: 20260716
+
+low_turnover_rank_harness:
+  version: v81
+  project_root: .
+  family_id: tlm_low_turnover_cross_sectional_rank_v1
+  evidence_tier: deterministic_synthetic_harness_only
+  inputs:
+    specification: artifacts/v80_low_turnover_rank_spec/specification.json
+    blueprint: artifacts/v80_low_turnover_rank_spec/blueprint.json
+    audit: artifacts/v80_low_turnover_rank_spec/audit.json
+    result: artifacts/v80_low_turnover_rank_spec/result.json
+    artifact_manifest: artifacts/v80_low_turnover_rank_spec/artifact_manifest.json
+    input_hash_receipt: artifacts/v80_low_turnover_rank_spec/input_hash_receipt.json
+  expected_input_sha256:
+    specification: 691ca1a2b847292a94896254d06e5c9f50e1416676e202b84e2246c10e4f731a
+    blueprint: d877adf553c6ba54e51302cdb058c361e15817daf16034e2744ed10a46d64abb
+    audit: 0dab6307ed1a3c9d39e5de56dffa4d3c5fa8379a9917430fe6b56559fb3b9354
+    result: c0a49d6444e150a8081d48ebbce3394b4af21257b15a1f332594999fa4503f3c
+    artifact_manifest: a030679115f01d85ca2a86364602a5b4669b5bb0828d26780de2f6280c6a1a92
+    input_hash_receipt: 331fa93cc1617eb8a04d4711937e45bfa7d472685aaea408d81f50dffba62095
+  synthetic_contract:
+    batch_size: 4
+    lookback_days: 128
+    assets: 3
+    features: 8
+    parameter_count: 10993
+    cpu_backward_steps: 2
+    mps_backward_steps: 2
+    interrupted_steps_before_resume: 1
+    total_resume_steps: 3
+    adversarial_policy_signal_dates: 160
+    decision_interval_days: 21
+    maximum_decisions: 8
+    structural_maximum_turnover: 16.0
+    tolerances:
+      permutation_atol: 1.0e-6
+      causality_atol: 1.0e-6
+      centered_sum_atol: 1.0e-6
+      resume_atol: 1.0e-7
+  constraints:
+    synthetic_only: true
+    real_data_or_parquet_access_allowed: false
+    prior_checkpoint_or_scaler_access_allowed: false
+    real_training_or_inference_allowed: false
+    prediction_metric_pnl_or_outcome_allowed: false
+    target_asset_access_allowed: false
+    architecture_objective_policy_or_hyperparameter_change_allowed: false
+    v82_implementation_allowed: false
+  source_receipt_files:
+    - configs/v81_low_turnover_rank_harness.yaml
+    - research/experiments/v081.yaml
+    - research/phase_contracts/v081.yaml
+    - src/tlm/__main__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/low_turnover_rank_harness.py
+    - src/tlm/low_turnover_rank_model.py
+    - src/tlm/research_workflow.py
+    - pyproject.toml
+
+output_dir: artifacts/v81_low_turnover_rank_harness

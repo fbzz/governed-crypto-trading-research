@@ -1,0 +1,84 @@
+schema_version: 1
+experiment_id: v058_state_conditioned_multi_horizon_training
+family_id: tlm_state_conditioned_multi_horizon_quantile_small_v1
+phase: frozen_non_target_training
+status: passed
+evidence_tier: causal_non_target_training_only
+parent_experiment: research/experiments/v057.yaml
+phase_contract:
+  path: research/phase_contracts/v058r1.yaml
+  file_sha256: fbb03653f2c3a9eb62356d28a3e2890bc9645ef94d79d67a26d3727a6d09bcc4
+blueprint:
+  path: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+  file_sha256: ce9d5ad45ef04c9ef83fa09c41918828b767b04f4a6c66522f4195ebe178104f
+  canonical_sha256: 0c91c65ed422d081ba1ce59544c3911cbd4624a0f4c184cc24d6c02dfc41d435
+result:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/result.json
+  file_sha256: 3d3a78eb8ccc62593a9bfebc2e1ab03e16da452e1e858e1ad71452405d6f9440
+  registered_result_sha256: 2b76a66015fda7b5899ed242cbb8bfb909535f828ffaeaaa81f982258a421273
+audit:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/audit.json
+  file_sha256: 836f801f2ab2654b7a536b84b2e8e273666c55f025ef70c2e40795f2d0ae66ac
+training_spec:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/training_spec.json
+  file_sha256: b4fbb12a0dc77f3ba877a20e27d411654fa60fd4afeaba30641c1cfa8bbb556a
+  canonical_sha256: efcb5011247a0f46f039ed10804912b5b539b0ec222dbb089544e6c4cc807425
+source_receipt:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/source_receipt.json
+  file_sha256: 93fec16a0a47a22797d377dba745ff2c3e3b8143dddab2d9020ca9c1bbcb02a0
+  bundle_sha256: f2d0adb442c67a62b9248d810c8370b26f94fa16f5b66535e168074c67b4066c
+artifact_manifest:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/artifact_manifest.json
+  file_sha256: 2358bf47ca26a902ca1431c09cfbd9880d10d9cf3ff78e651698b61e892ec57b
+  registered_manifest_sha256: 7ea5fc264c6fae1a4097d2c1b4cabfacb872694474935067139435d07a272661
+completion_receipt:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/completion_receipt.json
+  file_sha256: 55271f8ec6c5a4a8cc6643fe5070abde11fec8c8666cdc8c91d1cdcef86008d2
+  registered_completion_sha256: 7ceb4864536b3af9a01c95221874e675d306869c143736b793a223d407eec409
+training_result:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/training_result.json
+  file_sha256: bcd0bbda9fecf47d069c6afe2187ef0b0566007b6cca57c639fea8c410333506
+checkpoint_manifest:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/checkpoint_manifest.json
+  file_sha256: 7130b8c7570f7146c02e73d8664aa037b296af1c45b85a8a09d500f565b00efc
+  registered_manifest_sha256: 336d4b38a119db479c20a96d1d34ea73b0c967c85b38f4c2893c217ace37d384
+scaler_manifest:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/scaler_manifest.json
+  file_sha256: b2d07fb5a562124c01aa2017aaee4ffe17ec96a7a1084450e27e14d9dc70b249
+  registered_manifest_sha256: 48b71dfcaad6910b3fa80d13f0712d1a5bb83039f93687859f62f1daf0950c1b
+data_access:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/data_access.json
+  file_sha256: 305e897f557f8d69c64eb0744eb8ac8b00b4175c8793209d0f0b91d7bfcfa78b
+  registered_data_access_sha256: 7a40926e940c69fd2751f090f9f1a96f7c3f79e4627678e5b4a86b54c1dde6b4
+verification:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/verification.json
+  file_sha256: b657e574b09f62015532446ed8a8726eccbb81d1744f90667068b8040121298a
+replay:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/replay.json
+  file_sha256: 2cf18e3941e9fe45f72d2bbc111dfbba614c654d918bf7a2f07c0a9685cb7ff4
+storage_protection:
+  path: artifacts/v58_state_conditioned_multi_horizon_training/backup_policy_receipt.json
+  file_sha256: 77ce118244adc9128e82b9a1000a4c75c14bc2093ef8a304f46d98b1b4945328
+  policy: owner_waiver
+  waiver:
+    path: research/waivers/v058r1_external_backup_owner_waiver.json
+    file_sha256: 067f23f39937e00c5b9ce40a0248c1683bc9329e195fb10bd9ffd24b69b7e6f9
+v58_summary:
+  registered_jobs: 36
+  completed_runs: 36
+  checkpoints_retained: 36
+  checkpoints_verified: 36
+  scalers_retained: 12
+  total_optimizer_steps: 22976
+  replay_new_jobs: 0
+  replay_new_optimizer_steps: 0
+  replay_rewritten_checkpoints: 0
+  target_asset_loads: 0
+  development_evaluation_outcomes_read: 0
+  predictions_written: 0
+  policy_actions_emitted: 0
+  performance_metrics_computed: 0
+  pnl_computed: 0
+authorized_next_action: authorize_v59_frozen_adaptive_development_evaluation_only
+pass_action: authorize_v60_immutable_registration_without_refit
+failure_action: retire_family_without_tuning

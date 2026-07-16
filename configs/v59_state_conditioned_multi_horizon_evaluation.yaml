@@ -1,0 +1,45 @@
+state_conditioned_multi_horizon_evaluation:
+  version: v59
+  project_root: .
+  config_path: configs/v59_state_conditioned_multi_horizon_evaluation.yaml
+  research_state: research/current.yaml
+  experiment_contract: research/experiments/v059_prepare.yaml
+  phase_contract: research/phase_contracts/v059_unseal_r1.yaml
+  base_phase_contract: research/phase_contracts/v059.yaml
+  inputs:
+    blueprint: artifacts/v55_state_conditioned_multi_horizon_spec/blueprint.json
+    dataset_spec: artifacts/v57_non_target_multi_horizon_dataset/dataset_spec.json
+    dataset_manifest: artifacts/v57_non_target_multi_horizon_dataset/dataset_manifest.json
+    label_schema: artifacts/v57_non_target_multi_horizon_dataset/label_schema.json
+    asset_folds: artifacts/v32_selected_universe_dataset/asset_folds.json
+    triplet_catalog: artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    v58_result: artifacts/v58_state_conditioned_multi_horizon_training/result.json
+    v58_training_spec: artifacts/v58_state_conditioned_multi_horizon_training/training_spec.json
+    checkpoint_manifest: artifacts/v58_state_conditioned_multi_horizon_training/checkpoint_manifest.json
+    scaler_manifest: artifacts/v58_state_conditioned_multi_horizon_training/scaler_manifest.json
+    panel: data/processed/selected_universe_panel_v32.parquet
+    labels: data/processed/state_conditioned_multi_horizon_labels_v57.parquet
+    sequence_roles: data/processed/state_conditioned_multi_horizon_sequence_roles_v57.parquet
+  source_receipt_files:
+    - configs/v59_state_conditioned_multi_horizon_evaluation.yaml
+    - research/current.yaml
+    - research/experiments/v059_prepare.yaml
+    - research/phase_contracts/v059.yaml
+    - research/phase_contracts/v059_unseal_r1.yaml
+    - research/waivers/v059_local_artifacts_owner_waiver.json
+    - src/tlm/__main__.py
+    - src/tlm/config.py
+    - src/tlm/core/__init__.py
+    - src/tlm/core/artifacts.py
+    - src/tlm/research_workflow.py
+    - src/tlm/state_conditioned_multi_horizon_model.py
+    - src/tlm/state_conditioned_multi_horizon_training_data.py
+    - src/tlm/state_conditioned_multi_horizon_training_engine.py
+    - src/tlm/state_conditioned_multi_horizon_evaluation_artifacts.py
+    - src/tlm/state_conditioned_multi_horizon_evaluation_data.py
+    - src/tlm/state_conditioned_multi_horizon_evaluation.py
+    - tests/test_v59_phase_registration.py
+    - tests/test_state_conditioned_multi_horizon_evaluation.py
+    - pyproject.toml
+  output_dir: artifacts/v59_state_conditioned_multi_horizon_evaluation
+  require_clean_git: true

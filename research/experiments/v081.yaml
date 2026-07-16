@@ -1,0 +1,33 @@
+schema_version: 1
+experiment_id: v081_synthetic_low_turnover_rank_harness
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+phase: deterministic_synthetic_low_turnover_rank_harness
+status: authorized_not_started
+decision: authorize_v81_synthetic_low_turnover_rank_harness_only
+authorized_next_action: authorize_v81_synthetic_low_turnover_rank_harness_only
+evidence_tier: deterministic_synthetic_harness_only
+parent_experiment:
+  path: research/experiments/v080.yaml
+  file_sha256: 1b75f7951dbc8caa70d103732070583cd717c0f95ffe4511754d20d8b37bbe97
+blueprint:
+  path: artifacts/v80_low_turnover_rank_spec/blueprint.json
+  file_sha256: d877adf553c6ba54e51302cdb058c361e15817daf16034e2744ed10a46d64abb
+  canonical_sha256: 3b080b6cfcea2be6ef2a3347397e7f669573870abba0f6966bc3eb76eeb1d649
+result:
+  path: artifacts/v80_low_turnover_rank_spec/result.json
+  file_sha256: c0a49d6444e150a8081d48ebbce3394b4af21257b15a1f332594999fa4503f3c
+  registered_result_sha256: 4008ce046d0d05665708c4cd3dba7fd2405d40314d7b4dafdc7e4b573f6008ad
+audit:
+  path: artifacts/v80_low_turnover_rank_spec/audit.json
+  file_sha256: 0dab6307ed1a3c9d39e5de56dffa4d3c5fa8379a9917430fe6b56559fb3b9354
+authorization_receipt:
+  path: artifacts/v80_low_turnover_rank_spec/result.json
+  file_sha256: c0a49d6444e150a8081d48ebbce3394b4af21257b15a1f332594999fa4503f3c
+  decision: authorize_v81_synthetic_low_turnover_rank_harness_only
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

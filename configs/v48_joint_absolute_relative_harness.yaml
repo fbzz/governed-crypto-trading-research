@@ -1,0 +1,33 @@
+seed: 20260713
+
+joint_absolute_relative_harness:
+  version: v48
+  project_root: .
+  inputs:
+    v47_result: artifacts/v47_joint_absolute_relative_triplet_spec/result.json
+    v47_blueprint: artifacts/v47_joint_absolute_relative_triplet_spec/blueprint.json
+    v47_audit: artifacts/v47_joint_absolute_relative_triplet_spec/audit.json
+  expected_input_sha256:
+    v47_result: 074d572f0cf4f8a55ede8f22384a0350cb1390c4210e6739cc0f5b33c6133ff8
+    v47_blueprint: af2e071bca985a6a61de4722e2b254226fa9d75c4cbec1991e336950bea00040
+    v47_audit: 5eab21d9ea4ad7a8fb026cbdb873082fecc257590c543895dd5c6a0c63c0a399
+  synthetic:
+    input_features: 9
+    batch_size: 2
+    scale_fit_triplets: 64
+    optimizer_steps: 2
+    policy_days: 10
+  checkpoint:
+    format_version: v48_joint_absolute_relative_synthetic_v1
+    status: synthetic_smoke_only_not_trained_candidate
+    mps_rng_schema: optional_uint8_tensor_or_null
+  constraints:
+    real_panel_or_label_read_allowed: false
+    target_assets_allowed: false
+    previous_checkpoint_read_allowed: false
+    real_supervised_training_allowed: false
+    real_prediction_allowed: false
+    real_performance_or_pnl_allowed: false
+  authorized_next_action: authorize_v49_purged_non_target_training_only
+
+output_dir: artifacts/v48_joint_absolute_relative_harness

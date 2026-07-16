@@ -1,0 +1,35 @@
+{
+  "derivation": "exact_field_projection_without_fit_refit_recalculation_or_selection",
+  "family_id": "tlm_decoupled_rank_state_probabilistic_gate_v2",
+  "folds": [
+    {
+      "feature_scaler_state_sha256": "be5e1a2a604e616d7bff73482a7d94a974a565bdc3e6eaf31c751727f748901a",
+      "fold": 1,
+      "ranker_excess_rms": 0.025837536299152506,
+      "source_fold_scale_sha256": "fe0d7842bbaabc0649c278c928e353a48fe8b966c3cce7d32512c7103cdc3b89"
+    },
+    {
+      "feature_scaler_state_sha256": "3dba206613aca25701a7ba92c11b6e9b96277dff65a50dbea5fc6965bcf10a1b",
+      "fold": 2,
+      "ranker_excess_rms": 0.026278352429515758,
+      "source_fold_scale_sha256": "e320215d9e0bc44b343c174aac4e765280d36544d3d98c8c96272e9d8115dfc9"
+    },
+    {
+      "feature_scaler_state_sha256": "2c0e00a5224ebe6bafa2ef32bf316a76c1e3e14af7a62f5d1611ba6039ef4aac",
+      "fold": 3,
+      "ranker_excess_rms": 0.025227619707648904,
+      "source_fold_scale_sha256": "4a45b5162a73b277e64b72f27b4871824f1a05ed70501b93173c69ec006f1ad0"
+    }
+  ],
+  "lineage_label": "V64-R2",
+  "phase": "v70",
+  "schema_version": "v70-r1-ranker-excess-scale-receipt/v1",
+  "source": {
+    "manifest_canonical_sha256": "f281a5c25682a1456b3fe539f5f7c4b12025a954ac85f1ebeeaad827b1cf6980",
+    "path": "artifacts/v63_decoupled_rank_state_training/scaler_manifest.json",
+    "path_sha256": "2d6848c4622cee2f55651f7832ed484023cf137a73665d8b959bb96a60e54a6a"
+  },
+  "target_assets_loaded": [],
+  "training_or_refit_performed": false,
+  "receipt_sha256": "c984d0858c8fc7bacfa0d0a216b06a4ed0f8f2a63da812ab74470add63f601a5"
+}

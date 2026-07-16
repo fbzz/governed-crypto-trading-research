@@ -1,0 +1,12 @@
+{
+  "architecture_frozen_before_v80": false,
+  "blueprint_sha256": "6a513a024ec01cb7d39d1e6aa19877fcc9cefaca594efa1f8eaf403fca04c1e5",
+  "family_id": "tlm_low_turnover_cross_sectional_rank_v1",
+  "new_family": true,
+  "parameter_count_frozen_before_v80": false,
+  "phase": "outcome_blind_specification_only",
+  "schema_version": "v80-specification-authorization/v1",
+  "single_final_family": true,
+  "target_assets_status": "sealed",
+  "v80_executed": false
+}

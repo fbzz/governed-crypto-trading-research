@@ -1,0 +1,46 @@
+{
+  "authorization_sha256": "7120faa7e6267e2234bb34b576a65aa4834bc1b527a9012ab100b7d3c409394c",
+  "authorization_text": "Autorizo a V82-R0 metadata-only para corrigir exclusivamente 2026-06-09 para 2026-06-08 e 160 para 159 sinais, preservando target, arquitetura, política, custos, gates e turnover, sem acessar dados, outcomes, checkpoints ou BTC/ETH/SOL.",
+  "authorized_phase": "v82-r0",
+  "authorized_scope": [
+    "register_metadata_only_chronology_erratum",
+    "change_final_evaluation_signal_end_from_2026_06_09_to_2026_06_08",
+    "change_final_evaluation_signal_dates_from_160_to_159",
+    "authorize_v82_dataset_only_after_erratum_gate_passes"
+  ],
+  "correction": {
+    "final_evaluation_signal_dates": {
+      "after": 159,
+      "before": 160
+    },
+    "final_evaluation_signal_end": {
+      "after": "2026-06-08",
+      "before": "2026-06-09"
+    },
+    "final_evaluation_outcome_maturity_end": "2026-06-30",
+    "maturity_offset_days": 22
+  },
+  "forbidden_accesses": [
+    "parquet_or_market_panel",
+    "outcome_or_target_value",
+    "checkpoint_or_model",
+    "training_or_inference",
+    "prediction_position_metric_pnl_or_bootstrap",
+    "btc_eth_sol"
+  ],
+  "frozen_unchanged": [
+    "target",
+    "architecture",
+    "objective",
+    "policy",
+    "costs",
+    "gates",
+    "turnover",
+    "universe",
+    "folds",
+    "seeds",
+    "hyperparameters"
+  ],
+  "schema_version": "v82-r0-user-authorization/v1",
+  "target_assets_status": "sealed"
+}

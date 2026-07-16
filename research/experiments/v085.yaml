@@ -1,0 +1,33 @@
+schema_version: 1
+experiment_id: v085_low_turnover_rank_one_shot_economic_evaluation
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+phase: retrospective_non_target_first_use_2026_one_shot_economic_evaluation
+status: authorized_not_started
+decision: execute_exactly_one_hash_bound_non_target_outcome_unseal
+authorized_next_action: execute_v85_exactly_one_registered_non_target_outcome_unseal_and_complete_evaluation
+evidence_tier: retrospective_non_target_first_use_2026_not_prospective_confirmation
+parent_experiment: research/experiments/v084.yaml
+blueprint:
+  path: artifacts/v80_low_turnover_rank_spec/blueprint.json
+  file_sha256: d877adf553c6ba54e51302cdb058c361e15817daf16034e2744ed10a46d64abb
+  canonical_sha256: 3b080b6cfcea2be6ef2a3347397e7f669573870abba0f6966bc3eb76eeb1d649
+result:
+  path: artifacts/v84_low_turnover_rank_evaluation/result.json
+  file_sha256: ac2d0201b64a375743aa143c92d32012417ea505f99f5e86bef6e3fdd1df0361
+audit:
+  path: artifacts/v84_low_turnover_rank_evaluation/audit.json
+  file_sha256: 9f02f133b06326ad217b91bb9e6762fee9a6f93d59743e699eb8f19c97ec8a75
+evaluation_spec:
+  path: artifacts/v84_low_turnover_rank_evaluation/evaluation_spec.json
+  file_sha256: 70191a2e02e82f405cec9112b0708e20db8e658932ac0448a794f811db12ec80
+prepare_receipt:
+  path: artifacts/v84_low_turnover_rank_evaluation/prepare_receipt.json
+  file_sha256: e0d65959afca7b928bb74d466bdbfb8e5ff2c2f46b08fa075c7ab04c649e611e
+registered_sha256: 82ee01cba2815c57a59cde16cf03d9a47b5bcb75421d0e350011793889548560
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

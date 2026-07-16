@@ -1,0 +1,126 @@
+schema_version: 1
+phase: v73
+stage_revision: v073_metadata_only_v72_diagnostic_record_r1
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: metadata_only_result_record_authorized_not_started
+evidence_tier: posthoc_consumed_2025_diagnostic_only_not_confirmation
+
+parent_experiment:
+  path: research/experiments/v073.yaml
+  file_sha256: fd0488732528b5173d890e2cf140daf87427e91f6dd0f0c249a90dcd169195fe
+scientific_parent:
+  path: research/experiments/v072.yaml
+  file_sha256: 105a580346d8f9a68ddc6d52c00fc92c5ce987898a59bfc7061f9e9168eb3a70
+
+v72_result:
+  result:
+    path: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/result.json
+    file_sha256: 3a0ff56c77445ac05bf37fc8c020b392792007afd861475123d6ebcf95417c8f
+  audit:
+    path: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/audit.json
+    file_sha256: b55010b7f9294d49d95342835d6e1976f10c428f29532fe68ebf7666ab0f2d8b
+  completion_receipt:
+    path: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/completion_receipt.json
+    file_sha256: 025edb0ec18d9f17efce6e0c5b627aef1f3de286ffa2f3aa2fa8cd955c9a3395
+  replay:
+    path: artifacts/v72_v64_r2_posthoc_retrospective_evaluation/replay.json
+    file_sha256: b102d3968daf85e92ece8d05294d298e25994be29706141d363e5ba8702c4f20
+
+authorized_next_action: record_v73_v72_posthoc_diagnostic_result_metadata_only
+authorized_command: >-
+  PYTHONPATH=src python3 -m tlm v72-diagnostic-record
+  --config configs/v73_v72_diagnostic_record.yaml
+pass_action: authorize_v74_persistent_duration_family_specification_only
+failure_action: stop_v73_on_metadata_or_hash_drift
+
+access_contract:
+  output_dir: artifacts/v73_v72_posthoc_diagnostic_record
+  allowed_inputs:
+    - artifacts/v72_v64_r2_posthoc_retrospective_evaluation/result.json
+    - artifacts/v72_v64_r2_posthoc_retrospective_evaluation/audit.json
+    - artifacts/v72_v64_r2_posthoc_retrospective_evaluation/completion_receipt.json
+    - artifacts/v72_v64_r2_posthoc_retrospective_evaluation/replay.json
+  allowed_capabilities:
+    - read_four_exact_hash_bound_v72_json_metadata_files
+    - verify_v72_gate_counts_one_shot_receipts_and_source_free_replay
+    - write_one_deterministic_metadata_only_diagnostic_record_packet
+    - preserve_the_v72_scientific_failure_and_unchanged_family_status
+    - authorize_only_a_separate_v74_new_family_specification
+  required_checks:
+    - v72_result_audit_completion_and_replay_hashes_match
+    - v72_diagnostic_failed_with_13_of_24_gates_passed
+    - exactly_one_packet_unseal_and_zero_underlying_source_rereads_are_preserved
+    - family_status_did_not_change_and_no_deployable_claim_is_made
+    - source_free_replay_hashes_match
+    - zero_parquet_checkpoint_model_inference_prediction_position_or_target_access
+  forbidden_capabilities:
+    - parquet_deserialization_or_outcome_packet_access
+    - checkpoint_scaler_model_optimizer_training_or_inference_access
+    - prediction_position_policy_metric_pnl_bootstrap_or_gate_recomputation
+    - v72_result_gate_cost_accounting_or_family_status_change
+    - target_asset_access_prediction_position_outcome_or_pnl
+    - clean_holdout_prospective_confirmation_deployable_or_target_transfer_claim
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_static_file_sha256_by_path:
+    artifacts/v72_v64_r2_posthoc_retrospective_evaluation/result.json: 3a0ff56c77445ac05bf37fc8c020b392792007afd861475123d6ebcf95417c8f
+    artifacts/v72_v64_r2_posthoc_retrospective_evaluation/audit.json: b55010b7f9294d49d95342835d6e1976f10c428f29532fe68ebf7666ab0f2d8b
+    artifacts/v72_v64_r2_posthoc_retrospective_evaluation/completion_receipt.json: 025edb0ec18d9f17efce6e0c5b627aef1f3de286ffa2f3aa2fa8cd955c9a3395
+    artifacts/v72_v64_r2_posthoc_retrospective_evaluation/replay.json: b102d3968daf85e92ece8d05294d298e25994be29706141d363e5ba8702c4f20
+  allowed_extensions: [.json]
+  expected_json_metadata_reads: 4
+  maximum_parquet_deserializations: 0
+  maximum_outcome_packet_reads: 0
+
+record_contract:
+  diagnostic_outcome: fail
+  one_shot_decision: retire
+  mandatory_gate_count: 24
+  passed_gate_count: 13
+  failed_gate_count: 11
+  family_status_changed: false
+  source_packet_deserializations: 1
+  underlying_source_outcome_reads: 0
+  replay_source_packet_deserializations: 0
+  result_hashes_match: true
+  scientific_metrics_recomputed: false
+  policy_or_position_regeneration: false
+  target_assets_loaded: []
+  deployable: false
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+
+source_receipt_files:
+  - configs/v73_v72_diagnostic_record.yaml
+  - research/current.yaml
+  - research/experiments/v073.yaml
+  - research/phase_contracts/v073.yaml
+  - src/tlm/__main__.py
+  - src/tlm/core/artifacts.py
+  - src/tlm/research_workflow.py
+  - src/tlm/v72_diagnostic_record.py
+  - tests/test_v72_diagnostic_record.py
+  - pyproject.toml
+
+artifact_contract:
+  output_dir: artifacts/v73_v72_posthoc_diagnostic_record
+  required_files:
+    - resolved_config.yaml
+    - input_hash_receipt.json
+    - source_receipt.json
+    - diagnostic_record.json
+    - result.json
+    - audit.json
+    - report.md
+    - artifact_manifest.json
+  deterministic_replay_required: true
+  outcome_or_scientific_data_artifact_allowed: false
+
+stop_condition: freeze_and_validate_v73_metadata_record_then_stop_before_v74_specification

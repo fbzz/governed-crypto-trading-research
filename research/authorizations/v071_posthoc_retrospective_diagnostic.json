@@ -1,0 +1,34 @@
+{
+  "authorization_date": "2026-07-15",
+  "authorization_messages": [
+    "resultado imediato, no vamos esperar 120 dias",
+    "tu pode fazer qualquer test que ache importante, independente do governor"
+  ],
+  "authorization_scope": {
+    "allowed": [
+      "pause_v70_wait_as_primary_path_without_deleting_its_immutable_artifacts",
+      "prepare_one_posthoc_consumed_2025_non_target_economic_diagnostic",
+      "reuse_exact_v68_checkpoints_without_training_or_selection",
+      "reuse_exact_v64_non_target_feature_readiness_and_control_position_scope",
+      "freeze_v64_r2_predictions_positions_controls_costs_metrics_bootstrap_and_gates_before_outcomes",
+      "request_a_separate_exact_hash_bound_one_shot_unseal_after_prepare_passes"
+    ],
+    "forbidden": [
+      "outcome_access_during_prepare",
+      "target_asset_access",
+      "retuning_or_retraining",
+      "checkpoint_or_scaler_mutation",
+      "architecture_objective_policy_threshold_cost_or_accounting_change",
+      "clean_holdout_prospective_deployable_or_target_transfer_claim",
+      "paper_shadow_live_or_real_money_trading"
+    ]
+  },
+  "authorization_sha256": "adf1276b64a7a89d0841d04a7a796dceadf57a67cf7fd2520230b0bf38523017",
+  "authorized_by": "repository_owner",
+  "explicit_unseal_authorization_present": false,
+  "family_id": "tlm_decoupled_rank_state_probabilistic_gate_v2",
+  "lineage_label": "V64-R2",
+  "phase": "v71",
+  "schema_version": "v71-posthoc-owner-authorization/v1",
+  "scientific_label": "posthoc_consumed_2025_diagnostic_only_not_confirmation"
+}

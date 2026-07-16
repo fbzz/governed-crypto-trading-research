@@ -1,0 +1,25 @@
+seed: 20260713
+
+non_target_dataset:
+  project_root: .
+  v26_specification_path: artifacts/v26_zero_shot_candidate_spec/specification.json
+  v27_inventory_path: artifacts/v27_non_target_universe_audit/inventory.json
+  v27_audit_path: artifacts/v27_non_target_universe_audit/audit.json
+  v27_manifest_path: artifacts/v27_non_target_universe_audit/manifest.jsonl
+  expected_v26_specification_sha256: 04f92c35abd94642c30465cfe8a871eb34086d93dd13b41f692908a5aeb6a1e4
+  expected_v26_blueprint_sha256: 974685bf9f92b70e867c2079dc3def734dba39c81d14c3dfda449b000d69817b
+  expected_v27_inventory_sha256: 8ba08a2552c8511ad0a8ff3db547d1793a68f3257a3c9b1aaffb6236a7065920
+  expected_v27_manifest_sha256: 005cc470381e79ce0695002ea6e575b03f7e0a9e85542e49500cc157bf5b851e
+  raw_dir: data/raw/binance_spot_non_target
+  panel_path: data/processed/tlm_zero_shot_non_target_v1/panel.parquet
+  archive_workers: 16
+  asset_fold_count: 3
+  lookback_days: 256
+  realized_volatility_formula: root_sum_squared_log_returns
+  realized_volatility_windows: [7, 30]
+  forward_volatility_horizon_days: 7
+  triplet_relative_strength_source: log_close_to_close_return
+  triplet_relative_strength_formula: asset_value_minus_equal_weight_triplet_mean_same_date
+  missing_data_policy: preserve_nan_no_imputation
+
+output_dir: artifacts/v28_non_target_dataset

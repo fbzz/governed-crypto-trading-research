@@ -1,0 +1,65 @@
+schema_version: 1
+experiment_id: v066_synthetic_v64_r2_probabilistic_state_gate_harness
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: synthetic_probabilistic_state_gate_harness
+status: passed
+evidence_tier: synthetic_harness_passed_non_target_dataset_only_authorized
+parent_experiment: research/experiments/v065.yaml
+blueprint:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  file_sha256: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+  canonical_sha256: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+harness_spec:
+  path: artifacts/v66_v64_r2_probabilistic_state_gate_harness/harness_spec.json
+  file_sha256: d581e79b484b695f12d9d1e01d093920ae8be7605d5267d21c9f2c9c19f0241a
+  canonical_sha256: 7f5e4f4787c38567d85870ce7722a302a42e19238a60ce4c90ce0fcc75740e25
+result:
+  path: artifacts/v66_v64_r2_probabilistic_state_gate_harness/result.json
+  file_sha256: 70e41cce11a606a438d678ed3c7ca7b071e3e447c664bb17bf6e09d0cc3fe201
+  registered_result_sha256: 21ddcfffd3c99c5ec9908dba771bd3d172806941ad5c434d928e094b0c586e04
+audit:
+  path: artifacts/v66_v64_r2_probabilistic_state_gate_harness/audit.json
+  file_sha256: ebc7f8164876aca1938255dec780475541b8fe9b78d6e7ef14e37d4e7916f0a4
+artifact_manifest:
+  path: artifacts/v66_v64_r2_probabilistic_state_gate_harness/artifact_manifest.json
+  file_sha256: aa2854ec463b83e4d52e49e9b2c966621db8021d96b27984608015dc586d2d73
+  canonical_sha256: a27c343a1e3a441c8d1f640132cc3865da13853494878e74209456310bb413e5
+completion_receipt:
+  path: artifacts/v66_v64_r2_probabilistic_state_gate_harness/completion_receipt.json
+  file_sha256: a657e388cee48abdc7d3de197c1acd100664a5d845e3de2762205919c9a78373
+  canonical_sha256: 8d195a339fbbf5267e56c038adc89bbcaed6211d911928211da693025eaa9ef0
+synthetic_checkpoint:
+  path: artifacts/v66_v64_r2_probabilistic_state_gate_harness/synthetic_checkpoint.pt
+  file_sha256: f08243a06dd1ec96cee9a1ed15087ff7ebc61096ef15f33726f86f82b722ff31
+v66_summary:
+  audit_checks_passed: 22
+  audit_checks_total: 22
+  frozen_ranker_parameters: 1231634
+  probabilistic_state_gate_parameters: 27522
+  total_parameters: 1259156
+  ranker_optimizer_present: false
+  ranker_requires_grad: false
+  synthetic_gate_optimizer_steps: 4
+  resume_equivalent: true
+  student_t_degrees_of_freedom: 5.0
+  abstention_probability_threshold: 0.60
+  policy_actions: [entry, hold, switch, hold, probability_exit, cash, entry]
+  base_total_turnover: 6.0
+  byte_identical_replay: true
+  authorized_metadata_reads: 6
+  parquet_deserializations: 0
+  previous_checkpoint_reads: 0
+  real_training_epochs: 0
+  real_predictions: 0
+  real_performance_metrics: 0
+  real_pnl_evaluations: 0
+  target_asset_loads: 0
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false
+authorized_next_action: authorize_v67_non_target_v64_r2_probabilistic_state_gate_dataset_only

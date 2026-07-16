@@ -1,0 +1,33 @@
+schema_version: 1
+experiment_id: v082_non_target_low_turnover_rank_dataset
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+phase: causal_non_target_low_turnover_rank_dataset
+status: authorized_not_started
+decision: authorize_v82_non_target_low_turnover_rank_dataset_only
+authorized_next_action: authorize_v82_non_target_low_turnover_rank_dataset_only
+evidence_tier: causal_non_target_dataset_and_sealed_evaluation_packet_only
+parent_experiment:
+  path: research/experiments/v082_r0.yaml
+  file_sha256: 16f55e01aa8b98b862748e6733d637f86107fe40f68ac6042c66baff2a6549b9
+blueprint:
+  path: artifacts/v80_low_turnover_rank_spec/blueprint.json
+  file_sha256: d877adf553c6ba54e51302cdb058c361e15817daf16034e2744ed10a46d64abb
+  canonical_sha256: 3b080b6cfcea2be6ef2a3347397e7f669573870abba0f6966bc3eb76eeb1d649
+result:
+  path: artifacts/v82_r0_low_turnover_rank_chronology_erratum/result.json
+  file_sha256: b61ca948a26d85a51a1c62158ff282da90f8ab428472737c1fdaba4b917e8a93
+  registered_result_sha256: 56ef31fcb37a5566e3b0badbf1e2681862e9bc86a1affa898950c823dc490b96
+audit:
+  path: artifacts/v82_r0_low_turnover_rank_chronology_erratum/audit.json
+  file_sha256: 1d8d0a5a2ff83343b29a8196a0a17719808f04240c049fe28242e11d93568c7e
+authorization_receipt:
+  path: research/authorizations/v082_dataset_only.json
+  file_sha256: d250223e2597191a4d5726fd609873ed4116443634c8a27c156bc5b65e68cf8c
+  registered_authorization_sha256: 91155a7dc02bba8958fd74fff5d684802db54c76c592d371280eb9ad1a5acbdf
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

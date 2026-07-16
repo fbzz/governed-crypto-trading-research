@@ -1,0 +1,43 @@
+{
+  "authorization_sha256": "91155a7dc02bba8958fd74fff5d684802db54c76c592d371280eb9ad1a5acbdf",
+  "authorization_text": "Autorizo registrar e executar a V82 dataset-only, vinculada ao result SHA-256 56ef31fcb37a5566e3b0badbf1e2681862e9bc86a1affa898950c823dc490b96, usando somente os inputs não-target exatos que forem hash-registrados para construir tabelas causais de treino/validação e o packet de avaliação 2026 selado, sem scaler, modelo, checkpoint, treino, inferência, previsão, posição, métricas, PnL ou bootstrap, mantendo BTC, ETH e SOL selados.",
+  "authorized_phase": "v82",
+  "authorized_scope": [
+    "register_exact_non_target_source_universe_dates_urls_and_checksum_policy_before_source_access",
+    "construct_causal_training_and_internal_validation_feature_and_label_tables",
+    "construct_outcome_free_2026_evaluation_feature_table",
+    "construct_and_hash_seal_exact_2026_non_target_daily_outcome_packet",
+    "emit_deterministic_hash_registered_v82_dataset_packet",
+    "authorize_only_v83_frozen_non_target_training_after_all_v82_gates_pass"
+  ],
+  "bound_v82_r0_result_sha256": "56ef31fcb37a5566e3b0badbf1e2681862e9bc86a1affa898950c823dc490b96",
+  "forbidden_operations": [
+    "scaler_fit",
+    "model_instantiation",
+    "checkpoint_read_or_write",
+    "optimizer_step_or_training",
+    "inference_or_prediction",
+    "position_construction",
+    "performance_metric_or_pnl",
+    "bootstrap",
+    "target_asset_access"
+  ],
+  "frozen_unchanged": [
+    "universe",
+    "asset_folds",
+    "triplet_catalog",
+    "feature_order",
+    "lookback",
+    "target",
+    "architecture",
+    "objective",
+    "policy",
+    "costs",
+    "gates",
+    "turnover",
+    "seeds",
+    "hyperparameters"
+  ],
+  "schema_version": "v82-user-authorization/v1",
+  "target_assets_status": "sealed"
+}

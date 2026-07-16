@@ -1,0 +1,19 @@
+seed: 20260713
+
+control_certificate:
+  validation_result_path: artifacts/v6_validation_suite/validation_suite.json
+  validation_audit_path: artifacts/v6_validation_suite/validation_suite_audit.json
+  validation_config_path: configs/v6_validation_suite.yaml
+  evidence_ledger_path: artifacts/v20_evidence_ledger/ledger.json
+  evidence_audit_path: artifacts/v20_evidence_ledger/audit.json
+  control_implementation_path: src/tlm/consensus.py
+  frozen_control_name: dual_momentum_30
+  frozen_lookback_days: 30
+  expected_scenarios:
+    - expanding_6
+    - reference_expanding_3
+    - rolling_6_730d
+  expected_blocks: [7, 21, 63]
+  expected_paths: 3000
+
+output_dir: artifacts/v21_control_certificate

@@ -1,0 +1,36 @@
+schema_version: 1
+experiment_id: v071_posthoc_consumed_2025_v64_r2_diagnostic_prepare
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+phase: outcome_blind_posthoc_retrospective_diagnostic_prepare
+status: authorized_not_started
+evidence_tier: posthoc_consumed_2025_diagnostic_only_not_confirmation
+parent_experiment:
+  path: research/experiments/v069.yaml
+  file_sha256: 23457c8e3e7710c999f74eabc3fd3dde9e4a19b8a81b9400d9714ea181e10959
+blueprint:
+  path: artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+  file_sha256: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+  canonical_sha256: 00952d655a0c78ff633bd14b0264d77a17a392fc7c7e3633b77fde3dcb390f33
+authorization:
+  path: research/authorizations/v071_posthoc_retrospective_diagnostic.json
+  file_sha256: 0deea9b57c92967e56116eeb1d5c43d6eb4cefb8afbfcfd5632ecd8061032936
+  canonical_sha256: adf1276b64a7a89d0841d04a7a796dceadf57a67cf7fd2520230b0bf38523017
+result:
+  path: research/authorizations/v071_posthoc_retrospective_diagnostic_result.json
+  file_sha256: e24dc1c0433455cbdf9ae943248fea31a87110a1c707f42bab61478413c7564b
+  registered_result_sha256: 16212d73b086ab00976b7d685e4845d6b57f6fefbba6adfa6275ecdb89116106
+audit:
+  path: research/authorizations/v071_posthoc_retrospective_diagnostic_audit.json
+  file_sha256: 43342d88079c9015a9e91cdb26619dd7d2725807a8740626efa65edc1cfdba8b
+  canonical_sha256: 4472cb80dbed16bf06300ba0348051a277a60ca4f42e7f8fdc448d59c664874a
+diagnostic_scope:
+  signal_start: '2025-01-01'
+  signal_end: '2025-12-23'
+  target_assets_allowed: false
+  v64_consumed_outcome_packet_reuse_planned: true
+  outcome_access_during_prepare: false
+  clean_holdout_claim: false
+  prospective_confirmation_claim: false
+  deployable_claim: false
+authorized_next_action: authorize_v71_posthoc_consumed_2025_diagnostic_prepare_only

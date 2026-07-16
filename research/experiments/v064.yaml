@@ -1,0 +1,66 @@
+schema_version: 1
+experiment_id: v064_decoupled_rank_state_adaptive_development_evaluation
+family_id: tlm_decoupled_rank_state_medium_v1
+phase: adaptive_development_evaluation
+status: retired
+decision: retire_family_without_target_evaluation_or_retuning
+authorized_next_action: retire_family_without_target_evaluation_or_retuning
+evidence_tier: consumed_adaptive_development_only_not_confirmation
+parent_experiment: research/experiments/v064_prepare.yaml
+blueprint:
+  path: artifacts/v60_decoupled_rank_state_spec/blueprint.json
+  file_sha256: bae6cf27b4cd8b7439fec028ad37c123bcb3a476253d514046c0afc251cd2e47
+  canonical_sha256: 3cf97271c977633b1ee8ab4641a8a9fc95a1a9d79b72c80c063d21f553498232
+result:
+  path: artifacts/v64_decoupled_rank_state_evaluation/evaluation_result.json
+  file_sha256: 4082c1e8f3da6595b8180f781daff1036799d8c287da4a95543a030e4a56414c
+audit:
+  path: artifacts/v64_decoupled_rank_state_evaluation/evaluation_audit.json
+  file_sha256: f86b6b99d786a8e3a7f56606b010bd388732a5df50765bc763b835ed5230c93a
+evaluation_spec:
+  path: artifacts/v64_decoupled_rank_state_evaluation/evaluation_spec.json
+  file_sha256: f6fbf371b5e33efdaaf0b0d1622acefce4938efe1e22d63ffa6e086e0a45d134
+prepare_receipt:
+  path: artifacts/v64_decoupled_rank_state_evaluation/prepare_receipt.json
+  file_sha256: 18429f83790cd16b57dbb4208c4b211c3f2600aed1adaadaef722ca4bded4e4e
+one_shot_prepare_packet:
+  path: artifacts/v64_decoupled_rank_state_evaluation/one_shot_packet.json
+  file_sha256: a18379581eabf694338837f5f7bd5c00faa73ac5a1be92ca17ee1e23eb94d5f3
+outcome_receipt:
+  path: artifacts/v64_decoupled_rank_state_evaluation/outcome_receipt.json
+  file_sha256: 44f26a309991f2fa6fbb65990f896fbca23b93957202da02e3881879d6eea163
+completion_receipt:
+  path: artifacts/v64_decoupled_rank_state_evaluation/completion_receipt.json
+  file_sha256: 4e97d1f92f7d72765f0f84790872708831c4f74d4a37b64439a625538f8898f2
+complete_packet:
+  path: artifacts/v64_decoupled_rank_state_evaluation/one_shot_complete_packet.json
+  file_sha256: 7f0eb02a358fe9ccbf485392047387819e35ec793af6c29d547ea5ef976b6cc3
+replay_receipt:
+  path: artifacts/v64_decoupled_rank_state_evaluation/replay.json
+  file_sha256: f67c822561b954dac9b8b4410d24357489c8f09613b05465ad4a53235cfd76b6
+replay_packet:
+  path: artifacts/v64_decoupled_rank_state_evaluation/one_shot_replay_packet.json
+  file_sha256: 1aed4941ecbe1fa9e515775b0d6162814675e4027b5d42b81e42d628ae672745
+v64_summary:
+  one_shot_unseal_count: 1
+  source_outcome_reads: 1
+  replay_source_outcome_reads: 0
+  mandatory_gate_count: 36
+  passed_gate_count: 19
+  failed_gate_count: 17
+  aggregate_spearman: 0.0652316482148415
+  aggregate_pairwise_accuracy: 0.5295807211773598
+  aggregate_top1_centered_excess: 0.001208152772710972
+  aggregate_10bps_total_return: -0.15070291165324068
+  aggregate_10bps_sharpe: -0.44787836340657616
+  aggregate_10bps_maximum_drawdown: -0.2463690931669621
+  target_assets_loaded: []
+  retuning_performed: false
+  prediction_or_position_regeneration: false
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

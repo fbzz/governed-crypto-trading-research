@@ -1,0 +1,47 @@
+{
+  "assessment": {
+    "2025_evaluation_outcome_contamination": false,
+    "access_contract_projection_breach": true,
+    "reason": "displayed_rows_are_training_era_2021_and_outside_the_frozen_2025_diagnostic_window",
+    "retuning_or_selection_performed": false,
+    "target_asset_contamination": false
+  },
+  "date": "2026-07-15",
+  "family_id": "tlm_decoupled_rank_state_probabilistic_gate_v2",
+  "incident_id": "v071_r1_feature_projection_schema_probe_gap",
+  "incident_sha256": "e108271ee8514b10c739ba9afb09a62a268a28adbeb4a5ae00d7670777596b92",
+  "observed": {
+    "dates": [
+      "2021-01-01"
+    ],
+    "evaluation_window_rows_read": 0,
+    "financial_metrics_computed": 0,
+    "forbidden_training_era_columns_displayed": [
+      "target_next_open_to_next_open_log_return",
+      "target_realized_volatility_7d"
+    ],
+    "pnl_computations": 0,
+    "positions_written": 0,
+    "predictions_written": 0,
+    "rows_displayed": 2,
+    "sealed_v64_outcome_packet_reads": 0,
+    "source": "data/processed/selected_universe_panel_v32.parquet",
+    "target_assets_loaded": [],
+    "v64_outcome_receipt_values_read": 0
+  },
+  "owner_authorization_binding": {
+    "canonical_sha256": "adf1276b64a7a89d0841d04a7a796dceadf57a67cf7fd2520230b0bf38523017",
+    "file_sha256": "0deea9b57c92967e56116eeb1d5c43d6eb4cefb8afbfcfd5632ecd8061032936",
+    "path": "research/authorizations/v071_posthoc_retrospective_diagnostic.json"
+  },
+  "phase": "v71",
+  "remediation": {
+    "access_ledger_must_preserve_incident_counts": true,
+    "future_panel_reads_require_explicit_feature_column_projection_and_2025_signal_predicate": true,
+    "invalidate_pre_incident_prepare_attempt": true,
+    "new_prepare_anchor_required": true,
+    "zero_evaluation_outcome_rows_remains_required": true
+  },
+  "schema_version": "v71-r1-access-incident/v1",
+  "trigger": "manual_schema_probe_read_two_full_rows_from_selected_universe_panel_before_projection_loader_existed"
+}

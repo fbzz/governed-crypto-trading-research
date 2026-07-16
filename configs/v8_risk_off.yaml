@@ -1,0 +1,71 @@
+seed: 20260713
+
+data:
+  source: binance
+  interval: 1d
+  start: "2018-01-01"
+  end: null
+  cache_dir: data/raw
+  assets:
+    BTC: BTCUSDT
+    ETH: ETHUSDT
+    SOL: SOLUSDT
+
+target:
+  mode: next_open_to_open
+
+strategy:
+  policy: dual_momentum_or_cash_quantile_risk_off
+  cost_bps: 10.0
+
+risk_off:
+  momentum_lookback: 30
+  calibration_fraction: 0.20
+  min_core_samples: 180
+  min_calibration_samples: 90
+  purge_samples: 1
+  threshold_grid: [-0.12, -0.10, -0.08, -0.06, -0.05, -0.04, -0.03, -0.02]
+  hysteresis_margin: 0.005
+  minimum_calibration_risk_off_days: 5
+  minimum_calibration_return_retention: 0.85
+  minimum_calibration_drawdown_improvement: 0.02
+  model:
+    quantiles: [0.10, 0.50]
+    learning_rate: 0.03
+    n_estimators: 120
+    max_depth: 2
+    min_samples_leaf: 30
+    max_features: null
+  gates:
+    minimum_return_retention: 0.90
+    minimum_drawdown_improvement: 0.03
+    fold_return_tolerance: 0.10
+    cost_sensitivity_bps: [10, 20, 30]
+    minimum_monte_carlo_probability: 0.70
+
+validation_suite:
+  monte_carlo:
+    method: paired_circular_block_bootstrap
+    paths: 3000
+    block_lengths: [7, 21, 63]
+    seed: 20260713
+    batch_size: 250
+  scenarios:
+    - name: reference_expanding_3
+      validation:
+        mode: expanding
+        folds: 3
+        min_train_fraction: 0.50
+    - name: expanding_6
+      validation:
+        mode: expanding
+        folds: 6
+        min_train_fraction: 0.40
+    - name: rolling_6_730d
+      validation:
+        mode: rolling
+        folds: 6
+        min_train_fraction: 0.40
+        train_window_samples: 730
+
+output_dir: artifacts/v8_risk_off

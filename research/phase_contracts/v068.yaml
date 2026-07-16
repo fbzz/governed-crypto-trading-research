@@ -1,0 +1,486 @@
+schema_version: 1
+phase: v68
+stage_revision: v068_frozen_non_target_v64_r2_gate_training_r4
+family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+lineage_label: V64-R2
+status: dataset_passed_training_authorized
+evidence_tier: causal_non_target_gate_training_only
+parent_experiment:
+  path: research/experiments/v067.yaml
+  file_sha256: 964cd3c15834b4b92995c417ed985dadb8d0b90c7da3a72fc9decbc1a39e00e1
+authorization_receipt:
+  path: artifacts/v67_v64_r2_probabilistic_state_gate_dataset/result.json
+  file_sha256: 2213038d10cecea427eb5c82a3b8a0b4f950ad9ae6bd3a46568170f993e0089d
+  registered_result_sha256: cca1e5d978038bd2f8eafff606fe3d492a9491578c86aad93d1898064ec115ae
+  decision: authorize_v68_frozen_non_target_v64_r2_gate_training_only
+authorized_next_action: authorize_v68_frozen_non_target_v64_r2_gate_training_only
+authorized_command: >-
+  PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+  v64-r2-probabilistic-state-gate-training
+  --config configs/v68_v64_r2_probabilistic_state_gate_training.yaml
+pass_action: authorize_v69_outcome_blind_non_target_prospective_confirmation_prepare_only
+failure_action: retire_v64_r2_without_evaluation_or_target_access
+contract_repair:
+  supersedes_revision: v068_frozen_non_target_v64_r2_gate_training_r1
+  timing: before_any_v68_data_deserialization_checkpoint_read_model_instantiation_or_training
+  allowed_change_scope: operator_storage_sampling_smoke_checkpoint_packet_and_preprocessing_provenance_clarification_only
+  scientific_architecture_objective_grid_roles_and_hyperparameters_changed: false
+
+access_contract:
+  output_dir: artifacts/v68_v64_r2_probabilistic_state_gate_training
+  checkpoint_dir: data/checkpoints/v68_v64_r2_probabilistic_state_gate_training
+  smoke_checkpoint_dir: data/checkpoints/v68_v64_r2_probabilistic_state_gate_smoke
+  allowed_inputs:
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json
+    - artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json
+    - artifacts/v66_v64_r2_probabilistic_state_gate_harness/result.json
+    - artifacts/v66_v64_r2_probabilistic_state_gate_harness/audit.json
+    - artifacts/v66_v64_r2_probabilistic_state_gate_harness/harness_spec.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/result.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/audit.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/dataset_spec.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/dataset_manifest.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/label_schema.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/role_schema.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/derivation_contract.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/data_access.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/completion_receipt.json
+    - artifacts/v67_v64_r2_probabilistic_state_gate_dataset/artifact_manifest.json
+    - artifacts/v63_decoupled_rank_state_training/result.json
+    - artifacts/v63_decoupled_rank_state_training/audit.json
+    - artifacts/v63_decoupled_rank_state_training/training_spec.json
+    - artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json
+    - artifacts/v63_decoupled_rank_state_training/scaler_manifest.json
+    - artifacts/v63_decoupled_rank_state_training/completion_receipt.json
+    - artifacts/v63_decoupled_rank_state_training/artifact_manifest.json
+    - artifacts/v32_selected_universe_dataset/feature_schema.json
+    - artifacts/v32_selected_universe_dataset/asset_folds.json
+    - artifacts/v32_selected_universe_dataset/triplet_catalog.json
+    - data/processed/selected_universe_panel_v32.parquet
+    - data/processed/v67_v64_r2_gate_labels.parquet
+    - data/processed/v67_v64_r2_gate_sequence_roles.parquet
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_42.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_7.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_123.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_42.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_7.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_123.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_42.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_7.final.pt
+    - data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_123.final.pt
+  allowed_capabilities:
+    - verify_exact_v65_v66_v67_v63_and_v32_receipts
+    - deserialize_only_the_exact_registered_non_target_feature_label_and_role_data
+    - open_each_exact_v63_checkpoint_once_per_registered_job
+    - extract_only_the_exact_ranker_substate_and_registered_fold_feature_scaler
+    - fit_only_one_train_role_market_target_rms_scaler_per_fold
+    - instantiate_one_fresh_probabilistic_state_gate_per_registered_fold_seed_job
+    - train_exactly_nine_gate_only_jobs_on_apple_mps_float32
+    - early_stop_only_on_frozen_internal_validation_student_t_nll
+    - retain_every_registered_checkpoint_without_seed_or_fold_selection
+    - verify_interrupted_resume_checkpoint_roundtrip_grid_and_zero_step_replay
+  required_checks:
+    - all_input_phase_contract_source_data_and_checkpoint_hashes_match
+    - clean_committed_git_and_registered_storage_policy
+    - mps_float32_deterministic_fallback_disabled
+    - exact_nine_fold_seed_jobs_and_exact_v63_ranker_state_identities
+    - ranker_requires_grad_false_and_ranker_optimizer_absent
+    - old_v63_gate_substate_is_never_applied_to_a_model_inspected_selected_or_reused
+    - exact_gate_train_and_internal_validation_roles_only
+    - exact_v63_feature_scalers_reused_without_refit_and_market_target_scalers_fit_gate_train_only
+    - heldout_fold_assets_and_2025_values_are_absent
+    - exact_student_t_df5_location_scale_objective_and_capacity
+    - smoke_interrupted_resume_matches_uninterrupted
+    - all_nine_checkpoints_retained_and_semantically_verified
+    - replay_creates_zero_jobs_optimizer_steps_or_checkpoint_rewrites
+    - no_prediction_position_policy_performance_pnl_outcome_or_target_access
+  forbidden_capabilities:
+    - target_asset_access
+    - v64_consumed_2025_outcome_or_any_outcome_packet_access
+    - post_2024_signal_label_role_or_feature_value_access
+    - heldout_fold_asset_scaler_training_or_validation
+    - old_v63_or_v64_gate_substate_model_load_inspection_selection_or_reuse
+    - ranker_parameter_change_gradient_or_optimizer
+    - ranker_architecture_objective_or_state_identity_change
+    - gate_distribution_threshold_size_seed_fold_or_hyperparameter_change
+    - missing_row_imputation_or_repair
+    - prediction_position_policy_or_portfolio_generation
+    - performance_metric_or_pnl
+    - seed_fold_checkpoint_or_epoch_selection_for_economic_use
+    - v69_implementation_or_evaluation
+    - paper_shadow_live_or_real_money_trading
+
+input_contract:
+  expected_file_sha256_by_path:
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/specification.json: 7f5b21c002b31f2851ba0479d1800da6ecdbb798cc1f5d94123d6da8e13d7463
+    artifacts/v65_v64_r2_probabilistic_state_gate_spec/blueprint.json: 18b5cfc2ae73128e50f96b1899db2260deb8534c161d3416f2ec9383d84e1e0c
+    artifacts/v66_v64_r2_probabilistic_state_gate_harness/result.json: 70e41cce11a606a438d678ed3c7ca7b071e3e447c664bb17bf6e09d0cc3fe201
+    artifacts/v66_v64_r2_probabilistic_state_gate_harness/audit.json: ebc7f8164876aca1938255dec780475541b8fe9b78d6e7ef14e37d4e7916f0a4
+    artifacts/v66_v64_r2_probabilistic_state_gate_harness/harness_spec.json: d581e79b484b695f12d9d1e01d093920ae8be7605d5267d21c9f2c9c19f0241a
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/result.json: 2213038d10cecea427eb5c82a3b8a0b4f950ad9ae6bd3a46568170f993e0089d
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/audit.json: 4c2848fd5d2686e18e41d2aa7b5e51687f797fe95291facf99f4be24d33a7cdd
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/dataset_spec.json: 4789bbc92839ebf00a57822aaf80cf00f5b91b357b6cad1974acde96aedcff62
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/dataset_manifest.json: 6a5d9598033ef2f05d742159fd87c28557cae347a169aec6c80f26d207b2ca3f
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/label_schema.json: 220bcadd67de52d7de9127265939492a757154fc6b4266229953ebccf2c60796
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/role_schema.json: 753d109aa165cbaa898a8b2975a45b228701d7a6a703f900f184d5981ea11e81
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/derivation_contract.json: 854246faf5319f945e05f7a64f217ed8b140451adbf46d0d22b6d7e277ed2ec4
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/data_access.json: 19ad77e3c3b1e66529ced370867b3cc8ae7c0ba448a1507c2d39778b73cbd7fe
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/completion_receipt.json: 4601f8c74ad9b150b5420e3c6a4d77338f00654d6e1d2e6ba6f779ebaf1b7951
+    artifacts/v67_v64_r2_probabilistic_state_gate_dataset/artifact_manifest.json: 80465e1cf7547b733a9a52bdd04bfe614b7406957e6d43a836a959c438dadfe4
+    artifacts/v63_decoupled_rank_state_training/result.json: 79de7b451ed2fcbbc27d3ba9ba6fa6425a7aaf8620a533b1c7fbe9bc5aa3f48a
+    artifacts/v63_decoupled_rank_state_training/audit.json: 6fad0a0e69433658cfb66f93d09ebde29e0b7beeb8a3d93df74df846ee24a2a0
+    artifacts/v63_decoupled_rank_state_training/training_spec.json: 37efa60195b1df3e09bf7159e7a11e9289c34a3874cabf19403b3bfefd240c60
+    artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json: 4c069d39d36d224ccc48adea449f7c7dad3a381b192b8af376dc2d470db0b0f9
+    artifacts/v63_decoupled_rank_state_training/scaler_manifest.json: 2d6848c4622cee2f55651f7832ed484023cf137a73665d8b959bb96a60e54a6a
+    artifacts/v63_decoupled_rank_state_training/completion_receipt.json: 1f0fd83d71130860f4d189c43fbafda4ecfc00b2644025a290e2bf4f3a8bf3ba
+    artifacts/v63_decoupled_rank_state_training/artifact_manifest.json: fef2c5a4f08a735b9461df13845ca5984595eadb494c5608911c91c8d8912bf2
+    artifacts/v32_selected_universe_dataset/feature_schema.json: 95feb4957fee2805d182c7b3820c4a9693da1df558e1a09d89d82ce0a75f920c
+    artifacts/v32_selected_universe_dataset/asset_folds.json: 5a242dcb08bbb46afd085ac21d50cc2567d078f1263aa341b1fdaad49b025a45
+    artifacts/v32_selected_universe_dataset/triplet_catalog.json: d243e3afc76c32736ca5f31d55a852b1fb8c01535e5797a55329bfd8a8dd1ce2
+    data/processed/selected_universe_panel_v32.parquet: dc8d50af79a9272a25f952cfd266e461ee938d60d8a19654b9eedd93a4ac5f3a
+    data/processed/v67_v64_r2_gate_labels.parquet: d2aa57b78692ca423143210afa6d90b6b0e314165b3bd2ad4fe5f8ac58b29839
+    data/processed/v67_v64_r2_gate_sequence_roles.parquet: 8eed8ef8a6b61a91ea07a0a056c2a7c56de42e950c3b91384a9f37985aaa3041
+    data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_42.final.pt: cb41888d535e6cf949d181385e7522283aeb999aa5a4e43b7bd7ca3358a65149
+    data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_7.final.pt: b5f6f2b8e859f2c8f5dde11f7d930f3a64bb0d8b6aa7a8ade426a75b9200db6e
+    data/checkpoints/v63_decoupled_rank_state_training/fold_1/seed_123.final.pt: f8e4e981d0be3820f9cb9d6cdbd4ab9096c776e2fffb4d6330eb1d0108075b29
+    data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_42.final.pt: 2b073411b030cf607d3e55a2615511768dd50aaa5cb9c0e31adbcce82489183c
+    data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_7.final.pt: 0be5799b7acda394989fc177aaf1346962285e24f9a2c23d430e591fbcc4a91c
+    data/checkpoints/v63_decoupled_rank_state_training/fold_2/seed_123.final.pt: 139b002b4204d618c3e169e130fd7d034dc3870f54ad856c487e1df56e6e283e
+    data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_42.final.pt: 9e9ce2d843d4497f4c0120da81b192f5bba2c61b6bb289ed50fcf8ab008d8c49
+    data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_7.final.pt: 43bbe4e460599e1107640df8b7a0fd65818447d664a4d728ca81aaef777d590a
+    data/checkpoints/v63_decoupled_rank_state_training/fold_3/seed_123.final.pt: e18f684307f529b74b4111de57b0e0e56a5421af029647ef0f39f913f5181ca8
+  target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  non_target_symbol_count: 30
+  fold_count: 3
+  seed_count: 3
+  expected_jobs: 9
+  lookback_days: 256
+  triplet_size: 3
+
+data_and_role_contract:
+  feature_panel_projection:
+    - date
+    - symbol
+    - log_open_to_open_return
+    - log_close_to_close_return
+    - log_high_low_range
+    - log_close_open_return
+    - log1p_quote_volume_change
+    - log1p_trade_count_change
+    - rolling_realized_volatility_7d
+    - rolling_realized_volatility_30d
+  label_projection:
+    - date
+    - symbol
+    - target_h1_maturity_date
+    - target_h1_open_to_open_log_return
+    - h1_label_complete
+  role_projection:
+    - date
+    - sequence_start_date
+    - symbol
+    - h1_label_complete
+    - eligible_v62_train
+    - gate_role
+    - eligible_gate_train
+    - eligible_gate_internal_validation
+  train_role: gate_train
+  internal_validation_role: gate_internal_validation
+  internal_validation_is_clean_evidence: false
+  maximum_signal_date: '2024-12-23'
+  any_2025_or_later_value_allowed: false
+  feature_context: exact_registered_256_day_non_target_context_only
+  train_symbols: exact_v32_fold_train_symbols
+  heldout_fold_symbols: forbidden
+  triplets: exact_v32_fold_train_triplets_in_lexical_order
+  missing_data: preserve_without_imputation
+
+ranker_and_scaler_reuse_contract:
+  source_checkpoint_manifest: artifacts/v63_decoupled_rank_state_training/checkpoint_manifest.json
+  source_checkpoint_manifest_sha256: 129e6f9be9788c2aa053cd95f61a495e5aaaba1297cbe27005d4e50ba59b2bd5
+  exact_ranker_state_sha256_by_job:
+    1|42: 6077c0aae35a7925018b4e1581fe96b624c4ad9ece3805370f01d1c6e0982afa
+    1|7: 5c33a5474caacb0d512e746b77fd78376992614ea8b3d82d70b26a2aaff6c3e2
+    1|123: 995bd7f7109e9d048393d9c18820e9e100df84f609847c21b4e5679cee670351
+    2|42: 702b1ae6943f46758a6330e47f7ac337c128f69ff96c8ef93afd2caddcf68254
+    2|7: 2ff0b530d6af4dcfc643d039812dcf0ba8ffece930483dc48f25f2dd3f8751b0
+    2|123: ba4a4cd1785eac4c2048ca455ba450760cb0b8615dfa9fe3aa1225342294ac04
+    3|42: 6bb5645e3abff01843a45a440a0730a5bbee2fa6f26e2b67fe3c6f9b08776298
+    3|7: 226a7941599350db664399e0ee55682fe2077a0b15f8d4cfd8ab8e5c9ddc754d
+    3|123: a164c3d4d1e08e1c666ec3c532bb601a726093dc690f0279cd2541fc82750a7d
+  ranker_requires_grad: false
+  ranker_optimizer: none
+  source_checkpoint_container_deserialization_includes_legacy_gate_tensors: true
+  old_gate_substate_loaded_into_model: false
+  old_gate_substate_values_inspected_or_hashed: false
+  old_gate_substate_selected_or_reused: false
+  old_gate_substate_discarded_immediately_after_ranker_extraction: true
+  feature_scaler_source: exact_registered_v63_fold_scaler_without_refit
+  feature_scaler_original_fit_role: v63_eligible_train_2021_10_13_through_2024_12_23
+  feature_scaler_includes_v68_internal_validation_feature_distribution: true
+  feature_scaler_leakage_implication: v68_internal_validation_is_diagnostic_and_not_clean_evidence
+  market_target_scaler:
+    count: 3
+    statistic: root_mean_square
+    fit_role: gate_train_only
+    fit_symbols: exact_fold_train_symbols
+    fit_triplets: exact_fold_train_triplets
+    zero_replacement: 1.0
+    statistics_dtype: float64
+    application_dtype: float32
+
+gate_model_and_objective_contract:
+  architecture:
+    input_features: 18
+    lookback_days: 256
+    patch_length_days: 16
+    patch_stride_days: 8
+    d_model: 32
+    encoder_layers: 2
+    attention_heads: 4
+    feed_forward_width: 64
+    dropout: 0.2
+    outputs: [normalized_triplet_market_location, normalized_triplet_market_raw_scale]
+    expected_parameter_count: 27522
+  distribution: student_t_location_scale
+  degrees_of_freedom: 5.0
+  degrees_of_freedom_trainable: false
+  scale_transform: softplus_plus_floor
+  scale_floor: 0.0001
+  target: train_only_triplet_mean_next_open_log_return
+  loss: mean_negative_student_t_log_likelihood
+  early_stopping_monitor: gate_internal_validation_negative_student_t_log_likelihood
+  ranker_uncertainty_added: false
+
+grid_optimizer_and_runtime_contract:
+  folds: [1, 2, 3]
+  seeds: [42, 7, 123]
+  expected_jobs: 9
+  all_jobs_retained_without_selection: true
+  device: mps
+  dtype: float32
+  deterministic_algorithms: true
+  mps_fallback_allowed: false
+  optimizer:
+    name: AdamW
+    learning_rate: 0.0003
+    betas: [0.9, 0.999]
+    epsilon: 1.0e-8
+    weight_decay: 0.0001
+  batch_size: 128
+  train_samples_per_epoch: 8192
+  fixed_validation_samples: 2048
+  maximum_epochs: 30
+  early_stopping_patience: 5
+  gradient_clip_norm: 1.0
+  hyperparameter_search_allowed: false
+  seed_fold_or_epoch_selection_allowed: false
+
+checkpoint_and_replay_contract:
+  checkpoint_scope: exact_ranker_substate_plus_fresh_probabilistic_gate_substate
+  expected_final_checkpoint_count: 9
+  preserve_exact_ranker_state_sha256: true
+  old_gate_state_absent_from_v68_model_and_checkpoint: true
+  gate_state_fresh_per_job: true
+  resume_only_same_job_phase_and_epoch: true
+  cross_job_resume_allowed: false
+  interrupted_resume_smoke_required: true
+  semantic_roundtrip_required: true
+  complete_grid_manifest_required: true
+  zero_step_replay_required: true
+
+# Generic training-operator compatibility projection. The scientific content
+# remains defined by checkpoint_and_replay_contract/checkpoint_format_contract.
+checkpoint_contract:
+  cross_job_resume_allowed: false
+
+operator_preflight_contract:
+  clean_committed_git_required: true
+  storage_policy: phase_specific_owner_waiver
+  smoke_must_pass_before_full_training: true
+  smoke_job: {fold: 1, seed: 42}
+  smoke_train_samples_per_epoch: 128
+  smoke_validation_samples: 128
+  smoke_batch_size: 32
+  smoke_maximum_epochs: 2
+
+runtime_contract:
+  device: mps
+  dtype: float32
+  amp: false
+  cpu_fallback_allowed: false
+  pytorch_enable_mps_fallback: '0'
+  deterministic_algorithms: true
+  torch_threads: 10
+  dataloader_workers: 0
+  maximum_active_optimizer_jobs: 1
+  process_lock: data/checkpoints/.v68_v64_r2_probabilistic_state_gate_training.lock
+  process_lock_scope: smoke_full_verify_and_replay
+  clean_committed_git_required: true
+  minimum_free_gib: 10
+  expected_checkpoint_storage_gib_upper_bound: 2
+  measured_parent_nine_checkpoint_storage_mib: 272
+  external_backup_receipt_required: false
+  backup_policy:
+    mode: owner_waiver
+    waiver:
+      path: research/waivers/v068_external_backup_owner_waiver.json
+      file_sha256: 61bc12cdc526f71c4071416d681f029b758d3c2c1c314c45e7d7384cf9430512
+    waived_safeguards:
+      - external_input_copy
+      - external_code_copy
+      - external_checkpoint_copy
+  full_phase_order: [doctor, preflight, smoke, full, verify, replay]
+
+checkpoint_format_contract:
+  final_format_version: v68_v64_r2_probabilistic_state_gate_checkpoint_v1
+  resume_format_version: v68_v64_r2_probabilistic_state_gate_resume_v1
+  resume_granularity: completed_epoch_boundary_same_job_only
+  atomic_temporary_then_replace: true
+  final_gate_state: strictly_best_internal_validation_nll_model
+  final_ranker_state: exact_immutable_v63_substate
+  final_optimizer_state_included_for_audit: true
+  required_state:
+    - ranker_state
+    - gate_current_state
+    - gate_best_state
+    - gate_optimizer_state
+    - gate_early_stopping
+    - stage
+    - completed_epoch
+    - optimizer_steps
+    - cpu_rng_state
+    - mps_rng_state
+    - history
+    - source_ranker_checkpoint_sha256
+    - source_ranker_state_sha256
+    - fold_feature_scaler_sha256
+    - market_target_scaler_sha256
+    - phase_contract_sha256
+    - source_bundle_sha256
+    - job_context
+
+smoke_contract:
+  fold: 1
+  seed: 42
+  train_samples_per_epoch: 128
+  fixed_validation_samples: 128
+  batch_size: 32
+  maximum_epochs: 2
+  early_stopping_patience: 2
+  interrupt_after_completed_epoch: 1
+  equivalence_requirements:
+    - exact_ranker_state
+    - probabilistic_gate_state
+    - gate_optimizer_state
+    - cpu_rng_state
+    - mps_rng_state
+    - sampler_receipts
+    - early_stopping_state
+    - full_history
+    - optimizer_step_count
+
+artifact_contract:
+  packet_files:
+    - artifact_manifest.json
+    - audit.json
+    - backup_policy_receipt.json
+    - checkpoint_manifest.json
+    - completion_receipt.json
+    - data_access.json
+    - grid_manifest.json
+    - history_manifest.json
+    - input_hash_receipt.json
+    - operator_packet_full.json
+    - operator_packet_replay.json
+    - operator_packet_smoke.json
+    - operator_packet_verify.json
+    - preflight.json
+    - replay.json
+    - report.md
+    - resolved_config.yaml
+    - result.json
+    - scaler_manifest.json
+    - smoke.json
+    - source_receipt.json
+    - training_result.json
+    - training_spec.json
+    - verification.json
+    - smoke_data_access.json
+  training_spec: exact_canonical_projection_of_this_phase_contract
+  source_receipt_requires_clean_git_head: true
+  checkpoint_manifest_requires_all_nine_file_semantic_ranker_and_gate_hashes: true
+  history_manifest_requires_all_nine_unselected_histories: true
+  artifact_manifest_excludes_itself_and_completion_receipt: true
+  atomic_writes_required: true
+  replay_behavior:
+    new_jobs: 0
+    new_optimizer_steps: 0
+    rewritten_checkpoints: 0
+    checkpoint_hashes_match: true
+
+data_access_ledger_contract:
+  outcome_rows_read: 0
+  target_assets_loaded: []
+  heldout_fold_symbols_loaded_by_job: []
+  forbidden_columns_loaded: []
+  source_checkpoint_containers_deserialized: 9
+  old_gate_substates_loaded_into_model: []
+  old_gate_substates_inspected_selected_or_reused: []
+  predictions_written: false
+  policy_actions_emitted: false
+  performance_metrics_computed: false
+  pnl_computed: false
+  hyperparameters_changed: false
+
+operator_enforcement_contract:
+  expected_job_grid_source: reconstruct_from_grid_optimizer_and_runtime_contract
+  authorized_operations: [doctor, smoke, full, verify, replay]
+  live_doctor_fields_must_match_packet:
+    - free_disk_bytes
+    - required_free_disk_bytes
+    - mps_available
+    - deterministic_algorithms
+    - fallback_enabled
+    - active_job_count
+    - process_lock
+    - backup_policy_and_owner_waiver
+  operation_order: [doctor, smoke, full, verify, replay]
+  preflight_precedes_smoke: true
+  training_spec_and_phase_contract_hash_required_before_smoke: true
+
+commands:
+  doctor: PYTHONPATH=src python3 -m tlm research-doctor
+  preflight: >-
+    PYTHONPATH=src python3 -m tlm v64-r2-probabilistic-state-gate-training-preflight
+    --config configs/v68_v64_r2_probabilistic_state_gate_training.yaml
+  smoke: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    v64-r2-probabilistic-state-gate-training-smoke
+    --config configs/v68_v64_r2_probabilistic_state_gate_training.yaml
+  full: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    v64-r2-probabilistic-state-gate-training
+    --config configs/v68_v64_r2_probabilistic_state_gate_training.yaml
+  verify: >-
+    PYTHONPATH=src python3 -m tlm v64-r2-probabilistic-state-gate-training-verify
+    --config configs/v68_v64_r2_probabilistic_state_gate_training.yaml
+  replay: >-
+    PYTORCH_ENABLE_MPS_FALLBACK=0 PYTHONPATH=src python3 -m tlm
+    v64-r2-probabilistic-state-gate-training-replay
+    --config configs/v68_v64_r2_probabilistic_state_gate_training.yaml
+
+evidence_contract:
+  training_loss_and_internal_validation_nll_are_diagnostics_only: true
+  v64_2025_outcomes_are_consumed_and_forbidden: true
+  prospective_non_target_confirmation_required: true
+  target_assets_remain_sealed: true
+  deployable_claim_allowed: false
+
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+stop_condition: stop_after_v68_training_gate_before_any_v69_implementation

@@ -1,0 +1,47 @@
+{
+  "accepted_at": "2026-07-14",
+  "accepted_by": "repository_owner",
+  "accepted_risks": [
+    "loss_of_the_only_local_input_copy_can_make_the_run_non_reproducible",
+    "loss_of_local_checkpoints_can_require_retraining_all_thirty_six_jobs",
+    "single_device_failure_can_destroy_uncommitted_or_ignored_training_artifacts"
+  ],
+  "authorization_source": {
+    "channel": "codex_thread",
+    "directive": "nao precisa de backup, continue"
+  },
+  "base_phase_contract": {
+    "file_sha256": "23883bb354d8bb479778435188fb58962bf43b03f431981e4b963a674a09d868",
+    "path": "research/phase_contracts/v058.yaml"
+  },
+  "family_id": "tlm_state_conditioned_multi_horizon_quantile_small_v1",
+  "parent_experiment": {
+    "file_sha256": "b41f2e1f175a3e11efe231521131dccfdb65917247234e58a30ba3b83869c303",
+    "path": "research/experiments/v057.yaml"
+  },
+  "phase": "v58",
+  "preconditions_at_acceptance": {
+    "git_head": "416fa7100b17cd1fd656151dcbf82e62c4cbd975",
+    "optimizer_jobs_started": 0,
+    "v58_artifact_packet_exists": false,
+    "v58_checkpoints_created": 0
+  },
+  "preserved_invariants": [
+    "exact_input_hashes_and_non_target_data_scope",
+    "exact_model_architecture_objective_grid_seeds_and_optimizer",
+    "clean_committed_git_and_source_receipt",
+    "minimum_fifty_gib_free_disk_at_each_operator_boundary",
+    "deterministic_float32_mps_with_fallback_disabled",
+    "all_thirty_six_local_checkpoints_retained_without_selection",
+    "checkpoint_roundtrip_same_job_resume_and_zero_step_replay",
+    "development_evaluation_outcomes_predictions_policy_performance_pnl_and_target_assets_remain_sealed"
+  ],
+  "risk_acceptance": true,
+  "schema_version": "tlm-owner-storage-waiver/v1",
+  "waived_safeguards": [
+    "external_input_copy",
+    "external_code_copy",
+    "external_checkpoint_copy"
+  ],
+  "waiver_id": "v058r1_external_backup_owner_waiver"
+}

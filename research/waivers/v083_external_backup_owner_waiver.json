@@ -1,0 +1,18 @@
+{
+  "accepted_by": "repository_owner",
+  "authorization_context": "The repository owner explicitly authorized continuation using the available local 43 GB and previously waived external backup for this lineage.",
+  "family_id": "tlm_low_turnover_cross_sectional_rank_v1",
+  "parent_experiment": {
+    "file_sha256": "28d12bb5c70a0f2ae32ffbd234484837d241d48937194acaed78b5d56258f278",
+    "path": "research/experiments/v083.yaml"
+  },
+  "phase": "v83",
+  "risk_acceptance": true,
+  "schema_version": "tlm-owner-storage-waiver/v1",
+  "waived_safeguards": [
+    "external_input_copy",
+    "external_code_copy",
+    "external_checkpoint_copy"
+  ],
+  "waiver_id": "v083_external_backup_owner_waiver"
+}

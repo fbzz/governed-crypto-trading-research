@@ -1,0 +1,26 @@
+seed: 20260713
+
+selected_universe_dataset:
+  project_root: .
+  v29_amendment_path: artifacts/v29_multi_asset_scope_amendment/amendment.json
+  v30_inventory_path: artifacts/v30_training_universe_inventory/inventory.json
+  v31_inventory_path: artifacts/v31_selected_source_manifest/inventory.json
+  v31_audit_path: artifacts/v31_selected_source_manifest/audit.json
+  v31_manifest_path: artifacts/v31_selected_source_manifest/manifest.jsonl
+  expected_v29_amendment_sha256: c1aad19222398cc87717b72467b696498ca4a8109c78527ac63586094d50155d
+  expected_v30_inventory_sha256: 9968bc920dea35e61ffc90195a26b1d91fe53bec44108276d163c963d40314e6
+  expected_v31_inventory_sha256: cf8d9c2ab16396b54ad5cf4ebdc84c5f61bc6b511f591074b6b4551d99666114
+  expected_v31_audit_sha256: b225e5d5ae8dc979babb6fc33db5df1e1870a3bdf21816f49a0b182de9b9e9da
+  expected_v31_manifest_sha256: e63b1b8d88a4050c219a83a08563677d513baea1164c7e218d54fbd75edfcf11
+  expected_v29_blueprint_sha256: af5d24c368cd39d8db65fa20b05fbb42edfa3c64022fd466f0a799e83ecc9b5a
+  panel_path: data/processed/selected_universe_panel_v32.parquet
+  sequence_index_path: data/processed/selected_universe_sequence_index_v32.parquet
+  raw_dir: data/raw/binance_spot_non_target
+  archive_workers: 32
+  realized_volatility_formula: root_sum_squared_log_returns
+  realized_volatility_windows: [7, 30]
+  triplet_relative_strength_source: log_close_to_close_return
+  triplet_relative_strength_formula: asset_value_minus_equal_weight_triplet_mean_same_date
+  missing_data_policy: preserve_nan_no_imputation
+
+output_dir: artifacts/v32_selected_universe_dataset

@@ -1,0 +1,42 @@
+schema_version: 1
+experiment_id: v080_low_turnover_cross_sectional_rank_specification
+family_id: tlm_low_turnover_cross_sectional_rank_v1
+phase: outcome_blind_low_turnover_cross_sectional_rank_specification
+status: authorized_not_started
+decision: authorize_v80_low_turnover_cross_sectional_rank_specification_only
+authorized_next_action: authorize_v80_low_turnover_cross_sectional_rank_specification_only
+evidence_tier: metadata_only_final_family_specification
+parent_experiment:
+  path: research/experiments/v079.yaml
+  file_sha256: 7b4bab47ac9815145c7d1a0343f34be4a39403cfa2587ecd1782f0702d02ee92
+blueprint:
+  path: research/authorizations/v080_specification_boundary.json
+  file_sha256: 567b6ba6bfd9b96eb9daa17a5fd6e4aae996ef34a384176a7e1ea63cbcda6a88
+  canonical_sha256: 6a513a024ec01cb7d39d1e6aa19877fcc9cefaca594efa1f8eaf403fca04c1e5
+result:
+  path: artifacts/v79_v78_terminal_record/result.json
+  file_sha256: 68a587167c7ed4cba0fffa9e5a729c6298d63852b937ea3331313fee5805f4d5
+  registered_result_sha256: 945fdf7307df510c29eb887ae57476d8de728462ce5498e3969f3daa2422588d
+audit:
+  path: artifacts/v79_v78_terminal_record/audit.json
+  file_sha256: e76f9772719ed746ae46447f0985c685491940ceb7ae6a283b3ef7c5ff0d0a47
+authorization_receipt:
+  path: artifacts/v79_v78_terminal_record/result.json
+  file_sha256: 68a587167c7ed4cba0fffa9e5a729c6298d63852b937ea3331313fee5805f4d5
+  decision: authorize_v80_low_turnover_cross_sectional_rank_specification_only
+scope:
+  family_is_new: true
+  single_final_family: true
+  prior_checkpoint_weight_scaler_or_optimizer_reuse_allowed: false
+  architecture_or_parameter_count_frozen_before_v80: false
+  parameter_increase_as_default_direction: false
+  single_frozen_variant_required: true
+  structural_turnover_budget_required: true
+  v80_executed: false
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false

@@ -1,0 +1,135 @@
+seed: 20260714
+
+v50_economic_failure_autopsy:
+  version: v54
+  project_root: .
+  inputs:
+    v50_result: artifacts/v50_joint_absolute_relative_evaluation/result.json
+    v50_audit: artifacts/v50_joint_absolute_relative_evaluation/audit.json
+    v50_gate_result: artifacts/v50_joint_absolute_relative_evaluation/gate_result.json
+    v50_portfolio_metrics: artifacts/v50_joint_absolute_relative_evaluation/portfolio_metrics.json
+    v50_predictive_summary: artifacts/v50_joint_absolute_relative_evaluation/predictive_summary.json
+    v50_bootstrap: artifacts/v50_joint_absolute_relative_evaluation/bootstrap.json
+    v50_stresses: artifacts/v50_joint_absolute_relative_evaluation/stresses.json
+    v50_outcome_manifest: artifacts/v50_joint_absolute_relative_evaluation/outcome_manifest.json
+    v50_evaluation_spec: artifacts/v50_joint_absolute_relative_evaluation/evaluation_spec.json
+    daily_returns: artifacts/v50_joint_absolute_relative_evaluation/daily_returns.parquet
+    outcomes: artifacts/v50_joint_absolute_relative_evaluation/outcome_packet.parquet
+    context_predictions: artifacts/v50_joint_absolute_relative_evaluation_prepare/context_predictions.parquet
+    triplet_positions: artifacts/v50_joint_absolute_relative_evaluation_prepare/triplet_positions.parquet
+    prepare_manifest: artifacts/v50_joint_absolute_relative_evaluation_prepare/prepare_manifest.json
+  expected_input_sha256:
+    v50_result: 008eb59998dde732a834c85f861b30ff61d925ce598e772d1a9f9bf27df405e7
+    v50_audit: d6c00d2f3f6853aec84cc6ebff4fe0b7de9f938ceb7069c69cead632a424f674
+    v50_gate_result: cae6f81b937d22243fcaf4b30166ebf33d7d96c52c80b681c75ae1d0083daae5
+    v50_portfolio_metrics: ea2bb9f0020357af1ed4ff0dd92c6105beb45d5f4bf525a7a40d2010166cbd4f
+    v50_predictive_summary: a1e5bc809efbe1f0288609902fdd455c9d61b82f561ec83c3fcaee03a174964a
+    v50_bootstrap: 51c6056b032647102d8cd335071b0aafd193fe763abeecf647f629ad3071a8c3
+    v50_stresses: f0db95f2d32bc64998df0f88ac984acd353981fe60ad0b44ec6c92810d022c19
+    v50_outcome_manifest: 8744779480415535f1d87b110c9603a9be48970d5e068626ed895f14f972990c
+    v50_evaluation_spec: ea6cf6b7c79b07ed07d776845ca53d0c190827cb79a3348210b0067d7dc8d9ac
+    daily_returns: 57c8ea3502c8d556e8aa080f4bf0e7a7b57a3a89dd80a0824e93da65cc337abf
+    outcomes: 70027556956834082837e666087f35aed9542a89c46a49fde32ae2cd13d329fa
+    context_predictions: dc4c406672f3f1871d270457ee63d276153de6e85a836588ffa258eee29acd00
+    triplet_positions: 604288c5c6c05de4903ac251a727360fc4332a12a92af61032a726831ccfcc74
+    prepare_manifest: e1c148670a338893f9c659a21d2f80b872df46c8702b66f72f6cccb3b6fdce5c
+
+  expected_lineage:
+    family_id: tlm_joint_absolute_relative_triplet_medium_v1
+    v50_spec_sha256: df31cca33b1b248324f7e6e9bf4ccabd3c9dea81454c4a4b95e1f6bae836be7e
+    v50_result_sha256: 3ba18a664e909ebebb86b90438323ff6098d339614c134dc8ecc0b644d3a2afa
+    v50_decision: retire_family_without_tuning
+    gate_cells: 180
+    passed_gate_cells: 67
+    failed_gate_cells: 113
+
+  constraints:
+    v50_artifacts_read_only: true
+    raw_panel_or_sequence_allowed: false
+    checkpoint_or_scaler_allowed: false
+    model_instantiation_or_inference_allowed: false
+    training_recalibration_or_finetuning_allowed: false
+    alternative_policy_threshold_or_hurdle_allowed: false
+    counterfactual_pnl_allowed: false
+    new_cost_grid_or_bootstrap_allowed: false
+    asset_fold_date_or_outlier_exclusion_allowed: false
+    post_hoc_slice_promotion_allowed: false
+    target_assets_allowed: false
+    post_2025_observations_allowed: false
+    v50_decision_mutable: false
+    all_registered_cells_must_be_reported: true
+
+  data_contract:
+    origins: [origin_2024, origin_2025]
+    geometries: [expanding, rolling]
+    folds: [1, 2, 3]
+    target_symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+    expected_context_prediction_rows: 443424
+    expected_triplet_position_rows: 514800
+    expected_outcome_rows: 20410
+    expected_daily_return_rows: 28600
+    expected_triplets_per_fold: 120
+    registered_cost_bps: [10, 20, 30, 50]
+    primary_cost_bps: 10
+
+  diagnostics:
+    hypotheses:
+      - weak_ordinal_signal_failed_absolute_return_conversion
+      - independent_triplet_policy_created_structural_churn
+      - absolute_forecast_calibration_changed_across_origins
+    transition_states: [cash_hold, entry, hold, switch, exit]
+    calibration_metrics: [pearson, spearman, sign_accuracy, mean_prediction, mean_outcome, mae]
+    consensus_metrics: [active_fraction, top_action_fraction, normalized_entropy, effective_asset_count]
+    gate_categories:
+      - fold_spearman
+      - fold_pairwise
+      - fold_top1_excess
+      - fold_return_10bps
+      - predictive_vs_ridge
+      - return_vs_ridge
+      - return_vs_dual
+      - return_vs_equal
+      - sharpe_vs_dual
+      - absolute_drawdown
+      - drawdown_vs_dual
+      - turnover_vs_dual
+      - bootstrap
+    numerical_tolerance: 1.0e-12
+
+  lifecycle:
+    phases: [metadata_hash_preflight, deterministic_read_only_autopsy]
+    preflight_parquet_deserialization_allowed: false
+    run_requires_hash_exact_preflight: true
+    completed_result_is_cache_only: true
+    input_hashes_rechecked_before_and_after_run: true
+    decision: v50_retirement_confirmed_diagnostic_only
+    recommendation: new_state_conditioned_multi_horizon_family_specification
+    authorized_next_action: v55_metadata_only_new_family_specification
+
+  artifact_contract:
+    preflight_required_files:
+      - autopsy_spec.json
+      - input_hash_receipt.json
+      - audit.json
+      - result.json
+      - artifact_manifest.json
+      - resolved_config.yaml
+      - report.md
+    run_required_files:
+      - autopsy_spec.json
+      - input_hash_receipt.json
+      - gate_summary.json
+      - calibration_by_cell.json
+      - transition_by_cell.json
+      - consensus_by_cell.json
+      - economic_decomposition.json
+      - failure_attribution.json
+      - audit.json
+      - result.json
+      - artifact_manifest.json
+      - resolved_config.yaml
+      - report.md
+
+  preflight_output_dir: artifacts/v54_v50_economic_failure_autopsy_preflight
+
+output_dir: artifacts/v54_v50_economic_failure_autopsy

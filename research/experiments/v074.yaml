@@ -1,0 +1,49 @@
+schema_version: 1
+experiment_id: v074_persistent_multi_horizon_duration_specification
+family_id: tlm_persistent_multi_horizon_duration_v1
+phase: metadata_only_ex_ante_specification
+status: authorized_not_started
+decision: execute_v74_metadata_only_persistent_duration_family_specification
+authorized_next_action: execute_v74_metadata_only_persistent_duration_family_specification
+evidence_tier: metadata_only_ex_ante_design
+parent_experiment:
+  path: research/experiments/v073.yaml
+  file_sha256: fd0488732528b5173d890e2cf140daf87427e91f6dd0f0c249a90dcd169195fe
+blueprint:
+  path: artifacts/authorization_v74_persistent_duration/blueprint.json
+  file_sha256: 8b94cab882401847a8811fdd7d2fa107c41d9b55cbfc482ac79fa1e0dbc329bc
+  canonical_sha256: f8faca6d4189d43a18e52c3c3b66a022082283c4c8b04543529ecfb21962d47a
+result:
+  path: artifacts/authorization_v74_persistent_duration/result.json
+  file_sha256: 7bdb21846c0af941c85ca7bf35faac4c06cb7132829102ad42fef97ea734cd40
+  registered_result_sha256: 3de710ea1c46d14947774acd5bc534defbdda8cb4dfce51766cfdc197caef091
+audit:
+  path: artifacts/authorization_v74_persistent_duration/audit.json
+  file_sha256: 453321ad0ce792553f6dde80cf02f37a6df1ffb53f81ca69d63b63ac9a5e3a63
+authorization_receipt:
+  path: artifacts/v73_v72_posthoc_diagnostic_record/result.json
+  file_sha256: a760aa3e29e1158901cd34b7c9774047f61419bc7df8ae8d5cb4b028ee5e659c
+  decision: authorize_v74_persistent_duration_family_specification_only
+scientific_predecessor:
+  family_id: tlm_decoupled_rank_state_probabilistic_gate_v2
+  lineage_label: V64-R2
+  diagnostic_phase: v72
+  diagnostic_outcome: fail
+  family_status_changed: false
+  evidence_remains_consumed_adaptive_only: true
+  checkpoints_or_weights_reused: false
+family_contract:
+  family_is_new: true
+  architecture_variant_count: 1
+  expected_total_parameters: 1083155
+  parameter_ceiling: 1100000
+  size_sweep_allowed: false
+  registered_future_training_jobs: 9
+  target_assets_status: sealed
+target_contract:
+  symbols: [BTCUSDT, ETHUSDT, SOLUSDT]
+  status: sealed
+  target_assets_loaded: []
+  target_predictions: 0
+  target_pnl_evaluations: 0
+deployable: false
